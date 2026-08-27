@@ -7,6 +7,8 @@ This file records user-visible changes to the standalone Skill. Release tags rem
 ### Added
 
 - optional Codex compatibility profile for text-bearing static graphics;
+- mandatory pre-approval onboarding for ChatGPT Work installation;
+- strengthened ChatGPT Work installation around the active native `@skill-creator` creation workflow and real creation evidence;
 - eight-stage to six-section handoff crosswalk without changing the standalone default;
 - copy-feasibility and brand-identity authority gates;
 - SHA-256 mismatch recovery in both install contracts;

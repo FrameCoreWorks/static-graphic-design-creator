@@ -14,13 +14,20 @@ It is not an image generator or a DTP tool. It authors the prompt and marks gene
 2. Paste the prompt below. The repository URL is the only source address; `@skill-creator` selects the native Skill-creation flow.
 
 ```text
-Use @skill-creator to create and install the standalone Skill from this public repository:
+Use @skill-creator to help me create and install the native ChatGPT Skill from this public repository:
 https://github.com/FrameCoreWorks/static-design-prompt-architect
 
 First read and follow CHATGPT_INSTALL.md in that repository. Create only the declared `static-design-prompt-architect` Skill from the checked source manifest. This is a Skill, not a plugin.
+
+Keep the setup conversational and follow CHATGPT_INSTALL.md in that repository. Start with its short onboarding before asking for approval. After my clear conversational approval, use the already active @skill-creator workflow to create the one declared Skill from the checked source manifest.
+
+Do not search for a separate tool, command, MCP server, modal, callback, or hidden install button. @skill-creator is the native creation workflow in ChatGPT Work. Mark the Skill installed only after it reports that it created and saved the Skill, or the Skill is visible in the Skills library.
+
 ```
 
-ChatGPT Work reads the exact file list from `config/chatgpt-skill-sources.json`, then creates one native personal Skill. Approve creation in the conversation when asked. The Skill can then be used as `@static-design-prompt-architect` or by asking normally for a controlled prompt for a static graphic.
+ChatGPT Work starts with a short onboarding before requesting approval. It explains what the Skill gives, how it controls a static-design prompt, when it is useful, and its limits around generation, brand facts, raster typography, and DTP.
+
+After approval, ChatGPT Work reads the exact file list from `config/chatgpt-skill-sources.json`, verifies the declared hashes, and uses the already active `@skill-creator` workflow to create one native personal Skill. The Skill can then be used as `@static-design-prompt-architect` or by asking normally for a controlled prompt for a static graphic. A real creation result, not the approval or the absence of extra UI, determines whether installation succeeded.
 
 ### Codex
 

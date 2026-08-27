@@ -101,6 +101,25 @@ def main() -> None:
         require(phrase in chatgpt_install, f"ChatGPT installation contract missing: {phrase}")
     require("Verify the SHA-256 of every retrieved source file" in chatgpt_install, "ChatGPT hash verification missing")
     require("reread a fresh manifest" in chatgpt_install, "ChatGPT hash mismatch recovery missing")
+    require("## Mandatory onboarding before approval" in chatgpt_install, "ChatGPT onboarding contract missing")
+    require("What it gives:" in chatgpt_install, "ChatGPT onboarding value missing")
+    require("Do not begin source-file processing" in chatgpt_install, "ChatGPT onboarding ordering missing")
+    require("native Skill-creation workflow" in chatgpt_install, "ChatGPT native creation route missing")
+    require("Do not search for or wait for a separate function tool" in chatgpt_install, "ChatGPT separate-tool guard missing")
+    require("short onboarding before requesting approval" in read(ROOT / "README.md"), "README onboarding disclosure missing")
+    require("@skill-creator is the native creation workflow in ChatGPT Work." in read(ROOT / "README.md"), "README native creation route missing")
+
+    chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
+    require(chatgpt_config["schema_version"] == 2, "Unexpected ChatGPT setup schema")
+    require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
+    native_creation = chatgpt_config["native_creation"]
+    require(native_creation["creator_invocation"] == "@skill-creator", "ChatGPT creator invocation missing")
+    require(native_creation["tool_discovery_required"] is False, "ChatGPT must not discover a separate tool")
+    require(native_creation["capability_preflight_required"] is False, "ChatGPT must not preflight creation capability")
+    confirmation = chatgpt_config["installation_confirmation"]
+    require(confirmation["separate_ui_prompt_expected"] is False, "ChatGPT must not wait for separate UI")
+    require(confirmation["approval_alone_marks_installed"] is False, "ChatGPT approval must not mark installation")
+    require("active_skill_creator_reports_created_and_saved" in confirmation["successful_install_evidence"], "ChatGPT creation evidence missing")
 
     codex_install = read(ROOT / "CODEX_INSTALL.md")
     require(".agents/skills/static-design-prompt-architect" in codex_install, "Codex source root missing")
