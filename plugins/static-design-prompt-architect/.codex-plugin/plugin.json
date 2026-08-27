@@ -1,0 +1,30 @@
+{
+  "name": "static-design-prompt-architect",
+  "version": "0.1.0",
+  "description": "Create controlled, generator-ready prompts for typography-led static graphics.",
+  "author": {
+    "name": "FrameCore Works"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "image-prompting",
+    "poster-design",
+    "static-graphics",
+    "typography",
+    "creative-direction"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Static Design Prompt Architect",
+    "shortDescription": "Prompts for controlled static graphic design.",
+    "longDescription": "Builds provider-neutral, production-ready prompts for posters, flyers, business cards, menus, covers, labels, advertisements, and text-led social graphics.",
+    "developerName": "FrameCore Works",
+    "category": "Productivity",
+    "capabilities": ["Write"],
+    "defaultPrompt": [
+      "Create a layered poster prompt for a cultural event.",
+      "Turn this brief into a print-led business-card prompt."
+    ],
+    "brandColor": "#FF4D29"
+  }
+}

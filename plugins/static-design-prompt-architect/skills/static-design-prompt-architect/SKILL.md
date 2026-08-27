@@ -1,0 +1,62 @@
+---
+name: static-design-prompt-architect
+description: Create provider-neutral, generator-ready prompts for typography-led static graphics such as posters, flyers, business cards, menus, labels, covers, advertisements, and text-led social assets. Use when a brief must become one controlled final static-design prompt; do not use to generate the image, perform DTP, or publish assets.
+metadata:
+  short-description: Create controlled prompts for static graphic design
+---
+
+# Static Design Prompt Architect
+
+Create a final prompt pack for a designed static graphic. The core outcome is a coherent, standalone prompt that controls attention order, layout, image, typography, and finish as one system.
+
+This skill works in two modes:
+
+- **Standalone mode:** turn the user's ordinary brief into a prompt pack. Ask one concise question only when a missing choice materially changes the format, exact copy, reference authority, or execution route. Otherwise state a reversible assumption.
+- **Connected mode:** accept a supplied `workflow_context` or any subset of `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, and `target_generator_profile`. Preserve supplied locks. Do not require or invoke any named external skill.
+
+## Inputs
+
+Minimum viable input:
+
+- asset type and communication objective;
+- audience or use context;
+- required visible copy, if any;
+- intended output format or placement.
+
+Use supplied references only for their declared roles: identity, product truth, composition, style, light, material, typography, or scoped edit source. If a reference role is absent, do not let it silently override identity, logo, exact copy, or product geometry.
+
+## Operating rules
+
+1. Resolve the task as `generate`, `layout`, `reference-guided`, `edit`, or `variation`.
+2. Identify the communication intent and first, second, and third notices. Reject equal-weight collage logic unless the brief explicitly requires it.
+3. If the user did not name an exact generator and surface, keep the prompt provider-neutral. Mark native output size, reference count, font fidelity, editing behavior, seed behavior, and negative-prompt syntax as `Unknown` rather than inventing support.
+4. Classify each requested control as `native-setting`, `prompt-semantic`, `reference-conditioned`, `external-qa`, `unsupported`, or `Unknown`. Put native settings outside the executable prompt only when they are verified for the selected surface.
+5. For a poster, flyer, business card, menu, label, cover, key visual, advertising graphic, or text-led social asset, read [the unified static prompt contract](references/unified-static-prompt-contract.md) and compile one complete prompt in its fixed eight-stage order.
+6. Read [capability and reference rules](references/capability-and-reference-contract.md) before handling references, exact copy, or a selected generator. Read [deliverable profiles](references/deliverable-profiles.md) when the asset type needs a tested design grammar. Read [workflow integration](references/workflow-integration.md) only when structured context or a handoff is present. Read [QA and repair](references/qa-and-repair.md) before reviewing a rendered result or recommending another pass.
+7. Use one complete `unified-multistage-static` prompt by default. The stages describe assembly priority inside one generation; never ask for intermediate images, separate layer files, or later text insertion.
+8. Use `separated-production` only when the user explicitly requests it or a verified near-final render needs a narrow scoped repair. State the reference handoff, preserved elements, exact permitted change, and limitations.
+9. Quote every required visible string. Declare its hierarchy, placement, line-break logic, colour role, and allowed text count. Keep copy concise. For a documented single-word spelling failure, use a scoped edit and spell only that word letter by letter.
+10. Do not promise a named font file, exact kerning, legal licensing status, flawless Polish diacritics, print readiness, or deterministic text rendering from a raster generator. Treat those as external QA or DTP requirements.
+11. Do not use resolution claims or empty quality boosters such as `8K`, `4K`, `HDR`, `ultra sharp`, `hyper detailed`, `crisp`, or `razor sharp`. Describe visible material, light, layout, and legibility instead.
+12. Do not generate assets, call external services, select paid tools, upload files, publish, deploy, or make irreversible changes.
+
+## Output
+
+Use [the prompt-pack template](templates/prompt-pack.md) for complex work or a connected handoff. For a simple request that asks only for prompts, lead with the finished standalone prompt and place each complete prompt in its own fenced code block with no title inside the block.
+
+Return at most four genuinely different variants unless the user requests evaluation rather than alternatives. Every final prompt must be complete, standalone, and ready to paste.
+
+The output must include or make explicit:
+
+- prompt method: `standard` unless the user explicitly requests another method;
+- generator profile and native settings: verified values or `Unknown`;
+- task mode and declared reference roles;
+- design intent, attention order, layout mechanism, and type-image relationship;
+- locked visible copy, exclusions, expected observables, and QA route;
+- a portable `prompt_pack` handoff when connected context is present.
+
+## Final self-check
+
+Before returning, verify that the asset has one singular intent; every major element has a visible role; attention order is executable; text and image cooperate; required copy is quoted exactly; protected references are not repurposed; no unsupported controls are disguised as syntax; and the result has a clear pass/fail QA route.
+
+If the user asks to improve an existing render, work from that render. Prefer a scoped edit when only one observable defect remains; recommend a full rerender only when the hierarchy, identity, product construction, or core visual thesis fails.
