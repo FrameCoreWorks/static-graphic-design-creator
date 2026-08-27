@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/FrameCoreWorks/static-design-prompt-architect",
+  "ref": "main",
+  "skills": [
+    {
+      "name": "static-design-prompt-architect",
+      "source_root": ".agents/skills/static-design-prompt-architect",
+      "files": [
+        {
+          "path": ".agents/skills/static-design-prompt-architect/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/SKILL.md",
+          "sha256": "a23768fdd62a9004b9da7e113c3b2e7946f68f8a12a0db2e07c748afbc2707a2"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/agents/openai.yaml",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/agents/openai.yaml",
+          "sha256": "5850693580813f4ee5fb07d560318c31f39e8f7ac4219c91cef300a8daa5e487"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/references/capability-and-reference-contract.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/references/capability-and-reference-contract.md",
+          "sha256": "9d405df2c23f6c1109842bd6dcd7709dd1c2db86ac86973c5c0f8438d31d65e0"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/references/deliverable-profiles.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/references/deliverable-profiles.md",
+          "sha256": "be292c8daa35e937e7e037d60bbd8da9b03f6217f06585d0329acb6a52072061"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/references/qa-and-repair.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/references/qa-and-repair.md",
+          "sha256": "25655a3b26c59c096d2f1b6e915fe89fcb67d21c5390bb1c4b9308880bc7f2f4"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/references/unified-static-prompt-contract.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/references/unified-static-prompt-contract.md",
+          "sha256": "8833b6ac8868e156037a4b6d6d160245a8116343b922718374b07c2294eeffd4"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/references/workflow-integration.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/references/workflow-integration.md",
+          "sha256": "0ec8f7016724fa4cc3a21be904f4f7772a76dafb60429c08295d8dfd54833267"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/templates/design-intake.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/templates/design-intake.md",
+          "sha256": "514257458d4f88bb1f01c1ab7dfc4a9f5b5ac951ad14023b9ebc34fe8529fee9"
+        },
+        {
+          "path": ".agents/skills/static-design-prompt-architect/templates/prompt-pack.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/main/.agents/skills/static-design-prompt-architect/templates/prompt-pack.md",
+          "sha256": "58db1b74b273c22bdbd98fdb04dfa4b8ed1bc562422f8f76e01150bc59436ce1"
+        }
+      ]
+    }
+  ]
+}

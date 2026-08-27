@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/FrameCoreWorks/static-design-prompt-architect",
+  "ref": "main",
+  "mode": "single-standalone-skill",
+  "skills": [
+    {
+      "name": "static-design-prompt-architect",
+      "description": "Controlled prompts for static graphic design",
+      "source_root": ".agents/skills/static-design-prompt-architect"
+    }
+  ]
+}
