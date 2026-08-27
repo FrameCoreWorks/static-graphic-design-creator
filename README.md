@@ -1,8 +1,10 @@
 # Static Design Prompt Architect
 
-An Apache-2.0 skill and one-skill plugin for creating controlled prompts for typography-led static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics.
+**Static Design Prompt Architect** is an installable skill for ChatGPT and Codex. It turns a creative brief into a complete, controlled prompt for designed static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics.
 
-It builds one final, provider-neutral prompt by default. Its eight internal stages describe construction order inside a single generation; they never request intermediate renders or separate layer files.
+Install it when you want ChatGPT or Codex to prepare generator-ready visual prompts with a deliberate communication goal, attention order, layout, exact visible copy, reference roles, exclusions, and QA. It is not an image generator or a DTP tool: it authors the prompt and marks generator-sensitive limits as `Unknown` when they are not verified.
+
+By default, the skill creates one standalone, provider-neutral prompt. Its eight stages describe construction priority inside a single final generation; they do not request intermediate renders, separate layer files, or later text insertion.
 
 ## What it does
 
@@ -60,3 +62,7 @@ The test verifies the package structure, manifest contract, portable workflow bo
 ## Scope and limits
 
 This package authors prompts; it does not generate graphics, call external services, select paid tools, upload assets, publish a plugin, or perform DTP. For print production, use the rendered output as art direction and verify exact copy, legal text, font licensing, spacing, bleed, and prepress requirements in an appropriate layout tool.
+
+## License
+
+Released under the Apache License 2.0. See [LICENSE](LICENSE).
