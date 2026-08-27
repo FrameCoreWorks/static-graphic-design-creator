@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-"""Local structural and contract validation for the standalone skill package."""
+"""Local structural and contract validation for the standalone skill."""
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "plugins" / "static-design-prompt-architect"
-SKILL = PLUGIN / "skills" / "static-design-prompt-architect"
+SKILL = ROOT / "skills" / "static-design-prompt-architect"
 
 
 def read(path: Path) -> str:
@@ -25,9 +23,6 @@ def main() -> None:
     required_paths = [
         ROOT / "README.md",
         ROOT / "LICENSE",
-        ROOT / "submission" / "openai-plugin-directory.md",
-        ROOT / ".agents" / "plugins" / "marketplace.json",
-        PLUGIN / ".codex-plugin" / "plugin.json",
         SKILL / "SKILL.md",
         SKILL / "agents" / "openai.yaml",
         SKILL / "references" / "unified-static-prompt-contract.md",
@@ -41,19 +36,13 @@ def main() -> None:
     for path in required_paths:
         require(path.is_file(), f"Missing required file: {path.relative_to(ROOT)}")
 
-    manifest = json.loads(read(PLUGIN / ".codex-plugin" / "plugin.json"))
-    require(manifest["name"] == "static-design-prompt-architect", "Plugin name mismatch")
-    require(manifest["version"] == "0.1.0", "Unexpected initial version")
-    require(manifest["license"] == "Apache-2.0", "License must be Apache-2.0")
-    require(manifest["skills"] == "./skills/", "Plugin must expose its skills directory")
-    require(manifest["author"]["name"] == "FrameCore Works", "Author metadata mismatch")
-    require(len(manifest["interface"]["defaultPrompt"]) <= 3, "Too many starter prompts")
-
-    marketplace = json.loads(read(ROOT / ".agents" / "plugins" / "marketplace.json"))
-    entry = marketplace["plugins"][0]
-    require(entry["name"] == manifest["name"], "Marketplace and plugin names diverge")
-    require(entry["source"]["path"] == "./plugins/static-design-prompt-architect", "Marketplace source path mismatch")
-    require(entry["policy"] == {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}, "Unexpected marketplace policy")
+    retired_plugin_paths = [
+        ROOT / ".agents" / "plugins" / "marketplace.json",
+        ROOT / "plugins" / "static-design-prompt-architect" / ".codex-plugin" / "plugin.json",
+        ROOT / "submission" / "openai-plugin-directory.md",
+    ]
+    for path in retired_plugin_paths:
+        require(not path.exists(), f"Standalone skill must not include plugin artifact: {path.relative_to(ROOT)}")
 
     skill = read(SKILL / "SKILL.md")
     require(skill.startswith("---\nname: static-design-prompt-architect\n"), "SKILL.md frontmatter missing")
@@ -73,7 +62,7 @@ def main() -> None:
     require("Do not automatically call a renderer" in integration, "Integration must not execute work")
 
     prohibited_private_paths = ["/root/.codex", "/workspace/scratch", "CODEX_HOME"]
-    distributable_files = [ROOT / "README.md", ROOT / "LICENSE"] + list(PLUGIN.rglob("*"))
+    distributable_files = [ROOT / "README.md", ROOT / "LICENSE"] + list(SKILL.rglob("*"))
     for path in distributable_files:
         if path.is_file() and path.suffix in {".md", ".json", ".yaml", ".py"}:
             content = read(path)

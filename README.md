@@ -1,10 +1,12 @@
 # Static Design Prompt Architect
 
-**Static Design Prompt Architect** is an installable skill for ChatGPT and Codex. It turns a creative brief into a complete, controlled prompt for designed static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics.
+**Static Design Prompt Architect** is one standalone skill for ChatGPT and Codex. It turns a creative brief into a complete, controlled prompt for designed static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics.
 
 Install it when you want ChatGPT or Codex to prepare generator-ready visual prompts with a deliberate communication goal, attention order, layout, exact visible copy, reference roles, exclusions, and QA. It is not an image generator or a DTP tool: it authors the prompt and marks generator-sensitive limits as `Unknown` when they are not verified.
 
 By default, the skill creates one standalone, provider-neutral prompt. Its eight stages describe construction priority inside a single final generation; they do not request intermediate renders, separate layer files, or later text insertion.
+
+This repository contains no plugin, connector, marketplace, MCP server, or app integration.
 
 ## What it does
 
@@ -18,54 +20,44 @@ By default, the skill creates one standalone, provider-neutral prompt. Its eight
 
 ```text
 .
-├── .agents/plugins/marketplace.json
-├── plugins/static-design-prompt-architect/
-│   ├── .codex-plugin/plugin.json
-│   └── skills/static-design-prompt-architect/
-│       ├── SKILL.md
-│       ├── agents/openai.yaml
-│       ├── references/
-│       └── templates/
-├── submission/openai-plugin-directory.md
-├── tests/test_package.py
+├── skills/static-design-prompt-architect/
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   ├── references/
+│   └── templates/
+├── tests/test_skill.py
 ├── LICENSE
 └── README.md
 ```
 
-## Install without downloading a ZIP
+## Install the standalone skill
 
-### Codex: install from this GitHub repository
+### Codex: install from the public GitHub skill address
 
-This is the direct GitHub route. It does not require `git clone`, a downloaded ZIP, or copying files into a project.
+In a Codex chat, paste this one instruction. The built-in skill installer downloads and installs the skill for the current user; no ZIP, manual clone, or file copy is needed.
 
-1. Paste this command into a terminal with Codex installed:
-
-   ```bash
-   codex plugin marketplace add FrameCoreWorks/static-design-prompt-architect --ref main
-   ```
-
-2. Start Codex and enter `/plugins`.
-3. Open the **Static Design Prompt Architect** marketplace, select **Static Design Prompt Architect**, then choose **Install plugin**.
-4. Start a new Codex session. Invoke it with `$static-design-prompt-architect` or describe a static-design prompt task normally.
-
-Codex fetches and tracks the marketplace from GitHub. To refresh it later, run:
-
-```bash
-codex plugin marketplace upgrade static-design-prompt-architect
+```text
+$skill-installer install https://github.com/FrameCoreWorks/static-design-prompt-architect/tree/main/skills/static-design-prompt-architect
 ```
 
-### ChatGPT Work: install from the public Plugins Directory
+The skill is available on the next turn as `$static-design-prompt-architect`. Codex installs it into the user's personal skills location, so it is available across repositories.
 
-ChatGPT Work does not install a public GitHub repository directly from a pasted URL. The supported no-download route is a public listing in the universal Plugins Directory shared by ChatGPT and Codex. Once this plugin is approved and published there, users install it without a ZIP or manual file transfer:
+### ChatGPT Work: create and install the standalone skill from this source
 
-1. In ChatGPT, open **Plugins**.
-2. Search for **Static Design Prompt Architect**.
-3. Open the listing and select **Install plugin**.
-4. Start a new Work chat. Invoke `@static-design-prompt-architect` or describe the prompt task directly.
+ChatGPT Work has no native “install standalone skill from a GitHub URL” control. It can create, upload, share, and install individual skills. To avoid a ZIP and manual file transfer, open a Work chat and paste the following assisted-import instruction:
 
-The source package in this repository is ready for that submission flow. Publication status is **not yet submitted**: OpenAI requires a verified publisher identity, public listing URLs, a production logo, the final skill bundle, test cases, and review approval. The owner-facing checklist and ready-to-use test cases are in [submission/openai-plugin-directory.md](submission/openai-plugin-directory.md).
+```text
+@skill-creator
 
-For the supported host behavior, see the official [plugin packaging guide](https://developers.openai.com/plugins/build/plugins), [Plugins guide](https://learn.chatgpt.com/docs/plugins), and [public submission guide](https://developers.openai.com/plugins/deploy/submission).
+Create and install one standalone personal skill named `static-design-prompt-architect` from this public GitHub skill directory:
+https://github.com/FrameCoreWorks/static-design-prompt-architect/tree/main/skills/static-design-prompt-architect
+
+Read `SKILL.md`, every directly linked file in `references/` and `templates/`, and `agents/openai.yaml`. Preserve the source instructions, trigger conditions, output contract, and safety boundaries. Do not convert it into a plugin and do not add apps, connectors, MCP servers, scripts, paid tools, uploads, publishing, or generation actions. If the source cannot be accessed, say so and stop instead of reconstructing missing files from memory.
+```
+
+After the skill is created, use it with `@static-design-prompt-architect` or describe a static-design prompt task normally. The resulting ChatGPT skill is a snapshot: changes in this repository do not update it automatically. Re-run the import instruction or update it in the Skills editor when a newer repository version is released.
+
+For supported skill behavior, see the official [Build skills guide](https://learn.chatgpt.com/docs/build-skills) and [Skills in ChatGPT guide](https://help.openai.com/en/articles/20001066-skills-in-chatgpt).
 
 ## Use modes
 
@@ -76,14 +68,14 @@ For the supported host behavior, see the official [plugin packaging guide](https
 ## Validate
 
 ```bash
-python3 tests/test_package.py
+python3 tests/test_skill.py
 ```
 
-The test verifies the package structure, manifest contract, portable workflow boundary, and required eight-stage static-design contract. It performs no network activity.
+The test verifies the standalone skill structure, portable workflow boundary, and required eight-stage static-design contract. It performs no network activity.
 
 ## Scope and limits
 
-This package authors prompts; it does not generate graphics, call external services, select paid tools, upload assets, publish a plugin, or perform DTP. For print production, use the rendered output as art direction and verify exact copy, legal text, font licensing, spacing, bleed, and prepress requirements in an appropriate layout tool.
+This skill authors prompts; it does not generate graphics, call external services, select paid tools, upload assets, publish content, or perform DTP. For print production, use the rendered output as art direction and verify exact copy, legal text, font licensing, spacing, bleed, and prepress requirements in an appropriate layout tool.
 
 ## License
 
