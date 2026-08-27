@@ -26,24 +26,46 @@ By default, the skill creates one standalone, provider-neutral prompt. Its eight
 │       ├── agents/openai.yaml
 │       ├── references/
 │       └── templates/
+├── submission/openai-plugin-directory.md
 ├── tests/test_package.py
 ├── LICENSE
 └── README.md
 ```
 
-## Install
+## Install without downloading a ZIP
 
-### ChatGPT Work
+### Codex: install from this GitHub repository
 
-The distributable skill is in `plugins/static-design-prompt-architect/skills/static-design-prompt-architect/`. Package that folder as a ZIP with `static-design-prompt-architect/` as its single top-level directory, then upload it in **Plugins → Skills → Create → Upload**. After the scan, invoke it explicitly with `@static-design-prompt-architect` or let the host match its description.
+This is the direct GitHub route. It does not require `git clone`, a downloaded ZIP, or copying files into a project.
 
-For workspace-wide ChatGPT Work availability, distribute the included plugin through a compatible workspace plugin route. A local repository or ZIP does not itself publish a plugin, and availability depends on the workspace permissions and plan. See the official [Build skills guide](https://learn.chatgpt.com/docs/build-skills) and [Skills in ChatGPT guide](https://help.openai.com/en/articles/20001066-skills-in-chatgpt).
+1. Paste this command into a terminal with Codex installed:
 
-### Codex
+   ```bash
+   codex plugin marketplace add FrameCoreWorks/static-design-prompt-architect --ref main
+   ```
 
-For repository-scoped use, copy `plugins/static-design-prompt-architect/skills/static-design-prompt-architect/` to `.agents/skills/static-design-prompt-architect/` in the target project.
+2. Start Codex and enter `/plugins`.
+3. Open the **Static Design Prompt Architect** marketplace, select **Static Design Prompt Architect**, then choose **Install plugin**.
+4. Start a new Codex session. Invoke it with `$static-design-prompt-architect` or describe a static-design prompt task normally.
 
-For plugin installation, clone this repository, register its marketplace root, then install the plugin according to your local Codex setup. The included marketplace entry resolves `./plugins/static-design-prompt-architect`; no connector, API key, network call, or paid service is required.
+Codex fetches and tracks the marketplace from GitHub. To refresh it later, run:
+
+```bash
+codex plugin marketplace upgrade static-design-prompt-architect
+```
+
+### ChatGPT Work: install from the public Plugins Directory
+
+ChatGPT Work does not install a public GitHub repository directly from a pasted URL. The supported no-download route is a public listing in the universal Plugins Directory shared by ChatGPT and Codex. Once this plugin is approved and published there, users install it without a ZIP or manual file transfer:
+
+1. In ChatGPT, open **Plugins**.
+2. Search for **Static Design Prompt Architect**.
+3. Open the listing and select **Install plugin**.
+4. Start a new Work chat. Invoke `@static-design-prompt-architect` or describe the prompt task directly.
+
+The source package in this repository is ready for that submission flow. Publication status is **not yet submitted**: OpenAI requires a verified publisher identity, public listing URLs, a production logo, the final skill bundle, test cases, and review approval. The owner-facing checklist and ready-to-use test cases are in [submission/openai-plugin-directory.md](submission/openai-plugin-directory.md).
+
+For the supported host behavior, see the official [plugin packaging guide](https://developers.openai.com/plugins/build/plugins), [Plugins guide](https://learn.chatgpt.com/docs/plugins), and [public submission guide](https://developers.openai.com/plugins/deploy/submission).
 
 ## Use modes
 
