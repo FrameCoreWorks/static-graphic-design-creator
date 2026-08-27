@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "codex-text-bearing-static",
+      "document": ".agents/skills/static-design-prompt-architect/references/workflow-integration.md",
+      "required_terms": [
+        "host_environment: codex",
+        "final_asset_has_visible_text: true",
+        "target_generator: openai/gpt-image-2",
+        "negative_handling_mode: integrated_constraints",
+        "do not return a separate `Negative Prompt` or `negative_prompt` field",
+        "The public eight-stage contract remains canonical"
+      ]
+    },
+    {
+      "id": "portable-brand-and-copy-guardrails",
+      "document": ".agents/skills/static-design-prompt-architect/references/capability-and-reference-contract.md",
+      "required_terms": [
+        "Every prompt must stand alone outside this conversation",
+        "## Brand and identity authority",
+        "## Copy-feasibility preflight",
+        "Do not suggest a text-free background or a later manual overlay"
+      ]
+    },
+    {
+      "id": "pre-render-copy-decision",
+      "document": ".agents/skills/static-design-prompt-architect/references/qa-and-repair.md",
+      "required_terms": [
+        "## Pre-render feasibility gate",
+        "`dtp_required`",
+        "declared brand and identity authority policy"
+      ]
+    }
+  ]
+}

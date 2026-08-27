@@ -7,13 +7,24 @@ generator_profile:
   verified_native_controls: []
   unknown_capabilities: []
 task_mode:
+rendering_context:
+  host_environment: Unknown
+  final_asset_has_visible_text: Unknown
+generator_prompt_format:
+  target_generator: Unknown
+  negative_handling_mode: unknown
+  source_check_status: not_required
+  separate_negative_prompt_allowed: Unknown
 prompt_delivery_form: unified-multistage-static
 reference_roles: []
+required_request_references: []
 design_intent:
 attention_order: []
 layout_mechanism:
 type_image_relationship:
 copy_locks: []
+copy_feasibility:
+brand_identity_policy:
 native_settings: []
 prompt:
 protected_elements: []

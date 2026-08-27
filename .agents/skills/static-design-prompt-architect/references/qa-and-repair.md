@@ -2,6 +2,10 @@
 
 Review the rendered result against the brief and prompt pack. Do not accept a graphic merely because it is attractive.
 
+## Pre-render feasibility gate
+
+Before rendering, classify the visible copy as `compact`, `at_risk`, or `dtp_required`. A `dtp_required` result is correct when mandatory dense schedules, legal copy, price lists, exact print typography, or prepress requirements cannot be simplified without changing the communication objective. Stop before generation and recommend an approved non-generative layout workflow. Do not replace this route with a text-free image and a later default overlay.
+
 ## Acceptance checks
 
 1. The intended first, second, and third notices occur in order.
@@ -11,6 +15,7 @@ Review the rendered result against the brief and prompt pack. Do not accept a gr
 5. Reference-controlled identity, product construction, logo, and protected properties are preserved.
 6. Supporting elements have a function; there is no arbitrary collage, pseudo-logo, accidental iconography, or unmotivated effect.
 7. The render contains no unapproved text, watermark, alternate date, invented claim, duplicate text, device frame, or mockup.
+8. Real names, logo shapes, partner marks, dates, prices, and claims appear only when approved by the declared brand and identity authority policy.
 
 ## Decision routes
 

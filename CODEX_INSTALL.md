@@ -14,7 +14,7 @@ Read `config/chatgpt-skill-sources.json` and use the entry named `static-design-
 
 `.agents/skills/static-design-prompt-architect`
 
-Read every listed file before installation. Preserve the directory structure, source name, `SKILL.md`, UI metadata, references, and templates.
+Read every listed file before installation and verify its SHA-256 against the manifest. If any source differs, stop, reread a fresh manifest, and restart the complete source check. Preserve the directory structure, source name, `SKILL.md`, UI metadata, references, and templates.
 
 ## Install boundary
 

@@ -18,13 +18,13 @@ Read these public files before creating the Skill:
 2. `config/chatgpt-skill-sources.json`
 3. Every file listed for `static-design-prompt-architect` in that source manifest.
 
-Use the declared `main` ref, paths, raw URLs, and SHA-256 values. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
+Use the declared `main` ref, paths, raw URLs, and SHA-256 values. Verify the SHA-256 of every retrieved source file before creation. If any file differs from its declared hash, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
 
 ## Creation flow
 
 1. Explain in one short sentence that the repository contains one reusable Skill for preparing controlled prompts for static graphic design.
 2. Ask for clear conversational approval to create the one named Skill.
-3. After approval, read the full declared source inventory and create the Skill with the active `@skill-creator` workflow.
+3. After approval, read the full declared source inventory, verify every declared SHA-256, and create the Skill with the active `@skill-creator` workflow.
 4. Preserve the canonical name, description, `SKILL.md`, UI metadata, references, and templates that the native Skill surface supports.
 5. Report `installed` only if `@skill-creator` says the Skill was created and saved, or if it is visible in the Skills library. If only a draft exists, report `created_not_installed`.
 

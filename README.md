@@ -45,6 +45,8 @@ The Codex install contract resolves the same source manifest and installs the sk
 
 By default, the Skill creates one standalone, provider-neutral prompt. Its eight stages describe construction priority inside a single final generation; they do not request intermediate renders, separate layer files, or later text insertion.
 
+When a connected workflow explicitly declares a Codex destination and a final static graphic with visible text, the optional compatibility profile formats the handoff for `openai/gpt-image-2`: one prompt, exact final copy inside it, and integrated constraints rather than a separate negative prompt. The Skill still does not generate the image or call an external service.
+
 ## Repository layout
 
 ```text
@@ -70,7 +72,7 @@ By default, the Skill creates one standalone, provider-neutral prompt. Its eight
 
 **Standalone mode** accepts an ordinary brief. Missing generator-sensitive controls remain `Unknown`; the Skill does not invent support for model versions, font files, reference limits, or output settings.
 
-**Connected mode** accepts supplied workflow fields such as `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, and `target_generator_profile`. It preserves supplied locks and returns a portable `prompt_pack` for the caller's existing workflow. It never requires a particular upstream Skill by name.
+**Connected mode** accepts supplied workflow fields such as `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, `target_generator_profile`, and `host_environment`. It preserves supplied locks and returns a portable `prompt_pack` for the caller's existing workflow. It never requires a particular upstream Skill by name.
 
 ## Validate
 
@@ -78,7 +80,11 @@ By default, the Skill creates one standalone, provider-neutral prompt. Its eight
 python3 tests/test_skill.py
 ```
 
-The test verifies the standalone Skill structure, its ChatGPT source manifest, portable workflow boundary, and required eight-stage static-design contract. It performs no network activity.
+The test verifies the standalone Skill structure, source manifest hashes, portable workflow boundary, Codex text-bearing compatibility profile, copy-feasibility gate, and required eight-stage static-design contract. It performs no network activity.
+
+## Update integrity
+
+The install contracts require a SHA-256 check of every manifest source before creation or replacement. If a file differs from the declared hash, stop, reread a fresh manifest, and restart the source check. Do not report an installed or updated Skill after a mismatch.
 
 ## Scope and limits
 
