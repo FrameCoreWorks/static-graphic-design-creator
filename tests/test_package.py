@@ -25,6 +25,7 @@ def main() -> None:
     required_paths = [
         ROOT / "README.md",
         ROOT / "LICENSE",
+        ROOT / "submission" / "openai-plugin-directory.md",
         ROOT / ".agents" / "plugins" / "marketplace.json",
         PLUGIN / ".codex-plugin" / "plugin.json",
         SKILL / "SKILL.md",
