@@ -21,6 +21,13 @@ direction_contract:
   attention_order: []
   layout_mechanism:
   type_image_relationship:
+poster_strategy:
+  collaboration_mode: directed_collaboration
+  communication_goal:
+  composition_archetype:
+  style_family:
+  transferable_attributes: []
+  material_treatment:
 copy_pack:
   locked_strings: []
 reference_pack:
@@ -44,6 +51,8 @@ production_intent: concept_raster
 ```
 
 Preserve an upstream value when it is more specific than the brief. Do not rewrite approved copy, source authority, brand constraints, or suppression rules. If contracts conflict, surface the conflict before authoring a prompt.
+
+When `poster_strategy` is supplied, preserve its resolved communication goal and composition archetype. A supplied style family remains subordinate to those fields; if it conflicts with copy feasibility or the stated objective, explain the conflict and request a choice rather than silently replacing the style or the strategy.
 
 ## Optional Codex text-bearing static compatibility profile
 

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "open-civic-event-brief",
+      "signals": {
+        "direction_status": "open",
+        "user_style_position": "unspecified",
+        "copy_feasibility": "compact",
+        "style_reference_type": "none"
+      },
+      "expected": {
+        "interaction_mode": "discovery_brainstorm",
+        "goal_first": true,
+        "composition_before_style": true,
+        "direct_imitation": false,
+        "style_translation_required": false
+      }
+    },
+    {
+      "id": "directed-cultural-poster",
+      "signals": {
+        "direction_status": "concrete",
+        "user_style_position": "chosen",
+        "copy_feasibility": "compact",
+        "style_reference_type": "historical_movement"
+      },
+      "expected": {
+        "interaction_mode": "directed_collaboration",
+        "goal_first": true,
+        "composition_before_style": true,
+        "direct_imitation": false,
+        "style_translation_required": false
+      }
+    },
+    {
+      "id": "named-artist-request",
+      "signals": {
+        "direction_status": "concrete",
+        "user_style_position": "chosen",
+        "copy_feasibility": "compact",
+        "style_reference_type": "named_artist"
+      },
+      "expected": {
+        "interaction_mode": "directed_collaboration",
+        "goal_first": true,
+        "composition_before_style": true,
+        "direct_imitation": false,
+        "style_translation_required": true
+      }
+    },
+    {
+      "id": "open-style-with-dense-copy",
+      "signals": {
+        "direction_status": "open",
+        "user_style_position": "unspecified",
+        "copy_feasibility": "dtp_required",
+        "style_reference_type": "none"
+      },
+      "expected": {
+        "interaction_mode": "route_dtp_before_brainstorm",
+        "goal_first": true,
+        "composition_before_style": true,
+        "direct_imitation": false,
+        "style_translation_required": false
+      }
+    }
+  ]
+}

@@ -29,6 +29,14 @@ prompt_delivery_form: unified-multistage-static
 reference_roles: []
 required_request_references: []
 design_intent:
+poster_strategy:
+  collaboration_mode: Unknown
+  communication_goal:
+  composition_archetype:
+  style_family:
+  transferable_attributes: []
+  material_treatment:
+  anti_slop_gate: Unknown
 attention_order: []
 layout_mechanism:
 type_image_relationship:
@@ -46,4 +54,4 @@ acceptance_criteria: []
 repair_route:
 ```
 
-The `prompt` field contains one self-contained prompt in this order: final-output contract; background and spatial foundation; layout architecture and attention flow; hero and protected source assets; supporting graphic elements; typography and functional information; colour, light, and material integration; finish, exclusions, and acceptance checks.
+The `prompt` field contains one self-contained prompt in this order: final-output contract; background and spatial foundation; layout architecture and attention flow; hero and protected source assets; supporting graphic elements; typography and functional information; colour, light, and material integration; finish, exclusions, and acceptance checks. Resolve `poster_strategy` before authoring this prompt; it is a decision record, not an extra prompt section.

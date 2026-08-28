@@ -8,6 +8,14 @@ output_mode: prompt
 production_intent: concept_raster
 objective:
 audience:
+poster_strategy:
+  collaboration_mode: Unknown
+  direction_status: Unknown
+  required_audience_response:
+  composition_archetype:
+  style_family:
+  transferable_attributes: []
+  material_treatment:
 output_format:
 generator_surface: Unknown
 host_environment: Unknown

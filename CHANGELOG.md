@@ -2,6 +2,15 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.4.0] - 2026-08-28
+
+### Added
+
+- objective-first poster direction, with `discovery_brainstorm` for open briefs and `directed_collaboration` for users who already know their intended route;
+- a poster style and composition atlas covering goal classes, composition archetypes, historical visual families, material treatments, and original-attribute translation;
+- an anti-slop composition gate that rejects decorative effect stacks without a visual thesis, hierarchy, or functional role;
+- behavioral regression fixtures and manual forward tests for brainstorm, directed collaboration, and named-artist translation.
+
 ## [0.3.1] - 2026-08-28
 
 ### Changed

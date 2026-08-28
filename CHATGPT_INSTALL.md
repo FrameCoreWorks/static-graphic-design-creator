@@ -20,7 +20,7 @@ Read these public files before creating the Skill:
 2. `config/chatgpt-skill-sources.json`
 3. Every file listed for `static-graphic-design-creator` in that source manifest.
 
-Use the declared stable release ref `v0.3.1`, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
+Use the declared stable release ref `v0.4.0`, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
 
 ## First response
 
@@ -33,7 +33,7 @@ The user may approve in the conversation with a clear reply such as `yes`, `appr
 Before requesting approval, give this short onboarding in the user's language:
 
 1. **What it gives:** either one finished designed static graphic when the user explicitly requests it, or one complete, generator-ready prompt for a poster, flyer, cover, social graphic, menu, label, or other designed static asset.
-2. **How it helps:** it turns a brief into a controlled hierarchy of attention, layout, hero visual, exact visible copy, reference roles, exclusions, and QA checks.
+2. **How it helps:** it turns a brief into a controlled hierarchy of attention, layout, hero visual, exact visible copy, reference roles, exclusions, and QA checks. For an open poster brief, it first compares a few goal-led composition and style routes instead of guessing a generic aesthetic.
 3. **When it is useful:** use it to create a graphic or, on request, to get a coherent prompt with art direction and visible text for one final generation rather than a vague style prompt.
 4. **Its boundary:** when the user explicitly asks for a graphic, it may use ChatGPT's built-in image generation; when the user asks for a prompt, it returns the complete prompt without rendering. It does not use external providers, invent brand facts or logos, guarantee raster typography, perform DTP, or replace a layout workflow for dense legal or print text.
 

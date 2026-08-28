@@ -2,6 +2,8 @@
 
 Use these as selection rules, not fixed aesthetics. Take the visual thesis and copy hierarchy from the brief; do not turn every output into the same poster language.
 
+For a poster-like deliverable, choose its composition archetype and style treatment through [the poster style and composition atlas](poster-style-and-composition-atlas.md). A deliverable profile identifies the communication problem; it does not prescribe a visual style.
+
 | Deliverable | Dominant job | Layout emphasis | Text risk |
 | --- | --- | --- | --- |
 | Cultural or music poster | Intrigue, recognition, conversion | One hero and a strong reading sequence | Medium |
@@ -20,6 +22,8 @@ Use these as selection rules, not fixed aesthetics. Take the visual thesis and c
 - Resolve `production_intent` before applying a deliverable profile. Use `concept_raster` for directional visual exploration, `digital_final` for a QA-passed raster intended for publication, and `production_master` for editable or print-ready production work that must route to DTP.
 - For a business card, menu, label, or dense flyer, reduce copy before making the prompt longer. Treat contact data, legal copy, prices, and small labels as high-risk raster text requiring QA.
 - For a poster, do not use a generic cityscape, equal-weight collage, or unrelated texture as a substitute for a visual thesis.
+- For a civic or social poster, resolve the action or understanding required before selecting a style. Prefer an iconic sign, message mechanism, or information-led grid over decorative atmosphere.
+- For a cultural, theatre, literary, or film poster, decide whether the audience needs literal recognition, interpretive tension, or genre signalling; choose a composition archetype before a historical movement or material treatment.
 - For a commercial asset, preserve declared product and logo truth. Never invent product features, prices, claims, certification marks, or brand names.
 - For a cover, make the visual thesis and title cooperate. Do not use a book mockup unless the user explicitly requests a mockup.
 - For a social asset, place action-driving copy within platform-safe areas declared by the user or verified profile. If no profile exists, mark safe-area behaviour `Unknown`.

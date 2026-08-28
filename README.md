@@ -2,7 +2,7 @@
 
 # Static Graphic Design Creator
 
-**Static Graphic Design Creator is a standalone Skill source for ChatGPT Work and Codex.** It turns a creative brief into a finished native render on request or one complete, controlled prompt for static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics.
+**Static Graphic Design Creator is a standalone Skill source for ChatGPT Work and Codex.** It turns a creative brief into a finished native render on request or one complete, controlled prompt for static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics. For open poster briefs, it first facilitates a goal-led creative discussion before choosing a composition and style direction.
 
 Use this public repository as the versioned source address. The setup below is repository-assisted Skill creation or installation: it does not require downloading a ZIP, cloning the repository, or using a plugin, but it is not an automatic update mechanism or a plugin-directory protocol.
 
@@ -51,6 +51,8 @@ The Codex install contract resolves the same release-pinned source manifest and 
 - protects exact visible copy, attention order, layout zones, references, and exclusions;
 - separates verified native controls from prompt-semantic controls and post-render QA;
 - supports standalone use and optional integration with an existing workflow;
+- runs an objective-first poster brainstorm when creative direction is open, while preserving a user's concrete direction when it is already defined;
+- chooses composition archetypes, historical visual families, and print-material simulations as disciplined design decisions rather than effect filters;
 - treats font fidelity and dense raster text as QA risks rather than guarantees.
 
 By default, the Skill creates one standalone, provider-neutral prompt. Its eight stages describe construction priority inside a single final generation; they do not request intermediate renders, separate layer files, or later text insertion.
@@ -92,11 +94,11 @@ Independently, `prompt` returns only a copyable prompt, `render` creates a graph
 python3 tests/test_skill.py
 ```
 
-The test verifies the standalone Skill structure, source manifest hashes, portable workflow boundary, Codex text-bearing compatibility profile, copy-feasibility gate, and required eight-stage static-design contract. It performs no network activity.
+The test verifies the standalone Skill structure, source manifest hashes, portable workflow boundary, Codex text-bearing compatibility profile, copy-feasibility gate, objective-first poster direction, anti-slop composition gate, and required eight-stage static-design contract. It performs no network activity.
 
 ## Versioning and update integrity
 
-The stable source manifest is pinned to the versioned release branch `v0.3.1`; updates are manual and require user approval. When the receiving surface can calculate SHA-256, the install contracts require a check of every manifest source before creation or replacement. If a computed file hash differs from the declared hash, stop, reread a fresh manifest, and restart the source check. If hash calculation is unavailable, report `hash_verification: unavailable`; do not claim verification, but do not treat capability absence as a source mismatch. Do not report an installed or updated Skill after a mismatch.
+The stable source manifest is pinned to the versioned release branch `v0.4.0`; updates are manual and require user approval. When the receiving surface can calculate SHA-256, the install contracts require a check of every manifest source before creation or replacement. If a computed file hash differs from the declared hash, stop, reread a fresh manifest, and restart the source check. If hash calculation is unavailable, report `hash_verification: unavailable`; do not claim verification, but do not treat capability absence as a source mismatch. Do not report an installed or updated Skill after a mismatch.
 
 ## Scope and limits
 

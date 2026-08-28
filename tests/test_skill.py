@@ -14,6 +14,7 @@ SKILL = ROOT / ".agents" / "skills" / "static-graphic-design-creator"
 SOURCE_MANIFEST = ROOT / "config" / "chatgpt-skill-sources.json"
 POLICY_FIXTURES = ROOT / "tests" / "fixtures" / "policy-regression-cases.json"
 BEHAVIOR_FIXTURES = ROOT / "tests" / "fixtures" / "behavior-eval-cases.json"
+POSTER_STRATEGY_FIXTURES = ROOT / "tests" / "fixtures" / "poster-strategy-eval-cases.json"
 MANUAL_EVALUATION = ROOT / "EVALUATION.md"
 
 OUTPUT_MODES = {"prompt", "render", "render_and_prompt"}
@@ -127,6 +128,48 @@ def validate_behavior_fixtures() -> None:
         )
 
 
+def resolve_poster_strategy_case(signals: dict[str, object]) -> dict[str, object]:
+    """Reference decision model for objective-first poster direction."""
+
+    direction_status = signals["direction_status"]
+    copy_feasibility = signals["copy_feasibility"]
+    style_reference_type = signals["style_reference_type"]
+
+    if copy_feasibility == "dtp_required":
+        interaction_mode = "route_dtp_before_brainstorm"
+    elif direction_status == "open":
+        interaction_mode = "discovery_brainstorm"
+    else:
+        interaction_mode = "directed_collaboration"
+
+    return {
+        "interaction_mode": interaction_mode,
+        "goal_first": True,
+        "composition_before_style": True,
+        "direct_imitation": False,
+        "style_translation_required": style_reference_type == "named_artist",
+    }
+
+
+def validate_poster_strategy_fixtures() -> None:
+    fixtures = json.loads(read(POSTER_STRATEGY_FIXTURES))
+    require(fixtures["schema_version"] == 1, "Unexpected poster strategy fixture schema")
+    require(fixtures["cases"], "Poster strategy fixture cases are required")
+    required_signal_keys = {
+        "direction_status",
+        "user_style_position",
+        "copy_feasibility",
+        "style_reference_type",
+    }
+    for case in fixtures["cases"]:
+        signals = case["signals"]
+        require(required_signal_keys == set(signals), f"Unexpected poster strategy signals in {case['id']}")
+        require(
+            resolve_poster_strategy_case(signals) == case["expected"],
+            f"Poster strategy regression mismatch: {case['id']}",
+        )
+
+
 def main() -> None:
     required_paths = [
         ROOT / "README.md",
@@ -139,6 +182,7 @@ def main() -> None:
         SOURCE_MANIFEST,
         POLICY_FIXTURES,
         BEHAVIOR_FIXTURES,
+        POSTER_STRATEGY_FIXTURES,
         MANUAL_EVALUATION,
         SKILL / "SKILL.md",
         SKILL / "agents" / "openai.yaml",
@@ -147,6 +191,7 @@ def main() -> None:
         SKILL / "references" / "workflow-integration.md",
         SKILL / "references" / "qa-and-repair.md",
         SKILL / "references" / "deliverable-profiles.md",
+        SKILL / "references" / "poster-style-and-composition-atlas.md",
         SKILL / "templates" / "design-intake.md",
         SKILL / "templates" / "prompt-pack.md",
     ]
@@ -165,6 +210,7 @@ def main() -> None:
     require(not (ROOT / "skills").exists(), "Canonical source must use .agents/skills only")
     validate_policy_fixtures()
     validate_behavior_fixtures()
+    validate_poster_strategy_fixtures()
 
     skill = read(SKILL / "SKILL.md")
     require(skill.startswith("---\nname: static-graphic-design-creator\n"), "SKILL.md frontmatter missing")
@@ -185,6 +231,10 @@ def main() -> None:
     require("host_environment: codex" in skill, "Codex compatibility entry condition missing")
     require("execution_surface: codex_builtin_imagegen" in skill, "Codex execution surface missing")
     require("target_generator: gpt-image-2" in skill, "Explicit Codex target generator missing")
+    require("## Poster direction and collaboration" in skill, "Poster collaboration routing missing")
+    require("communication goal → audience response and copy burden" in skill, "Objective-first order missing")
+    require("`discovery_brainstorm`" in skill, "Poster brainstorm route missing")
+    require("`directed_collaboration`" in skill, "Directed poster collaboration route missing")
     for render_status in RENDER_STATUSES:
         require(render_status in skill, f"Skill lacks render status: {render_status}")
 
@@ -193,6 +243,7 @@ def main() -> None:
         require(f"{stage}. **" in contract, f"Missing stage {stage} in unified contract")
     require("one final raster-design instruction" in contract, "Contract must define one final output")
     require("## Prompt compactness" in contract, "Prompt compactness contract missing")
+    require("## Objective-first preflight" in contract, "Objective-first prompt preflight missing")
 
     integration = read(SKILL / "references" / "workflow-integration.md")
     for field in ["brief_contract", "direction_contract", "copy_pack", "reference_pack", "prompt_pack"]:
@@ -226,8 +277,8 @@ def main() -> None:
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
     require(chatgpt_config["schema_version"] == 3, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.3.1", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.3.1", "ChatGPT config is not release pinned")
+    require(chatgpt_config["version"] == "0.4.0", "Unexpected release version")
+    require(chatgpt_config["ref"] == "v0.4.0", "ChatGPT config is not release pinned")
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
     require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
@@ -249,13 +300,28 @@ def main() -> None:
     require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
     require("not a plugin" in codex_install, "Codex plugin boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.3.1`" in codex_install, "Codex release pin missing")
+    require("stable release `v0.4.0`" in codex_install, "Codex release pin missing")
 
     qa = read(SKILL / "references" / "qa-and-repair.md")
     require("explicitly requested `render` or `render_and_prompt`" in qa, "QA native-render authorization missing")
     require("do not silently create another render" in qa, "QA rerender guard missing")
     require("likeness authority" in qa, "QA likeness authority missing")
     require("generation_failed" in qa, "QA generation-failure route missing")
+    require("## Composition integrity and anti-slop gate" in qa, "Anti-slop QA gate missing")
+
+    atlas = read(SKILL / "references" / "poster-style-and-composition-atlas.md")
+    for term in [
+        "communication goal → audience response and copy burden",
+        "## Collaboration routes",
+        "`discovery_brainstorm`",
+        "`directed_collaboration`",
+        "## Composition archetypes",
+        "## Historical and visual style families",
+        "## Material and reproduction treatments",
+        "## Anti-slop composition gate",
+        "style label from replacing a communication decision",
+    ]:
+        require(term in atlas, f"Poster atlas missing: {term}")
 
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-graphic-design-creator", "Unexpected manifest repository")

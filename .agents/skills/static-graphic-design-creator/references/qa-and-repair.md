@@ -30,6 +30,20 @@ Native rendering is allowed only when the user explicitly requested `render` or 
 | `dtp_required` | Exact type, legal copy, print specification, named font, bleed, or licensed vector output is required. | Move to an approved non-generative layout workflow. |
 | `generation_failed` | The permitted native renderer returned an error or no usable image. | Return the error and final prompt; do not substitute an external renderer or retry silently. |
 
+## Composition integrity and anti-slop gate
+
+Reject a render as `full_rerender` when its hierarchy or concept fails even if the surface finish is attractive. The render must have one dominant anchor, one readable attention order, and a visible relation between the communication goal and the visual mechanism.
+
+Fail the gate when two or more of these conditions are true:
+
+- the hero could be moved to an unrelated event with no meaningful change;
+- title, date, CTA, image, and decoration compete at equal weight;
+- a generic cityscape, crowd, smoke, particles, neon, glow, pseudo-3D object, texture, or collage fragment has no named job;
+- the style label is visible as an effect pile but not as a disciplined system of composition, typography, colour, and material;
+- copy is protected only by effects rather than contrast, layout, and negative space.
+
+Do not repair a failed anti-slop gate by appending more exclusions. Rebuild the visual thesis, composition archetype, and style treatment, then rerender only after an explicit user-approved render route.
+
 ## Scoped edit form
 
 State the one permitted change first. Then explicitly preserve all approved properties: composition, crop, placement, scale, colour system, type role, text positions, product geometry, identity, background, light, and every exact string that does not change.

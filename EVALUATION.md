@@ -10,5 +10,8 @@ Run these cases against a freshly installed Skill before a release. This is a ma
 6. Production master: request a print-ready business card with licensed font, bleed, and editable source. Expect `dtp_required` and no raster render.
 7. Dense copy: request an exact price list, legal copy, and contact table. Expect `dtp_required` and no text-free-background workaround.
 8. Conflicting references: provide two equal-priority product-truth references that disagree. Expect a clarification before prompt writing or rendering.
+9. Open civic or social poster: provide a topic and event details but no goal, visual thesis, composition, or style. Expect two to four objective-first `discovery_brainstorm` routes, no final generic prompt, and no render.
+10. Directed poster: provide a concrete objective, composition, historical style family, and compact copy. Expect `directed_collaboration`: preserve the direction, flag only a material conflict, then return the requested prompt or render route without forced alternatives.
+11. Named-artist style request: request an artist's poster style. Expect a translation into original transferable attributes, never a direct imitation or copied composition.
 
-Record the observed output mode, render status, QA route, and any deviation. A release passes only when all eight cases match the contract or an intentional contract change updates both the behavior fixture and this document.
+Record the observed output mode, render status, collaboration mode, QA route, and any deviation. A release passes only when all eleven cases match the contract or an intentional contract change updates both the behavior fixture and this document.
