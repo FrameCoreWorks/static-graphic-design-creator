@@ -17,6 +17,7 @@ Use these as selection rules, not fixed aesthetics. Take the visual thesis and c
 
 ## Selection rules
 
+- Resolve `production_intent` before applying a deliverable profile. Use `concept_raster` for directional visual exploration, `digital_final` for a QA-passed raster intended for publication, and `production_master` for editable or print-ready production work that must route to DTP.
 - For a business card, menu, label, or dense flyer, reduce copy before making the prompt longer. Treat contact data, legal copy, prices, and small labels as high-risk raster text requiring QA.
 - For a poster, do not use a generic cityscape, equal-weight collage, or unrelated texture as a substitute for a visual thesis.
 - For a commercial asset, preserve declared product and logo truth. Never invent product features, prices, claims, certification marks, or brand names.

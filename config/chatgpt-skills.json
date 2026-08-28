@@ -1,7 +1,13 @@
 {
   "schema_version": 3,
   "repository": "https://github.com/FrameCoreWorks/static-design-prompt-architect",
-  "ref": "main",
+  "version": "0.2.0",
+  "ref": "v0.2.0",
+  "release": {
+    "channel": "stable",
+    "updates": "manual_user_approved",
+    "repository_source_contract": true
+  },
   "mode": "single-standalone-skill",
   "surface": "native-chatgpt-skills",
   "bootstrap_path": "CHATGPT_INSTALL.md",

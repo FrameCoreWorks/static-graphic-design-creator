@@ -32,11 +32,15 @@ qa_requirements:
 target_generator_profile:
   surface:
   verified_controls: []
-target_generator: Unknown
 host_environment: Unknown
+execution_surface: Unknown
+generator_provider: Unknown
+target_generator: Unknown
 final_asset_has_visible_text: Unknown
+input_context: connected
 output_mode: prompt
 native_generation_available: Unknown
+production_intent: concept_raster
 ```
 
 Preserve an upstream value when it is more specific than the brief. Do not rewrite approved copy, source authority, brand constraints, or suppression rules. If contracts conflict, surface the conflict before authoring a prompt.
@@ -47,13 +51,15 @@ This profile is selected only when connected context explicitly declares:
 
 ```yaml
 host_environment: codex
+execution_surface: codex_builtin_imagegen
+generator_provider: openai
 final_asset_has_visible_text: true
-target_generator: openai/gpt-image-2
+target_generator: gpt-image-2
 ```
 
-It is a prompt-format handoff, not permission to render, upload, call an API, or select a paid service. In this profile:
+It is a prompt-format handoff, not permission to render, upload, call an API, or select a paid service. When `output_mode` is explicitly `render` or `render_and_prompt`, Codex may invoke `$imagegen` only if that built-in Skill is available. In this profile:
 
-- keep the explicitly declared `target_generator: openai/gpt-image-2`;
+- keep the explicitly declared `execution_surface: codex_builtin_imagegen`, `generator_provider: openai`, and `target_generator: gpt-image-2`;
 - set `task_mode` from the request and `negative_handling_mode: integrated_constraints`;
 - place short, concrete constraints inside the one main prompt; do not return a separate `Negative Prompt` or `negative_prompt` field;
 - place every final visible string in the one prompt and do not reserve a later text overlay;
@@ -80,17 +86,22 @@ Return this minimum payload when another workflow will render or review the resu
 ```yaml
 prompt_pack:
   prompt_delivery_form: unified-multistage-static
+  input_context: connected
   output_mode: prompt
   rendering_route:
     native_generation_requested: false
     native_generation_available: Unknown
     render_status: not_requested
+    qa_route: not_applicable
   task_mode:
+  production_intent: concept_raster
   rendering_context:
     host_environment: Unknown
+    execution_surface: Unknown
+    generator_provider: Unknown
+    target_generator: Unknown
     final_asset_has_visible_text: Unknown
   generator_prompt_format:
-    target_generator: Unknown
     negative_handling_mode: unknown
     source_check_status: not_required
     separate_negative_prompt_allowed: Unknown
@@ -108,4 +119,4 @@ prompt_pack:
   repair_route:
 ```
 
-Do not automatically call a renderer, reviewer, publisher, or external service. A receiving workflow may use its built-in image-generation capability only when the user explicitly requested `render` or `render_and_prompt`; otherwise it returns the prompt handoff only. It never substitutes an external service when native rendering is unavailable.
+Do not automatically call a renderer, reviewer, publisher, or external service. A receiving workflow may use its built-in image-generation capability only when the user explicitly requested `render` or `render_and_prompt`; otherwise it returns the prompt handoff only. It never substitutes an external service when native rendering is unavailable, blocked by DTP, or fails.

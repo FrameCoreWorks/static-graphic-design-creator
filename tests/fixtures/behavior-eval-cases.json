@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "explicit-prompt",
+      "signals": {
+        "request_clarity": "explicit",
+        "requested_output": "prompt",
+        "native_generation_available": true,
+        "production_intent": "concept_raster",
+        "copy_feasibility": "compact",
+        "reference_conflict": false
+      },
+      "expected": {
+        "response_action": "return_prompt",
+        "output_mode": "prompt",
+        "render_status": "not_requested"
+      }
+    },
+    {
+      "id": "explicit-native-render",
+      "signals": {
+        "request_clarity": "explicit",
+        "requested_output": "render",
+        "native_generation_available": true,
+        "production_intent": "digital_final",
+        "copy_feasibility": "compact",
+        "reference_conflict": false
+      },
+      "expected": {
+        "response_action": "native_render_then_review",
+        "output_mode": "render",
+        "render_status": "generated"
+      }
+    },
+    {
+      "id": "explicit-render-and-prompt",
+      "signals": {
+        "request_clarity": "explicit",
+        "requested_output": "render_and_prompt",
+        "native_generation_available": true,
+        "production_intent": "concept_raster",
+        "copy_feasibility": "at_risk",
+        "reference_conflict": false
+      },
+      "expected": {
+        "response_action": "native_render_then_review",
+        "output_mode": "render_and_prompt",
+        "render_status": "generated"
+      }
+    },
+    {
+      "id": "ambiguous-brief",
+      "signals": {
+        "request_clarity": "ambiguous",
+        "requested_output": "prompt",
+        "native_generation_available": true,
+        "production_intent": "concept_raster",
+        "copy_feasibility": "compact",
+        "reference_conflict": false
+      },
+      "expected": {
+        "response_action": "clarify_output_mode",
+        "output_mode": null,
+        "render_status": "not_requested"
+      }
+    },
+    {
+      "id": "native-unavailable",
+      "signals": {
+        "request_clarity": "explicit",
+        "requested_output": "render",
+        "native_generation_available": false,
+        "production_intent": "concept_raster",
+        "copy_feasibility": "compact",
+        "reference_conflict": false
+      },
+      "expected": {
+        "response_action": "return_prompt_fallback",
+        "output_mode": "render",
+        "render_status": "unavailable"
+      }
+    },
+    {
+      "id": "production-master",
+      "signals": {
+        "request_clarity": "explicit",
+        "requested_output": "render_and_prompt",
+        "native_generation_available": true,
+        "production_intent": "production_master",
+        "copy_feasibility": "compact",
+        "reference_conflict": false
+      },
+      "expected": {
+        "response_action": "route_dtp",
+        "output_mode": "render_and_prompt",
+        "render_status": "blocked_dtp"
+      }
+    },
+    {
+      "id": "dense-copy",
+      "signals": {
+        "request_clarity": "explicit",
+        "requested_output": "render",
+        "native_generation_available": true,
+        "production_intent": "digital_final",
+        "copy_feasibility": "dtp_required",
+        "reference_conflict": false
+      },
+      "expected": {
+        "response_action": "route_dtp",
+        "output_mode": "render",
+        "render_status": "blocked_dtp"
+      }
+    },
+    {
+      "id": "reference-conflict",
+      "signals": {
+        "request_clarity": "explicit",
+        "requested_output": "render",
+        "native_generation_available": true,
+        "production_intent": "concept_raster",
+        "copy_feasibility": "compact",
+        "reference_conflict": true
+      },
+      "expected": {
+        "response_action": "clarify_reference_conflict",
+        "output_mode": null,
+        "render_status": "not_requested"
+      }
+    }
+  ]
+}

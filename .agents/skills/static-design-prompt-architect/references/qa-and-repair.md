@@ -4,9 +4,9 @@ Review the rendered result against the brief and prompt pack. Do not accept a gr
 
 ## Pre-render feasibility gate
 
-Before rendering, classify the visible copy as `compact`, `at_risk`, or `dtp_required`. A `dtp_required` result is correct when mandatory dense schedules, legal copy, price lists, exact print typography, or prepress requirements cannot be simplified without changing the communication objective. Stop before generation and recommend an approved non-generative layout workflow. Do not replace this route with a text-free image and a later default overlay.
+Before rendering, resolve `production_intent` and classify the visible copy as `compact`, `at_risk`, or `dtp_required`. A `dtp_required` result is correct for `production_master` work or when mandatory dense schedules, legal copy, price lists, exact print typography, or prepress requirements cannot be simplified without changing the communication objective. Stop before generation and recommend an approved non-generative layout workflow. Do not replace this route with a text-free image and a later default overlay.
 
-Native rendering is allowed only when the user explicitly requested `render` or `render_and_prompt` and the active surface's built-in image generator is available. If either condition is absent, return the prompt only. If a native render is reviewed and fails, report the QA route; do not silently create another render.
+Native rendering is allowed only when the user explicitly requested `render` or `render_and_prompt` and the active surface's built-in image generator is available. If either condition is absent, return the prompt only. Record `render_status: unavailable`, `blocked_dtp`, or `generation_failed` when applicable. If a native render is reviewed, record `render_status: qa_pass` or `qa_fail` with its QA route; do not silently create another render.
 
 ## Acceptance checks
 
@@ -18,6 +18,7 @@ Native rendering is allowed only when the user explicitly requested `render` or 
 6. Supporting elements have a function; there is no arbitrary collage, pseudo-logo, accidental iconography, or unmotivated effect.
 7. The render contains no unapproved text, watermark, alternate date, invented claim, duplicate text, device frame, or mockup.
 8. Real names, logo shapes, partner marks, dates, prices, and claims appear only when approved by the declared brand and identity authority policy.
+9. Any real person's likeness is covered by declared likeness authority, and any supplied style reference is translated into an original treatment rather than directly imitated.
 
 ## Decision routes
 
@@ -27,6 +28,7 @@ Native rendering is allowed only when the user explicitly requested `render` or 
 | `scoped_edit` | One local defect remains and the rest of the composition is approved. | Attach the current render where supported; name one permitted change and restate protected elements. |
 | `full_rerender` | The visual thesis, hierarchy, identity, product truth, or core copy system fails. | Rewrite the full prompt; do not merely append longer exclusions. |
 | `dtp_required` | Exact type, legal copy, print specification, named font, bleed, or licensed vector output is required. | Move to an approved non-generative layout workflow. |
+| `generation_failed` | The permitted native renderer returned an error or no usable image. | Return the error and final prompt; do not substitute an external renderer or retry silently. |
 
 ## Scoped edit form
 

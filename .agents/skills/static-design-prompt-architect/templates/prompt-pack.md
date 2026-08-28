@@ -2,13 +2,19 @@
 
 ```yaml
 prompt_method: standard
+input_context: standalone
 output_mode: prompt
 rendering_route:
   native_generation_requested: false
   native_generation_available: Unknown
   render_status: not_requested
+  qa_route: not_applicable
+production_intent: concept_raster
 generator_profile:
   surface: Unknown
+  execution_surface: Unknown
+  generator_provider: Unknown
+  target_generator: Unknown
   verified_native_controls: []
   unknown_capabilities: []
 task_mode:
@@ -16,7 +22,6 @@ rendering_context:
   host_environment: Unknown
   final_asset_has_visible_text: Unknown
 generator_prompt_format:
-  target_generator: Unknown
   negative_handling_mode: unknown
   source_check_status: not_required
   separate_negative_prompt_allowed: Unknown
@@ -30,6 +35,8 @@ type_image_relationship:
 copy_locks: []
 copy_feasibility:
 brand_identity_policy:
+likeness_authority: Unknown
+style_treatment: original_attributes_only
 native_settings: []
 prompt:
 protected_elements: []

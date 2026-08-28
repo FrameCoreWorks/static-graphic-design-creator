@@ -3,14 +3,19 @@
 ```yaml
 asset_type:
 task_mode: generate
+input_context: standalone
+output_mode: prompt
+production_intent: concept_raster
 objective:
 audience:
 output_format:
 generator_surface: Unknown
 host_environment: Unknown
+execution_surface: Unknown
+generator_provider: Unknown
+target_generator: Unknown
 final_asset_has_visible_text: Unknown
 generator_prompt_format:
-  target_generator: Unknown
   negative_handling_mode: unknown
   source_check_status: not_required
 visible_copy:
@@ -25,6 +30,8 @@ palette_or_brand_constraints: []
 brand_identity_policy:
   approved_identity_assets: []
   official_source_check: Unknown
+  likeness_authority: Unknown
+  style_treatment: original_attributes_only
 references:
   - alias:
     role:

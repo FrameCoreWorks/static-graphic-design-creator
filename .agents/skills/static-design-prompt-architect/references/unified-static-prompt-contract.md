@@ -6,6 +6,10 @@ Use this contract for posters, flyers, business cards, menus, labels, covers, ke
 
 The eight stages are construction priority inside one generation. They must never request eight outputs, intermediate images, blank typography zones for later copy, separate layer files, or a manual compositing pass.
 
+## Prompt compactness
+
+Resolve all eight stages, but do not force eight headings or eight long paragraphs. For a simple brief, compile the relevant decisions into one concise, readable prompt. For a complex text-led design, use short labelled segments or paragraphs in the same semantic order. Do not duplicate a constraint across stages unless it is a critical lock, such as exact visible copy, protected identity, product truth, or one permitted scoped edit.
+
 ## Stage order
 
 1. **Final-output contract**
