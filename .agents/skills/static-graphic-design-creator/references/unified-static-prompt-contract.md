@@ -8,7 +8,7 @@ The eight stages are construction priority inside one generation. They must neve
 
 ## Objective-first preflight
 
-Before compiling any of the eight stages, resolve the poster strategy in this order: communication goal; required audience response and copy burden; visual thesis; composition archetype and attention order; style family or original attributes; material treatment. Do not select a style first and retrofit a goal around it.
+Before compiling any of the eight stages, resolve the poster strategy in this order: communication goal; required audience response; reading mode and copy burden; visual thesis; composition archetype and attention order; image/type roles and hierarchy; style family or original attributes; material treatment. Classify visible content as `must_read`, `should_read`, `metadata`, or `decoration`. Do not select a style first and retrofit a goal around it.
 
 For an open poster brief, return a `discovery_brainstorm` before the final prompt. For a directed brief, use `directed_collaboration`: keep the user's chosen direction, make the strategy explicit, and challenge it only when a concrete conflict would damage clarity, accessibility, copy feasibility, or the stated objective.
 
@@ -19,7 +19,7 @@ Resolve all eight stages, but do not force eight headings or eight long paragrap
 ## Stage order
 
 1. **Final-output contract**
-   - State asset type, one finished output, intended format, communication objective, primary attention order, and explicit exclusions such as mockups, collages, grids, or alternate versions. Do not use a style name as the communication objective.
+   - State asset type, one finished output, intended format, communication objective, reading mode, primary attention order, and explicit exclusions such as mockups, collages, grids, or alternate versions. Do not use a style name as the communication objective.
    - Name one design thesis and one layout mechanism. Examples: a route carries information; type contains the image; a physical interruption enacts the message; repetition enacts motion.
 
 2. **Background and spatial foundation**
@@ -39,11 +39,11 @@ Resolve all eight stages, but do not force eight headings or eight long paragrap
    - Remove decorative particles, arbitrary icons, unnecessary frames, meaningless geometric marks, and unrelated image fragments.
 
 6. **Typography and functional information**
-   - Quote every required visible string exactly. State hierarchy, type role, placement, intentional line breaks, contrast, colour role, and allowed text count.
-   - Describe a type category and visible behaviour instead of asserting that a raster generator has access to a named font file. Keep small functional copy compact and legible.
+   - Quote every required visible string exactly. State whether it is `must_read`, `should_read`, `metadata`, or `decoration`, then state hierarchy, type role, placement, intentional line breaks, contrast, colour role, and allowed text count.
+   - Describe a type category and visible behaviour instead of asserting that a raster generator has access to a named font file. Keep small functional copy compact and legible. If critical or dense information cannot survive raster QA, stop before generation and route to DTP rather than treating it as decorative pseudo-text.
 
 7. **Colour, light, and material integration**
-   - State how the selected style attributes, colour, light, contrast, surface, and depth bind the composition together. Use a limited compatible palette and motivated light. Treat lithography, screenprint, risograph, letterpress, collage, or photomontage as visual material simulation unless a real production process is separately confirmed.
+   - State how the selected style attributes, colour, light, contrast, surface, and depth bind the composition together. Use a limited compatible palette and motivated light. Treat lithography, screenprint, risograph, letterpress, collage, photomontage, offset, or halftone as visual material simulation unless a real production process is separately confirmed. Tie every process cue to a visible cause such as separation, overprint, register, relief, paper absorption, or dot structure; never use a generic vintage/damage filter.
    - Protect readable copy through contrast and layout, not by stacking unnecessary panels, glows, or effects behind every string.
 
 8. **Finish, exclusions, and acceptance checks**
@@ -61,3 +61,5 @@ Resolve all eight stages, but do not force eight headings or eight long paragrap
 - No generic stock-like staging, collage clutter, arbitrary effects, or unsupported technical claim remains.
 - The composition cannot be swapped onto an unrelated event without changing its visual thesis.
 - A generic cityscape, decorative smoke, particle field, neon glow, pseudo-3D object, or arbitrary texture appears only when it performs a named communication job.
+- Critical text is not used as filler, pseudo-glyphs, or decorative texture.
+- A political position, factual claim, cultural representation, or charged historical symbol remains user-confirmed rather than inferred from a visual movement.

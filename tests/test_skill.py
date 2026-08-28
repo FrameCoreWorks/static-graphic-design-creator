@@ -15,6 +15,7 @@ SOURCE_MANIFEST = ROOT / "config" / "chatgpt-skill-sources.json"
 POLICY_FIXTURES = ROOT / "tests" / "fixtures" / "policy-regression-cases.json"
 BEHAVIOR_FIXTURES = ROOT / "tests" / "fixtures" / "behavior-eval-cases.json"
 POSTER_STRATEGY_FIXTURES = ROOT / "tests" / "fixtures" / "poster-strategy-eval-cases.json"
+POSTER_RESEARCH_FIXTURES = ROOT / "tests" / "fixtures" / "poster-research-eval-cases.json"
 UPDATE_FIXTURES = ROOT / "tests" / "fixtures" / "update-eval-cases.json"
 MANUAL_EVALUATION = ROOT / "EVALUATION.md"
 CHATGPT_UPDATE = ROOT / "CHATGPT_UPDATE.md"
@@ -174,6 +175,61 @@ def validate_poster_strategy_fixtures() -> None:
         )
 
 
+def resolve_poster_research_case(signals: dict[str, object]) -> dict[str, object]:
+    """Reference routing for evidence-backed poster-language decisions."""
+
+    if signals["charged_content"] and not signals["human_review_confirmed"]:
+        decision_route = "clarify_human_review"
+    elif (
+        signals["production_intent"] == "production_master"
+        or signals["must_read_density"] == "dense"
+    ):
+        decision_route = "route_dtp"
+    elif (
+        signals["historical_language"] == "psychedelic"
+        and signals["reading_mode"] == "glance"
+        and not signals["intentional_legibility_friction_confirmed"]
+    ):
+        decision_route = "clarify_legibility_intent"
+    else:
+        decision_route = "strategy_ready"
+
+    return {
+        "decision_route": decision_route,
+        "goal_first": True,
+        "copy_hierarchy_required": True,
+        "composition_before_style": True,
+        "process_logic_required": True,
+        "direct_imitation": False,
+    }
+
+
+def validate_poster_research_fixtures() -> None:
+    fixtures = json.loads(read(POSTER_RESEARCH_FIXTURES))
+    require(fixtures["schema_version"] == 1, "Unexpected poster research fixture schema")
+    require(fixtures["cases"], "Poster research fixture cases are required")
+    required_signal_keys = {
+        "asset_function",
+        "reading_mode",
+        "must_read_density",
+        "historical_language",
+        "charged_content",
+        "human_review_confirmed",
+        "intentional_legibility_friction_confirmed",
+        "production_intent",
+    }
+    for case in fixtures["cases"]:
+        signals = case["signals"]
+        require(
+            required_signal_keys == set(signals),
+            f"Unexpected poster research signals in {case['id']}",
+        )
+        require(
+            resolve_poster_research_case(signals) == case["expected"],
+            f"Poster research regression mismatch: {case['id']}",
+        )
+
+
 def resolve_update_case(signals: dict[str, object]) -> dict[str, object]:
     """Reference decision model for user-approved incremental updates."""
 
@@ -269,6 +325,7 @@ def main() -> None:
         POLICY_FIXTURES,
         BEHAVIOR_FIXTURES,
         POSTER_STRATEGY_FIXTURES,
+        POSTER_RESEARCH_FIXTURES,
         UPDATE_FIXTURES,
         MANUAL_EVALUATION,
         SKILL / "SKILL.md",
@@ -279,6 +336,7 @@ def main() -> None:
         SKILL / "references" / "qa-and-repair.md",
         SKILL / "references" / "deliverable-profiles.md",
         SKILL / "references" / "poster-style-and-composition-atlas.md",
+        SKILL / "references" / "poster-movements-and-production-atlas.md",
         SOURCE_RELEASE,
         SKILL / "templates" / "design-intake.md",
         SKILL / "templates" / "prompt-pack.md",
@@ -299,6 +357,7 @@ def main() -> None:
     validate_policy_fixtures()
     validate_behavior_fixtures()
     validate_poster_strategy_fixtures()
+    validate_poster_research_fixtures()
     validate_update_fixtures()
 
     skill = read(SKILL / "SKILL.md")
@@ -321,7 +380,10 @@ def main() -> None:
     require("execution_surface: codex_builtin_imagegen" in skill, "Codex execution surface missing")
     require("target_generator: gpt-image-2" in skill, "Explicit Codex target generator missing")
     require("## Poster direction and collaboration" in skill, "Poster collaboration routing missing")
-    require("communication goal → audience response and copy burden" in skill, "Objective-first order missing")
+    require(
+        "communication goal → audience response → reading mode and copy burden" in skill,
+        "Objective-first order missing",
+    )
     require("`discovery_brainstorm`" in skill, "Poster brainstorm route missing")
     require("`directed_collaboration`" in skill, "Directed poster collaboration route missing")
     for render_status in RENDER_STATUSES:
@@ -348,6 +410,9 @@ def main() -> None:
     require("separate `Negative Prompt` or `negative_prompt`" in integration, "Negative-prompt boundary missing")
     require("host environment alone" in integration, "Explicit Codex target guard missing")
     require("production_intent" in integration, "Workflow production intent missing")
+    require("text_hierarchy" in integration, "Workflow text-hierarchy handoff missing")
+    require("production_process" in integration, "Workflow process handoff missing")
+    require("human_review_required" in integration, "Workflow human-review handoff missing")
 
     chatgpt_install = read(ROOT / "CHATGPT_INSTALL.md")
     for phrase in ["@skill-creator", "one native ChatGPT Skill", "not a plugin", "config/chatgpt-skill-sources.json"]:
@@ -367,8 +432,8 @@ def main() -> None:
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
     require(chatgpt_config["schema_version"] == 3, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.5.0", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.5.0", "ChatGPT config is not release pinned")
+    require(chatgpt_config["version"] == "0.6.0", "Unexpected release version")
+    require(chatgpt_config["ref"] == "v0.6.0", "ChatGPT config is not release pinned")
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
     require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
@@ -399,7 +464,7 @@ def main() -> None:
     require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
     require("not a plugin" in codex_install, "Codex plugin boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.5.0`" in codex_install, "Codex release pin missing")
+    require("stable release `v0.6.0`" in codex_install, "Codex release pin missing")
     require("follow `CODEX_UPDATE.md`" in codex_install, "Codex update handoff missing")
 
     chatgpt_update = read(CHATGPT_UPDATE)
@@ -447,6 +512,20 @@ def main() -> None:
         "style label from replacing a communication decision",
     ]:
         require(term in atlas, f"Poster atlas missing: {term}")
+
+    research_atlas = read(SKILL / "references" / "poster-movements-and-production-atlas.md")
+    for term in [
+        "## Decision path",
+        "must_read",
+        "## Historical and formal language cards",
+        "Polish Poster School",
+        "Sachplakat",
+        "## Production and materiality",
+        "## Anti-slop diagnostic",
+        "Non-automatic human decisions",
+        "process logic",
+    ]:
+        require(term in research_atlas, f"Poster research atlas missing: {term}")
 
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-graphic-design-creator", "Unexpected manifest repository")

@@ -10,7 +10,7 @@ Install only the standalone `static-graphic-design-creator` Skill from the relea
 
 ## Source of truth
 
-Read `config/chatgpt-skill-sources.json`, confirm stable release `v0.5.0`, and use the entry named `static-graphic-design-creator`. The canonical source directory is:
+Read `config/chatgpt-skill-sources.json`, confirm stable release `v0.6.0`, and use the entry named `static-graphic-design-creator`. The canonical source directory is:
 
 `.agents/skills/static-graphic-design-creator`
 

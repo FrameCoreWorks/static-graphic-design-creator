@@ -12,10 +12,21 @@ poster_strategy:
   collaboration_mode: Unknown
   direction_status: Unknown
   required_audience_response:
+  reading_mode: Unknown
+  text_hierarchy:
+    must_read: []
+    should_read: []
+    metadata: []
+    decoration: []
   composition_archetype:
+  image_type:
+  type_role:
   style_family:
   transferable_attributes: []
   material_treatment:
+  production_process: Unknown
+  intentional_legibility_friction: Unknown
+  human_review_required: []
 output_format:
 generator_surface: Unknown
 host_environment: Unknown

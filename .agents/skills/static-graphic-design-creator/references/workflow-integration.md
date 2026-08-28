@@ -24,10 +24,22 @@ direction_contract:
 poster_strategy:
   collaboration_mode: directed_collaboration
   communication_goal:
+  required_audience_response:
+  reading_mode: Unknown
+  text_hierarchy:
+    must_read: []
+    should_read: []
+    metadata: []
+    decoration: []
   composition_archetype:
+  image_type:
+  type_role:
   style_family:
   transferable_attributes: []
   material_treatment:
+  production_process: Unknown
+  intentional_legibility_friction: Unknown
+  human_review_required: []
 copy_pack:
   locked_strings: []
 reference_pack:
@@ -118,6 +130,22 @@ prompt_pack:
   prompt:
   reference_roles: []
   required_request_references: []
+  poster_strategy:
+    communication_goal:
+    reading_mode: Unknown
+    text_hierarchy:
+      must_read: []
+      should_read: []
+      metadata: []
+      decoration: []
+    composition_archetype:
+    image_type:
+    type_role:
+    style_family:
+    material_treatment:
+    production_process: Unknown
+    intentional_legibility_friction: Unknown
+    human_review_required: []
   copy_locks: []
   copy_feasibility:
   brand_identity_policy:

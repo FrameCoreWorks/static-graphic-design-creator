@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.5.0",
-  "ref": "v0.5.0",
+  "version": "0.6.0",
+  "ref": "v0.6.0",
   "release": {
     "channel": "stable",
     "ref_type": "release_branch",

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "sachplakat-commercial-recognition",
+      "signals": {
+        "asset_function": "commercial",
+        "reading_mode": "glance",
+        "must_read_density": "compact",
+        "historical_language": "sachplakat",
+        "charged_content": false,
+        "human_review_confirmed": false,
+        "intentional_legibility_friction_confirmed": false,
+        "production_intent": "concept_raster"
+      },
+      "expected": {
+        "decision_route": "strategy_ready",
+        "goal_first": true,
+        "copy_hierarchy_required": true,
+        "composition_before_style": true,
+        "process_logic_required": true,
+        "direct_imitation": false
+      }
+    },
+    {
+      "id": "psychedelic-glance-conflict",
+      "signals": {
+        "asset_function": "cultural",
+        "reading_mode": "glance",
+        "must_read_density": "compact",
+        "historical_language": "psychedelic",
+        "charged_content": false,
+        "human_review_confirmed": false,
+        "intentional_legibility_friction_confirmed": false,
+        "production_intent": "concept_raster"
+      },
+      "expected": {
+        "decision_route": "clarify_legibility_intent",
+        "goal_first": true,
+        "copy_hierarchy_required": true,
+        "composition_before_style": true,
+        "process_logic_required": true,
+        "direct_imitation": false
+      }
+    },
+    {
+      "id": "political-position-unconfirmed",
+      "signals": {
+        "asset_function": "political",
+        "reading_mode": "brief_scan",
+        "must_read_density": "compact",
+        "historical_language": "constructivist",
+        "charged_content": true,
+        "human_review_confirmed": false,
+        "intentional_legibility_friction_confirmed": false,
+        "production_intent": "concept_raster"
+      },
+      "expected": {
+        "decision_route": "clarify_human_review",
+        "goal_first": true,
+        "copy_hierarchy_required": true,
+        "composition_before_style": true,
+        "process_logic_required": true,
+        "direct_imitation": false
+      }
+    },
+    {
+      "id": "dense-informational-flyer",
+      "signals": {
+        "asset_function": "informational",
+        "reading_mode": "deliberate_read",
+        "must_read_density": "dense",
+        "historical_language": "swiss",
+        "charged_content": false,
+        "human_review_confirmed": false,
+        "intentional_legibility_friction_confirmed": false,
+        "production_intent": "digital_final"
+      },
+      "expected": {
+        "decision_route": "route_dtp",
+        "goal_first": true,
+        "copy_hierarchy_required": true,
+        "composition_before_style": true,
+        "process_logic_required": true,
+        "direct_imitation": false
+      }
+    },
+    {
+      "id": "directed-polish-theatre-route",
+      "signals": {
+        "asset_function": "theatre",
+        "reading_mode": "brief_scan",
+        "must_read_density": "compact",
+        "historical_language": "polish_poster_school",
+        "charged_content": false,
+        "human_review_confirmed": false,
+        "intentional_legibility_friction_confirmed": false,
+        "production_intent": "concept_raster"
+      },
+      "expected": {
+        "decision_route": "strategy_ready",
+        "goal_first": true,
+        "copy_hierarchy_required": true,
+        "composition_before_style": true,
+        "process_logic_required": true,
+        "direct_imitation": false
+      }
+    }
+  ]
+}

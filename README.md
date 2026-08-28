@@ -83,6 +83,7 @@ Pre-`v0.5.0` installations do not yet contain the source record. The update flow
 - supports standalone use and optional integration with an existing workflow;
 - runs an objective-first poster brainstorm when creative direction is open, while preserving a user's concrete direction when it is already defined;
 - chooses composition archetypes, historical visual families, and print-material simulations as disciplined design decisions rather than effect filters;
+- carries a detailed poster-movements and production atlas for evidence-grounded route selection, material/process logic, text hierarchy, and anti-slop QA;
 - treats font fidelity and dense raster text as QA risks rather than guarantees.
 
 By default, the Skill creates one standalone, provider-neutral prompt. Its eight stages describe construction priority inside a single final generation; they do not request intermediate renders, separate layer files, or later text insertion.
@@ -130,7 +131,7 @@ The test verifies the standalone Skill structure, source manifest hashes, portab
 
 ## Versioning and update integrity
 
-The stable source manifest is pinned to the versioned release branch `v0.5.0`. Updates are manual and require user approval. The installed `references/source-release.json` identifies the prior release for comparison. When the receiving surface can calculate SHA-256 and inspect installed files, the update contracts compare the prior and target manifests to classify each source file. Selective replacement is allowed only in that verified file-level mode. If comparison is unavailable, the contract reports that limitation and can use only a user-approved exact declared-bundle replacement. If a target hash differs from its manifest, source identity is foreign, or a local modification overlaps an upstream change, the update stops without replacing anything.
+The stable source manifest is pinned to the versioned release branch `v0.6.0`. Updates are manual and require user approval. The installed `references/source-release.json` identifies the prior release for comparison. When the receiving surface can calculate SHA-256 and inspect installed files, the update contracts compare the prior and target manifests to classify each source file. Selective replacement is allowed only in that verified file-level mode. If comparison is unavailable, the contract reports that limitation and can use only a user-approved exact declared-bundle replacement. If a target hash differs from its manifest, source identity is foreign, or a local modification overlaps an upstream change, the update stops without replacing anything.
 
 ## Scope and limits
 

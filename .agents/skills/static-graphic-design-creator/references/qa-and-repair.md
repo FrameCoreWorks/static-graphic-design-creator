@@ -4,7 +4,7 @@ Review the rendered result against the brief and prompt pack. Do not accept a gr
 
 ## Pre-render feasibility gate
 
-Before rendering, resolve `production_intent` and classify the visible copy as `compact`, `at_risk`, or `dtp_required`. A `dtp_required` result is correct for `production_master` work or when mandatory dense schedules, legal copy, price lists, exact print typography, or prepress requirements cannot be simplified without changing the communication objective. Stop before generation and recommend an approved non-generative layout workflow. Do not replace this route with a text-free image and a later default overlay.
+Before rendering, resolve `production_intent`, reading mode, and the visible-copy hierarchy (`must_read`, `should_read`, `metadata`, `decoration`), then classify the copy as `compact`, `at_risk`, or `dtp_required`. A `dtp_required` result is correct for `production_master` work or when mandatory dense schedules, legal copy, price lists, exact print typography, or prepress requirements cannot be simplified without changing the communication objective. Stop before generation and recommend an approved non-generative layout workflow. Do not replace this route with a text-free image and a later default overlay.
 
 Native rendering is allowed only when the user explicitly requested `render` or `render_and_prompt` and the active surface's built-in image generator is available. If either condition is absent, return the prompt only. Record `render_status: unavailable`, `blocked_dtp`, or `generation_failed` when applicable. If a native render is reviewed, record `render_status: qa_pass` or `qa_fail` with its QA route; do not silently create another render.
 
@@ -19,6 +19,9 @@ Native rendering is allowed only when the user explicitly requested `render` or 
 7. The render contains no unapproved text, watermark, alternate date, invented claim, duplicate text, device frame, or mockup.
 8. Real names, logo shapes, partner marks, dates, prices, and claims appear only when approved by the declared brand and identity authority policy.
 9. Any real person's likeness is covered by declared likeness authority, and any supplied style reference is translated into an original treatment rather than directly imitated.
+10. The intended reading mode and `must_read → should_read → metadata` order survive inspection at reduced scales; decoration does not resemble critical copy.
+11. A claimed material effect follows a named process logic (such as separation, register, relief, or halftone structure), rather than generic damage or vintage texture.
+12. For social or political work, every claim, action, representation, and charged symbol is user-approved; there is no fabricated documentary evidence, organisation, statistic, or historical attribution.
 
 ## Decision routes
 
@@ -41,6 +44,8 @@ Fail the gate when two or more of these conditions are true:
 - a generic cityscape, crowd, smoke, particles, neon, glow, pseudo-3D object, texture, or collage fragment has no named job;
 - the style label is visible as an effect pile but not as a disciplined system of composition, typography, colour, and material;
 - copy is protected only by effects rather than contrast, layout, and negative space.
+- a named historical style appears only as stereotype tokens, or a print process appears only as generic damage/noise;
+- required information has been turned into pseudo-text or decoration.
 
 Do not repair a failed anti-slop gate by appending more exclusions. Rebuild the visual thesis, composition archetype, and style treatment, then rerender only after an explicit user-approved render route.
 

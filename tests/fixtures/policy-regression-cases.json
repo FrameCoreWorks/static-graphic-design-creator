@@ -48,6 +48,18 @@
         "`dtp_required`",
         "declared brand and identity authority policy"
       ]
+    },
+    {
+      "id": "evidence-backed-poster-routing",
+      "document": ".agents/skills/static-graphic-design-creator/references/poster-movements-and-production-atlas.md",
+      "required_terms": [
+        "communication problem is resolved before a visual language is selected",
+        "must_read",
+        "Non-automatic human decisions",
+        "Process-fit rules",
+        "Anti-slop diagnostic",
+        "not a request for multi-pass layer assembly"
+      ]
     }
   ]
 }

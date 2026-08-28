@@ -2,6 +2,23 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.6.0] - 2026-08-28
+
+### Added
+
+- a detailed poster movements and production atlas that separates historical record, design synthesis, generator constraints, and editorial rules;
+- function-first profiles for film, theatre, social, political, cultural, commercial, informational, flyer, key-visual, and cover work;
+- evidence-grounded historical-language cards, including Sachplakat, distinct New Typography and Bauhaus entries, a narrowly scoped Polish Poster School, and process-aware contemporary methods;
+- process-fit guidance for lithography, screenprint, Risograph, letterpress, photomontage, collage, offset, and halftone;
+- a four-level visible-information hierarchy (`must_read`, `should_read`, `metadata`, `decoration`), reading modes, and explicit intentional-legibility-friction review;
+- regression and forward-evaluation cases for process logic, dense information, political confirmation, historical-language stereotype avoidance, and psychedelic legibility conflicts.
+
+### Changed
+
+- the prompt contract, intake, prompt-pack, deliverable profiles, and QA now carry text hierarchy, image/type roles, material-process logic, and human-review requirements;
+- social and political briefs now require explicit user confirmation for position, claims, cultural representation, and charged historical symbols;
+- material treatments must follow an identifiable process logic rather than generic vintage, damage, noise, or effect filters.
+
 ## [0.5.0] - 2026-08-28
 
 ### Added

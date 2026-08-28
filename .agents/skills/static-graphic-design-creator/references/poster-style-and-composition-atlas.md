@@ -10,6 +10,8 @@ Resolve this sequence before writing the eight-stage prompt:
 
 The style family is evidence for the chosen strategy, not a decorative filter. A named artist, artwork, brand, or protected composition is never a style family; translate it into original transferable attributes under the capability and reference contract.
 
+For detailed historical context, regional distinctions, function-specific decisions, production-process logic, and source anchors, read [the poster movements and production atlas](poster-movements-and-production-atlas.md). Keep this file as the compact routing reference.
+
 ## Collaboration routes
 
 ### `discovery_brainstorm`
@@ -72,7 +74,7 @@ Choose at most one primary family. Add one compatible material treatment only wh
 | `constructivist` | diagonal force, large scale shifts, geometric planes, purposeful photomontage logic, compressed headline | action, sport, music, manifesto | ideological visual cues would be inappropriate or confusing |
 | `new_typography_bauhaus` | asymmetric information blocks, flat colour planes, functional letterforms, photography as structure | exhibition, education, modern institution | the brief needs poetic ambiguity rather than clarity |
 | `swiss_grid` | measured grid, precise sans-serif behaviour, controlled white space, objective hierarchy, limited palette | public information, conference, design-led culture | the intended tone needs roughness, play, or handmade individuality |
-| `polish_poster_school` | painterly gesture, concise metaphor, wit, expressive line, vivid but deliberate colour | theatre, film, literature, civic concept | the result would depend on direct imitation of a named artist |
+| `polish_poster_school` | concise metaphor, interpretive image, type-image tension, wit, vivid but deliberate colour | theatre, film, literature, civic concept | the result would depend on direct imitation of a named artist or a painterly-surreal stereotype |
 | `psychedelic` | optically active type, saturated colour tension, fluid contour, perceptual rhythm | music, youth culture, era-specific event | dense functional copy or accessibility requires neutral reading |
 | `pop_reproduction` | flat spot colour, halftone logic, repetition, irony, bold framing | retail, youth activation, playful campaign | the subject requires gravity or a non-commercial tone |
 | `surrealist_conceptual` | improbable but precise visual relation, altered scale, visual riddle, restrained field | art-house film, literary work, awareness campaign | the viewer needs immediate literal instruction |
@@ -94,6 +96,8 @@ These are visual treatments, not claims that the output was physically printed b
 | `letterpress` | ink impression, direct type-image relationship, relief-like tactility, few colours | Do not use it to excuse unreadable small copy |
 | `photomontage` | purposeful cut scale, structural cropping, image-text collision, clear source hierarchy | Every fragment must have a stated role |
 | `collage` | material edges, selected found-form contrast, tactile assembly | Use one governing composition, never equal-weight scrap accumulation |
+| `offset_reproduction` | controlled colour reproduction, selected screening, stock-aware surface | Do not turn managed reproduction into generic noise |
+| `halftone_reproduction` | dot structure tied to a photographic or mass-reproduction role | Do not overlay identical dots on every surface |
 
 ## Anti-slop composition gate
 
@@ -107,6 +111,8 @@ Before final delivery, require all of the following:
 6. Every decorative-looking element has a named job: hierarchy, meaning, navigation, recognition, or material evidence.
 7. Removing the event title would not leave a generic asset interchangeable with an unrelated event.
 8. Generic smoke, particles, chrome, neon glow, cityscape, crowds, lens flare, pseudo-3D objects, random grids, and arbitrary paper texture are absent unless their job is explicit.
+9. `must_read`, `should_read`, `metadata`, and `decoration` are separated; decoration never resembles critical text.
+10. Any print look follows a named process logic rather than a generic vintage or damage filter.
 
 If two or more checks fail, set `anti_slop_gate: fail`, rebuild the strategy from goal and composition, and do not repair it with a longer negative list.
 
