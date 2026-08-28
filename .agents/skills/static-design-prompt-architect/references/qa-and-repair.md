@@ -6,6 +6,8 @@ Review the rendered result against the brief and prompt pack. Do not accept a gr
 
 Before rendering, classify the visible copy as `compact`, `at_risk`, or `dtp_required`. A `dtp_required` result is correct when mandatory dense schedules, legal copy, price lists, exact print typography, or prepress requirements cannot be simplified without changing the communication objective. Stop before generation and recommend an approved non-generative layout workflow. Do not replace this route with a text-free image and a later default overlay.
 
+Native rendering is allowed only when the user explicitly requested `render` or `render_and_prompt` and the active surface's built-in image generator is available. If either condition is absent, return the prompt only. If a native render is reviewed and fails, report the QA route; do not silently create another render.
+
 ## Acceptance checks
 
 1. The intended first, second, and third notices occur in order.

@@ -35,6 +35,8 @@ target_generator_profile:
 target_generator: Unknown
 host_environment: Unknown
 final_asset_has_visible_text: Unknown
+output_mode: prompt
+native_generation_available: Unknown
 ```
 
 Preserve an upstream value when it is more specific than the brief. Do not rewrite approved copy, source authority, brand constraints, or suppression rules. If contracts conflict, surface the conflict before authoring a prompt.
@@ -78,6 +80,11 @@ Return this minimum payload when another workflow will render or review the resu
 ```yaml
 prompt_pack:
   prompt_delivery_form: unified-multistage-static
+  output_mode: prompt
+  rendering_route:
+    native_generation_requested: false
+    native_generation_available: Unknown
+    render_status: not_requested
   task_mode:
   rendering_context:
     host_environment: Unknown
@@ -101,4 +108,4 @@ prompt_pack:
   repair_route:
 ```
 
-Do not automatically call a renderer, reviewer, publisher, or external service. A receiving workflow decides whether and how to execute the handoff.
+Do not automatically call a renderer, reviewer, publisher, or external service. A receiving workflow may use its built-in image-generation capability only when the user explicitly requested `render` or `render_and_prompt`; otherwise it returns the prompt handoff only. It never substitutes an external service when native rendering is unavailable.

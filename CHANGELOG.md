@@ -6,6 +6,8 @@ This file records user-visible changes to the standalone Skill. Release tags rem
 
 ### Added
 
+- explicit `render`, `prompt`, and `render_and_prompt` output modes, with native image generation limited to a direct user request;
+- native-render fallback to a complete prompt when the active surface cannot generate an image;
 - optional Codex compatibility profile for text-bearing static graphics;
 - mandatory pre-approval onboarding for ChatGPT Work installation;
 - strengthened ChatGPT Work installation around the active native `@skill-creator` creation workflow and real creation evidence;

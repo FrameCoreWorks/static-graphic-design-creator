@@ -2,6 +2,19 @@
   "schema_version": 1,
   "cases": [
     {
+      "id": "native-render-and-prompt-routing",
+      "document": ".agents/skills/static-design-prompt-architect/SKILL.md",
+      "required_terms": [
+        "## Output modes",
+        "**`render`:**",
+        "**`prompt`:**",
+        "**`render_and_prompt`:**",
+        "Wygenerować grafikę czy przygotować gotowy prompt?",
+        "rendering_unavailable",
+        "active surface's built-in image-generation capability"
+      ]
+    },
+    {
       "id": "codex-text-bearing-static",
       "document": ".agents/skills/static-design-prompt-architect/references/workflow-integration.md",
       "required_terms": [

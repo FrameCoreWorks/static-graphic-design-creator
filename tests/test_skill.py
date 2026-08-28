@@ -78,7 +78,12 @@ def main() -> None:
     for section in ["Standalone mode", "Connected mode", "## Inputs", "## Output", "## Final self-check"]:
         require(section in skill, f"Skill lacks required workflow boundary: {section}")
     require("never ask for intermediate images" in skill, "Single-generation constraint missing")
-    require("Do not generate assets, call external services" in skill, "Execution boundary missing")
+    require("## Output modes" in skill, "Output-mode routing missing")
+    require("**`render`:**" in skill, "Native render route missing")
+    require("**`prompt`:**" in skill, "Prompt-only route missing")
+    require("**`render_and_prompt`:**" in skill, "Combined output route missing")
+    require("active surface's built-in image-generation capability" in skill, "Native-render boundary missing")
+    require("Never trigger a render from an ambiguous brief alone" in skill, "Ambiguous render guard missing")
     require("copy-feasibility preflight" in skill, "Copy-feasibility gate missing")
     require("host_environment: codex" in skill, "Codex compatibility entry condition missing")
     require("target_generator: openai/gpt-image-2" in skill, "Explicit Codex target generator missing")
@@ -92,6 +97,7 @@ def main() -> None:
     for field in ["brief_contract", "direction_contract", "copy_pack", "reference_pack", "prompt_pack"]:
         require(field in integration, f"Portable workflow field missing: {field}")
     require("Do not automatically call a renderer" in integration, "Integration must not execute work")
+    require("explicitly requested `render` or `render_and_prompt`" in integration, "Integration native-render guard missing")
     require("target_generator: openai/gpt-image-2" in integration, "Codex target profile missing")
     require("negative_handling_mode: integrated_constraints" in integration, "Codex constraint mode missing")
     require("The public eight-stage contract remains canonical" in integration, "Eight-to-six stage crosswalk missing")
@@ -133,6 +139,10 @@ def main() -> None:
     require(".agents/skills/static-design-prompt-architect" in codex_install, "Codex source root missing")
     require("not a plugin" in codex_install, "Codex plugin boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
+
+    qa = read(SKILL / "references" / "qa-and-repair.md")
+    require("explicitly requested `render` or `render_and_prompt`" in qa, "QA native-render authorization missing")
+    require("do not silently create another render" in qa, "QA rerender guard missing")
 
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-design-prompt-architect", "Unexpected manifest repository")

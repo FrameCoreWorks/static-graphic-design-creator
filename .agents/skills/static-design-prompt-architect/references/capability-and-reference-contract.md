@@ -23,6 +23,12 @@ When the connected Codex text-bearing static profile is explicitly selected thro
 
 Every prompt must stand alone outside this conversation. Do not refer to previous prompts, earlier renders, rejected outputs, chat history, or attachments not listed for the current request. Name each attached reference by its current-request alias and role.
 
+## Native rendering boundary
+
+Use the active surface's built-in image-generation capability only when the user explicitly asks to generate or render the graphic. Build the same complete prompt required by this Skill before invoking that capability. Do not render from an ambiguous brief, and do not use an external provider, API, connector, paid service, or upload as a fallback.
+
+If native image generation is unavailable, return `rendering_unavailable` with the complete final prompt. If the copy-feasibility preflight returns `dtp_required`, do not render a raster substitute.
+
 ## Reference roles
 
 Assign one job to every reference:

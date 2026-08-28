@@ -32,10 +32,10 @@ The user may approve in the conversation with a clear reply such as `yes`, `appr
 
 Before requesting approval, give this short onboarding in the user's language:
 
-1. **What it gives:** one complete, generator-ready prompt for a poster, flyer, cover, social graphic, menu, label, or other designed static asset.
+1. **What it gives:** either one finished designed static graphic when the user explicitly requests it, or one complete, generator-ready prompt for a poster, flyer, cover, social graphic, menu, label, or other designed static asset.
 2. **How it helps:** it turns a brief into a controlled hierarchy of attention, layout, hero visual, exact visible copy, reference roles, exclusions, and QA checks.
-3. **When it is useful:** use it when a graphic needs coherent art direction and visible text in one final generation, rather than a vague style prompt.
-4. **Its boundary:** it writes the prompt only. It does not generate the image, invent brand facts or logos, guarantee raster typography, perform DTP, or replace a layout workflow for dense legal or print text.
+3. **When it is useful:** use it to create a graphic or, on request, to get a coherent prompt with art direction and visible text for one final generation rather than a vague style prompt.
+4. **Its boundary:** when the user explicitly asks for a graphic, it may use ChatGPT's built-in image generation; when the user asks for a prompt, it returns the complete prompt without rendering. It does not use external providers, invent brand facts or logos, guarantee raster typography, perform DTP, or replace a layout workflow for dense legal or print text.
 
 Keep this explanation concise and practical. Do not begin source-file processing or claim that installation has started before the onboarding has been shown and the user gives clear conversational approval.
 

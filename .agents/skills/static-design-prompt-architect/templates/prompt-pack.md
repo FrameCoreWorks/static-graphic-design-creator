@@ -2,6 +2,11 @@
 
 ```yaml
 prompt_method: standard
+output_mode: prompt
+rendering_route:
+  native_generation_requested: false
+  native_generation_available: Unknown
+  render_status: not_requested
 generator_profile:
   surface: Unknown
   verified_native_controls: []

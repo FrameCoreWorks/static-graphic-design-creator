@@ -4,7 +4,7 @@
 
 Use this public repository as the source address. ChatGPT Work or Codex can read the declared source files and install the one skill without downloading a ZIP, cloning the repository, or using a plugin.
 
-It is not an image generator or a DTP tool. It authors the prompt and marks generator-sensitive limits as `Unknown` when they are not verified.
+It can create a static graphic through the active surface's built-in image generation when the user explicitly asks for a render. When the user asks for a prompt, it returns the complete prompt without rendering. It is not a DTP tool and marks generator-sensitive limits as `Unknown` when they are not verified.
 
 ## Install from this repository
 
@@ -45,6 +45,7 @@ The Codex install contract resolves the same source manifest and installs the sk
 ## What the Skill does
 
 - converts a short brief or a structured workflow handoff into a generator-ready static-design prompt;
+- generates a finished static graphic through native image generation only when the user explicitly requests it;
 - protects exact visible copy, attention order, layout zones, references, and exclusions;
 - separates verified native controls from prompt-semantic controls and post-render QA;
 - supports standalone use and optional integration with an existing workflow;
@@ -95,7 +96,7 @@ When the receiving surface can calculate SHA-256, the install contracts require 
 
 ## Scope and limits
 
-This Skill authors prompts; it does not generate graphics, call external services, select paid tools, upload assets, publish content, or perform DTP. For print production, use the rendered output as art direction and verify exact copy, legal text, font licensing, spacing, bleed, and prepress requirements in an appropriate layout tool.
+This Skill may create a graphic only through the active surface's built-in image-generation capability and only after an explicit user request. It does not call external services, select paid tools, upload assets, publish content, or perform DTP. For print production, use the rendered output as art direction and verify exact copy, legal text, font licensing, spacing, bleed, and prepress requirements in an appropriate layout tool.
 
 ## License
 

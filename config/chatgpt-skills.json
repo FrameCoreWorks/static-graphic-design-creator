@@ -56,7 +56,7 @@
   "skills": [
     {
       "name": "static-design-prompt-architect",
-      "description": "Controlled prompts for static graphic design",
+      "description": "Static graphics and controlled prompts for graphic design",
       "source_root": ".agents/skills/static-design-prompt-architect"
     }
   ]

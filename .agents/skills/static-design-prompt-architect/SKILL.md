@@ -1,18 +1,30 @@
 ---
 name: static-design-prompt-architect
-description: Create provider-neutral, generator-ready prompts for typography-led static graphics such as posters, flyers, business cards, menus, labels, covers, advertisements, and text-led social assets. Use when a brief must become one controlled final static-design prompt; do not use to generate the image, perform DTP, or publish assets.
+description: Create controlled static graphics with native image generation when explicitly requested, or return complete generator-ready prompts for posters, flyers, business cards, menus, labels, covers, advertisements, and text-led social assets. Do not use for DTP, external rendering, or publishing.
 metadata:
-  short-description: Create controlled prompts for static graphic design
+  short-description: Create static graphics and controlled design prompts
 ---
 
 # Static Design Prompt Architect
 
-Create a final prompt pack for a designed static graphic. The core outcome is a coherent, standalone prompt that controls attention order, layout, image, typography, and finish as one system.
+Create a designed static graphic or a final prompt pack for one. The shared core is a coherent, standalone prompt that controls attention order, layout, image, typography, and finish as one system.
 
 This skill works in two modes:
 
 - **Standalone mode:** turn the user's ordinary brief into a prompt pack. Ask one concise question only when a missing choice materially changes the format, exact copy, reference authority, or execution route. Otherwise state a reversible assumption.
 - **Connected mode:** accept a supplied `workflow_context` or any subset of `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, `target_generator`, `target_generator_profile`, and `host_environment`. Preserve supplied locks. Do not require or invoke any named external skill.
+
+## Output modes
+
+Resolve the requested outcome before authoring or rendering:
+
+- **`render`:** use when the user explicitly asks to create, generate, render, or make the static graphic. Build the complete eight-stage prompt internally, run the pre-render feasibility gate, then use only the active surface's built-in image-generation capability when available. Return the generated graphic; do not include the full prompt unless the user also asks for it.
+- **`prompt`:** use when the user explicitly asks for a prompt, prompt pack, prompt revision, or copyable generator instruction. Return one complete standalone prompt in one fenced code block. Do not render an image.
+- **`render_and_prompt`:** use when the user explicitly asks for both. Return the generated graphic and the exact final prompt in one fenced code block.
+
+If the request does not make the desired outcome clear, ask one concise question: `Wygenerować grafikę czy przygotować gotowy prompt?` Never trigger a render from an ambiguous brief alone.
+
+Native rendering is not permission to use an external provider, API, connector, upload, or paid service. If built-in image generation is unavailable, return `rendering_unavailable` and the complete final prompt instead of substituting another tool. If the pre-render gate returns `dtp_required`, do not render.
 
 ## Inputs
 
@@ -40,7 +52,7 @@ Use supplied references only for their declared roles: identity, product truth, 
 11. For real brands, venues, institutions, partner marks, or logos, use only approved attached source assets and declared facts. If the receiving surface supports a verified official-source check, require that preflight; otherwise mark unavailable identity details as `Unknown` and do not invent them.
 12. Do not promise a named font file, exact kerning, legal licensing status, flawless Polish diacritics, print readiness, or deterministic text rendering from a raster generator. Treat those as external QA or DTP requirements.
 13. Do not use resolution claims or empty quality boosters such as `8K`, `4K`, `HDR`, `ultra sharp`, `hyper detailed`, `crisp`, or `razor sharp`. Describe visible material, light, layout, and legibility instead.
-14. Do not generate assets, call external services, select paid tools, upload files, publish, deploy, or make irreversible changes.
+14. In `render` or `render_and_prompt` mode, generate only through the active surface's built-in image-generation capability after the user explicitly requested rendering. Do not call external services, select paid tools, upload files, publish, deploy, or make irreversible changes.
 
 ## Output
 
@@ -51,6 +63,7 @@ Return at most four genuinely different variants unless the user requests evalua
 The output must include or make explicit:
 
 - prompt method: `standard` unless the user explicitly requests another method;
+- output mode and render status: `prompt`, `render`, `render_and_prompt`, `rendering_unavailable`, or `dtp_required` as applicable;
 - generator profile and native settings: verified values or `Unknown`;
 - host environment, generator prompt format, and negative handling mode;
 - task mode and declared reference roles;
@@ -60,6 +73,6 @@ The output must include or make explicit:
 
 ## Final self-check
 
-Before returning, verify that the asset has one singular intent; every major element has a visible role; attention order is executable; text and image cooperate; required copy is quoted exactly; protected references are not repurposed; no unsupported controls are disguised as syntax; the prompt contains no backreference to a previous chat, render, or unlisted attachment; and the result has a clear pass/fail QA route.
+Before returning, verify that the asset has one singular intent; every major element has a visible role; attention order is executable; text and image cooperate; required copy is quoted exactly; protected references are not repurposed; no unsupported controls are disguised as syntax; the prompt contains no backreference to a previous chat, render, or unlisted attachment; and the result has a clear pass/fail QA route. After a native render, review it against the QA contract but do not silently generate another attempt.
 
 If the user asks to improve an existing render, work from that render. Prefer a scoped edit when only one observable defect remains; recommend a full rerender only when the hierarchy, identity, product construction, or core visual thesis fails.
