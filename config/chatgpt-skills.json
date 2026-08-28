@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.4.0",
-  "ref": "v0.4.0",
+  "version": "0.5.0",
+  "ref": "v0.5.0",
   "release": {
     "channel": "stable",
     "ref_type": "release_branch",
@@ -52,6 +52,18 @@
     "onboarding_before_creation": true,
     "wait_for_separate_host_install_action": false,
     "allow_unconfirmed_completion_claim": false
+  },
+  "update_contract": {
+    "chatgpt_bootstrap_path": "CHATGPT_UPDATE.md",
+    "codex_bootstrap_path": "CODEX_UPDATE.md",
+    "mode": "manual_incremental_user_approved",
+    "source_identity_path": ".agents/skills/static-graphic-design-creator/references/source-release.json",
+    "automatic_repository_sync": false,
+    "duplicate_skill_creation_allowed": false,
+    "approval_required_before_apply": true,
+    "selective_update_requires_file_level_comparison": true,
+    "comparison_unavailable_apply_mode": "declared_bundle_replacement",
+    "local_conflict_blocks_apply": true
   },
   "source_integrity": {
     "hash_algorithm": "sha256",

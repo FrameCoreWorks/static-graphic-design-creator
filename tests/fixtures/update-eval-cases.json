@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "verified-no-source-delta",
+      "signals": {
+        "source_identity": "match",
+        "target_integrity": "verified",
+        "comparison_mode": "file_level",
+        "delta": "none",
+        "local_conflict": false,
+        "origin_confirmation": false,
+        "user_approval": false
+      },
+      "expected": {
+        "update_status": "already_up_to_date",
+        "apply_mode": "none",
+        "requires_approval": false
+      }
+    },
+    {
+      "id": "verified-delta-awaits-approval",
+      "signals": {
+        "source_identity": "match",
+        "target_integrity": "verified",
+        "comparison_mode": "file_level",
+        "delta": "changes",
+        "local_conflict": false,
+        "origin_confirmation": false,
+        "user_approval": false
+      },
+      "expected": {
+        "update_status": "update_review_ready",
+        "apply_mode": "none",
+        "requires_approval": true
+      }
+    },
+    {
+      "id": "verified-delta-selective-after-approval",
+      "signals": {
+        "source_identity": "match",
+        "target_integrity": "verified",
+        "comparison_mode": "file_level",
+        "delta": "changes",
+        "local_conflict": false,
+        "origin_confirmation": false,
+        "user_approval": true
+      },
+      "expected": {
+        "update_status": "ready_for_update",
+        "apply_mode": "selective_file_update",
+        "requires_approval": false
+      }
+    },
+    {
+      "id": "comparison-unavailable-replaces-only-after-approval",
+      "signals": {
+        "source_identity": "match",
+        "target_integrity": "unavailable",
+        "comparison_mode": "unavailable",
+        "delta": "changes",
+        "local_conflict": false,
+        "origin_confirmation": false,
+        "user_approval": true
+      },
+      "expected": {
+        "update_status": "ready_for_update",
+        "apply_mode": "declared_bundle_replacement",
+        "requires_approval": false
+      }
+    },
+    {
+      "id": "unrecorded-origin-needs-confirmation",
+      "signals": {
+        "source_identity": "unrecorded",
+        "target_integrity": "verified",
+        "comparison_mode": "file_level",
+        "delta": "changes",
+        "local_conflict": false,
+        "origin_confirmation": false,
+        "user_approval": true
+      },
+      "expected": {
+        "update_status": "awaiting_origin_confirmation",
+        "apply_mode": "none",
+        "requires_approval": true
+      }
+    },
+    {
+      "id": "foreign-source-is-blocked",
+      "signals": {
+        "source_identity": "mismatch",
+        "target_integrity": "verified",
+        "comparison_mode": "file_level",
+        "delta": "changes",
+        "local_conflict": false,
+        "origin_confirmation": false,
+        "user_approval": true
+      },
+      "expected": {
+        "update_status": "blocked_source_identity",
+        "apply_mode": "none",
+        "requires_approval": false
+      }
+    },
+    {
+      "id": "local-conflict-is-never-overwritten",
+      "signals": {
+        "source_identity": "match",
+        "target_integrity": "verified",
+        "comparison_mode": "file_level",
+        "delta": "changes",
+        "local_conflict": true,
+        "origin_confirmation": false,
+        "user_approval": true
+      },
+      "expected": {
+        "update_status": "blocked_local_conflict",
+        "apply_mode": "none",
+        "requires_approval": false
+      }
+    },
+    {
+      "id": "target-hash-mismatch-is-blocked",
+      "signals": {
+        "source_identity": "match",
+        "target_integrity": "mismatch",
+        "comparison_mode": "file_level",
+        "delta": "changes",
+        "local_conflict": false,
+        "origin_confirmation": false,
+        "user_approval": true
+      },
+      "expected": {
+        "update_status": "blocked_integrity",
+        "apply_mode": "none",
+        "requires_approval": false
+      }
+    }
+  ]
+}

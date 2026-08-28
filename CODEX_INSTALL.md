@@ -10,7 +10,7 @@ Install only the standalone `static-graphic-design-creator` Skill from the relea
 
 ## Source of truth
 
-Read `config/chatgpt-skill-sources.json`, confirm stable release `v0.4.0`, and use the entry named `static-graphic-design-creator`. The canonical source directory is:
+Read `config/chatgpt-skill-sources.json`, confirm stable release `v0.5.0`, and use the entry named `static-graphic-design-creator`. The canonical source directory is:
 
 `.agents/skills/static-graphic-design-creator`
 
@@ -25,4 +25,4 @@ Read every listed file before installation and verify its SHA-256 against the ma
 
 ## Update behavior
 
-If the skill already exists, compare it with the manifest source and ask before replacing it. A later repository update is not applied automatically.
+If the skill already exists, follow `CODEX_UPDATE.md`: compare the recorded source identity and manifest delta, show `Delta`, and ask before replacing it. A later repository update is not applied automatically.

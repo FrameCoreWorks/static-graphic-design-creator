@@ -6,7 +6,7 @@ This is the canonical ChatGPT Work setup contract for the public repository:
 
 `https://github.com/FrameCoreWorks/static-graphic-design-creator`
 
-It creates one native ChatGPT Skill named `static-graphic-design-creator` from a release-pinned public source. This is a repository-assisted Skill-creation flow, not a Codex workspace install, plugin, connector, marketplace item, MCP server, app integration, or automatic update protocol. It is not a plugin.
+It creates one native ChatGPT Skill named `static-graphic-design-creator` from a release-pinned public source. This is a repository-assisted Skill-creation flow, not a Codex workspace install, plugin, connector, marketplace item, MCP server, or app integration. It is not a plugin and it does not monitor or automatically update from the repository.
 
 Use this contract only in ChatGPT **Work** with `@skill-creator` active. The `@skill-creator` mention explicitly selects ChatGPT's built-in native Skill-creation workflow. It is not a shell command, dollar command, MCP tool, function tool, or a separate installer to discover.
 If the conversation is in regular Chat or `@skill-creator` is unavailable before a creation attempt, stop and tell the user to switch to Work and paste the complete repository prompt again. Do not continue with a descriptive chat-only simulation of installation.
@@ -20,7 +20,7 @@ Read these public files before creating the Skill:
 2. `config/chatgpt-skill-sources.json`
 3. Every file listed for `static-graphic-design-creator` in that source manifest.
 
-Use the declared stable release ref `v0.4.0`, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
+Use the declared stable release ref `v0.5.0`, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
 
 ## First response
 
@@ -45,7 +45,7 @@ Keep this explanation concise and practical. Do not begin source-file processing
 2. Ask for clear conversational approval to create the one named Skill.
 3. After approval, find the one Skill in `config/chatgpt-skill-sources.json` and read every declared source file. Verify every declared SHA-256 when the current Work surface can compute hashes; otherwise report `hash_verification: unavailable` and continue without claiming source-hash verification.
 4. Create the Skill through the already active `@skill-creator` workflow in ChatGPT Work. Do not search for or wait for a separate function tool, MCP tool, dollar command, install modal, host callback, or assistant-side UI inspection.
-5. Preserve the canonical name, description, `SKILL.md`, UI metadata, references, and templates that the native Skill surface supports.
+5. Preserve the canonical name, description, `SKILL.md`, UI metadata, references, templates, and `references/source-release.json` that the native Skill surface supports.
 6. Report `installed` only if `@skill-creator` says the Skill was created and saved, or if it is visible in the Skills library. If only a draft exists, report `created_not_installed`.
 7. If source reading or native creation fails after a real attempt, record `blocked` with the failed operation, exact returned error, and current state.
 
@@ -53,7 +53,7 @@ Do not wait for a separate modal, callback, function, MCP tool, or hidden instal
 
 ## Existing Skill guard
 
-If a matching Skill already exists, compare it with the declared source files and ask before replacing it. Do not treat a similarly named Skill as proof that this repository version is installed.
+If a matching Skill already exists, do not treat a similarly named Skill as proof that this repository version is installed. Follow `CHATGPT_UPDATE.md`: compare source identity and the declared source files, show `Delta`, and ask before replacing anything.
 
 ## Boundaries
 
@@ -65,4 +65,4 @@ If a matching Skill already exists, compare it with the declared source files an
 
 ## After installation
 
-Explain that the user can invoke the Skill explicitly with `@static-graphic-design-creator`, request a static-design prompt normally, or explicitly request a generated static graphic. To update it later, repeat the repository-source creation flow and approve replacement only after reviewing the version and difference.
+Explain that the user can invoke the Skill explicitly with `@static-graphic-design-creator`, request a static-design prompt normally, or explicitly request a generated static graphic. To update it later, paste the repository update prompt from `CHATGPT_UPDATE.md`; it compares the version and source delta before any replacement.

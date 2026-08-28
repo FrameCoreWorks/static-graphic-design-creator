@@ -15,7 +15,11 @@ SOURCE_MANIFEST = ROOT / "config" / "chatgpt-skill-sources.json"
 POLICY_FIXTURES = ROOT / "tests" / "fixtures" / "policy-regression-cases.json"
 BEHAVIOR_FIXTURES = ROOT / "tests" / "fixtures" / "behavior-eval-cases.json"
 POSTER_STRATEGY_FIXTURES = ROOT / "tests" / "fixtures" / "poster-strategy-eval-cases.json"
+UPDATE_FIXTURES = ROOT / "tests" / "fixtures" / "update-eval-cases.json"
 MANUAL_EVALUATION = ROOT / "EVALUATION.md"
+CHATGPT_UPDATE = ROOT / "CHATGPT_UPDATE.md"
+CODEX_UPDATE = ROOT / "CODEX_UPDATE.md"
+SOURCE_RELEASE = SKILL / "references" / "source-release.json"
 
 OUTPUT_MODES = {"prompt", "render", "render_and_prompt"}
 RENDER_STATUSES = {
@@ -170,12 +174,94 @@ def validate_poster_strategy_fixtures() -> None:
         )
 
 
+def resolve_update_case(signals: dict[str, object]) -> dict[str, object]:
+    """Reference decision model for user-approved incremental updates."""
+
+    source_identity = signals["source_identity"]
+    target_integrity = signals["target_integrity"]
+    comparison_mode = signals["comparison_mode"]
+    delta = signals["delta"]
+    local_conflict = signals["local_conflict"]
+    origin_confirmation = signals["origin_confirmation"]
+    user_approval = signals["user_approval"]
+
+    if source_identity == "mismatch":
+        return {
+            "update_status": "blocked_source_identity",
+            "apply_mode": "none",
+            "requires_approval": False,
+        }
+    if target_integrity == "mismatch":
+        return {
+            "update_status": "blocked_integrity",
+            "apply_mode": "none",
+            "requires_approval": False,
+        }
+    if source_identity == "unrecorded" and not origin_confirmation:
+        return {
+            "update_status": "awaiting_origin_confirmation",
+            "apply_mode": "none",
+            "requires_approval": True,
+        }
+    if local_conflict:
+        return {
+            "update_status": "blocked_local_conflict",
+            "apply_mode": "none",
+            "requires_approval": False,
+        }
+    if delta == "none":
+        return {
+            "update_status": "already_up_to_date",
+            "apply_mode": "none",
+            "requires_approval": False,
+        }
+    if not user_approval:
+        return {
+            "update_status": "update_review_ready",
+            "apply_mode": "none",
+            "requires_approval": True,
+        }
+    return {
+        "update_status": "ready_for_update",
+        "apply_mode": (
+            "selective_file_update"
+            if comparison_mode == "file_level"
+            else "declared_bundle_replacement"
+        ),
+        "requires_approval": False,
+    }
+
+
+def validate_update_fixtures() -> None:
+    fixtures = json.loads(read(UPDATE_FIXTURES))
+    require(fixtures["schema_version"] == 1, "Unexpected update fixture schema")
+    require(fixtures["cases"], "Update fixture cases are required")
+    required_signal_keys = {
+        "source_identity",
+        "target_integrity",
+        "comparison_mode",
+        "delta",
+        "local_conflict",
+        "origin_confirmation",
+        "user_approval",
+    }
+    for case in fixtures["cases"]:
+        signals = case["signals"]
+        require(required_signal_keys == set(signals), f"Unexpected update signals in {case['id']}")
+        require(
+            resolve_update_case(signals) == case["expected"],
+            f"Update regression mismatch: {case['id']}",
+        )
+
+
 def main() -> None:
     required_paths = [
         ROOT / "README.md",
         ROOT / "LICENSE",
         ROOT / "CHATGPT_INSTALL.md",
         ROOT / "CODEX_INSTALL.md",
+        CHATGPT_UPDATE,
+        CODEX_UPDATE,
         ROOT / "CHANGELOG.md",
         ROOT / ".github" / "workflows" / "validate.yml",
         ROOT / "config" / "chatgpt-skills.json",
@@ -183,6 +269,7 @@ def main() -> None:
         POLICY_FIXTURES,
         BEHAVIOR_FIXTURES,
         POSTER_STRATEGY_FIXTURES,
+        UPDATE_FIXTURES,
         MANUAL_EVALUATION,
         SKILL / "SKILL.md",
         SKILL / "agents" / "openai.yaml",
@@ -192,6 +279,7 @@ def main() -> None:
         SKILL / "references" / "qa-and-repair.md",
         SKILL / "references" / "deliverable-profiles.md",
         SKILL / "references" / "poster-style-and-composition-atlas.md",
+        SOURCE_RELEASE,
         SKILL / "templates" / "design-intake.md",
         SKILL / "templates" / "prompt-pack.md",
     ]
@@ -211,6 +299,7 @@ def main() -> None:
     validate_policy_fixtures()
     validate_behavior_fixtures()
     validate_poster_strategy_fixtures()
+    validate_update_fixtures()
 
     skill = read(SKILL / "SKILL.md")
     require(skill.startswith("---\nname: static-graphic-design-creator\n"), "SKILL.md frontmatter missing")
@@ -272,13 +361,14 @@ def main() -> None:
     require("native Skill-creation workflow" in chatgpt_install, "ChatGPT native creation route missing")
     require("Do not search for or wait for a separate function tool" in chatgpt_install, "ChatGPT separate-tool guard missing")
     require("release-pinned public source" in chatgpt_install, "ChatGPT release pin missing")
+    require("Follow `CHATGPT_UPDATE.md`" in chatgpt_install, "ChatGPT update handoff missing")
     require("short onboarding before requesting approval" in read(ROOT / "README.md"), "README onboarding disclosure missing")
     require("@skill-creator is the native creation workflow in ChatGPT Work." in read(ROOT / "README.md"), "README native creation route missing")
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
     require(chatgpt_config["schema_version"] == 3, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.4.0", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.4.0", "ChatGPT config is not release pinned")
+    require(chatgpt_config["version"] == "0.5.0", "Unexpected release version")
+    require(chatgpt_config["ref"] == "v0.5.0", "ChatGPT config is not release pinned")
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
     require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
@@ -295,12 +385,47 @@ def main() -> None:
     require(source_integrity["verify_when_available"] is True, "ChatGPT conditional hash policy missing")
     require(source_integrity["unavailable_blocks_creation"] is False, "ChatGPT unavailable hash check must not block creation")
     require(source_integrity["mismatch_blocks_creation"] is True, "ChatGPT hash mismatch must block creation")
+    update_contract = chatgpt_config["update_contract"]
+    require(update_contract["chatgpt_bootstrap_path"] == "CHATGPT_UPDATE.md", "ChatGPT update bootstrap missing")
+    require(update_contract["codex_bootstrap_path"] == "CODEX_UPDATE.md", "Codex update bootstrap missing")
+    require(update_contract["mode"] == "manual_incremental_user_approved", "Update approval mode missing")
+    require(update_contract["automatic_repository_sync"] is False, "Automatic update must remain disabled")
+    require(update_contract["duplicate_skill_creation_allowed"] is False, "Update must not duplicate a Skill")
+    require(update_contract["approval_required_before_apply"] is True, "Update approval guard missing")
+    require(update_contract["selective_update_requires_file_level_comparison"] is True, "Selective update guard missing")
+    require(update_contract["local_conflict_blocks_apply"] is True, "Local conflict guard missing")
 
     codex_install = read(ROOT / "CODEX_INSTALL.md")
     require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
     require("not a plugin" in codex_install, "Codex plugin boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.4.0`" in codex_install, "Codex release pin missing")
+    require("stable release `v0.5.0`" in codex_install, "Codex release pin missing")
+    require("follow `CODEX_UPDATE.md`" in codex_install, "Codex update handoff missing")
+
+    chatgpt_update = read(CHATGPT_UPDATE)
+    for phrase in [
+        "@skill-creator",
+        "source-release.json",
+        "If there is no source delta",
+        "show a concise `Delta`",
+        "Never create a duplicate Skill",
+        "blocked_local_conflict",
+        "declared_bundle_replacement",
+        "Never monitor GitHub in the background",
+    ]:
+        require(phrase in chatgpt_update, f"ChatGPT update contract missing: {phrase}")
+
+    codex_update = read(CODEX_UPDATE)
+    for phrase in [
+        "$skill-installer",
+        "source-release.json",
+        "If there is no delta",
+        "Ask for explicit user approval",
+        "blocked_local_conflict",
+        "declared_bundle_replacement",
+        "Do not update automatically",
+    ]:
+        require(phrase in codex_update, f"Codex update contract missing: {phrase}")
 
     qa = read(SKILL / "references" / "qa-and-repair.md")
     require("explicitly requested `render` or `render_and_prompt`" in qa, "QA native-render authorization missing")
@@ -347,8 +472,24 @@ def main() -> None:
     actual_paths = sorted(path for path in SKILL.rglob("*") if path.is_file())
     require(sorted(declared_paths) == actual_paths, "Manifest must enumerate every skill source file")
 
+    source_release = json.loads(read(SOURCE_RELEASE))
+    require(source_release["schema_version"] == 1, "Unexpected source release schema")
+    require(source_release["repository"] == manifest["repository"], "Source release repository mismatch")
+    require(source_release["skill_name"] == declared_skill["name"], "Source release Skill name mismatch")
+    require(source_release["version"] == manifest["version"], "Source release version mismatch")
+    require(source_release["ref"] == manifest["ref"], "Source release ref mismatch")
+    require(source_release["release_channel"] == manifest["release_channel"], "Source release channel mismatch")
+
     prohibited_private_paths = ["/root/.codex", "/workspace/scratch", "CODEX_HOME"]
-    distributable_files = [ROOT / "README.md", ROOT / "LICENSE", ROOT / "CHATGPT_INSTALL.md", ROOT / "CODEX_INSTALL.md", SOURCE_MANIFEST] + list(SKILL.rglob("*"))
+    distributable_files = [
+        ROOT / "README.md",
+        ROOT / "LICENSE",
+        ROOT / "CHATGPT_INSTALL.md",
+        ROOT / "CODEX_INSTALL.md",
+        CHATGPT_UPDATE,
+        CODEX_UPDATE,
+        SOURCE_MANIFEST,
+    ] + list(SKILL.rglob("*"))
     for path in distributable_files:
         if path.is_file() and path.suffix in {".md", ".json", ".yaml", ".py"}:
             content = read(path)

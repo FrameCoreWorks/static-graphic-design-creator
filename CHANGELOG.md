@@ -2,6 +2,16 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.5.0] - 2026-08-28
+
+### Added
+
+- repository-assisted update contracts for ChatGPT Work and Codex, each using a user-pasted update request rather than automatic repository monitoring;
+- an installed `source-release.json` record that identifies the repository, Skill name, release version, and ref used as an update baseline;
+- manifest-based file delta classification for changed, new, removed, unchanged, and locally modified source files;
+- explicit update states for no-op, unrecorded origin, source mismatch, integrity mismatch, unavailable comparison, and local conflict;
+- regression fixtures and manual forward tests that require review and user approval before replacing any existing installed Skill.
+
 ## [0.4.0] - 2026-08-28
 
 ### Added

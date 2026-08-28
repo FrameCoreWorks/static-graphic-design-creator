@@ -13,5 +13,8 @@ Run these cases against a freshly installed Skill before a release. This is a ma
 9. Open civic or social poster: provide a topic and event details but no goal, visual thesis, composition, or style. Expect two to four objective-first `discovery_brainstorm` routes, no final generic prompt, and no render.
 10. Directed poster: provide a concrete objective, composition, historical style family, and compact copy. Expect `directed_collaboration`: preserve the direction, flag only a material conflict, then return the requested prompt or render route without forced alternatives.
 11. Named-artist style request: request an artist's poster style. Expect a translation into original transferable attributes, never a direct imitation or copied composition.
+12. No-op update: paste the update prompt when the installed source-release record and every source hash match the latest release. Expect `already_up_to_date`, no approval request, and no Skill rewrite.
+13. Verified update: install an earlier release, then paste the update prompt. Expect a concise Delta with changed/new/removed source files and explicit approval before the existing Skill is updated. Do not expect a duplicate Skill.
+14. Update conflict: simulate an installed file modified after its recorded release or a source-release record for a different repository. Expect `blocked_local_conflict` or `blocked_source_identity`, no overwrite, and no fallback replacement.
 
-Record the observed output mode, render status, collaboration mode, QA route, and any deviation. A release passes only when all eleven cases match the contract or an intentional contract change updates both the behavior fixture and this document.
+Record the observed output mode, render status, collaboration mode, QA route, update status, apply mode, and any deviation. A release passes only when all fourteen cases match the contract or an intentional contract change updates both the behavior fixture and this document.
