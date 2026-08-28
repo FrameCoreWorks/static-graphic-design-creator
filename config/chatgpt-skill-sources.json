@@ -4,6 +4,7 @@
   "version": "0.2.0",
   "ref": "v0.2.0",
   "release_channel": "stable",
+  "release_ref_type": "release_branch",
   "skills": [
     {
       "name": "static-design-prompt-architect",

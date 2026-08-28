@@ -1,6 +1,6 @@
 # Changelog
 
-This file records user-visible changes to the standalone Skill. Release tags remain the source of truth for published versions.
+This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
 ## [0.2.0] - 2026-08-28
 

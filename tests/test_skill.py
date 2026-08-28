@@ -228,6 +228,7 @@ def main() -> None:
     require(chatgpt_config["version"] == "0.2.0", "Unexpected release version")
     require(chatgpt_config["ref"] == "v0.2.0", "ChatGPT config is not release pinned")
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
+    require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
     native_creation = chatgpt_config["native_creation"]
     require(native_creation["creator_invocation"] == "@skill-creator", "ChatGPT creator invocation missing")
@@ -258,8 +259,9 @@ def main() -> None:
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-design-prompt-architect", "Unexpected manifest repository")
     require(re.fullmatch(r"0\.\d+\.\d+", manifest["version"]) is not None, "Invalid manifest version")
-    require(manifest["ref"] == f"v{manifest['version']}", "Manifest ref must match version tag")
+    require(manifest["ref"] == f"v{manifest['version']}", "Manifest ref must match versioned release ref")
     require(manifest["release_channel"] == "stable", "Manifest release channel missing")
+    require(manifest["release_ref_type"] == "release_branch", "Manifest release ref type missing")
     require(len(manifest["skills"]) == 1, "Manifest must declare exactly one skill")
     declared_skill = manifest["skills"][0]
     require(declared_skill["name"] == "static-design-prompt-architect", "Unexpected manifest skill")

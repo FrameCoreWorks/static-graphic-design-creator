@@ -5,6 +5,7 @@
   "ref": "v0.2.0",
   "release": {
     "channel": "stable",
+    "ref_type": "release_branch",
     "updates": "manual_user_approved",
     "repository_source_contract": true
   },

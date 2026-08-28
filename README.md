@@ -94,7 +94,7 @@ The test verifies the standalone Skill structure, source manifest hashes, portab
 
 ## Versioning and update integrity
 
-The stable source manifest is pinned to release tag `v0.2.0`; updates are manual and require user approval. When the receiving surface can calculate SHA-256, the install contracts require a check of every manifest source before creation or replacement. If a computed file hash differs from the declared hash, stop, reread a fresh manifest, and restart the source check. If hash calculation is unavailable, report `hash_verification: unavailable`; do not claim verification, but do not treat capability absence as a source mismatch. Do not report an installed or updated Skill after a mismatch.
+The stable source manifest is pinned to the versioned release branch `v0.2.0`; updates are manual and require user approval. When the receiving surface can calculate SHA-256, the install contracts require a check of every manifest source before creation or replacement. If a computed file hash differs from the declared hash, stop, reread a fresh manifest, and restart the source check. If hash calculation is unavailable, report `hash_verification: unavailable`; do not claim verification, but do not treat capability absence as a source mismatch. Do not report an installed or updated Skill after a mismatch.
 
 ## Scope and limits
 
