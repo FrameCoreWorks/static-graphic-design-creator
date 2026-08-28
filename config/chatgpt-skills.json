@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
   "repository": "https://github.com/FrameCoreWorks/static-design-prompt-architect",
-  "version": "0.2.0",
-  "ref": "v0.2.0",
+  "version": "0.3.0",
+  "ref": "v0.3.0",
   "release": {
     "channel": "stable",
     "ref_type": "release_branch",
@@ -62,9 +62,9 @@
   },
   "skills": [
     {
-      "name": "static-design-prompt-architect",
-      "description": "Static graphics and controlled prompts for graphic design",
-      "source_root": ".agents/skills/static-design-prompt-architect"
+      "name": "static-graphic-design-creator",
+      "description": "Create finished static graphics and controlled design prompts",
+      "source_root": ".agents/skills/static-graphic-design-creator"
     }
   ]
 }

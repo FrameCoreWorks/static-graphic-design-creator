@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "native-render-and-prompt-routing",
-      "document": ".agents/skills/static-design-prompt-architect/SKILL.md",
+      "document": ".agents/skills/static-graphic-design-creator/SKILL.md",
       "required_terms": [
         "## Output modes",
         "**`render`:**",
@@ -17,7 +17,7 @@
     },
     {
       "id": "codex-text-bearing-static",
-      "document": ".agents/skills/static-design-prompt-architect/references/workflow-integration.md",
+      "document": ".agents/skills/static-graphic-design-creator/references/workflow-integration.md",
       "required_terms": [
         "host_environment: codex",
         "execution_surface: codex_builtin_imagegen",
@@ -32,7 +32,7 @@
     },
     {
       "id": "portable-brand-and-copy-guardrails",
-      "document": ".agents/skills/static-design-prompt-architect/references/capability-and-reference-contract.md",
+      "document": ".agents/skills/static-graphic-design-creator/references/capability-and-reference-contract.md",
       "required_terms": [
         "Every prompt must stand alone outside this conversation",
         "## Brand, likeness, and style authority",
@@ -42,7 +42,7 @@
     },
     {
       "id": "pre-render-copy-decision",
-      "document": ".agents/skills/static-design-prompt-architect/references/qa-and-repair.md",
+      "document": ".agents/skills/static-graphic-design-creator/references/qa-and-repair.md",
       "required_terms": [
         "## Pre-render feasibility gate",
         "`dtp_required`",

@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / ".agents" / "skills" / "static-design-prompt-architect"
+SKILL = ROOT / ".agents" / "skills" / "static-graphic-design-creator"
 SOURCE_MANIFEST = ROOT / "config" / "chatgpt-skill-sources.json"
 POLICY_FIXTURES = ROOT / "tests" / "fixtures" / "policy-regression-cases.json"
 BEHAVIOR_FIXTURES = ROOT / "tests" / "fixtures" / "behavior-eval-cases.json"
@@ -156,6 +156,7 @@ def main() -> None:
     retired_plugin_paths = [
         ROOT / ".agents" / "plugins" / "marketplace.json",
         ROOT / "plugins" / "static-design-prompt-architect" / ".codex-plugin" / "plugin.json",
+        ROOT / "plugins" / "static-graphic-design-creator" / ".codex-plugin" / "plugin.json",
         ROOT / "submission" / "openai-plugin-directory.md",
     ]
     for path in retired_plugin_paths:
@@ -166,7 +167,7 @@ def main() -> None:
     validate_behavior_fixtures()
 
     skill = read(SKILL / "SKILL.md")
-    require(skill.startswith("---\nname: static-design-prompt-architect\n"), "SKILL.md frontmatter missing")
+    require(skill.startswith("---\nname: static-graphic-design-creator\n"), "SKILL.md frontmatter missing")
     for section in ["## Input contexts", "Standalone mode", "Connected mode", "## Output modes", "## Inputs", "## Output", "## Final self-check"]:
         require(section in skill, f"Skill lacks required workflow boundary: {section}")
     require("never ask for intermediate images" in skill.lower(), "Single-generation constraint missing")
@@ -225,8 +226,8 @@ def main() -> None:
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
     require(chatgpt_config["schema_version"] == 3, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.2.0", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.2.0", "ChatGPT config is not release pinned")
+    require(chatgpt_config["version"] == "0.3.0", "Unexpected release version")
+    require(chatgpt_config["ref"] == "v0.3.0", "ChatGPT config is not release pinned")
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
     require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
@@ -245,10 +246,10 @@ def main() -> None:
     require(source_integrity["mismatch_blocks_creation"] is True, "ChatGPT hash mismatch must block creation")
 
     codex_install = read(ROOT / "CODEX_INSTALL.md")
-    require(".agents/skills/static-design-prompt-architect" in codex_install, "Codex source root missing")
+    require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
     require("not a plugin" in codex_install, "Codex plugin boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.2.0`" in codex_install, "Codex release pin missing")
+    require("stable release `v0.3.0`" in codex_install, "Codex release pin missing")
 
     qa = read(SKILL / "references" / "qa-and-repair.md")
     require("explicitly requested `render` or `render_and_prompt`" in qa, "QA native-render authorization missing")
@@ -264,7 +265,7 @@ def main() -> None:
     require(manifest["release_ref_type"] == "release_branch", "Manifest release ref type missing")
     require(len(manifest["skills"]) == 1, "Manifest must declare exactly one skill")
     declared_skill = manifest["skills"][0]
-    require(declared_skill["name"] == "static-design-prompt-architect", "Unexpected manifest skill")
+    require(declared_skill["name"] == "static-graphic-design-creator", "Unexpected manifest skill")
     declared_paths = []
     for source in declared_skill["files"]:
         path = ROOT / source["path"]
@@ -292,7 +293,7 @@ def main() -> None:
     ci = read(ROOT / ".github" / "workflows" / "validate.yml")
     require("python3 tests/test_skill.py" in ci, "CI does not run the contract test")
 
-    print("static-design-prompt-architect: package contract passed")
+    print("static-graphic-design-creator: package contract passed")
 
 
 if __name__ == "__main__":

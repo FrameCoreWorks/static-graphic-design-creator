@@ -1,58 +1,58 @@
 {
   "schema_version": 1,
   "repository": "https://github.com/FrameCoreWorks/static-design-prompt-architect",
-  "version": "0.2.0",
-  "ref": "v0.2.0",
+  "version": "0.3.0",
+  "ref": "v0.3.0",
   "release_channel": "stable",
   "release_ref_type": "release_branch",
   "skills": [
     {
-      "name": "static-design-prompt-architect",
-      "source_root": ".agents/skills/static-design-prompt-architect",
+      "name": "static-graphic-design-creator",
+      "source_root": ".agents/skills/static-graphic-design-creator",
       "files": [
         {
-          "path": ".agents/skills/static-design-prompt-architect/SKILL.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/SKILL.md",
-          "sha256": "8110dfd813308c58635012c9aa59ea7ac4c97a17fcc40009c2d06778e91352ad"
+          "path": ".agents/skills/static-graphic-design-creator/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/SKILL.md",
+          "sha256": "9fcd50434a8e9374f429b9c1234ebbbc313704106c3ffb7df86688ee63935ccc"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/agents/openai.yaml",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/agents/openai.yaml",
-          "sha256": "83e266daf975c35ad8ff13ae896e1227147f5f90246035b0f1ea9e72931be023"
+          "path": ".agents/skills/static-graphic-design-creator/agents/openai.yaml",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/agents/openai.yaml",
+          "sha256": "df1e4f827a79ca4eccd759d7fffa0405c384c61c7c2235f21ea23076fecbccbe"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/references/capability-and-reference-contract.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/references/capability-and-reference-contract.md",
+          "path": ".agents/skills/static-graphic-design-creator/references/capability-and-reference-contract.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/references/capability-and-reference-contract.md",
           "sha256": "efb20a0bfbdd0f7d6ee03cddc8a3366f893f83827fc380e7c0cc009decb6f094"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/references/deliverable-profiles.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/references/deliverable-profiles.md",
+          "path": ".agents/skills/static-graphic-design-creator/references/deliverable-profiles.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/references/deliverable-profiles.md",
           "sha256": "b55b51cf27e42450589277c8b0d50d6d8d40eed9dcad13b5cc54e7e702c16c07"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/references/qa-and-repair.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/references/qa-and-repair.md",
+          "path": ".agents/skills/static-graphic-design-creator/references/qa-and-repair.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/references/qa-and-repair.md",
           "sha256": "ce8d6d7e700bbfddbe35d2c9f7f7caf59fd4b1d2a012382155a00d1ae64f3fc8"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/references/unified-static-prompt-contract.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/references/unified-static-prompt-contract.md",
+          "path": ".agents/skills/static-graphic-design-creator/references/unified-static-prompt-contract.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/references/unified-static-prompt-contract.md",
           "sha256": "139be650d5a878af9cb6281f98ffc4777f9ba62686345e38109b18890380e901"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/references/workflow-integration.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/references/workflow-integration.md",
+          "path": ".agents/skills/static-graphic-design-creator/references/workflow-integration.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/references/workflow-integration.md",
           "sha256": "42b2c219355e04f80ee5e8040edca6bb09d52f8df9f6762342b89df660ae9b4b"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/templates/design-intake.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/templates/design-intake.md",
+          "path": ".agents/skills/static-graphic-design-creator/templates/design-intake.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/templates/design-intake.md",
           "sha256": "840cab88893c3d451d861e5cbd23bbc83510d4ad5ba7afec59dd00fd75975234"
         },
         {
-          "path": ".agents/skills/static-design-prompt-architect/templates/prompt-pack.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.2.0/.agents/skills/static-design-prompt-architect/templates/prompt-pack.md",
+          "path": ".agents/skills/static-graphic-design-creator/templates/prompt-pack.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-design-prompt-architect/v0.3.0/.agents/skills/static-graphic-design-creator/templates/prompt-pack.md",
           "sha256": "13be29e1462336a342626f6dba2cd352e6bb6aa7e807510241d56aa5b9ea7f09"
         }
       ]

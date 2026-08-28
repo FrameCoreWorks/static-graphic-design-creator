@@ -1,8 +1,0 @@
-interface:
-  display_name: "Static Design Prompt Architect"
-  short_description: "Static graphics and controlled design prompts"
-  brand_color: "#FF4D29"
-  default_prompt: "Use $static-design-prompt-architect to render a finished static design or return its complete prompt."
-
-policy:
-  allow_implicit_invocation: true

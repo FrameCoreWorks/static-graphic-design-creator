@@ -1,11 +1,11 @@
 ---
-name: static-design-prompt-architect
+name: static-graphic-design-creator
 description: Create, render, or refine typography-led static designs and standalone image-generation prompts for posters, flyers, covers, advertisements, labels, business cards, menus, and text-led social assets. Do not use for DTP or prepress deliverables, external rendering, or publishing.
 metadata:
   short-description: Create static graphics and controlled design prompts
 ---
 
-# Static Design Prompt Architect
+# Static Graphic Design Creator
 
 Create a designed static graphic or a final prompt pack for one. The shared core is a coherent, standalone prompt that controls attention order, layout, image, typography, and finish as one system.
 

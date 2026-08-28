@@ -2,6 +2,14 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.3.0] - 2026-08-28
+
+### Changed
+
+- renamed the Skill to `Static Graphic Design Creator` with the canonical identifier `static-graphic-design-creator`;
+- updated its native ChatGPT Work and Codex installation contracts, UI metadata, and source manifest for the new identity;
+- added the FrameCore Works repository banner.
+
 ## [0.2.0] - 2026-08-28
 
 ### Added
