@@ -4,7 +4,7 @@
 
 This is the canonical ChatGPT Work setup contract for the public repository:
 
-`https://github.com/FrameCoreWorks/static-design-prompt-architect`
+`https://github.com/FrameCoreWorks/static-graphic-design-creator`
 
 It creates one native ChatGPT Skill named `static-graphic-design-creator` from a release-pinned public source. This is a repository-assisted Skill-creation flow, not a Codex workspace install, plugin, connector, marketplace item, MCP server, app integration, or automatic update protocol. It is not a plugin.
 
@@ -20,7 +20,7 @@ Read these public files before creating the Skill:
 2. `config/chatgpt-skill-sources.json`
 3. Every file listed for `static-graphic-design-creator` in that source manifest.
 
-Use the declared stable release ref `v0.3.0`, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
+Use the declared stable release ref `v0.3.1`, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
 
 ## First response
 

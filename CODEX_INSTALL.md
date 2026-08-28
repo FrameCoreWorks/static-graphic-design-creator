@@ -4,13 +4,13 @@
 
 This is the canonical assisted-install contract for the public repository:
 
-`https://github.com/FrameCoreWorks/static-design-prompt-architect`
+`https://github.com/FrameCoreWorks/static-graphic-design-creator`
 
 Install only the standalone `static-graphic-design-creator` Skill from the release-pinned source manifest. This is not a plugin, workspace kit, agent roster, connector, marketplace item, MCP server, or automatic update mechanism.
 
 ## Source of truth
 
-Read `config/chatgpt-skill-sources.json`, confirm stable release `v0.3.0`, and use the entry named `static-graphic-design-creator`. The canonical source directory is:
+Read `config/chatgpt-skill-sources.json`, confirm stable release `v0.3.1`, and use the entry named `static-graphic-design-creator`. The canonical source directory is:
 
 `.agents/skills/static-graphic-design-creator`
 

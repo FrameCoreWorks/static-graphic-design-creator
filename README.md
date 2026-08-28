@@ -17,7 +17,7 @@ It can create a static graphic through the active surface's built-in image gener
 
 ```text
 Use @skill-creator to help me create and install the native ChatGPT Skill from this public repository:
-https://github.com/FrameCoreWorks/static-design-prompt-architect
+https://github.com/FrameCoreWorks/static-graphic-design-creator
 
 First read and follow CHATGPT_INSTALL.md in that repository. Create only the declared `static-graphic-design-creator` Skill from the checked source manifest. This is a Skill, not a plugin.
 
@@ -37,7 +37,7 @@ In a Codex chat, paste:
 
 ```text
 Install the standalone Skill from this public repository:
-https://github.com/FrameCoreWorks/static-design-prompt-architect
+https://github.com/FrameCoreWorks/static-graphic-design-creator
 
 Read CODEX_INSTALL.md and install only the declared `static-graphic-design-creator` Skill. Do not clone the repository, create a plugin, or install any unrelated workflow files.
 ```
@@ -96,7 +96,7 @@ The test verifies the standalone Skill structure, source manifest hashes, portab
 
 ## Versioning and update integrity
 
-The stable source manifest is pinned to the versioned release branch `v0.3.0`; updates are manual and require user approval. When the receiving surface can calculate SHA-256, the install contracts require a check of every manifest source before creation or replacement. If a computed file hash differs from the declared hash, stop, reread a fresh manifest, and restart the source check. If hash calculation is unavailable, report `hash_verification: unavailable`; do not claim verification, but do not treat capability absence as a source mismatch. Do not report an installed or updated Skill after a mismatch.
+The stable source manifest is pinned to the versioned release branch `v0.3.1`; updates are manual and require user approval. When the receiving surface can calculate SHA-256, the install contracts require a check of every manifest source before creation or replacement. If a computed file hash differs from the declared hash, stop, reread a fresh manifest, and restart the source check. If hash calculation is unavailable, report `hash_verification: unavailable`; do not claim verification, but do not treat capability absence as a source mismatch. Do not report an installed or updated Skill after a mismatch.
 
 ## Scope and limits
 

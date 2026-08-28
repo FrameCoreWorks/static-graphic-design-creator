@@ -2,6 +2,12 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.3.1] - 2026-08-28
+
+### Changed
+
+- renamed the public repository address to `FrameCoreWorks/static-graphic-design-creator` and updated installation documentation and source manifests to use the canonical URL directly.
+
 ## [0.3.0] - 2026-08-28
 
 ### Changed

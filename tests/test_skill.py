@@ -226,8 +226,8 @@ def main() -> None:
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
     require(chatgpt_config["schema_version"] == 3, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.3.0", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.3.0", "ChatGPT config is not release pinned")
+    require(chatgpt_config["version"] == "0.3.1", "Unexpected release version")
+    require(chatgpt_config["ref"] == "v0.3.1", "ChatGPT config is not release pinned")
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
     require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
@@ -249,7 +249,7 @@ def main() -> None:
     require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
     require("not a plugin" in codex_install, "Codex plugin boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.3.0`" in codex_install, "Codex release pin missing")
+    require("stable release `v0.3.1`" in codex_install, "Codex release pin missing")
 
     qa = read(SKILL / "references" / "qa-and-repair.md")
     require("explicitly requested `render` or `render_and_prompt`" in qa, "QA native-render authorization missing")
@@ -258,7 +258,7 @@ def main() -> None:
     require("generation_failed" in qa, "QA generation-failure route missing")
 
     manifest = json.loads(read(SOURCE_MANIFEST))
-    require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-design-prompt-architect", "Unexpected manifest repository")
+    require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-graphic-design-creator", "Unexpected manifest repository")
     require(re.fullmatch(r"0\.\d+\.\d+", manifest["version"]) is not None, "Invalid manifest version")
     require(manifest["ref"] == f"v{manifest['version']}", "Manifest ref must match versioned release ref")
     require(manifest["release_channel"] == "stable", "Manifest release channel missing")
@@ -274,7 +274,7 @@ def main() -> None:
         require(digest == source["sha256"], f"Manifest hash mismatch: {source['path']}")
         expected_raw_url = (
             "https://raw.githubusercontent.com/FrameCoreWorks/"
-            f"static-design-prompt-architect/{manifest['ref']}/{source['path']}"
+            f"static-graphic-design-creator/{manifest['ref']}/{source['path']}"
         )
         require(source["raw_url"] == expected_raw_url, f"Manifest raw URL mismatch: {source['path']}")
         declared_paths.append(path)
