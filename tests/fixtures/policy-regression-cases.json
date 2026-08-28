@@ -10,7 +10,8 @@
         "target_generator: openai/gpt-image-2",
         "negative_handling_mode: integrated_constraints",
         "do not return a separate `Negative Prompt` or `negative_prompt` field",
-        "The public eight-stage contract remains canonical"
+        "The public eight-stage contract remains canonical",
+        "Do not infer a Codex profile from a product name or host environment alone"
       ]
     },
     {

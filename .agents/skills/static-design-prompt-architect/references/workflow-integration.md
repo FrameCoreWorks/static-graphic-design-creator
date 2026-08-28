@@ -32,6 +32,7 @@ qa_requirements:
 target_generator_profile:
   surface:
   verified_controls: []
+target_generator: Unknown
 host_environment: Unknown
 final_asset_has_visible_text: Unknown
 ```
@@ -45,11 +46,12 @@ This profile is selected only when connected context explicitly declares:
 ```yaml
 host_environment: codex
 final_asset_has_visible_text: true
+target_generator: openai/gpt-image-2
 ```
 
 It is a prompt-format handoff, not permission to render, upload, call an API, or select a paid service. In this profile:
 
-- set `target_generator: openai/gpt-image-2`;
+- keep the explicitly declared `target_generator: openai/gpt-image-2`;
 - set `task_mode` from the request and `negative_handling_mode: integrated_constraints`;
 - place short, concrete constraints inside the one main prompt; do not return a separate `Negative Prompt` or `negative_prompt` field;
 - place every final visible string in the one prompt and do not reserve a later text overlay;
@@ -67,7 +69,7 @@ The public eight-stage contract remains canonical. A receiving Codex workflow th
 | 7. Colour, light, and material integration | Integrate into the relevant background, hero, supporting, and typography sections without adding a second prompt |
 | 8. Finish, exclusions, and acceptance checks | Finish and exclusions |
 
-When a named target surface, its current behavior, or its supported controls are uncertain, set `source_check_status: required_not_done` and keep generator-specific controls `Unknown`. A provider-neutral prompt with no named target may use `source_check_status: not_required`. Do not infer a Codex profile from a product name alone.
+When a named target surface, its current behavior, or its supported controls are uncertain, set `source_check_status: required_not_done` and keep generator-specific controls `Unknown`. A provider-neutral prompt with no named target may use `source_check_status: not_required`. Do not infer a Codex profile from a product name or host environment alone.
 
 ## Portable handoff
 

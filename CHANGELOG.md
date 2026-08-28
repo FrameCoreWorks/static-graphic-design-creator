@@ -17,3 +17,5 @@ This file records user-visible changes to the standalone Skill. Release tags rem
 ### Changed
 
 - prompt packs now carry rendering context, generator prompt format, copy feasibility, and brand identity policy.
+- ChatGPT Work continues from the declared source manifest when SHA-256 calculation is unavailable, while a computed mismatch remains a blocking integrity failure.
+- the Codex text-bearing compatibility profile now requires an explicit `target_generator: openai/gpt-image-2` declaration instead of inferring the generator from `host_environment`.

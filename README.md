@@ -27,7 +27,7 @@ Do not search for a separate tool, command, MCP server, modal, callback, or hidd
 
 ChatGPT Work starts with a short onboarding before requesting approval. It explains what the Skill gives, how it controls a static-design prompt, when it is useful, and its limits around generation, brand facts, raster typography, and DTP.
 
-After approval, ChatGPT Work reads the exact file list from `config/chatgpt-skill-sources.json`, verifies the declared hashes, and uses the already active `@skill-creator` workflow to create one native personal Skill. The Skill can then be used as `@static-design-prompt-architect` or by asking normally for a controlled prompt for a static graphic. A real creation result, not the approval or the absence of extra UI, determines whether installation succeeded.
+After approval, ChatGPT Work reads the exact file list from `config/chatgpt-skill-sources.json` and verifies the declared hashes when the active surface supports that check. If hash calculation is unavailable, it must report `hash_verification: unavailable` without claiming verification, then continue from the declared source manifest. It uses the already active `@skill-creator` workflow to create one native personal Skill. The Skill can then be used as `@static-design-prompt-architect` or by asking normally for a controlled prompt for a static graphic. A real creation result, not the approval or the absence of extra UI, determines whether installation succeeded.
 
 ### Codex
 
@@ -52,7 +52,7 @@ The Codex install contract resolves the same source manifest and installs the sk
 
 By default, the Skill creates one standalone, provider-neutral prompt. Its eight stages describe construction priority inside a single final generation; they do not request intermediate renders, separate layer files, or later text insertion.
 
-When a connected workflow explicitly declares a Codex destination and a final static graphic with visible text, the optional compatibility profile formats the handoff for `openai/gpt-image-2`: one prompt, exact final copy inside it, and integrated constraints rather than a separate negative prompt. The Skill still does not generate the image or call an external service.
+When a connected workflow explicitly declares `host_environment: codex`, a final static graphic with visible text, and `target_generator: openai/gpt-image-2`, the optional compatibility profile formats that handoff as one prompt with exact final copy inside it and integrated constraints rather than a separate negative prompt. The Skill still does not generate the image or call an external service.
 
 ## Repository layout
 
@@ -91,7 +91,7 @@ The test verifies the standalone Skill structure, source manifest hashes, portab
 
 ## Update integrity
 
-The install contracts require a SHA-256 check of every manifest source before creation or replacement. If a file differs from the declared hash, stop, reread a fresh manifest, and restart the source check. Do not report an installed or updated Skill after a mismatch.
+When the receiving surface can calculate SHA-256, the install contracts require a check of every manifest source before creation or replacement. If a computed file hash differs from the declared hash, stop, reread a fresh manifest, and restart the source check. If hash calculation is unavailable, report `hash_verification: unavailable`; do not claim verification, but do not treat capability absence as a source mismatch. Do not report an installed or updated Skill after a mismatch.
 
 ## Scope and limits
 

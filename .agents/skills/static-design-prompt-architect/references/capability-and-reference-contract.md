@@ -19,7 +19,7 @@ Keep native output size, aspect selection, reference count, seed, masks, weights
 
 Record `task_mode`, `target_generator`, `negative_handling_mode`, and `source_check_status` in the prompt pack. If the target generator or surface is not verified, use `Unknown` or `unknown`; do not imitate a different generator's syntax.
 
-When the connected Codex text-bearing static profile is explicitly selected, use `target_generator: openai/gpt-image-2` and `negative_handling_mode: integrated_constraints`. Put brief, concrete exclusions in the main prompt, such as no extra words or no duplicate text. Do not create a separate `Negative Prompt` or `negative_prompt` block. This is a format rule only; it does not execute generation.
+When the connected Codex text-bearing static profile is explicitly selected through `host_environment: codex`, `final_asset_has_visible_text: true`, and `target_generator: openai/gpt-image-2`, use `negative_handling_mode: integrated_constraints`. Put brief, concrete exclusions in the main prompt, such as no extra words or no duplicate text. Do not create a separate `Negative Prompt` or `negative_prompt` block. This is a format rule only; it does not execute generation.
 
 Every prompt must stand alone outside this conversation. Do not refer to previous prompts, earlier renders, rejected outputs, chat history, or attachments not listed for the current request. Name each attached reference by its current-request alias and role.
 

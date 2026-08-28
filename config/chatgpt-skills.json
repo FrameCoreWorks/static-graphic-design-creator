@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "repository": "https://github.com/FrameCoreWorks/static-design-prompt-architect",
   "ref": "main",
   "mode": "single-standalone-skill",
@@ -45,6 +45,13 @@
     "onboarding_before_creation": true,
     "wait_for_separate_host_install_action": false,
     "allow_unconfirmed_completion_claim": false
+  },
+  "source_integrity": {
+    "hash_algorithm": "sha256",
+    "verify_when_available": true,
+    "unavailable_status": "unavailable",
+    "unavailable_blocks_creation": false,
+    "mismatch_blocks_creation": true
   },
   "skills": [
     {

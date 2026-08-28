@@ -12,7 +12,7 @@ Create a final prompt pack for a designed static graphic. The core outcome is a 
 This skill works in two modes:
 
 - **Standalone mode:** turn the user's ordinary brief into a prompt pack. Ask one concise question only when a missing choice materially changes the format, exact copy, reference authority, or execution route. Otherwise state a reversible assumption.
-- **Connected mode:** accept a supplied `workflow_context` or any subset of `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, `target_generator_profile`, and `host_environment`. Preserve supplied locks. Do not require or invoke any named external skill.
+- **Connected mode:** accept a supplied `workflow_context` or any subset of `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, `target_generator`, `target_generator_profile`, and `host_environment`. Preserve supplied locks. Do not require or invoke any named external skill.
 
 ## Inputs
 
@@ -29,7 +29,7 @@ Use supplied references only for their declared roles: identity, product truth, 
 
 1. Resolve the task as `generate`, `layout`, `reference-guided`, `edit`, or `variation`.
 2. Identify the communication intent and first, second, and third notices. Reject equal-weight collage logic unless the brief explicitly requires it.
-3. If the user did not name an exact generator and surface, keep the prompt provider-neutral. Mark native output size, reference count, font fidelity, editing behavior, seed behavior, and negative-prompt syntax as `Unknown` rather than inventing support. Apply the optional Codex compatibility profile only when connected context explicitly declares `host_environment: codex` and the final asset has visible text.
+3. If the user did not name an exact generator and surface, keep the prompt provider-neutral. Mark native output size, reference count, font fidelity, editing behavior, seed behavior, and negative-prompt syntax as `Unknown` rather than inventing support. Apply the optional Codex compatibility profile only when connected context explicitly declares `host_environment: codex`, `final_asset_has_visible_text: true`, and `target_generator: openai/gpt-image-2`.
 4. Classify each requested control as `native-setting`, `prompt-semantic`, `reference-conditioned`, `external-qa`, `unsupported`, or `Unknown`. Put native settings outside the executable prompt only when they are verified for the selected surface. Resolve `task_mode` and `negative_handling_mode`; do not add a separate negative-prompt field unless the selected surface verifies one.
 5. For a poster, flyer, business card, menu, label, cover, key visual, advertising graphic, or text-led social asset, read [the unified static prompt contract](references/unified-static-prompt-contract.md) and compile one complete prompt in its fixed eight-stage order.
 6. Read [capability and reference rules](references/capability-and-reference-contract.md) before handling references, exact copy, or a selected generator. Read [deliverable profiles](references/deliverable-profiles.md) when the asset type needs a tested design grammar. Read [workflow integration](references/workflow-integration.md) only when structured context or a handoff is present. Read [QA and repair](references/qa-and-repair.md) before reviewing a rendered result or recommending another pass.

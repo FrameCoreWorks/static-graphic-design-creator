@@ -81,6 +81,7 @@ def main() -> None:
     require("Do not generate assets, call external services" in skill, "Execution boundary missing")
     require("copy-feasibility preflight" in skill, "Copy-feasibility gate missing")
     require("host_environment: codex" in skill, "Codex compatibility entry condition missing")
+    require("target_generator: openai/gpt-image-2" in skill, "Explicit Codex target generator missing")
 
     contract = read(SKILL / "references" / "unified-static-prompt-contract.md")
     for stage in range(1, 9):
@@ -95,11 +96,13 @@ def main() -> None:
     require("negative_handling_mode: integrated_constraints" in integration, "Codex constraint mode missing")
     require("The public eight-stage contract remains canonical" in integration, "Eight-to-six stage crosswalk missing")
     require("separate `Negative Prompt` or `negative_prompt`" in integration, "Negative-prompt boundary missing")
+    require("host environment alone" in integration, "Explicit Codex target guard missing")
 
     chatgpt_install = read(ROOT / "CHATGPT_INSTALL.md")
     for phrase in ["@skill-creator", "one native ChatGPT Skill", "not a plugin", "config/chatgpt-skill-sources.json"]:
         require(phrase in chatgpt_install, f"ChatGPT installation contract missing: {phrase}")
-    require("Verify the SHA-256 of every retrieved source file" in chatgpt_install, "ChatGPT hash verification missing")
+    require("When the current Work surface can compute SHA-256" in chatgpt_install, "ChatGPT conditional hash verification missing")
+    require("hash_verification: unavailable" in chatgpt_install, "ChatGPT hash-unavailable status missing")
     require("reread a fresh manifest" in chatgpt_install, "ChatGPT hash mismatch recovery missing")
     require("## Mandatory onboarding before approval" in chatgpt_install, "ChatGPT onboarding contract missing")
     require("What it gives:" in chatgpt_install, "ChatGPT onboarding value missing")
@@ -110,7 +113,7 @@ def main() -> None:
     require("@skill-creator is the native creation workflow in ChatGPT Work." in read(ROOT / "README.md"), "README native creation route missing")
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
-    require(chatgpt_config["schema_version"] == 2, "Unexpected ChatGPT setup schema")
+    require(chatgpt_config["schema_version"] == 3, "Unexpected ChatGPT setup schema")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
     native_creation = chatgpt_config["native_creation"]
     require(native_creation["creator_invocation"] == "@skill-creator", "ChatGPT creator invocation missing")
@@ -120,6 +123,11 @@ def main() -> None:
     require(confirmation["separate_ui_prompt_expected"] is False, "ChatGPT must not wait for separate UI")
     require(confirmation["approval_alone_marks_installed"] is False, "ChatGPT approval must not mark installation")
     require("active_skill_creator_reports_created_and_saved" in confirmation["successful_install_evidence"], "ChatGPT creation evidence missing")
+    source_integrity = chatgpt_config["source_integrity"]
+    require(source_integrity["hash_algorithm"] == "sha256", "ChatGPT hash algorithm missing")
+    require(source_integrity["verify_when_available"] is True, "ChatGPT conditional hash policy missing")
+    require(source_integrity["unavailable_blocks_creation"] is False, "ChatGPT unavailable hash check must not block creation")
+    require(source_integrity["mismatch_blocks_creation"] is True, "ChatGPT hash mismatch must block creation")
 
     codex_install = read(ROOT / "CODEX_INSTALL.md")
     require(".agents/skills/static-design-prompt-architect" in codex_install, "Codex source root missing")

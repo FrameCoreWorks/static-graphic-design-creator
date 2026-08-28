@@ -20,7 +20,7 @@ Read these public files before creating the Skill:
 2. `config/chatgpt-skill-sources.json`
 3. Every file listed for `static-design-prompt-architect` in that source manifest.
 
-Use the declared `main` ref, paths, raw URLs, and SHA-256 values. Verify the SHA-256 of every retrieved source file before creation. If any file differs from its declared hash, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
+Use the declared `main` ref, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
 
 ## First response
 
@@ -43,7 +43,7 @@ Keep this explanation concise and practical. Do not begin source-file processing
 
 1. Give the mandatory onboarding before approval.
 2. Ask for clear conversational approval to create the one named Skill.
-3. After approval, find the one Skill in `config/chatgpt-skill-sources.json`, read every declared source file, and verify every declared SHA-256.
+3. After approval, find the one Skill in `config/chatgpt-skill-sources.json` and read every declared source file. Verify every declared SHA-256 when the current Work surface can compute hashes; otherwise report `hash_verification: unavailable` and continue without claiming source-hash verification.
 4. Create the Skill through the already active `@skill-creator` workflow in ChatGPT Work. Do not search for or wait for a separate function tool, MCP tool, dollar command, install modal, host callback, or assistant-side UI inspection.
 5. Preserve the canonical name, description, `SKILL.md`, UI metadata, references, and templates that the native Skill surface supports.
 6. Report `installed` only if `@skill-creator` says the Skill was created and saved, or if it is visible in the Skills library. If only a draft exists, report `created_not_installed`.
