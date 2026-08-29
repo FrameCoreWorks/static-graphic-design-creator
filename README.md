@@ -1,57 +1,46 @@
-![FrameCore Works banner for Static Graphic Design Creator](assets/static-graphic-design-creator-banner.png)
+![FrameCore Works banner for Static Graphic Design Creator](assets/static-graphic-design-creator-banner.webp)
 
 # Static Graphic Design Creator
 
-**Static Graphic Design Creator is a standalone Skill source for ChatGPT Work and Codex.** It turns a creative brief into a finished native render on request or one complete, controlled prompt for static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics. For open poster briefs, it first facilitates a goal-led creative discussion before choosing a composition and style direction.
+**Static Graphic Design Creator is a standalone native Skill source for ChatGPT Work and Codex.** It helps turn a brief into either a finished static graphic, when rendering is explicitly requested, or one controlled, generator-ready prompt for posters, flyers, business cards, menus, covers, labels, key visuals, advertisements, and text-led social graphics.
 
-Use this public repository as the versioned source address. The setup below is repository-assisted native Skill creation or installation: it does not require downloading a ZIP or cloning the repository. Updates use a separate, user-initiated comparison and approval flow; this repository is not monitored automatically.
-
-It can create a static graphic through the active surface's built-in image generation when the user explicitly asks for a render. When the user asks for a prompt, it returns the complete prompt without rendering. It is not a DTP tool and marks generator-sensitive limits as `Unknown` when they are not verified.
+It behaves like a graphic designer, not a style-prompt dispenser: objective and audience response come first; then visual thesis, hierarchy, composition, type/image roles, style language, and material treatment. The final prompt is one integrated, eight-stage construction sequence inside a single generation. It is not a request for separate renders, blank text zones, or manual layer assembly.
 
 ## Install from this repository
 
 ### ChatGPT Work
 
-1. Open a ChatGPT conversation and switch from **Chat** to **Work**.
-2. Paste the prompt below. `@skill-creator` selects the native Skill-creation flow; the direct raw URL identifies the release-pinned setup contract.
+Native Skills must be available in the active account and workspace. Work access alone does not guarantee that Skills or `@skill-creator` are available. If the Skills surface is absent, use an eligible workspace or Codex instead; do not simulate a successful installation. OpenAI lists Skills for eligible Business, Enterprise, Healthcare, and Edu users, subject to workspace settings and product availability. [Skills in ChatGPT](https://help.openai.com/en/articles/20001066-skills-in-chatgpt)
+
+In a Work conversation with `@skill-creator` available, paste:
 
 ```text
-Use @skill-creator to help me create and install the native ChatGPT Skill from this public repository:
+Use @skill-creator to create and save one native ChatGPT Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-First read and follow this canonical release-pinned setup contract:
-https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md
+First read and follow CHATGPT_INSTALL.md from this repository. Use its release manifest as bootstrap discovery only: resolve the declared immutable source commit, fetch every declared Skill file only from that commit, and verify every declared SHA-256 when this host supports it.
 
-Then create only the declared `static-graphic-design-creator` native Skill from the checked source manifest.
-
-Keep the setup conversational and follow CHATGPT_INSTALL.md in that repository. Start with its short onboarding before asking for approval. After my clear conversational approval, use the already active @skill-creator workflow to create the one declared Skill from the checked source manifest.
-
-For every source-manifest entry, use `repository_path` or `raw_url` only to retrieve the public source file, then place it at the relative `path` inside the one `static-graphic-design-creator` Skill bundle. After every declared source file is resolved, use the active `@skill-creator` managed-personal-Skills save flow to create and save that one native Skill immediately. Do not stop at source verification or return `created_not_installed` before a real native save attempt.
-
-Do not search for a separate tool, command, MCP server, modal, callback, or hidden install button. @skill-creator is the native creation workflow in ChatGPT Work. Mark the Skill installed only after it reports that it created and saved the Skill, or the Skill is visible in the Skills library.
-
+Create only `static-graphic-design-creator`. Keep the required short onboarding and request my conversational approval before reading source files. After approval and source resolution, immediately use the active native Skill save flow. Report `installed` only after a real created-and-saved result or visible library entry. If hashing is unavailable, report `declared_unverified`; never call it verified. Do not create a duplicate Skill.
 ```
 
-ChatGPT Work starts with a short onboarding before requesting approval. It explains what the Skill gives, how it controls a static-design prompt, when it is useful, and its limits around generation, brand facts, raster typography, and DTP.
-
-After approval, ChatGPT Work reads the exact file list from `config/chatgpt-skill-sources.json` and verifies the declared hashes when the active surface supports that check. Each source file is retrieved from its repository address but is placed under its declared relative path in one native Skill bundle. If hash calculation is unavailable, it must report `hash_verification: unavailable` without claiming verification, then continue from the declared source manifest. After all sources resolve, the already active `@skill-creator` workflow must create and save one native personal Skill; source resolution is not the end of the flow. The Skill can then be used as `@static-graphic-design-creator`, by asking for a controlled prompt, or by explicitly asking to generate a static graphic. A real creation result, not the approval or the absence of extra UI, determines whether installation succeeded.
+The only external address in the setup is this repository. The contract preserves each declared bundle path, asks for approval before creation, and treats source resolution as preparation rather than installation. It reports a concrete host failure if the native save action cannot run.
 
 ### Codex
 
-In a Codex chat, paste:
+Codex uses its built-in `$skill-installer` for a fresh third-party Skill install. In a Codex chat, paste:
 
 ```text
-Install the standalone Skill from this public repository:
+Use $skill-installer to install the standalone Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-Read CODEX_INSTALL.md and install only the declared `static-graphic-design-creator` Skill. Do not clone the repository or install any unrelated workflow files.
+First read CODEX_INSTALL.md. Resolve the current release manifest, then use its immutable source commit and declared source path to install only `static-graphic-design-creator`. Verify every declared SHA-256 before installation. Do not clone the repository into my project and do not install unrelated files.
 ```
 
-The Codex install contract resolves the same release-pinned source manifest and installs the skill as `$static-graphic-design-creator`. No ZIP or manual file copy is required.
+The installer resolves the public GitHub source and installs the declared directory as `$static-graphic-design-creator`. No ZIP, local clone, or manual file copy is required.
 
-## Update an existing installed Skill
+## Update an installed Skill
 
-Every installation from `v0.5.0` onward carries a source record with its repository, release version, and ref. Paste one of the prompts below when you want to check the repository for a newer release. The update flow first compares manifests and files, reports a `Delta`, and requires approval before changing the existing Skill. It never creates a duplicate or updates in the background.
+Updates are manual, compare-only first, and require approval before replacement. They never run in the background or create a second copy.
 
 ### ChatGPT Work update
 
@@ -59,11 +48,7 @@ Every installation from `v0.5.0` onward carries a source record with its reposit
 Use @skill-creator to update the existing native ChatGPT Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-First read and follow CHATGPT_UPDATE.md in that repository. Update only the existing `static-graphic-design-creator` Skill. This is a native Skill update, not a connector, MCP server, ZIP installation, or new duplicate Skill.
-
-Read the latest release-pinned source manifest and compare it with the installed Skill's source-release record and declared source files. Before changing anything, report the installed version, available version, changed files, new files, removed files, unchanged files, local modifications, verification status, and proposed apply mode.
-
-If there are no source changes, report `already_up_to_date` and stop. If there are changes, show `Delta` and ask for my clear approval before replacing any file. After approval, update the existing Skill only. Use `selective_file_update` only when file-level comparison is verified; otherwise report `declared_bundle_replacement`. Never create a second Skill with the same name or apply a background update.
+First read CHATGPT_UPDATE.md. Compare the installed source-release record with the current immutable release manifest. Report installed and available version, changed/new/removed/unchanged files, local modifications, verification status, and proposed apply mode. If there is no change, return `already_up_to_date`. If there is a change, show Delta and ask for my approval before updating the existing Skill only. Never create a duplicate.
 ```
 
 ### Codex update
@@ -72,28 +57,38 @@ If there are no source changes, report `already_up_to_date` and stop. If there a
 Use $skill-installer to update the existing personal Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-First read and follow CODEX_UPDATE.md in that repository. Update only the installed `$static-graphic-design-creator` Skill. Compare its source-release record and prior release manifest with the current stable source manifest before changing files.
-
-Report the installed and available version, a Delta of changed/new/removed/unchanged files, local modifications, verification status, and proposed apply mode. If no change exists, report `already_up_to_date` and stop. Ask for my explicit approval before applying an update. Do not overwrite a local conflict, create a duplicate, clone the repository into my project, or apply a background update.
+First read CODEX_UPDATE.md. Compare the installed source-release record with the current immutable release manifest. Report Delta before any write and wait for my explicit approval. Update only `$static-graphic-design-creator`; do not overwrite a local conflict, create a duplicate, or clone the repository into my project.
 ```
-
-Pre-`v0.5.0` installations do not yet contain the source record. The update flow treats them as `unrecorded`, asks the user to confirm origin, and then uses the manifest to perform a one-time migration safely.
 
 ## What the Skill does
 
-- converts a short brief or a structured workflow handoff into a generator-ready static-design prompt;
-- generates a finished static graphic through native image generation only when the user explicitly requests it;
-- protects exact visible copy, attention order, layout zones, references, and exclusions;
-- separates verified native controls from prompt-semantic controls and post-render QA;
-- supports standalone use and optional integration with an existing workflow;
-- runs an objective-first poster brainstorm when creative direction is open, while preserving a user's concrete direction when it is already defined;
-- chooses composition archetypes, historical visual families, and print-material simulations as disciplined design decisions rather than effect filters;
-- carries a detailed poster-movements and production atlas for evidence-grounded route selection, material/process logic, text hierarchy, and anti-slop QA;
-- treats font fidelity and dense raster text as QA risks rather than guarantees.
+- accepts both a short standalone brief and a structured workflow handoff;
+- supports `prompt`, `render`, and `render_and_prompt` modes without rendering from an ambiguous brief;
+- runs an objective-led `discovery_brainstorm` for open poster direction, or preserves a user-supplied decision in `directed_collaboration`;
+- uses a poster-movements atlas, style translation catalog, production walkthroughs, and QA routes without turning them into a preset menu;
+- locks exact visible copy, attention order, layout zones, reference roles, exclusions, and a pass/fail QA route;
+- treats named-font fidelity, dense raster type, print-ready deliverables, and prepress as external QA or DTP requirements rather than promises.
 
-By default, the Skill creates one standalone, provider-neutral prompt. Its eight stages describe construction priority inside a single final generation; they do not request intermediate renders, separate layer files, or later text insertion.
+The bundle contains worked examples of a discovery brainstorm, a directed Codex compatibility profile, a scoped edit, and a full rerender decision. They are decision models, not generic artwork recipes.
 
-When a connected workflow explicitly declares `host_environment: codex`, `execution_surface: codex_builtin_imagegen`, `generator_provider: openai`, a final static graphic with visible text, and `target_generator: gpt-image-2`, the optional compatibility profile formats that handoff as one prompt with exact final copy inside it and integrated constraints rather than a separate negative prompt. The profile alone does not authorize rendering. The separate explicit `render` or `render_and_prompt` mode may invoke `$imagegen` when it is available, never an external service.
+## Integrity model
+
+The release manifest is a **bootstrap document**. It resolves every declared Skill source through one immutable Git commit and lists its SHA-256 value. A matching hash verifies the retrieved bytes against that manifest and catches transfer corruption or manifest/file drift.
+
+When the host cannot calculate SHA-256, installation may continue only with `hash_verification: declared_unverified`. That is an explicit lower-trust state, not a verified install. The mechanism does not independently authenticate a compromised repository bootstrap. See [SECURITY.md](SECURITY.md) for the boundary and the release model.
+
+## Validation and release gates
+
+```bash
+python3 tests/test_skill.py
+python3 tests/check_source_anchors.py --check-inventory
+```
+
+The local suite checks the bundle structure, hashes, immutable source URLs, release-lock agreement, language-adaptive clarification policy, update routing, required prompt contract, and style/QA assets. A scheduled GitHub workflow checks reference-anchor reachability separately, so transient network failures do not block ordinary code validation.
+
+Before a candidate becomes a stable release, the twenty cases in [EVALUATION.md](EVALUATION.md) must be run in actual ChatGPT Work and Codex sessions, then recorded under [reports/host-evaluations](reports/host-evaluations). The current candidate record intentionally distinguishes pending host checks from passing results.
+
+OpenAI-surface statements were last verified against official documentation on **2026-08-29**. Recheck them before every stable release because product availability, installation behavior, and built-in image-generation capabilities can change.
 
 ## Repository layout
 
@@ -104,43 +99,22 @@ When a connected workflow explicitly declares `host_environment: codex`, `execut
 │   ├── agents/openai.yaml
 │   ├── references/
 │   └── templates/
+├── assets/
 ├── config/
-│   ├── chatgpt-skills.json
-│   └── chatgpt-skill-sources.json
+├── reports/host-evaluations/
+├── tests/
 ├── CHATGPT_INSTALL.md
 ├── CHATGPT_UPDATE.md
 ├── CODEX_INSTALL.md
 ├── CODEX_UPDATE.md
-├── tests/test_skill.py
-├── LICENSE
+├── EVALUATION.md
+├── SECURITY.md
 └── README.md
 ```
 
-`.agents/skills/` is a source layout for Skills. This repository contains no connector, marketplace, MCP server, app integration, or external provider integration.
-
-## Input contexts and output modes
-
-**Standalone mode** accepts an ordinary brief. Missing generator-sensitive controls remain `Unknown`; the Skill does not invent support for model versions, font files, reference limits, or output settings.
-
-**Connected mode** accepts supplied workflow fields such as `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, `target_generator_profile`, and `host_environment`. It preserves supplied locks and returns a portable `prompt_pack` for the caller's existing workflow. It never requires a particular upstream Skill by name.
-
-Independently, `prompt` returns only a copyable prompt, `render` creates a graphic only after an explicit request and available native capability, and `render_and_prompt` returns both. Render status is always distinct from the requested output mode.
-
-## Validate
-
-```bash
-python3 tests/test_skill.py
-```
-
-The test verifies the standalone Skill structure, source manifest hashes, portable workflow boundary, Codex text-bearing compatibility profile, copy-feasibility gate, objective-first poster direction, anti-slop composition gate, update identity and conflict routing, and required eight-stage static-design contract. It performs no network activity.
-
-## Versioning and update integrity
-
-The stable source manifest is pinned to the versioned release branch `v0.6.2`. Updates are manual and require user approval. The installed `references/source-release.json` identifies the prior release for comparison. When the receiving surface can calculate SHA-256 and inspect installed files, the update contracts compare the prior and target manifests to classify each source file. Selective replacement is allowed only in that verified file-level mode. If comparison is unavailable, the contract reports that limitation and can use only a user-approved exact declared-bundle replacement. If a target hash differs from its manifest, source identity is foreign, or a local modification overlaps an upstream change, the update stops without replacing anything.
-
 ## Scope and limits
 
-This Skill may create a graphic only through the active surface's built-in image-generation capability and only after an explicit user request. It does not call external services, select paid tools, upload assets, publish content, or perform DTP. It distinguishes a raster concept or digital final from a `production_master`, which always routes to DTP. For print production, use the rendered output as art direction and verify exact copy, legal text, font licensing, spacing, bleed, and prepress requirements in an appropriate layout tool.
+This Skill uses only the active surface's native image generation and only after the user explicitly requests a render. It does not select external providers, use API keys, upload assets, publish work, or perform DTP. A `production_master` always routes to a suitable layout workflow for exact type, licensing, bleed, editable vectors, and prepress.
 
 ## License
 

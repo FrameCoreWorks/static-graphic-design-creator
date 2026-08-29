@@ -1,21 +1,24 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.6.2",
-  "ref": "v0.6.2",
+  "version": "0.7.0-rc.1",
   "release": {
-    "channel": "stable",
-    "ref_type": "release_branch",
+    "id": "v0.7.0-rc.1",
+    "channel": "candidate",
+    "bootstrap_ref": "v0.7.0-rc.1",
+    "bootstrap_ref_type": "version_branch",
+    "source_ref_type": "immutable_git_commit",
+    "immutable_source_commit": "5536e89c7d881219d25160ae0170830bd8001c97",
     "updates": "manual_user_approved",
     "repository_source_contract": true
   },
   "mode": "repository-source",
   "surface": "native-chatgpt-skills",
-  "bootstrap_path": "CHATGPT_INSTALL.md",
-  "raw_base_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/",
-  "bootstrap_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md",
-  "source_manifest_path": "config/chatgpt-skill-sources.json",
-  "source_manifest_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/config/chatgpt-skill-sources.json",
+  "bootstrap": {
+    "path": "CHATGPT_INSTALL.md",
+    "source_manifest_path": "config/chatgpt-skill-sources.json",
+    "discovery_trust_boundary": "The repository bootstrap selects a release manifest. The manifest must then resolve every Skill source from its immutable Git commit. Bootstrap discovery is not an independent authenticated provenance system."
+  },
   "source_root": ".agents/skills",
   "entry_surface": {
     "primary": "chatgpt_work",
@@ -83,7 +86,8 @@
     "repository_path_field": "repository_path",
     "raw_url_field": "raw_url",
     "bundle_path_is_relative_to_skill_source_root": true,
-    "preserve_declared_directory_structure": true
+    "preserve_declared_directory_structure": true,
+    "raw_urls_must_use_immutable_source_commit": true
   },
   "update_contract": {
     "chatgpt_bootstrap_path": "CHATGPT_UPDATE.md",
@@ -100,9 +104,10 @@
   "source_integrity": {
     "hash_algorithm": "sha256",
     "verify_when_available": true,
-    "unavailable_status": "unavailable",
+    "unavailable_status": "declared_unverified",
     "unavailable_blocks_creation": false,
-    "mismatch_blocks_creation": true
+    "mismatch_blocks_creation": true,
+    "scope": "Checks each retrieved source file against the release manifest. It does not independently authenticate a compromised repository bootstrap."
   },
   "skills": [
     {

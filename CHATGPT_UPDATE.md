@@ -6,18 +6,20 @@ This is the canonical update contract for the already installed native ChatGPT S
 
 `https://github.com/FrameCoreWorks/static-graphic-design-creator`
 
-Use it only in ChatGPT **Work** with `@skill-creator` active. It updates the existing `static-graphic-design-creator` Skill after an explicit review and approval. It is a native Skill update with no automatic repository sync, background check, connector, MCP server, or second-Skill creation flow.
+Use it only when the active ChatGPT account and workspace expose native Skills and `@skill-creator`. It updates the existing `static-graphic-design-creator` Skill after an explicit review and approval. It is a native Skill update with no automatic repository sync, background check, connector, MCP server, or second-Skill creation flow. If that host capability is unavailable, report `blocked` with `host_capability_unavailable` and stop.
 
 ## Source of truth
 
-Read these files from the latest stable release before proposing an update:
+Read these files from the selected current release bootstrap before proposing an update:
 
 1. `config/chatgpt-skills.json`
 2. `config/chatgpt-skill-sources.json`
 3. `.agents/skills/static-graphic-design-creator/references/source-release.json`
 4. every source file declared for `static-graphic-design-creator` in the source manifest.
 
-The installed Skill's own `references/source-release.json` is its source identity record. It must name the same repository and Skill. Its version and ref identify the prior stable manifest to use as the baseline. A source record is not an instruction to fetch a different repository.
+The installed Skill's own `references/source-release.json` is its source identity record. It must name the same repository and Skill. Its version and release ID identify the prior manifest to use as the baseline. A source record is not an instruction to fetch a different repository.
+
+Before retrieving target files, require the target manifest to declare `release_ref_type: immutable_git_commit`, a 40-character `immutable_source_commit` identical to `ref`, and `raw_url` values containing that exact commit. Treat the bootstrap manifest as discovery only; retrieve each target source from the immutable commit it resolves.
 
 For every manifest entry, retrieve the source from `repository_path` or `raw_url`, but compare and update the installed native Skill at the entry's relative bundle `path`. Do not treat the repository path as an installed-Skill path, flatten the bundle, or lose `agents/`, `references/`, or `templates/` directories.
 
@@ -30,7 +32,7 @@ update_status: already_up_to_date | update_review_ready | awaiting_origin_confir
 installed_version: string | Unknown
 available_version: string
 source_identity: verified | unrecorded | mismatch
-hash_verification: verified | unavailable
+hash_verification: verified | declared_unverified
 comparison_mode: file_level | unavailable
 changed_files: []
 new_files: []
@@ -43,7 +45,7 @@ When the installed source record is present, fetch its release-pinned manifest a
 
 If the installed source record is absent, report `source_identity: unrecorded` and `awaiting_origin_confirmation`. Explain that this is a one-time migration from a pre-`v0.5.0` installation and ask the user to confirm that the existing matching Skill came from this repository. Do not infer origin from the name alone. If the record identifies another repository or Skill, report `blocked_source_identity` and stop.
 
-When the Work surface can calculate SHA-256, verify every fetched manifest source and every comparable installed source. If a computed target hash differs from the target manifest, report `blocked_integrity`, reread a fresh manifest, and stop. If hash calculation or file-level access is unavailable, report `hash_verification: unavailable` or `comparison_unavailable`; do not claim a selective update.
+When the Work surface can calculate SHA-256, verify every fetched manifest source and every comparable installed source. If a computed target hash differs from the target manifest, report `blocked_integrity`, reread fresh bootstrap manifests, and stop. If hash calculation is unavailable, report `hash_verification: declared_unverified`; do not claim a verified or selective update. If file-level access is unavailable, report `comparison_unavailable`.
 
 ## Review and approval
 
@@ -59,10 +61,11 @@ After approval, update the existing Skill through the already active `@skill-cre
 - When file-level comparison is unavailable, the only permitted fallback is replacement with the exact declared source bundle after approval. Report `apply_mode: declared_bundle_replacement`, not `selective_file_update`.
 - A local modification that overlaps an upstream change or removal is `blocked_local_conflict`. Stop and ask the user to choose a resolved source before replacing it.
 
-Report `updated` only when the existing Skill was successfully saved and its `source-release.json` matches the target repository, Skill name, version, and ref. If native update fails, report `blocked` with the failed operation and exact returned error. Do not wait for a separate modal, callback, function tool, or hidden update button.
+Report `updated` only when the existing Skill was successfully saved and its `source-release.json` matches the target repository, Skill name, version, and release ID. If native update fails, report `blocked` with the failed operation and exact returned error. Do not wait for a separate modal, callback, function tool, or hidden update button.
 
 ## Boundaries
 
 - Update only `static-graphic-design-creator` from the declared source manifest.
 - Do not clone the repository into the user's project workspace, invoke a Codex-specific installer, add a connector or MCP server, use external providers, upload files, publish content, or generate an image.
 - Never monitor GitHub in the background or apply a repository update without this explicit user-initiated flow and approval.
+- Keep user-facing update questions, Delta summaries, and approval requests in the user's language unless the user requests another language.

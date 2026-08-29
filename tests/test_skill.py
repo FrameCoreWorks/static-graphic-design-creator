@@ -21,6 +21,12 @@ MANUAL_EVALUATION = ROOT / "EVALUATION.md"
 CHATGPT_UPDATE = ROOT / "CHATGPT_UPDATE.md"
 CODEX_UPDATE = ROOT / "CODEX_UPDATE.md"
 SOURCE_RELEASE = SKILL / "references" / "source-release.json"
+SECURITY = ROOT / "SECURITY.md"
+CONTRIBUTING = ROOT / "CONTRIBUTING.md"
+HOST_EVALUATION = ROOT / "reports" / "host-evaluations" / "v0.7.0-rc.1.md"
+SOURCE_ANCHOR_CHECKER = ROOT / "tests" / "check_source_anchors.py"
+SOURCE_ANCHOR_WORKFLOW = ROOT / ".github" / "workflows" / "reference-links.yml"
+PRODUCTION_WALKTHROUGHS = SKILL / "references" / "production-walkthroughs.md"
 
 OUTPUT_MODES = {"prompt", "render", "render_and_prompt"}
 RENDER_STATUSES = {
@@ -319,9 +325,14 @@ def main() -> None:
         CHATGPT_UPDATE,
         CODEX_UPDATE,
         ROOT / "CHANGELOG.md",
+        SECURITY,
+        CONTRIBUTING,
+        HOST_EVALUATION,
         ROOT / ".github" / "workflows" / "validate.yml",
+        SOURCE_ANCHOR_WORKFLOW,
         ROOT / "config" / "chatgpt-skills.json",
         SOURCE_MANIFEST,
+        SOURCE_ANCHOR_CHECKER,
         POLICY_FIXTURES,
         BEHAVIOR_FIXTURES,
         POSTER_STRATEGY_FIXTURES,
@@ -336,6 +347,8 @@ def main() -> None:
         SKILL / "references" / "qa-and-repair.md",
         SKILL / "references" / "deliverable-profiles.md",
         SKILL / "references" / "poster-style-and-composition-atlas.md",
+        SKILL / "references" / "poster-style-translation-catalog.md",
+        PRODUCTION_WALKTHROUGHS,
         SKILL / "references" / "poster-movements-and-production-atlas.md",
         SOURCE_RELEASE,
         SKILL / "templates" / "design-intake.md",
@@ -417,47 +430,43 @@ def main() -> None:
     chatgpt_install = read(ROOT / "CHATGPT_INSTALL.md")
     for phrase in ["@skill-creator", "one native ChatGPT Skill", "repository-assisted native Skill-creation flow", "config/chatgpt-skill-sources.json"]:
         require(phrase in chatgpt_install, f"ChatGPT installation contract missing: {phrase}")
-    require("When the current Work surface can compute SHA-256" in chatgpt_install, "ChatGPT conditional hash verification missing")
-    require("hash_verification: unavailable" in chatgpt_install, "ChatGPT hash-unavailable status missing")
-    require("reread a fresh manifest" in chatgpt_install, "ChatGPT hash mismatch recovery missing")
-    require("## Mandatory onboarding before approval" in chatgpt_install, "ChatGPT onboarding contract missing")
+    require("When the Work host can compute SHA-256" in chatgpt_install, "ChatGPT conditional hash verification missing")
+    require("hash_verification: declared_unverified" in chatgpt_install, "ChatGPT hash-unavailable status missing")
+    require("reread fresh bootstrap manifests" in chatgpt_install, "ChatGPT hash mismatch recovery missing")
+    require("## First response and approval" in chatgpt_install, "ChatGPT onboarding contract missing")
     require("What it gives:" in chatgpt_install, "ChatGPT onboarding value missing")
-    require("Do not begin source-file processing" in chatgpt_install, "ChatGPT onboarding ordering missing")
-    require("native Skill-creation workflow" in chatgpt_install, "ChatGPT native creation route missing")
-    require("Do not search for or wait for a separate function tool" in chatgpt_install, "ChatGPT separate-tool guard missing")
+    require("Before reading source files" in chatgpt_install, "ChatGPT onboarding ordering missing")
+    require("native Skill-creation flow" in chatgpt_install, "ChatGPT native creation route missing")
+    require("Do not simulate installation" in chatgpt_install, "ChatGPT host-availability guard missing")
     require("repository_path" in chatgpt_install, "ChatGPT repository-to-bundle mapping missing")
-    require("relative destination inside the one native" in chatgpt_install, "ChatGPT relative bundle path missing")
-    require("immediately use the already active `@skill-creator`" in chatgpt_install, "ChatGPT create-and-save handoff missing")
+    require("relative `path`" in chatgpt_install, "ChatGPT relative bundle path missing")
+    require("Immediately use the already active `@skill-creator`" in chatgpt_install, "ChatGPT create-and-save handoff missing")
     require("source_resolved` is not a terminal state" in chatgpt_install, "ChatGPT source-resolution continuation missing")
-    require("managed-personal-Skills save workflow" in chatgpt_install, "ChatGPT native managed save route missing")
-    require("Do not return `created_not_installed` unless that native save was actually attempted" in chatgpt_install, "ChatGPT must attempt a native save before created-not-installed")
+    require("managed-personal-Skills save flow" in chatgpt_install, "ChatGPT native managed save route missing")
+    require("only after the actual native save was attempted" in chatgpt_install, "ChatGPT must attempt a native save before created-not-installed")
     require("plugin" not in chatgpt_install.lower(), "ChatGPT installation prompt must stay native-Skill-only")
-    require("Follow `CHATGPT_UPDATE.md`" in chatgpt_install, "ChatGPT update handoff missing")
+    require("follow `CHATGPT_UPDATE.md`" in chatgpt_install, "ChatGPT update handoff missing")
+    require("user's language" in chatgpt_install, "ChatGPT language-adaptive onboarding missing")
+    require("immutable_source_commit" in chatgpt_install, "ChatGPT immutable-source resolution missing")
     readme = read(ROOT / "README.md")
-    require("short onboarding before requesting approval" in readme, "README onboarding disclosure missing")
-    require("@skill-creator is the native creation workflow in ChatGPT Work." in readme, "README native creation route missing")
-    require(
-        "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md" in readme,
-        "README must point Work to the release-pinned bootstrap URL",
-    )
-    require("relative path in one native Skill bundle" in readme, "README bundle mapping disclosure missing")
-    require("managed-personal-Skills save flow" in readme, "README native managed save disclosure missing")
+    require("Native Skills must be available" in readme, "README Skill-availability disclosure missing")
+    require("$skill-installer" in readme, "README Codex fresh-install mechanism missing")
+    require("immutable source commit" in readme, "README immutable-source disclosure missing")
+    require("declared_unverified" in readme, "README unverified-hash disclosure missing")
+    require("2026-08-29" in readme, "README OpenAI verification date missing")
+    require("assets/static-graphic-design-creator-banner.webp" in readme, "README must use WebP banner")
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
-    require(chatgpt_config["schema_version"] == 5, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.6.2", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.6.2", "ChatGPT config is not release pinned")
+    require(chatgpt_config["schema_version"] == 6, "Unexpected ChatGPT setup schema")
+    require(chatgpt_config["version"] == "0.7.0-rc.1", "Unexpected release version")
     require(chatgpt_config["mode"] == "repository-source", "ChatGPT repository-source mode missing")
+    require(chatgpt_config["release"]["channel"] == "candidate", "ChatGPT release channel missing")
+    require(chatgpt_config["release"]["source_ref_type"] == "immutable_git_commit", "ChatGPT release ref type missing")
     require(
-        chatgpt_config["bootstrap_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md",
-        "ChatGPT release-pinned bootstrap URL missing",
+        re.fullmatch(r"[0-9a-f]{40}", chatgpt_config["release"]["immutable_source_commit"]) is not None,
+        "ChatGPT immutable source commit missing",
     )
-    require(
-        chatgpt_config["source_manifest_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/config/chatgpt-skill-sources.json",
-        "ChatGPT release-pinned manifest URL missing",
-    )
-    require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
-    require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
+    require("discovery_trust_boundary" in chatgpt_config["bootstrap"], "ChatGPT bootstrap trust disclosure missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
     native_creation = chatgpt_config["native_creation"]
     require(native_creation["creator_invocation"] == "@skill-creator", "ChatGPT creator invocation missing")
@@ -480,6 +489,7 @@ def main() -> None:
     require(source_integrity["verify_when_available"] is True, "ChatGPT conditional hash policy missing")
     require(source_integrity["unavailable_blocks_creation"] is False, "ChatGPT unavailable hash check must not block creation")
     require(source_integrity["mismatch_blocks_creation"] is True, "ChatGPT hash mismatch must block creation")
+    require(source_integrity["unavailable_status"] == "declared_unverified", "ChatGPT explicit unavailable hash state missing")
     update_contract = chatgpt_config["update_contract"]
     require(update_contract["chatgpt_bootstrap_path"] == "CHATGPT_UPDATE.md", "ChatGPT update bootstrap missing")
     require(update_contract["codex_bootstrap_path"] == "CODEX_UPDATE.md", "Codex update bootstrap missing")
@@ -497,11 +507,11 @@ def main() -> None:
 
     codex_install = read(ROOT / "CODEX_INSTALL.md")
     require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
-    require("not a workspace kit" in codex_install, "Codex standalone-Skill boundary missing")
+    require("$skill-installer" in codex_install, "Codex fresh-install mechanism missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.6.2`" in codex_install, "Codex release pin missing")
-    require("`repository_path` or `raw_url`" in codex_install, "Codex source retrieval mapping missing")
-    require("follow `CODEX_UPDATE.md`" in codex_install, "Codex update handoff missing")
+    require("immutable source commit" in codex_install, "Codex immutable release pin missing")
+    require("`repository_path`" in codex_install and "`raw_url`" in codex_install, "Codex source retrieval mapping missing")
+    require("Follow `CODEX_UPDATE.md`" in codex_install, "Codex update handoff missing")
 
     chatgpt_update = read(CHATGPT_UPDATE)
     for phrase in [
@@ -518,10 +528,14 @@ def main() -> None:
         require(phrase in chatgpt_update, f"ChatGPT update contract missing: {phrase}")
     require("managed-personal-Skills save workflow" in chatgpt_update, "ChatGPT update must use native managed save")
     require("plugin" not in chatgpt_update.lower(), "ChatGPT update prompt must stay native-Skill-only")
+    require("immutable_source_commit" in chatgpt_update, "ChatGPT update immutable-source guard missing")
+    require("declared_unverified" in chatgpt_update, "ChatGPT update unverified-hash disclosure missing")
 
     evaluation = read(MANUAL_EVALUATION)
     require("managed-personal-Skills flow" in evaluation, "Forward evaluation must exercise the native save path")
     require("created_not_installed` is valid only after an actual native save attempt" in evaluation, "Forward evaluation must guard created-not-installed")
+    require("user's chosen language" in evaluation, "Forward evaluation must test language adaptation")
+    require("stable release may be published only" in evaluation, "Forward evaluation must gate stable publication")
 
     codex_update = read(CODEX_UPDATE)
     for phrase in [
@@ -535,6 +549,7 @@ def main() -> None:
         "`repository_path` or `raw_url`",
     ]:
         require(phrase in codex_update, f"Codex update contract missing: {phrase}")
+    require("immutable_source_commit" in codex_update, "Codex update immutable-source guard missing")
 
     qa = read(SKILL / "references" / "qa-and-repair.md")
     require("explicitly requested `render` or `render_and_prompt`" in qa, "QA native-render authorization missing")
@@ -557,6 +572,42 @@ def main() -> None:
     ]:
         require(term in atlas, f"Poster atlas missing: {term}")
 
+    style_catalog = read(SKILL / "references" / "poster-style-translation-catalog.md")
+    for term in [
+        "one primary poster language",
+        "minimalism",
+        "maximalism",
+        "futuristic",
+        "glassmorphism",
+        "Y2K",
+        "Victorian style",
+        "graffiti",
+        "handwritten",
+        "brutalist_information",
+        "postmodern_memphis",
+        "punk_zine",
+        "solarpunk",
+        "retro`, `bohemian`, and `futuristic` were not left undefined",
+    ]:
+        require(term in style_catalog, f"Poster style translation catalog missing: {term}")
+    require("Treat a requested label as evidence, not as a finished instruction" in style_catalog, "Style catalog must preserve goal-first selection")
+    require("not a menu that must be exhausted" in style_catalog, "Style catalog must not turn into a preset menu")
+    require("Do not create a stack of unrelated labels" in style_catalog, "Style catalog must block effect stacking")
+    require("A colour palette, a texture, a 3D rendering method, or a type treatment is not by itself a poster strategy" in style_catalog, "Style catalog must distinguish design layers")
+    require("style_request_labels" in skill, "Skill must carry requested style labels into its workflow")
+    require("style_request_labels" in read(SKILL / "templates" / "design-intake.md"), "Intake must record requested style labels")
+    require("primary_poster_language" in read(SKILL / "templates" / "prompt-pack.md"), "Prompt pack must record selected poster language")
+
+    walkthroughs = read(PRODUCTION_WALKTHROUGHS)
+    for term in [
+        "## 1. Discovery brainstorm",
+        "## 2. Directed collaboration and Codex crosswalk",
+        "## 3. QA repair: scoped edit",
+        "## 4. QA repair: full rerender",
+        "Final eight-stage prompt",
+    ]:
+        require(term in walkthroughs, f"Production walkthrough is incomplete: {term}")
+
     research_atlas = read(SKILL / "references" / "poster-movements-and-production-atlas.md")
     for term in [
         "## Decision path",
@@ -573,11 +624,19 @@ def main() -> None:
 
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-graphic-design-creator", "Unexpected manifest repository")
-    require(manifest["schema_version"] == 2, "Unexpected source manifest schema")
-    require(re.fullmatch(r"0\.\d+\.\d+", manifest["version"]) is not None, "Invalid manifest version")
-    require(manifest["ref"] == f"v{manifest['version']}", "Manifest ref must match versioned release ref")
-    require(manifest["release_channel"] == "stable", "Manifest release channel missing")
-    require(manifest["release_ref_type"] == "release_branch", "Manifest release ref type missing")
+    require(manifest["schema_version"] == 3, "Unexpected source manifest schema")
+    require(manifest["version"] == "0.7.0-rc.1", "Invalid manifest version")
+    require(manifest["release_channel"] == "candidate", "Manifest release channel missing")
+    require(manifest["release_ref_type"] == "immutable_git_commit", "Manifest release ref type missing")
+    require(
+        re.fullmatch(r"[0-9a-f]{40}", manifest["immutable_source_commit"]) is not None,
+        "Manifest immutable source commit missing",
+    )
+    require(manifest["ref"] == manifest["immutable_source_commit"], "Manifest ref must be its immutable source commit")
+    require(
+        chatgpt_config["release"]["immutable_source_commit"] == manifest["immutable_source_commit"],
+        "Bootstrap config and source manifest must resolve the same immutable source commit",
+    )
     require(len(manifest["skills"]) == 1, "Manifest must declare exactly one skill")
     declared_skill = manifest["skills"][0]
     require(declared_skill["name"] == "static-graphic-design-creator", "Unexpected manifest skill")
@@ -611,12 +670,16 @@ def main() -> None:
     require(sorted(SKILL / path for path in declared_bundle_paths) == actual_paths, "Manifest must enumerate every skill source file")
 
     source_release = json.loads(read(SOURCE_RELEASE))
-    require(source_release["schema_version"] == 1, "Unexpected source release schema")
+    require(source_release["schema_version"] == 2, "Unexpected source release schema")
     require(source_release["repository"] == manifest["repository"], "Source release repository mismatch")
     require(source_release["skill_name"] == declared_skill["name"], "Source release Skill name mismatch")
     require(source_release["version"] == manifest["version"], "Source release version mismatch")
-    require(source_release["ref"] == manifest["ref"], "Source release ref mismatch")
+    require(source_release["release_id"] == manifest["release_id"], "Source release ID mismatch")
     require(source_release["release_channel"] == manifest["release_channel"], "Source release channel mismatch")
+    require(
+        source_release["source_ref_type"] == "immutable_git_commit_from_release_manifest",
+        "Source release must preserve immutable-source handoff",
+    )
 
     prohibited_private_paths = ["/root/.codex", "/workspace/scratch", "CODEX_HOME"]
     distributable_files = [
@@ -637,6 +700,19 @@ def main() -> None:
 
     ci = read(ROOT / ".github" / "workflows" / "validate.yml")
     require("python3 tests/test_skill.py" in ci, "CI does not run the contract test")
+    source_anchor_checker = read(SOURCE_ANCHOR_CHECKER)
+    require("Expected at least 16 curated source anchors" in source_anchor_checker, "Source-anchor inventory floor missing")
+    source_anchor_workflow = read(SOURCE_ANCHOR_WORKFLOW)
+    require("schedule:" in source_anchor_workflow, "Source-anchor workflow must be scheduled")
+    require("python3 tests/check_source_anchors.py" in source_anchor_workflow, "Source-anchor workflow missing checker")
+    security = read(SECURITY)
+    require("declared_unverified" in security, "Security document must disclose hash-unavailable state")
+    require("independent root of trust" in security, "Security document must disclose bootstrap boundary")
+    contributing = read(CONTRIBUTING)
+    require("all twenty host cases" in contributing, "Contribution guide must require host evaluation")
+    host_evaluation = read(HOST_EVALUATION)
+    require("pending_host_evaluation" in host_evaluation, "Candidate host-evaluation state missing")
+    require(host_evaluation.count("| pending | pending | Unknown |") == 20, "Candidate must record all pending host cases")
 
     print("static-graphic-design-creator: package contract passed")
 

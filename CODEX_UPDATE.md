@@ -10,14 +10,14 @@ Use `$skill-installer` to perform this user-initiated update when that built-in 
 
 ## Source and identity
 
-Read the latest stable `config/chatgpt-skill-sources.json`, the target `references/source-release.json`, and every declared source file. Retrieve each source from its `repository_path` or `raw_url`, while treating its relative `path` as the destination inside the installed Skill bundle. Read the installed Skill's `references/source-release.json` before changing it.
+Read the selected current `config/chatgpt-skill-sources.json`, the target `references/source-release.json`, and every declared source file. Before retrieval, require `release_ref_type: immutable_git_commit`, a 40-character `immutable_source_commit` identical to `ref`, and `raw_url` values that include that commit. Retrieve each source only from that immutable commit through its `repository_path` or `raw_url`, while treating its relative `path` as the destination inside the installed Skill bundle. Read the installed Skill's `references/source-release.json` before changing it.
 
-The installed record must identify the same repository and `static-graphic-design-creator`. Its version and ref identify the previous source manifest used for file-level comparison. If it is absent, report `source_identity: unrecorded` and obtain an explicit confirmation that this matching installed Skill originated from this repository before treating it as an update target. If it identifies a different repository or Skill, stop with `blocked_source_identity`.
+The installed record must identify the same repository and `static-graphic-design-creator`. Its version and release ID identify the previous source manifest used for file-level comparison. If it is absent, report `source_identity: unrecorded` and obtain an explicit confirmation that this matching installed Skill originated from this repository before treating it as an update target. If it identifies a different repository or Skill, stop with `blocked_source_identity`.
 
 ## Update procedure
 
 1. Resolve the previous and target release-pinned manifests.
-2. Verify each target source file against the target SHA-256 when the current environment can calculate it.
+2. Verify each target source file against the target SHA-256 when the current environment can calculate it; otherwise report `hash_verification: declared_unverified` and do not claim verified comparison.
 3. Compare installed files against the previous manifest and then the target manifest. Report changed, new, removed, unchanged, and locally modified files.
 4. If there is no delta, report `already_up_to_date` and stop.
 5. Show `Delta`, installed and available version, verification status, and proposed apply mode. Ask for explicit user approval.

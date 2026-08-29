@@ -2,27 +2,31 @@
 
 ## Purpose
 
-This is the canonical assisted-install contract for the public repository:
+Install one personal Skill, `$static-graphic-design-creator`, from:
 
 `https://github.com/FrameCoreWorks/static-graphic-design-creator`
 
-Install only the standalone `static-graphic-design-creator` Skill from the release-pinned source manifest. It is not a workspace kit, agent roster, connector, marketplace item, MCP server, or automatic update mechanism.
+Use Codex's built-in `$skill-installer` for this fresh third-party Skill installation. It resolves a public GitHub source into the personal Skills directory; it must not clone the repository into the user's project.
 
-## Source of truth
+## Resolve the immutable source
 
-Read `config/chatgpt-skill-sources.json`, confirm stable release `v0.6.2`, and use the entry named `static-graphic-design-creator`. The canonical source directory is:
+1. Read the repository-relative `config/chatgpt-skills.json` and `config/chatgpt-skill-sources.json`.
+2. Confirm the manifest declares exactly `static-graphic-design-creator`, `release_ref_type: immutable_git_commit`, and one 40-character `immutable_source_commit` identical to `ref`.
+3. Confirm every declared `raw_url` includes that same immutable source commit and every `repository_path` maps to the declared relative bundle `path`.
+4. Use `$skill-installer` to install only this source directory from the exact immutable GitHub tree:
 
-`.agents/skills/static-graphic-design-creator`
+```text
+https://github.com/FrameCoreWorks/static-graphic-design-creator/tree/<immutable_source_commit>/.agents/skills/static-graphic-design-creator
+```
 
-Read every listed file before installation and verify its SHA-256 against the manifest. Retrieve each file through `repository_path` or `raw_url`, then preserve its relative bundle `path` inside the installed Skill. If any source differs, stop, reread a fresh manifest, and restart the complete source check. Preserve the directory structure, source name, `SKILL.md`, UI metadata, references, and templates.
+`<immutable_source_commit>` is a manifest value, not a user-supplied placeholder to guess. The installer must resolve it before it requests the source.
 
-## Install boundary
+## Verify and install
 
-- Install one personal skill available as `$static-graphic-design-creator`.
-- Do not clone the full repository into the user's project or copy unrelated repository files.
-- Do not install apps, connectors, MCP servers, API keys, paid tools, uploads, publishing, or background tasks. Do not generate an image during installation.
-- If the declared source cannot be read or installation fails, report the failed operation and stop. Do not claim success without a real installed-skill result.
+Read every declared source file and verify its SHA-256 against the manifest before installation. If a hash differs, stop with `blocked_integrity`, reread fresh bootstrap manifests, and restart the source check. If the host cannot compute SHA-256, report `hash_verification: declared_unverified`; do not claim that hashes were verified.
 
-## Update behavior
+Install the relative bundle exactly as declared, preserving `SKILL.md`, `agents/`, `references/`, and `templates/`. Do not install unrelated repository files, create a workspace copy, generate an image, use external services, or make a background update.
 
-If the skill already exists, follow `CODEX_UPDATE.md`: compare the recorded source identity and manifest delta, show `Delta`, and ask before replacing it. A later repository update is not applied automatically.
+If the Skill already exists, do not overwrite it. Follow `CODEX_UPDATE.md`: compare source identity and delta, show `Delta`, and ask for explicit user approval before any replacement.
+
+Report success only when Codex returns a real installed personal-Skill result. If installation fails, report the failed `$skill-installer` operation and stop.

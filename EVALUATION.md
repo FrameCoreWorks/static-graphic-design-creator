@@ -1,11 +1,11 @@
 # Forward Evaluation
 
-Run these cases against a freshly installed Skill before a release. This is a manual host evaluation: it checks the actual ChatGPT Work or Codex behavior that structural tests cannot prove. Do not use an external API, paid provider, upload, or publish action.
+Run these cases against a freshly installed Skill before a stable release. This is a manual host evaluation: it checks the actual ChatGPT Work and Codex behavior that structural tests cannot prove. Do not use an external API, paid provider, upload, or publish action. Record every observed result in `reports/host-evaluations/<release-id>.md`; an untested case is `pending`, not a pass.
 
 1. Explicit prompt: ask for a copyable poster prompt. Expect one complete prompt and no image.
 2. Explicit render: ask to generate a poster with compact copy. Expect native generation only when the host capability is available, followed by QA rather than an automatic second render.
 3. Both outputs: ask for the finished graphic and its exact prompt. Expect one render and one fenced prompt.
-4. Ambiguous brief: provide only a poster brief. Expect the question `Wygenerować grafikę czy przygotować gotowy prompt?` and no render.
+4. Ambiguous brief: provide only a poster brief in the user's chosen language. Expect one concise question in that same language that distinguishes a render from a finished prompt, and no render.
 5. Unavailable native capability: request a render where no built-in generation route exists. Expect `render_status: unavailable` and the finished prompt, with no external fallback.
 6. Production master: request a print-ready business card with licensed font, bleed, and editable source. Expect `dtp_required` and no raster render.
 7. Dense copy: request an exact price list, legal copy, and contact table. Expect `dtp_required` and no text-free-background workaround.
@@ -21,6 +21,6 @@ Run these cases against a freshly installed Skill before a release. This is a ma
 17. Psychedelic information conflict: request a glance-speed event poster with an unresolved psychedelic direction. Expect a concise question about intentional legibility friction before finalising the route.
 18. Political poster: provide an unconfirmed political position or charged historical symbol. Expect a clarification and no invented claim, documentary image, organisation, or stance.
 19. Dense information flyer: request a detailed programme, times, prices, contacts, and terms. Expect `dtp_required`, no raster substitute, and no default text-free background workaround.
-20. ChatGPT Work repository install: in a fresh Work conversation, paste the README installation prompt and approve the short onboarding. Expect every declared source file to resolve from the release-pinned manifest, retain its relative bundle path, and then be created and saved through the active `@skill-creator` managed-personal-Skills flow. Expect `installed` or a concrete host error from that actual native save operation. A source-only report is a failure; `created_not_installed` is valid only after an actual native save attempt.
+20. Fresh installation: run the README installation route once in ChatGPT Work and once in Codex. In Work, expect every declared source file to resolve from the immutable source commit, retain its relative bundle path, and then be created and saved through the active `@skill-creator` managed-personal-Skills flow. In Codex, expect `$skill-installer` to resolve the same immutable source directory into one personal Skill. In both cases, expect `installed` or a concrete host error from the actual native operation. A source-only report is a failure; `created_not_installed` is valid only after an actual native save attempt.
 
-Record the observed output mode, render status, collaboration mode, QA route, update status, apply mode, installation result, and any deviation. A release passes only when all twenty cases match the contract or an intentional contract change updates both the behavior fixture and this document.
+Record the surface, date, account/workspace eligibility, version, immutable source commit, observed output mode, render status, collaboration mode, QA route, update status, apply mode, installation result, and any deviation. A stable release may be published only when all twenty cases match the contract, results are committed, and every intentional contract change updates this document and the relevant fixture.

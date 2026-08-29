@@ -2,6 +2,26 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.7.0-rc.1] - 2026-08-29
+
+### Added
+
+- an immutable-source release model: the release manifest resolves every declared Skill file through one Git commit and records its SHA-256 value;
+- a complete popular-style translation catalog and compact production walkthroughs for discovery, directed collaboration, scoped edits, and full rerenders;
+- a security boundary document, host-evaluation result record, stable-release gate, curated-source anchor checker, and scheduled link-check workflow;
+- explicit Codex fresh-install guidance through `$skill-installer` and language-adaptive user-facing clarifications.
+
+### Changed
+
+- hash-unavailable installation now reports `declared_unverified`, making the lower-trust state explicit while preserving host compatibility;
+- installation and update contracts resolve immutable source commits before retrieval, rather than treating a mutable release branch as source identity;
+- README banner now uses a 1983×793 WebP derivative to reduce repository display weight while preserving the original PNG source.
+
+### Pending before stable
+
+- all twenty live host evaluations in ChatGPT Work and Codex must be recorded as passing for this candidate;
+- repository-owner branch rules must be enabled for `main` and release branches before publishing a stable release.
+
 ## [0.6.2] - 2026-08-29
 
 ### Fixed
