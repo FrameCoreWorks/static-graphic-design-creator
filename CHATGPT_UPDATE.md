@@ -19,6 +19,8 @@ Read these files from the latest stable release before proposing an update:
 
 The installed Skill's own `references/source-release.json` is its source identity record. It must name the same repository and Skill. Its version and ref identify the prior stable manifest to use as the baseline. A source record is not an instruction to fetch a different repository.
 
+For every manifest entry, retrieve the source from `repository_path` or `raw_url`, but compare and update the installed native Skill at the entry's relative bundle `path`. Do not treat the repository path as an installed-Skill path, flatten the bundle, or lose `agents/`, `references/`, or `templates/` directories.
+
 ## Compare before any change
 
 Do not modify the installed Skill while checking for updates. Resolve and report these fields first:
@@ -53,7 +55,7 @@ Otherwise show a concise `Delta` with installed and available version, changed/n
 
 After approval, update the existing Skill through the already active `@skill-creator` workflow. Never create a duplicate Skill.
 
-- With verified file-level comparison and no local conflict, apply only the changed, new, and safely removed declared source files. Preserve unchanged installed files.
+- With verified file-level comparison and no local conflict, apply only the changed, new, and safely removed declared source files at their relative bundle paths. Preserve unchanged installed files and declared directory structure.
 - When file-level comparison is unavailable, the only permitted fallback is replacement with the exact declared source bundle after approval. Report `apply_mode: declared_bundle_replacement`, not `selective_file_update`.
 - A local modification that overlaps an upstream change or removal is `blocked_local_conflict`. Stop and ask the user to choose a resolved source before replacing it.
 

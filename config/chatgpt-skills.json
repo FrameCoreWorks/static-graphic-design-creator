@@ -1,17 +1,22 @@
 {
-  "schema_version": 3,
+  "schema_version": 5,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.6.0",
-  "ref": "v0.6.0",
+  "version": "0.6.1",
+  "ref": "v0.6.1",
   "release": {
     "channel": "stable",
     "ref_type": "release_branch",
     "updates": "manual_user_approved",
     "repository_source_contract": true
   },
-  "mode": "single-standalone-skill",
+  "mode": "repository-source",
   "surface": "native-chatgpt-skills",
   "bootstrap_path": "CHATGPT_INSTALL.md",
+  "raw_base_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/",
+  "bootstrap_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md",
+  "source_manifest_path": "config/chatgpt-skill-sources.json",
+  "source_manifest_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/config/chatgpt-skill-sources.json",
+  "source_root": ".agents/skills",
   "entry_surface": {
     "primary": "chatgpt_work",
     "select_before_pasting_prompt": true,
@@ -26,11 +31,21 @@
     "dollar_command_required": false,
     "tool_discovery_required": false,
     "capability_preflight_required": false,
+    "surface": "chatgpt_work",
     "creation_flow": "create_with_chat"
   },
   "installation_confirmation": {
     "required": true,
     "method": "conversation",
+    "accepted_user_replies": [
+      "yes",
+      "approve",
+      "approved",
+      "install",
+      "tak",
+      "zatwierdzam",
+      "instaluj"
+    ],
     "separate_ui_prompt_expected": false,
     "assistant_ui_introspection_required": false,
     "approval_alone_marks_installed": false,
@@ -44,14 +59,23 @@
     "installation_approved",
     "source_resolved",
     "creation_in_progress",
+    "created",
     "created_not_installed",
     "installed",
     "blocked"
   ],
   "installation_rules": {
     "onboarding_before_creation": true,
+    "create_each_skill_separately": true,
     "wait_for_separate_host_install_action": false,
     "allow_unconfirmed_completion_claim": false
+  },
+  "source_bundle_contract": {
+    "bundle_path_field": "path",
+    "repository_path_field": "repository_path",
+    "raw_url_field": "raw_url",
+    "bundle_path_is_relative_to_skill_source_root": true,
+    "preserve_declared_directory_structure": true
   },
   "update_contract": {
     "chatgpt_bootstrap_path": "CHATGPT_UPDATE.md",

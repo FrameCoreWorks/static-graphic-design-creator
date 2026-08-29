@@ -12,15 +12,20 @@ Use this contract only in ChatGPT **Work** with `@skill-creator` active. The `@s
 If the conversation is in regular Chat or `@skill-creator` is unavailable before a creation attempt, stop and tell the user to switch to Work and paste the complete repository prompt again. Do not continue with a descriptive chat-only simulation of installation.
 The alternate entry path, **Plugins > Skills > Create > Create with chat**, opens the same creation surface.
 
-## Source of truth
+## Source of truth and bundle mapping
 
-Read these public files before creating the Skill:
+Read these release-pinned public files before creating the Skill:
 
-1. `config/chatgpt-skills.json`
-2. `config/chatgpt-skill-sources.json`
+1. `https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/config/chatgpt-skills.json`
+2. `https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/config/chatgpt-skill-sources.json`
 3. Every file listed for `static-graphic-design-creator` in that source manifest.
 
-Use the declared stable release ref `v0.6.0`, paths, raw URLs, and SHA-256 values. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not infer, omit, merge, rename, or rewrite source files. Do not read unrelated repository files as Skill source.
+Use the declared stable release ref `v0.6.1`, paths, raw URLs, and SHA-256 values. Every manifest entry has two different paths:
+
+- `repository_path` is the source file's exact path in this public repository and is used only to retrieve the file.
+- `path` is the file's relative destination inside the one native `static-graphic-design-creator` Skill bundle. Preserve this structure exactly, for example `references/qa-and-repair.md` and `agents/openai.yaml`.
+
+Do not use `repository_path` as the destination in the native Skill. Do not flatten the bundle, omit support files, merge files, rename files, or rewrite source content. When the current Work surface can compute SHA-256, verify every retrieved source file and record `hash_verification: verified`. If that capability is unavailable, record `hash_verification: unavailable`, continue from the declared source manifest, and never claim that hashes were verified. If a computed hash differs from its declared value, stop, reread a fresh manifest, and restart the complete source check. Do not read unrelated repository files as Skill source.
 
 ## First response
 
@@ -43,13 +48,13 @@ Keep this explanation concise and practical. Do not begin source-file processing
 
 1. Give the mandatory onboarding before approval.
 2. Ask for clear conversational approval to create the one named Skill.
-3. After approval, find the one Skill in `config/chatgpt-skill-sources.json` and read every declared source file. Verify every declared SHA-256 when the current Work surface can compute hashes; otherwise report `hash_verification: unavailable` and continue without claiming source-hash verification.
-4. Create the Skill through the already active `@skill-creator` workflow in ChatGPT Work. Do not search for or wait for a separate function tool, MCP tool, dollar command, install modal, host callback, or assistant-side UI inspection.
-5. Preserve the canonical name, description, `SKILL.md`, UI metadata, references, templates, and `references/source-release.json` that the native Skill surface supports.
+3. After approval, find the one Skill in `config/chatgpt-skill-sources.json` and read every declared source file. Retrieve each source through its `repository_path` or `raw_url`, then place it in the native bundle at its relative `path`. Verify every declared SHA-256 when the current Work surface can compute hashes; otherwise report `hash_verification: unavailable` and continue without claiming source-hash verification.
+4. When every declared source file is resolved, immediately create and save the one native Skill through the already active `@skill-creator` workflow in ChatGPT Work. `source_resolved` is not a terminal state and does not require a second approval. Do not return only a manifest report, a draft, or a description after successful source resolution.
+5. Preserve the canonical name, description, `SKILL.md`, UI metadata, references, templates, and `references/source-release.json` in the declared relative bundle structure.
 6. Report `installed` only if `@skill-creator` says the Skill was created and saved, or if it is visible in the Skills library. If only a draft exists, report `created_not_installed`.
 7. If source reading or native creation fails after a real attempt, record `blocked` with the failed operation, exact returned error, and current state.
 
-Do not wait for a separate modal, callback, function, MCP tool, or hidden install button. Approval authorizes creation but is not proof of success.
+Do not search for or wait for a separate function tool, MCP tool, dollar command, install modal, host callback, or assistant-side UI inspection. Approval authorizes creation but is not proof of success.
 
 ## Existing Skill guard
 

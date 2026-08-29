@@ -13,15 +13,20 @@ It can create a static graphic through the active surface's built-in image gener
 ### ChatGPT Work
 
 1. Open a ChatGPT conversation and switch from **Chat** to **Work**.
-2. Paste the prompt below. The repository URL is the only source address; `@skill-creator` selects the native Skill-creation flow.
+2. Paste the prompt below. `@skill-creator` selects the native Skill-creation flow; the direct raw URL identifies the release-pinned setup contract.
 
 ```text
 Use @skill-creator to help me create and install the native ChatGPT Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-First read and follow CHATGPT_INSTALL.md in that repository. Create only the declared `static-graphic-design-creator` Skill from the checked source manifest. This is a Skill, not a plugin.
+First read and follow this canonical release-pinned setup contract:
+https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md
+
+Then create only the declared `static-graphic-design-creator` Skill from the checked source manifest. This is a Skill, not a plugin.
 
 Keep the setup conversational and follow CHATGPT_INSTALL.md in that repository. Start with its short onboarding before asking for approval. After my clear conversational approval, use the already active @skill-creator workflow to create the one declared Skill from the checked source manifest.
+
+For every source-manifest entry, use `repository_path` or `raw_url` only to retrieve the public source file, then place it at the relative `path` inside the one `static-graphic-design-creator` Skill bundle. After every declared source file is resolved, create and save that one native Skill immediately. Do not stop at source verification.
 
 Do not search for a separate tool, command, MCP server, modal, callback, or hidden install button. @skill-creator is the native creation workflow in ChatGPT Work. Mark the Skill installed only after it reports that it created and saved the Skill, or the Skill is visible in the Skills library.
 
@@ -29,7 +34,7 @@ Do not search for a separate tool, command, MCP server, modal, callback, or hidd
 
 ChatGPT Work starts with a short onboarding before requesting approval. It explains what the Skill gives, how it controls a static-design prompt, when it is useful, and its limits around generation, brand facts, raster typography, and DTP.
 
-After approval, ChatGPT Work reads the exact file list from `config/chatgpt-skill-sources.json` and verifies the declared hashes when the active surface supports that check. If hash calculation is unavailable, it must report `hash_verification: unavailable` without claiming verification, then continue from the declared source manifest. It uses the already active `@skill-creator` workflow to create one native personal Skill. The Skill can then be used as `@static-graphic-design-creator`, by asking for a controlled prompt, or by explicitly asking to generate a static graphic. A real creation result, not the approval or the absence of extra UI, determines whether installation succeeded.
+After approval, ChatGPT Work reads the exact file list from `config/chatgpt-skill-sources.json` and verifies the declared hashes when the active surface supports that check. Each source file is retrieved from its repository address but is placed under its declared relative path in one native Skill bundle. If hash calculation is unavailable, it must report `hash_verification: unavailable` without claiming verification, then continue from the declared source manifest. After all sources resolve, the already active `@skill-creator` workflow must create and save one native personal Skill; source resolution is not the end of the flow. The Skill can then be used as `@static-graphic-design-creator`, by asking for a controlled prompt, or by explicitly asking to generate a static graphic. A real creation result, not the approval or the absence of extra UI, determines whether installation succeeded.
 
 ### Codex
 
@@ -131,7 +136,7 @@ The test verifies the standalone Skill structure, source manifest hashes, portab
 
 ## Versioning and update integrity
 
-The stable source manifest is pinned to the versioned release branch `v0.6.0`. Updates are manual and require user approval. The installed `references/source-release.json` identifies the prior release for comparison. When the receiving surface can calculate SHA-256 and inspect installed files, the update contracts compare the prior and target manifests to classify each source file. Selective replacement is allowed only in that verified file-level mode. If comparison is unavailable, the contract reports that limitation and can use only a user-approved exact declared-bundle replacement. If a target hash differs from its manifest, source identity is foreign, or a local modification overlaps an upstream change, the update stops without replacing anything.
+The stable source manifest is pinned to the versioned release branch `v0.6.1`. Updates are manual and require user approval. The installed `references/source-release.json` identifies the prior release for comparison. When the receiving surface can calculate SHA-256 and inspect installed files, the update contracts compare the prior and target manifests to classify each source file. Selective replacement is allowed only in that verified file-level mode. If comparison is unavailable, the contract reports that limitation and can use only a user-approved exact declared-bundle replacement. If a target hash differs from its manifest, source identity is foreign, or a local modification overlaps an upstream change, the update stops without replacing anything.
 
 ## Scope and limits
 

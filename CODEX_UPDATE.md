@@ -10,7 +10,7 @@ Use `$skill-installer` to perform this user-initiated update when that built-in 
 
 ## Source and identity
 
-Read the latest stable `config/chatgpt-skill-sources.json`, the target `references/source-release.json`, and every declared source file. Read the installed Skill's `references/source-release.json` before changing it.
+Read the latest stable `config/chatgpt-skill-sources.json`, the target `references/source-release.json`, and every declared source file. Retrieve each source from its `repository_path` or `raw_url`, while treating its relative `path` as the destination inside the installed Skill bundle. Read the installed Skill's `references/source-release.json` before changing it.
 
 The installed record must identify the same repository and `static-graphic-design-creator`. Its version and ref identify the previous source manifest used for file-level comparison. If it is absent, report `source_identity: unrecorded` and obtain an explicit confirmation that this matching installed Skill originated from this repository before treating it as an update target. If it identifies a different repository or Skill, stop with `blocked_source_identity`.
 

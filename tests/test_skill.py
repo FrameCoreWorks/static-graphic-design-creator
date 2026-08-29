@@ -425,20 +425,39 @@ def main() -> None:
     require("Do not begin source-file processing" in chatgpt_install, "ChatGPT onboarding ordering missing")
     require("native Skill-creation workflow" in chatgpt_install, "ChatGPT native creation route missing")
     require("Do not search for or wait for a separate function tool" in chatgpt_install, "ChatGPT separate-tool guard missing")
-    require("release-pinned public source" in chatgpt_install, "ChatGPT release pin missing")
+    require("repository_path" in chatgpt_install, "ChatGPT repository-to-bundle mapping missing")
+    require("relative destination inside the one native" in chatgpt_install, "ChatGPT relative bundle path missing")
+    require("immediately create and save the one native Skill" in chatgpt_install, "ChatGPT create-and-save handoff missing")
+    require("source_resolved` is not a terminal state" in chatgpt_install, "ChatGPT source-resolution continuation missing")
     require("Follow `CHATGPT_UPDATE.md`" in chatgpt_install, "ChatGPT update handoff missing")
-    require("short onboarding before requesting approval" in read(ROOT / "README.md"), "README onboarding disclosure missing")
-    require("@skill-creator is the native creation workflow in ChatGPT Work." in read(ROOT / "README.md"), "README native creation route missing")
+    readme = read(ROOT / "README.md")
+    require("short onboarding before requesting approval" in readme, "README onboarding disclosure missing")
+    require("@skill-creator is the native creation workflow in ChatGPT Work." in readme, "README native creation route missing")
+    require(
+        "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md" in readme,
+        "README must point Work to the release-pinned bootstrap URL",
+    )
+    require("relative path in one native Skill bundle" in readme, "README bundle mapping disclosure missing")
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
-    require(chatgpt_config["schema_version"] == 3, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.6.0", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.6.0", "ChatGPT config is not release pinned")
+    require(chatgpt_config["schema_version"] == 5, "Unexpected ChatGPT setup schema")
+    require(chatgpt_config["version"] == "0.6.1", "Unexpected release version")
+    require(chatgpt_config["ref"] == "v0.6.1", "ChatGPT config is not release pinned")
+    require(chatgpt_config["mode"] == "repository-source", "ChatGPT repository-source mode missing")
+    require(
+        chatgpt_config["bootstrap_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md",
+        "ChatGPT release-pinned bootstrap URL missing",
+    )
+    require(
+        chatgpt_config["source_manifest_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/config/chatgpt-skill-sources.json",
+        "ChatGPT release-pinned manifest URL missing",
+    )
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
     require(chatgpt_config["release"]["ref_type"] == "release_branch", "ChatGPT release ref type missing")
     require(chatgpt_config["surface"] == "native-chatgpt-skills", "ChatGPT surface missing")
     native_creation = chatgpt_config["native_creation"]
     require(native_creation["creator_invocation"] == "@skill-creator", "ChatGPT creator invocation missing")
+    require(native_creation["surface"] == "chatgpt_work", "ChatGPT Work creation surface missing")
     require(native_creation["tool_discovery_required"] is False, "ChatGPT must not discover a separate tool")
     require(native_creation["capability_preflight_required"] is False, "ChatGPT must not preflight creation capability")
     confirmation = chatgpt_config["installation_confirmation"]
@@ -459,12 +478,18 @@ def main() -> None:
     require(update_contract["approval_required_before_apply"] is True, "Update approval guard missing")
     require(update_contract["selective_update_requires_file_level_comparison"] is True, "Selective update guard missing")
     require(update_contract["local_conflict_blocks_apply"] is True, "Local conflict guard missing")
+    bundle_contract = chatgpt_config["source_bundle_contract"]
+    require(bundle_contract["bundle_path_field"] == "path", "ChatGPT bundle path field missing")
+    require(bundle_contract["repository_path_field"] == "repository_path", "ChatGPT repository path field missing")
+    require(bundle_contract["bundle_path_is_relative_to_skill_source_root"] is True, "ChatGPT bundle paths must be relative")
+    require(bundle_contract["preserve_declared_directory_structure"] is True, "ChatGPT bundle structure guard missing")
 
     codex_install = read(ROOT / "CODEX_INSTALL.md")
     require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
     require("not a plugin" in codex_install, "Codex plugin boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.6.0`" in codex_install, "Codex release pin missing")
+    require("stable release `v0.6.1`" in codex_install, "Codex release pin missing")
+    require("`repository_path` or `raw_url`" in codex_install, "Codex source retrieval mapping missing")
     require("follow `CODEX_UPDATE.md`" in codex_install, "Codex update handoff missing")
 
     chatgpt_update = read(CHATGPT_UPDATE)
@@ -477,6 +502,7 @@ def main() -> None:
         "blocked_local_conflict",
         "declared_bundle_replacement",
         "Never monitor GitHub in the background",
+        "relative bundle `path`",
     ]:
         require(phrase in chatgpt_update, f"ChatGPT update contract missing: {phrase}")
 
@@ -489,6 +515,7 @@ def main() -> None:
         "blocked_local_conflict",
         "declared_bundle_replacement",
         "Do not update automatically",
+        "`repository_path` or `raw_url`",
     ]:
         require(phrase in codex_update, f"Codex update contract missing: {phrase}")
 
@@ -529,6 +556,7 @@ def main() -> None:
 
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-graphic-design-creator", "Unexpected manifest repository")
+    require(manifest["schema_version"] == 2, "Unexpected source manifest schema")
     require(re.fullmatch(r"0\.\d+\.\d+", manifest["version"]) is not None, "Invalid manifest version")
     require(manifest["ref"] == f"v{manifest['version']}", "Manifest ref must match versioned release ref")
     require(manifest["release_channel"] == "stable", "Manifest release channel missing")
@@ -536,20 +564,34 @@ def main() -> None:
     require(len(manifest["skills"]) == 1, "Manifest must declare exactly one skill")
     declared_skill = manifest["skills"][0]
     require(declared_skill["name"] == "static-graphic-design-creator", "Unexpected manifest skill")
-    declared_paths = []
+    declared_bundle_paths = []
+    declared_repository_paths = []
     for source in declared_skill["files"]:
-        path = ROOT / source["path"]
-        require(path.is_file(), f"Manifest source is missing: {source['path']}")
+        bundle_path = Path(source["path"])
+        require(not bundle_path.is_absolute(), f"Bundle path must be relative: {source['path']}")
+        require(".." not in bundle_path.parts, f"Bundle path escapes skill root: {source['path']}")
+        require(source["path"] != "", "Bundle path must not be empty")
+        repository_path = source["repository_path"]
+        require(
+            repository_path == f"{declared_skill['source_root']}/{source['path']}",
+            f"Repository path does not map to declared bundle path: {source['path']}",
+        )
+        path = SKILL / bundle_path
+        require(path.is_file(), f"Manifest source is missing: {repository_path}")
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        require(digest == source["sha256"], f"Manifest hash mismatch: {source['path']}")
+        require(digest == source["sha256"], f"Manifest hash mismatch: {repository_path}")
         expected_raw_url = (
             "https://raw.githubusercontent.com/FrameCoreWorks/"
-            f"static-graphic-design-creator/{manifest['ref']}/{source['path']}"
+            f"static-graphic-design-creator/{manifest['ref']}/{repository_path}"
         )
-        require(source["raw_url"] == expected_raw_url, f"Manifest raw URL mismatch: {source['path']}")
-        declared_paths.append(path)
+        require(source["raw_url"] == expected_raw_url, f"Manifest raw URL mismatch: {repository_path}")
+        declared_bundle_paths.append(bundle_path)
+        declared_repository_paths.append(repository_path)
+    require(len(declared_bundle_paths) == len(set(declared_bundle_paths)), "Manifest bundle paths must be unique")
+    require(len(declared_repository_paths) == len(set(declared_repository_paths)), "Manifest repository paths must be unique")
+    require(declared_bundle_paths[0] == Path("SKILL.md"), "Skill entrypoint must remain first in the manifest")
     actual_paths = sorted(path for path in SKILL.rglob("*") if path.is_file())
-    require(sorted(declared_paths) == actual_paths, "Manifest must enumerate every skill source file")
+    require(sorted(SKILL / path for path in declared_bundle_paths) == actual_paths, "Manifest must enumerate every skill source file")
 
     source_release = json.loads(read(SOURCE_RELEASE))
     require(source_release["schema_version"] == 1, "Unexpected source release schema")

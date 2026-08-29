@@ -2,6 +2,15 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.6.1] - 2026-08-29
+
+### Fixed
+
+- aligned the ChatGPT Work repository-source contract with the proven FrameCore Works Skill-kit format;
+- separated each remote `repository_path` from its relative native Skill-bundle `path`, so every retrieved source file has one unambiguous destination inside the single Skill;
+- made the Work handoff explicit: after all declared files resolve, the active `@skill-creator` must create and save the one native Skill rather than ending at source verification;
+- added release-pinned raw bootstrap and manifest URLs to the Work configuration and copy-paste setup path.
+
 ## [0.6.0] - 2026-08-28
 
 ### Added
