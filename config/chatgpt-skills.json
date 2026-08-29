@@ -1,8 +1,8 @@
 {
   "schema_version": 5,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.6.1",
-  "ref": "v0.6.1",
+  "version": "0.6.2",
+  "ref": "v0.6.2",
   "release": {
     "channel": "stable",
     "ref_type": "release_branch",
@@ -12,15 +12,15 @@
   "mode": "repository-source",
   "surface": "native-chatgpt-skills",
   "bootstrap_path": "CHATGPT_INSTALL.md",
-  "raw_base_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/",
-  "bootstrap_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md",
+  "raw_base_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/",
+  "bootstrap_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md",
   "source_manifest_path": "config/chatgpt-skill-sources.json",
-  "source_manifest_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/config/chatgpt-skill-sources.json",
+  "source_manifest_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/config/chatgpt-skill-sources.json",
   "source_root": ".agents/skills",
   "entry_surface": {
     "primary": "chatgpt_work",
     "select_before_pasting_prompt": true,
-    "alternate_path": "plugins_skills_create_with_chat",
+    "alternate_path": "skills_create_with_chat",
     "alternate_path_opens_work": true
   },
   "native_creation": {
@@ -33,6 +33,14 @@
     "capability_preflight_required": false,
     "surface": "chatgpt_work",
     "creation_flow": "create_with_chat"
+  },
+  "native_save": {
+    "required": true,
+    "workflow": "active_skill_creator_managed_personal_skills_save",
+    "after_source_resolution": "create_validate_save_verify",
+    "host_managed_personal_skills_storage_allowed": true,
+    "user_project_workspace_write_allowed": false,
+    "created_not_installed_requires_real_save_attempt": true
   },
   "installation_confirmation": {
     "required": true,

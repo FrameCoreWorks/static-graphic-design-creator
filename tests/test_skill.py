@@ -344,14 +344,14 @@ def main() -> None:
     for path in required_paths:
         require(path.is_file(), f"Missing required file: {path.relative_to(ROOT)}")
 
-    retired_plugin_paths = [
+    retired_non_skill_paths = [
         ROOT / ".agents" / "plugins" / "marketplace.json",
         ROOT / "plugins" / "static-design-prompt-architect" / ".codex-plugin" / "plugin.json",
         ROOT / "plugins" / "static-graphic-design-creator" / ".codex-plugin" / "plugin.json",
         ROOT / "submission" / "openai-plugin-directory.md",
     ]
-    for path in retired_plugin_paths:
-        require(not path.exists(), f"Standalone skill must not include plugin artifact: {path.relative_to(ROOT)}")
+    for path in retired_non_skill_paths:
+        require(not path.exists(), f"Standalone skill must not include a retired non-Skill artifact: {path.relative_to(ROOT)}")
 
     require(not (ROOT / "skills").exists(), "Canonical source must use .agents/skills only")
     validate_policy_fixtures()
@@ -415,7 +415,7 @@ def main() -> None:
     require("human_review_required" in integration, "Workflow human-review handoff missing")
 
     chatgpt_install = read(ROOT / "CHATGPT_INSTALL.md")
-    for phrase in ["@skill-creator", "one native ChatGPT Skill", "not a plugin", "config/chatgpt-skill-sources.json"]:
+    for phrase in ["@skill-creator", "one native ChatGPT Skill", "repository-assisted native Skill-creation flow", "config/chatgpt-skill-sources.json"]:
         require(phrase in chatgpt_install, f"ChatGPT installation contract missing: {phrase}")
     require("When the current Work surface can compute SHA-256" in chatgpt_install, "ChatGPT conditional hash verification missing")
     require("hash_verification: unavailable" in chatgpt_install, "ChatGPT hash-unavailable status missing")
@@ -427,29 +427,33 @@ def main() -> None:
     require("Do not search for or wait for a separate function tool" in chatgpt_install, "ChatGPT separate-tool guard missing")
     require("repository_path" in chatgpt_install, "ChatGPT repository-to-bundle mapping missing")
     require("relative destination inside the one native" in chatgpt_install, "ChatGPT relative bundle path missing")
-    require("immediately create and save the one native Skill" in chatgpt_install, "ChatGPT create-and-save handoff missing")
+    require("immediately use the already active `@skill-creator`" in chatgpt_install, "ChatGPT create-and-save handoff missing")
     require("source_resolved` is not a terminal state" in chatgpt_install, "ChatGPT source-resolution continuation missing")
+    require("managed-personal-Skills save workflow" in chatgpt_install, "ChatGPT native managed save route missing")
+    require("Do not return `created_not_installed` unless that native save was actually attempted" in chatgpt_install, "ChatGPT must attempt a native save before created-not-installed")
+    require("plugin" not in chatgpt_install.lower(), "ChatGPT installation prompt must stay native-Skill-only")
     require("Follow `CHATGPT_UPDATE.md`" in chatgpt_install, "ChatGPT update handoff missing")
     readme = read(ROOT / "README.md")
     require("short onboarding before requesting approval" in readme, "README onboarding disclosure missing")
     require("@skill-creator is the native creation workflow in ChatGPT Work." in readme, "README native creation route missing")
     require(
-        "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md" in readme,
+        "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md" in readme,
         "README must point Work to the release-pinned bootstrap URL",
     )
     require("relative path in one native Skill bundle" in readme, "README bundle mapping disclosure missing")
+    require("managed-personal-Skills save flow" in readme, "README native managed save disclosure missing")
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
     require(chatgpt_config["schema_version"] == 5, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.6.1", "Unexpected release version")
-    require(chatgpt_config["ref"] == "v0.6.1", "ChatGPT config is not release pinned")
+    require(chatgpt_config["version"] == "0.6.2", "Unexpected release version")
+    require(chatgpt_config["ref"] == "v0.6.2", "ChatGPT config is not release pinned")
     require(chatgpt_config["mode"] == "repository-source", "ChatGPT repository-source mode missing")
     require(
-        chatgpt_config["bootstrap_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md",
+        chatgpt_config["bootstrap_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md",
         "ChatGPT release-pinned bootstrap URL missing",
     )
     require(
-        chatgpt_config["source_manifest_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/config/chatgpt-skill-sources.json",
+        chatgpt_config["source_manifest_url"] == "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/config/chatgpt-skill-sources.json",
         "ChatGPT release-pinned manifest URL missing",
     )
     require(chatgpt_config["release"]["channel"] == "stable", "ChatGPT release channel missing")
@@ -460,6 +464,13 @@ def main() -> None:
     require(native_creation["surface"] == "chatgpt_work", "ChatGPT Work creation surface missing")
     require(native_creation["tool_discovery_required"] is False, "ChatGPT must not discover a separate tool")
     require(native_creation["capability_preflight_required"] is False, "ChatGPT must not preflight creation capability")
+    native_save = chatgpt_config["native_save"]
+    require(native_save["required"] is True, "ChatGPT native save must be required")
+    require(native_save["workflow"] == "active_skill_creator_managed_personal_skills_save", "ChatGPT native save workflow missing")
+    require(native_save["after_source_resolution"] == "create_validate_save_verify", "ChatGPT source-resolution follow-through missing")
+    require(native_save["host_managed_personal_skills_storage_allowed"] is True, "ChatGPT managed storage must be allowed")
+    require(native_save["user_project_workspace_write_allowed"] is False, "ChatGPT must not write into user project workspace")
+    require(native_save["created_not_installed_requires_real_save_attempt"] is True, "ChatGPT created-not-installed guard missing")
     confirmation = chatgpt_config["installation_confirmation"]
     require(confirmation["separate_ui_prompt_expected"] is False, "ChatGPT must not wait for separate UI")
     require(confirmation["approval_alone_marks_installed"] is False, "ChatGPT approval must not mark installation")
@@ -486,9 +497,9 @@ def main() -> None:
 
     codex_install = read(ROOT / "CODEX_INSTALL.md")
     require(".agents/skills/static-graphic-design-creator" in codex_install, "Codex source root missing")
-    require("not a plugin" in codex_install, "Codex plugin boundary missing")
+    require("not a workspace kit" in codex_install, "Codex standalone-Skill boundary missing")
     require("verify its SHA-256 against the manifest" in codex_install, "Codex hash verification missing")
-    require("stable release `v0.6.1`" in codex_install, "Codex release pin missing")
+    require("stable release `v0.6.2`" in codex_install, "Codex release pin missing")
     require("`repository_path` or `raw_url`" in codex_install, "Codex source retrieval mapping missing")
     require("follow `CODEX_UPDATE.md`" in codex_install, "Codex update handoff missing")
 
@@ -505,6 +516,12 @@ def main() -> None:
         "relative bundle `path`",
     ]:
         require(phrase in chatgpt_update, f"ChatGPT update contract missing: {phrase}")
+    require("managed-personal-Skills save workflow" in chatgpt_update, "ChatGPT update must use native managed save")
+    require("plugin" not in chatgpt_update.lower(), "ChatGPT update prompt must stay native-Skill-only")
+
+    evaluation = read(MANUAL_EVALUATION)
+    require("managed-personal-Skills flow" in evaluation, "Forward evaluation must exercise the native save path")
+    require("created_not_installed` is valid only after an actual native save attempt" in evaluation, "Forward evaluation must guard created-not-installed")
 
     codex_update = read(CODEX_UPDATE)
     for phrase in [

@@ -2,6 +2,14 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.6.2] - 2026-08-29
+
+### Fixed
+
+- rewrote the ChatGPT Work setup and update contracts as native Skill-only flows, without unrelated terminology;
+- requires the active `@skill-creator` managed-personal-Skills save path after the source bundle validates, rather than treating source verification as an installation result;
+- permits only the host-managed personal-Skills storage required for that native save and continues to prohibit writes into the user's project workspace.
+
 ## [0.6.1] - 2026-08-29
 
 ### Fixed

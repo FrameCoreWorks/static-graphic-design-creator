@@ -4,7 +4,7 @@
 
 **Static Graphic Design Creator is a standalone Skill source for ChatGPT Work and Codex.** It turns a creative brief into a finished native render on request or one complete, controlled prompt for static graphics: posters, flyers, business cards, menus, book covers, labels, key visuals, advertisements, and text-led social graphics. For open poster briefs, it first facilitates a goal-led creative discussion before choosing a composition and style direction.
 
-Use this public repository as the versioned source address. The setup below is repository-assisted Skill creation or installation: it does not require downloading a ZIP, cloning the repository, or using a plugin. Updates use a separate, user-initiated comparison and approval flow; this repository is not monitored automatically.
+Use this public repository as the versioned source address. The setup below is repository-assisted native Skill creation or installation: it does not require downloading a ZIP or cloning the repository. Updates use a separate, user-initiated comparison and approval flow; this repository is not monitored automatically.
 
 It can create a static graphic through the active surface's built-in image generation when the user explicitly asks for a render. When the user asks for a prompt, it returns the complete prompt without rendering. It is not a DTP tool and marks generator-sensitive limits as `Unknown` when they are not verified.
 
@@ -20,13 +20,13 @@ Use @skill-creator to help me create and install the native ChatGPT Skill from t
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
 First read and follow this canonical release-pinned setup contract:
-https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.1/CHATGPT_INSTALL.md
+https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/v0.6.2/CHATGPT_INSTALL.md
 
-Then create only the declared `static-graphic-design-creator` Skill from the checked source manifest. This is a Skill, not a plugin.
+Then create only the declared `static-graphic-design-creator` native Skill from the checked source manifest.
 
 Keep the setup conversational and follow CHATGPT_INSTALL.md in that repository. Start with its short onboarding before asking for approval. After my clear conversational approval, use the already active @skill-creator workflow to create the one declared Skill from the checked source manifest.
 
-For every source-manifest entry, use `repository_path` or `raw_url` only to retrieve the public source file, then place it at the relative `path` inside the one `static-graphic-design-creator` Skill bundle. After every declared source file is resolved, create and save that one native Skill immediately. Do not stop at source verification.
+For every source-manifest entry, use `repository_path` or `raw_url` only to retrieve the public source file, then place it at the relative `path` inside the one `static-graphic-design-creator` Skill bundle. After every declared source file is resolved, use the active `@skill-creator` managed-personal-Skills save flow to create and save that one native Skill immediately. Do not stop at source verification or return `created_not_installed` before a real native save attempt.
 
 Do not search for a separate tool, command, MCP server, modal, callback, or hidden install button. @skill-creator is the native creation workflow in ChatGPT Work. Mark the Skill installed only after it reports that it created and saved the Skill, or the Skill is visible in the Skills library.
 
@@ -44,7 +44,7 @@ In a Codex chat, paste:
 Install the standalone Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-Read CODEX_INSTALL.md and install only the declared `static-graphic-design-creator` Skill. Do not clone the repository, create a plugin, or install any unrelated workflow files.
+Read CODEX_INSTALL.md and install only the declared `static-graphic-design-creator` Skill. Do not clone the repository or install any unrelated workflow files.
 ```
 
 The Codex install contract resolves the same release-pinned source manifest and installs the skill as `$static-graphic-design-creator`. No ZIP or manual file copy is required.
@@ -59,7 +59,7 @@ Every installation from `v0.5.0` onward carries a source record with its reposit
 Use @skill-creator to update the existing native ChatGPT Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-First read and follow CHATGPT_UPDATE.md in that repository. Update only the existing `static-graphic-design-creator` Skill. This is a Skill update, not a plugin, connector, MCP server, ZIP installation, or new duplicate Skill.
+First read and follow CHATGPT_UPDATE.md in that repository. Update only the existing `static-graphic-design-creator` Skill. This is a native Skill update, not a connector, MCP server, ZIP installation, or new duplicate Skill.
 
 Read the latest release-pinned source manifest and compare it with the installed Skill's source-release record and declared source files. Before changing anything, report the installed version, available version, changed files, new files, removed files, unchanged files, local modifications, verification status, and proposed apply mode.
 
@@ -74,7 +74,7 @@ https://github.com/FrameCoreWorks/static-graphic-design-creator
 
 First read and follow CODEX_UPDATE.md in that repository. Update only the installed `$static-graphic-design-creator` Skill. Compare its source-release record and prior release manifest with the current stable source manifest before changing files.
 
-Report the installed and available version, a Delta of changed/new/removed/unchanged files, local modifications, verification status, and proposed apply mode. If no change exists, report `already_up_to_date` and stop. Ask for my explicit approval before applying an update. Do not overwrite a local conflict, create a duplicate, clone the repository into my project, install a plugin, or apply a background update.
+Report the installed and available version, a Delta of changed/new/removed/unchanged files, local modifications, verification status, and proposed apply mode. If no change exists, report `already_up_to_date` and stop. Ask for my explicit approval before applying an update. Do not overwrite a local conflict, create a duplicate, clone the repository into my project, or apply a background update.
 ```
 
 Pre-`v0.5.0` installations do not yet contain the source record. The update flow treats them as `unrecorded`, asks the user to confirm origin, and then uses the manifest to perform a one-time migration safely.
@@ -116,7 +116,7 @@ When a connected workflow explicitly declares `host_environment: codex`, `execut
 └── README.md
 ```
 
-`.agents/skills/` is a source layout for Skills. This repository contains no plugin, connector, marketplace, MCP server, app integration, or external provider integration.
+`.agents/skills/` is a source layout for Skills. This repository contains no connector, marketplace, MCP server, app integration, or external provider integration.
 
 ## Input contexts and output modes
 
@@ -136,7 +136,7 @@ The test verifies the standalone Skill structure, source manifest hashes, portab
 
 ## Versioning and update integrity
 
-The stable source manifest is pinned to the versioned release branch `v0.6.1`. Updates are manual and require user approval. The installed `references/source-release.json` identifies the prior release for comparison. When the receiving surface can calculate SHA-256 and inspect installed files, the update contracts compare the prior and target manifests to classify each source file. Selective replacement is allowed only in that verified file-level mode. If comparison is unavailable, the contract reports that limitation and can use only a user-approved exact declared-bundle replacement. If a target hash differs from its manifest, source identity is foreign, or a local modification overlaps an upstream change, the update stops without replacing anything.
+The stable source manifest is pinned to the versioned release branch `v0.6.2`. Updates are manual and require user approval. The installed `references/source-release.json` identifies the prior release for comparison. When the receiving surface can calculate SHA-256 and inspect installed files, the update contracts compare the prior and target manifests to classify each source file. Selective replacement is allowed only in that verified file-level mode. If comparison is unavailable, the contract reports that limitation and can use only a user-approved exact declared-bundle replacement. If a target hash differs from its manifest, source identity is foreign, or a local modification overlaps an upstream change, the update stops without replacing anything.
 
 ## Scope and limits
 

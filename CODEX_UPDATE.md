@@ -6,7 +6,7 @@ This is the canonical update contract for the existing personal Codex Skill from
 
 `https://github.com/FrameCoreWorks/static-graphic-design-creator`
 
-Use `$skill-installer` to perform this user-initiated update when that built-in Skill is available. This is a standalone Skill update, not a plugin, automatic repository sync, background task, connector, MCP server, or project-repository clone.
+Use `$skill-installer` to perform this user-initiated update when that built-in Skill is available. This is a standalone Skill update with no automatic repository sync, background task, connector, MCP server, or project-repository clone.
 
 ## Source and identity
 
@@ -31,5 +31,5 @@ Do not overwrite or delete a file that differs from its previous release hash wh
 ## Boundaries
 
 - Install or update only the declared `static-graphic-design-creator` source bundle.
-- Do not clone the repository into a user project, install unrelated files, create a plugin, add apps, connectors, MCP servers, API keys, paid tools, uploads, publishing, or background tasks.
+- Do not clone the repository into a user project, install unrelated files, add apps, connectors, MCP servers, API keys, paid tools, uploads, publishing, or background tasks.
 - Do not update automatically when the repository changes. Codex may detect local file changes after an approved update, but repository checking and replacement remain user initiated.

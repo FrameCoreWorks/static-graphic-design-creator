@@ -6,7 +6,7 @@ This is the canonical update contract for the already installed native ChatGPT S
 
 `https://github.com/FrameCoreWorks/static-graphic-design-creator`
 
-Use it only in ChatGPT **Work** with `@skill-creator` active. It updates the existing `static-graphic-design-creator` Skill after an explicit review and approval. It is not a plugin update, automatic repository sync, background check, connector, MCP server, or second-Skill creation flow.
+Use it only in ChatGPT **Work** with `@skill-creator` active. It updates the existing `static-graphic-design-creator` Skill after an explicit review and approval. It is a native Skill update with no automatic repository sync, background check, connector, MCP server, or second-Skill creation flow.
 
 ## Source of truth
 
@@ -53,7 +53,7 @@ Otherwise show a concise `Delta` with installed and available version, changed/n
 
 ## Apply behavior
 
-After approval, update the existing Skill through the already active `@skill-creator` workflow. Never create a duplicate Skill.
+After approval, update the existing Skill through the already active `@skill-creator` native managed-personal-Skills save workflow. The creator may use host-managed personal-Skills storage for this save; it must not write into the user's project workspace. Never create a duplicate Skill or stop after source comparison without attempting the native save.
 
 - With verified file-level comparison and no local conflict, apply only the changed, new, and safely removed declared source files at their relative bundle paths. Preserve unchanged installed files and declared directory structure.
 - When file-level comparison is unavailable, the only permitted fallback is replacement with the exact declared source bundle after approval. Report `apply_mode: declared_bundle_replacement`, not `selective_file_update`.
@@ -64,5 +64,5 @@ Report `updated` only when the existing Skill was successfully saved and its `so
 ## Boundaries
 
 - Update only `static-graphic-design-creator` from the declared source manifest.
-- Do not clone the repository, run shell commands, create Codex files, install a plugin, add a connector or MCP server, use external providers, upload files, publish content, or generate an image.
+- Do not clone the repository into the user's project workspace, invoke a Codex-specific installer, add a connector or MCP server, use external providers, upload files, publish content, or generate an image.
 - Never monitor GitHub in the background or apply a repository update without this explicit user-initiated flow and approval.
