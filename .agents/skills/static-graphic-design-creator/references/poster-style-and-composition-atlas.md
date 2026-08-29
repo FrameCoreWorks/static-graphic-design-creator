@@ -12,6 +12,8 @@ The style family is evidence for the chosen strategy, not a decorative filter. A
 
 For detailed historical context, regional distinctions, function-specific decisions, production-process logic, and source anchors, read [the poster movements and production atlas](poster-movements-and-production-atlas.md). Keep this file as the compact routing reference.
 
+For popular labels that mix historical languages, composition stances, image construction, digital surface treatments, and type treatments, read [the poster style translation catalog](poster-style-translation-catalog.md). Choose one primary poster language plus at most one compatible secondary treatment; do not stack unrelated style labels as effects.
+
 ## Collaboration routes
 
 ### `discovery_brainstorm`

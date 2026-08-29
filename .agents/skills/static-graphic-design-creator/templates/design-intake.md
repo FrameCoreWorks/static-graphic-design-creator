@@ -21,8 +21,12 @@ poster_strategy:
   composition_archetype:
   image_type:
   type_role:
+  style_request_labels: []
   style_family:
+  primary_poster_language:
   transferable_attributes: []
+  secondary_treatment: Unknown
+  style_label_translation: Unknown
   material_treatment:
   production_process: Unknown
   intentional_legibility_friction: Unknown
