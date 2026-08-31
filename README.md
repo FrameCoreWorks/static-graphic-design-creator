@@ -60,6 +60,26 @@ https://github.com/FrameCoreWorks/static-graphic-design-creator
 First read CODEX_UPDATE.md. Compare the installed source-release record with the current immutable release manifest. Report Delta before any write and wait for my explicit approval. Update only `$static-graphic-design-creator`; do not overwrite a local conflict, create a duplicate, or clone the repository into my project.
 ```
 
+## Extend your own installed copy
+
+Use this route when you have ideas for adapting the installed Skill to your own workflow. It is a guided **personal extension**, not a fresh installation or a source-release update. It changes only the existing personal Skill after approval; it never creates a duplicate or changes this public repository. A later source update will still identify any locally changed files and ask for a conflict-safe decision.
+
+### ChatGPT Work personal extension
+
+In a Work conversation where both Skills are available, paste:
+
+```text
+Use @static-graphic-design-creator together with @skill-creator to help me extend my existing personal native ChatGPT Skill: `static-graphic-design-creator`.
+
+This is a guided personal extension, not a fresh installation, source-release update, repository edit, connector, or duplicate-Skill creation.
+
+First inspect the existing Skill and its directly relevant files. Then begin a short discovery conversation: ask me what I want to add, change, improve, or make more specific to my workflow. Ask only the questions needed to establish the intended behavior, real examples, preserved behavior, boundaries, and any required references or templates.
+
+Before changing anything, return a concise Change Proposal with: evidence or use case; objective; exact files and scope; expected benefit; risks or conflicts; acceptance test; rollback; and a clear stop condition. Wait for my explicit approval.
+
+After approval, update only the existing `static-graphic-design-creator` Skill, preserve unrelated behavior and the source-release identity record, validate the Skill, and save the update through the active native Skill workflow. Do not create a second Skill, silently overwrite a later local conflict, or claim that personal changes came from the public source release.
+```
+
 ## What the Skill does
 
 - accepts both a short standalone brief and a structured workflow handoff;
