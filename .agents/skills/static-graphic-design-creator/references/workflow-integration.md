@@ -41,7 +41,18 @@ poster_strategy:
   intentional_legibility_friction: Unknown
   human_review_required: []
 copy_pack:
-  locked_strings: []
+  copy_route: locked_copy
+  copy_authority: user_locked
+  message_thesis:
+  options: []
+  selected_copy:
+    headline:
+    support_line: []
+    cta:
+    metadata: []
+  claim_status: Unknown
+  copy_locks: []
+  copy_fit: locked
 reference_pack:
   references: []
 asset_manifest:
@@ -65,6 +76,12 @@ production_intent: concept_raster
 Preserve an upstream value when it is more specific than the brief. Do not rewrite approved copy, source authority, brand constraints, or suppression rules. If contracts conflict, surface the conflict before authoring a prompt.
 
 When `poster_strategy` is supplied, preserve its resolved communication goal and composition archetype. A supplied style family remains subordinate to those fields; if it conflicts with copy feasibility or the stated objective, explain the conflict and request a choice rather than silently replacing the style or the strategy.
+
+## Copy development handoff
+
+Treat `copy_pack` as the single source of visible wording. It may contain user-locked or source-locked strings, or a user-selected route developed through the Skill's internal copy-development-and-human-voice asset. Do not replace an approved `selected_copy` with a new slogan during layout work.
+
+When `copy_route` is `copy_discovery` or `copy_refinement` and `copy_fit` is `needs_selection`, return the copy routes and stop before prompt compilation or rendering. Carry the selected `message_thesis`, `claim_status`, and `copy_locks` forward. If copy fit is `dtp_required`, preserve the existing DTP route.
 
 ## Optional Codex text-bearing static compatibility profile
 
@@ -146,6 +163,18 @@ prompt_pack:
     production_process: Unknown
     intentional_legibility_friction: Unknown
     human_review_required: []
+  copy_pack:
+    copy_route:
+    copy_authority:
+    message_thesis:
+    selected_copy:
+      headline:
+      support_line: []
+      cta:
+      metadata: []
+    claim_status: Unknown
+    copy_locks: []
+    copy_fit:
   copy_locks: []
   copy_feasibility:
   brand_identity_policy:

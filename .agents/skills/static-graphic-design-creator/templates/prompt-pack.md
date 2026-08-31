@@ -56,6 +56,18 @@ poster_strategy:
 attention_order: []
 layout_mechanism:
 type_image_relationship:
+copy_pack:
+  copy_route:
+  copy_authority:
+  message_thesis:
+  selected_copy:
+    headline:
+    support_line: []
+    cta:
+    metadata: []
+  claim_status: Unknown
+  copy_locks: []
+  copy_fit:
 copy_locks: []
 copy_feasibility:
 brand_identity_policy:

@@ -41,6 +41,21 @@ final_asset_has_visible_text: Unknown
 generator_prompt_format:
   negative_handling_mode: unknown
   source_check_status: not_required
+copy_pack:
+  copy_route: locked_copy
+  copy_authority: user_locked
+  message_thesis:
+  source_truth: []
+  required_phrases: []
+  prohibited_variants: []
+  selected_copy:
+    headline:
+    support_line: []
+    cta:
+    metadata: []
+  claim_status: Unknown
+  copy_locks: []
+  copy_fit: Unknown
 visible_copy:
   locked_strings: []
   feasibility: Unknown
