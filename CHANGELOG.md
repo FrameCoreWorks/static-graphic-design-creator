@@ -2,6 +2,24 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.7.0-rc.2] - 2026-08-31
+
+### Added
+
+- one internal `Copy Development and Human Voice` asset that develops anti-generic poster wording from objective, audience, source truth, and a concrete message thesis;
+- explicit `locked_copy`, `copy_discovery`, and `copy_refinement` routes, with a selected-copy gate before final prompting or rendering;
+- structured `copy_pack` fields for copy authority, source truth, selected wording, claim status, copy locks, and copy fit.
+
+### Changed
+
+- the Skill now develops and humanises visible poster copy as one integrated internal layer rather than routing the user through separate copywriting and humanisation steps;
+- intake, portable handoff, prompt pack, README, and host evaluation all record the copy-selection decision.
+
+### Pending before stable
+
+- all twenty live host evaluations in ChatGPT Work and Codex must be recorded as passing for this candidate;
+- repository-owner branch rules must be enabled for `main` and release branches before publishing a stable release.
+
 ## [0.7.0-rc.1] - 2026-08-29
 
 ### Added

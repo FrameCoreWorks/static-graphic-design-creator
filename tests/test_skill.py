@@ -23,10 +23,11 @@ CODEX_UPDATE = ROOT / "CODEX_UPDATE.md"
 SOURCE_RELEASE = SKILL / "references" / "source-release.json"
 SECURITY = ROOT / "SECURITY.md"
 CONTRIBUTING = ROOT / "CONTRIBUTING.md"
-HOST_EVALUATION = ROOT / "reports" / "host-evaluations" / "v0.7.0-rc.1.md"
+HOST_EVALUATION = ROOT / "reports" / "host-evaluations" / "v0.7.0-rc.2.md"
 SOURCE_ANCHOR_CHECKER = ROOT / "tests" / "check_source_anchors.py"
 SOURCE_ANCHOR_WORKFLOW = ROOT / ".github" / "workflows" / "reference-links.yml"
 PRODUCTION_WALKTHROUGHS = SKILL / "references" / "production-walkthroughs.md"
+COPY_DEVELOPMENT = SKILL / "references" / "copy-development-and-human-voice.md"
 
 OUTPUT_MODES = {"prompt", "render", "render_and_prompt"}
 RENDER_STATUSES = {
@@ -344,6 +345,7 @@ def main() -> None:
         SKILL / "references" / "unified-static-prompt-contract.md",
         SKILL / "references" / "capability-and-reference-contract.md",
         SKILL / "references" / "workflow-integration.md",
+        COPY_DEVELOPMENT,
         SKILL / "references" / "qa-and-repair.md",
         SKILL / "references" / "deliverable-profiles.md",
         SKILL / "references" / "poster-style-and-composition-atlas.md",
@@ -598,6 +600,23 @@ def main() -> None:
     require("style_request_labels" in read(SKILL / "templates" / "design-intake.md"), "Intake must record requested style labels")
     require("primary_poster_language" in read(SKILL / "templates" / "prompt-pack.md"), "Prompt pack must record selected poster language")
 
+    copy_asset = read(COPY_DEVELOPMENT)
+    for term in [
+        "Copy Development and Human Voice",
+        "`locked_copy`",
+        "`copy_discovery`",
+        "`copy_refinement`",
+        "Anti-generic copy standard",
+        "Human voice means",
+        "copy_fit",
+        "Do not invent product facts",
+    ]:
+        require(term in copy_asset, f"Copy-development asset missing: {term}")
+    require("copy-development-and-human-voice.md" in skill, "Skill must route unresolved copy through the internal copy asset")
+    require("copy_route" in read(SKILL / "templates" / "design-intake.md"), "Intake must record the copy route")
+    require("copy_route" in read(SKILL / "templates" / "prompt-pack.md"), "Prompt pack must record the copy route")
+    require("copy_route" in read(SKILL / "references" / "workflow-integration.md"), "Workflow handoff must preserve the copy route")
+
     walkthroughs = read(PRODUCTION_WALKTHROUGHS)
     for term in [
         "## 1. Discovery brainstorm",
@@ -625,7 +644,7 @@ def main() -> None:
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-graphic-design-creator", "Unexpected manifest repository")
     require(manifest["schema_version"] == 3, "Unexpected source manifest schema")
-    require(manifest["version"] == "0.7.0-rc.1", "Invalid manifest version")
+    require(manifest["version"] == "0.7.0-rc.2", "Invalid manifest version")
     require(manifest["release_channel"] == "candidate", "Manifest release channel missing")
     require(manifest["release_ref_type"] == "immutable_git_commit", "Manifest release ref type missing")
     require(

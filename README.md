@@ -85,6 +85,7 @@ After approval, update only the existing `static-graphic-design-creator` Skill, 
 - accepts both a short standalone brief and a structured workflow handoff;
 - supports `prompt`, `render`, and `render_and_prompt` modes without rendering from an ambiguous brief;
 - runs an objective-led `discovery_brainstorm` for open poster direction, or preserves a user-supplied decision in `directed_collaboration`;
+- develops anti-generic poster copy through one internal copy-development-and-human-voice layer when wording is absent or needs refinement, then locks the selected text before visual prompting or rendering;
 - uses a poster-movements atlas, style translation catalog, production walkthroughs, and QA routes without turning them into a preset menu;
 - locks exact visible copy, attention order, layout zones, reference roles, exclusions, and a pass/fail QA route;
 - treats named-font fidelity, dense raster type, print-ready deliverables, and prepress as external QA or DTP requirements rather than promises.
