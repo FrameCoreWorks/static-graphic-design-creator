@@ -80,6 +80,23 @@ Before changing anything, return a concise Change Proposal with: evidence or use
 After approval, update only the existing `static-graphic-design-creator` Skill, preserve unrelated behavior and the source-release identity record, validate the Skill, and save the update through the active native Skill workflow. Do not create a second Skill, silently overwrite a later local conflict, or claim that personal changes came from the public source release.
 ```
 
+
+### Codex personal extension
+
+In a Codex chat where both Skills are available, paste:
+
+```text
+Use $static-graphic-design-creator together with $skill-creator to help me extend my existing personal Codex Skill: `static-graphic-design-creator`.
+
+This is a guided personal extension, not a fresh installation, public source-release update, repository edit, plugin, connector, or duplicate-Skill creation.
+
+First inspect the existing installed Skill and its directly relevant files. Then begin a short discovery conversation: ask me what I want to add, change, improve, or make more specific to my workflow. Ask only the questions needed to establish the intended behavior, real examples, preserved behavior, boundaries, and any required references or templates.
+
+Before changing anything, return a concise Change Proposal with: evidence or use case; objective; exact files and scope; expected benefit; risks or conflicts; acceptance test; rollback; and a clear stop condition. Wait for my explicit approval.
+
+After approval, update only the existing installed `static-graphic-design-creator` Skill in Codex. Preserve unrelated behavior and its source-release identity record, validate the Skill, and report the files changed. Do not create a second Skill directory, silently overwrite a later local conflict, clone the public repository into my project, or claim that personal changes came from the public source release.
+```
+
 ## What the Skill does
 
 - accepts both a short standalone brief and a structured workflow handoff;
