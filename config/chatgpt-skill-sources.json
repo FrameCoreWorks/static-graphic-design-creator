@@ -1,14 +1,14 @@
 {
   "schema_version": 3,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.7.0-rc.2",
-  "release_id": "v0.7.0-rc.2",
+  "version": "0.7.0-rc.3",
+  "release_id": "v0.7.0-rc.3",
   "release_channel": "candidate",
-  "release_bootstrap_ref": "v0.7.0-rc.2",
+  "release_bootstrap_ref": "v0.7.0-rc.3",
   "release_bootstrap_ref_type": "version_branch",
   "release_ref_type": "immutable_git_commit",
-  "immutable_source_commit": "e5e6b08107f2a561ffff8b9e186476c4a90ddc12",
-  "ref": "e5e6b08107f2a561ffff8b9e186476c4a90ddc12",
+  "immutable_source_commit": "1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0",
+  "ref": "1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0",
   "hash_verification_when_unavailable": "declared_unverified",
   "skills": [
     {
@@ -18,91 +18,91 @@
         {
           "path": "SKILL.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/SKILL.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/SKILL.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/SKILL.md",
           "sha256": "ce9d0b2fa4911df9aa374e38616ae74f6bcaec92dea2bbdf455838dadf4f02e9"
         },
         {
           "path": "agents/openai.yaml",
           "repository_path": ".agents/skills/static-graphic-design-creator/agents/openai.yaml",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/agents/openai.yaml",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/agents/openai.yaml",
           "sha256": "4c88af5cbd6e7b3cb3c56f8f5fbe04871208eaa71ef1c3862a327112631018dc"
         },
         {
           "path": "references/capability-and-reference-contract.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/capability-and-reference-contract.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/capability-and-reference-contract.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/capability-and-reference-contract.md",
           "sha256": "efb20a0bfbdd0f7d6ee03cddc8a3366f893f83827fc380e7c0cc009decb6f094"
         },
         {
           "path": "references/copy-development-and-human-voice.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/copy-development-and-human-voice.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/copy-development-and-human-voice.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/copy-development-and-human-voice.md",
           "sha256": "bc6a50565a919d15e1170bb2e1973f2dfcc472932340ac0f7d05298a1fa1473f"
         },
         {
           "path": "references/deliverable-profiles.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/deliverable-profiles.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/deliverable-profiles.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/deliverable-profiles.md",
           "sha256": "e5464aa7c5beb3a07b038d7de603517bba7d9f903c5727e7b8ac2031c858064a"
         },
         {
           "path": "references/poster-movements-and-production-atlas.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/poster-movements-and-production-atlas.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/poster-movements-and-production-atlas.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/poster-movements-and-production-atlas.md",
           "sha256": "42bc9df44b36f19a389b00cc248f8801fefd42c9e990d81f6c5d1ef8885e2ba3"
         },
         {
           "path": "references/poster-style-and-composition-atlas.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/poster-style-and-composition-atlas.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/poster-style-and-composition-atlas.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/poster-style-and-composition-atlas.md",
           "sha256": "796c9cfac738a54b91504cc6751d5f24036aebea25af18cc73ef2f1ad5df9137"
         },
         {
           "path": "references/poster-style-translation-catalog.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/poster-style-translation-catalog.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/poster-style-translation-catalog.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/poster-style-translation-catalog.md",
           "sha256": "e4c9d470018897f04034d866b148d3ae649ae557891a34d24e051523f2c11b7f"
         },
         {
           "path": "references/production-walkthroughs.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/production-walkthroughs.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/production-walkthroughs.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/production-walkthroughs.md",
           "sha256": "c1e085403e68c7dfbe91ed4cbea98c6bb496baf95fbf041d8bd81ecb71d0ebca"
         },
         {
           "path": "references/qa-and-repair.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/qa-and-repair.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/qa-and-repair.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/qa-and-repair.md",
           "sha256": "9d0c93cdf8753d5bdfb1b938d2dc4511eb13b9b55c0deefa9ef717867edaa4b0"
         },
         {
           "path": "references/source-release.json",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/source-release.json",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/source-release.json",
-          "sha256": "b062ea40710a58b34ff7826d41d35d8cef1a9d6297c8103d46e64786cb90ed9b"
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/source-release.json",
+          "sha256": "f1eaa9ba030e6c0e0ade8e0cb0e6419b02b39cef031abb760ea4833c47186e73"
         },
         {
           "path": "references/unified-static-prompt-contract.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/unified-static-prompt-contract.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/unified-static-prompt-contract.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/unified-static-prompt-contract.md",
           "sha256": "8cb6e063b436c72bc9012f2d14a842e7e0f18943cd0c116e998f8c4f51042912"
         },
         {
           "path": "references/workflow-integration.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/references/workflow-integration.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/references/workflow-integration.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/references/workflow-integration.md",
           "sha256": "6aad6de432d358c3101771c590d38a27a398dcd8eb76516c97c2bec2007dfd8e"
         },
         {
           "path": "templates/design-intake.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/templates/design-intake.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/templates/design-intake.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/templates/design-intake.md",
           "sha256": "ff4a123585c428d6a4e40c55e460f2f118474d6316ccb95d4f797a2d6cbcc791"
         },
         {
           "path": "templates/prompt-pack.md",
           "repository_path": ".agents/skills/static-graphic-design-creator/templates/prompt-pack.md",
-          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/e5e6b08107f2a561ffff8b9e186476c4a90ddc12/.agents/skills/static-graphic-design-creator/templates/prompt-pack.md",
+          "raw_url": "https://raw.githubusercontent.com/FrameCoreWorks/static-graphic-design-creator/1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0/.agents/skills/static-graphic-design-creator/templates/prompt-pack.md",
           "sha256": "1157a88302634a88736f8da5dc22802aa6a6477cfab3e72f6a759929d10eb4d2"
         }
       ]

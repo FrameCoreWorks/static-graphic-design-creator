@@ -23,7 +23,7 @@ CODEX_UPDATE = ROOT / "CODEX_UPDATE.md"
 SOURCE_RELEASE = SKILL / "references" / "source-release.json"
 SECURITY = ROOT / "SECURITY.md"
 CONTRIBUTING = ROOT / "CONTRIBUTING.md"
-HOST_EVALUATION = ROOT / "reports" / "host-evaluations" / "v0.7.0-rc.2.md"
+HOST_EVALUATION = ROOT / "reports" / "host-evaluations" / "v0.7.0-rc.3.md"
 SOURCE_ANCHOR_CHECKER = ROOT / "tests" / "check_source_anchors.py"
 SOURCE_ANCHOR_WORKFLOW = ROOT / ".github" / "workflows" / "reference-links.yml"
 PRODUCTION_WALKTHROUGHS = SKILL / "references" / "production-walkthroughs.md"
@@ -457,10 +457,12 @@ def main() -> None:
     require("declared_unverified" in readme, "README unverified-hash disclosure missing")
     require("2026-08-29" in readme, "README OpenAI verification date missing")
     require("assets/static-graphic-design-creator-banner.webp" in readme, "README must use WebP banner")
+    require("### Codex personal extension" in readme, "README Codex personal-extension route missing")
+    require("Use $static-graphic-design-creator together with $skill-creator" in readme, "README Codex personal-extension command missing")
 
     chatgpt_config = json.loads(read(ROOT / "config" / "chatgpt-skills.json"))
     require(chatgpt_config["schema_version"] == 6, "Unexpected ChatGPT setup schema")
-    require(chatgpt_config["version"] == "0.7.0-rc.1", "Unexpected release version")
+    require(chatgpt_config["version"] == "0.7.0-rc.3", "Unexpected release version")
     require(chatgpt_config["mode"] == "repository-source", "ChatGPT repository-source mode missing")
     require(chatgpt_config["release"]["channel"] == "candidate", "ChatGPT release channel missing")
     require(chatgpt_config["release"]["source_ref_type"] == "immutable_git_commit", "ChatGPT release ref type missing")
@@ -644,7 +646,7 @@ def main() -> None:
     manifest = json.loads(read(SOURCE_MANIFEST))
     require(manifest["repository"] == "https://github.com/FrameCoreWorks/static-graphic-design-creator", "Unexpected manifest repository")
     require(manifest["schema_version"] == 3, "Unexpected source manifest schema")
-    require(manifest["version"] == "0.7.0-rc.2", "Invalid manifest version")
+    require(manifest["version"] == "0.7.0-rc.3", "Invalid manifest version")
     require(manifest["release_channel"] == "candidate", "Manifest release channel missing")
     require(manifest["release_ref_type"] == "immutable_git_commit", "Manifest release ref type missing")
     require(

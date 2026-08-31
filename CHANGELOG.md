@@ -2,6 +2,21 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.7.0-rc.3] - 2026-08-31
+
+### Added
+
+- a Codex personal-extension prompt beside the ChatGPT Work route, so an installed local Skill can be tailored through a guided, approval-gated discovery flow.
+
+### Changed
+
+- README now separates fresh installation, source update, and personal extension for both supported surfaces.
+
+### Pending before stable
+
+- all twenty live host evaluations in ChatGPT Work and Codex must be recorded as passing for this candidate;
+- repository-owner branch rules must be enabled for `main` and release branches before publishing a stable release.
+
 ## [0.7.0-rc.2] - 2026-08-31
 
 ### Added
