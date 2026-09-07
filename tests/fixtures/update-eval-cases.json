@@ -1,140 +1,345 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "evaluation_kind": "deterministic_digest_comparison",
   "cases": [
     {
-      "id": "verified-no-source-delta",
-      "signals": {
-        "source_identity": "match",
-        "target_integrity": "verified",
-        "comparison_mode": "file_level",
-        "delta": "none",
-        "local_conflict": false,
-        "origin_confirmation": false,
-        "user_approval": false
+      "id": "identical",
+      "base": {
+        "a": "v1"
+      },
+      "target": {
+        "a": "v1"
+      },
+      "installed": {
+        "a": "v1"
       },
       "expected": {
-        "update_status": "already_up_to_date",
-        "apply_mode": "none",
-        "requires_approval": false
+        "changed": [],
+        "new": [],
+        "removed": [],
+        "unchanged": [
+          "a"
+        ],
+        "local_modified": [],
+        "local_deleted": [],
+        "local_added": [],
+        "conflicts": [],
+        "apply": []
       }
     },
     {
-      "id": "verified-delta-awaits-approval",
-      "signals": {
-        "source_identity": "match",
-        "target_integrity": "verified",
-        "comparison_mode": "file_level",
-        "delta": "changes",
-        "local_conflict": false,
-        "origin_confirmation": false,
-        "user_approval": false
+      "id": "upstream-change",
+      "base": {
+        "a": "v1"
+      },
+      "target": {
+        "a": "v2"
+      },
+      "installed": {
+        "a": "v1"
       },
       "expected": {
-        "update_status": "update_review_ready",
-        "apply_mode": "none",
-        "requires_approval": true
+        "changed": [
+          "a"
+        ],
+        "new": [],
+        "removed": [],
+        "unchanged": [],
+        "local_modified": [],
+        "local_deleted": [],
+        "local_added": [],
+        "conflicts": [],
+        "apply": [
+          "a"
+        ]
       }
     },
     {
-      "id": "verified-delta-selective-after-approval",
-      "signals": {
-        "source_identity": "match",
-        "target_integrity": "verified",
-        "comparison_mode": "file_level",
-        "delta": "changes",
-        "local_conflict": false,
-        "origin_confirmation": false,
-        "user_approval": true
+      "id": "upstream-add",
+      "base": {},
+      "target": {
+        "a": "v1"
       },
+      "installed": {},
       "expected": {
-        "update_status": "ready_for_update",
-        "apply_mode": "selective_file_update",
-        "requires_approval": false
+        "changed": [],
+        "new": [
+          "a"
+        ],
+        "removed": [],
+        "unchanged": [],
+        "local_modified": [],
+        "local_deleted": [],
+        "local_added": [],
+        "conflicts": [],
+        "apply": [
+          "a"
+        ]
       }
     },
     {
-      "id": "comparison-unavailable-replaces-only-after-approval",
-      "signals": {
-        "source_identity": "match",
-        "target_integrity": "unavailable",
-        "comparison_mode": "unavailable",
-        "delta": "changes",
-        "local_conflict": false,
-        "origin_confirmation": false,
-        "user_approval": true
+      "id": "safe-removal",
+      "base": {
+        "a": "v1"
+      },
+      "target": {},
+      "installed": {
+        "a": "v1"
       },
       "expected": {
-        "update_status": "ready_for_update",
-        "apply_mode": "declared_bundle_replacement",
-        "requires_approval": false
+        "changed": [],
+        "new": [],
+        "removed": [
+          "a"
+        ],
+        "unchanged": [],
+        "local_modified": [],
+        "local_deleted": [],
+        "local_added": [],
+        "conflicts": [],
+        "apply": [
+          "a"
+        ]
       }
     },
     {
-      "id": "unrecorded-origin-needs-confirmation",
-      "signals": {
-        "source_identity": "unrecorded",
-        "target_integrity": "verified",
-        "comparison_mode": "file_level",
-        "delta": "changes",
-        "local_conflict": false,
-        "origin_confirmation": false,
-        "user_approval": true
+      "id": "changed-local-conflict",
+      "base": {
+        "a": "v1"
+      },
+      "target": {
+        "a": "v2"
+      },
+      "installed": {
+        "a": "local"
       },
       "expected": {
-        "update_status": "awaiting_origin_confirmation",
-        "apply_mode": "none",
-        "requires_approval": true
+        "changed": [
+          "a"
+        ],
+        "new": [],
+        "removed": [],
+        "unchanged": [],
+        "local_modified": [
+          "a"
+        ],
+        "local_deleted": [],
+        "local_added": [],
+        "conflicts": [
+          "a"
+        ],
+        "apply": []
       }
     },
     {
-      "id": "foreign-source-is-blocked",
-      "signals": {
-        "source_identity": "mismatch",
-        "target_integrity": "verified",
-        "comparison_mode": "file_level",
-        "delta": "changes",
-        "local_conflict": false,
-        "origin_confirmation": false,
-        "user_approval": true
+      "id": "removed-local-conflict",
+      "base": {
+        "a": "v1"
+      },
+      "target": {},
+      "installed": {
+        "a": "local"
       },
       "expected": {
-        "update_status": "blocked_source_identity",
-        "apply_mode": "none",
-        "requires_approval": false
+        "changed": [],
+        "new": [],
+        "removed": [
+          "a"
+        ],
+        "unchanged": [],
+        "local_modified": [
+          "a"
+        ],
+        "local_deleted": [],
+        "local_added": [],
+        "conflicts": [
+          "a"
+        ],
+        "apply": []
       }
     },
     {
-      "id": "local-conflict-is-never-overwritten",
-      "signals": {
-        "source_identity": "match",
-        "target_integrity": "verified",
-        "comparison_mode": "file_level",
-        "delta": "changes",
-        "local_conflict": true,
-        "origin_confirmation": false,
-        "user_approval": true
+      "id": "preserve-local-only",
+      "base": {
+        "a": "v1"
+      },
+      "target": {
+        "a": "v1"
+      },
+      "installed": {
+        "a": "local",
+        "icon": "custom"
       },
       "expected": {
-        "update_status": "blocked_local_conflict",
-        "apply_mode": "none",
-        "requires_approval": false
+        "changed": [],
+        "new": [],
+        "removed": [],
+        "unchanged": [
+          "a"
+        ],
+        "local_modified": [
+          "a"
+        ],
+        "local_deleted": [],
+        "local_added": [
+          "icon"
+        ],
+        "conflicts": [],
+        "apply": []
       }
     },
     {
-      "id": "target-hash-mismatch-is-blocked",
-      "signals": {
-        "source_identity": "match",
-        "target_integrity": "mismatch",
-        "comparison_mode": "file_level",
-        "delta": "changes",
-        "local_conflict": false,
-        "origin_confirmation": false,
-        "user_approval": true
+      "id": "new-file-collision",
+      "base": {},
+      "target": {
+        "a": "v2"
+      },
+      "installed": {
+        "a": "local"
       },
       "expected": {
-        "update_status": "blocked_integrity",
-        "apply_mode": "none",
-        "requires_approval": false
+        "changed": [],
+        "new": [
+          "a"
+        ],
+        "removed": [],
+        "unchanged": [],
+        "local_modified": [],
+        "local_deleted": [],
+        "local_added": [
+          "a"
+        ],
+        "conflicts": [
+          "a"
+        ],
+        "apply": []
+      }
+    },
+    {
+      "id": "local-deletion-conflict",
+      "base": {
+        "a": "v1"
+      },
+      "target": {
+        "a": "v2"
+      },
+      "installed": {},
+      "expected": {
+        "changed": [
+          "a"
+        ],
+        "new": [],
+        "removed": [],
+        "unchanged": [],
+        "local_modified": [],
+        "local_deleted": [
+          "a"
+        ],
+        "local_added": [],
+        "conflicts": [
+          "a"
+        ],
+        "apply": []
+      }
+    },
+    {
+      "id": "already-target-content",
+      "base": {
+        "a": "v1"
+      },
+      "target": {
+        "a": "v2"
+      },
+      "installed": {
+        "a": "v2"
+      },
+      "expected": {
+        "changed": [
+          "a"
+        ],
+        "new": [],
+        "removed": [],
+        "unchanged": [],
+        "local_modified": [
+          "a"
+        ],
+        "local_deleted": [],
+        "local_added": [],
+        "conflicts": [],
+        "apply": []
+      }
+    },
+    {
+      "id": "both-deleted",
+      "base": {
+        "a": "v1"
+      },
+      "target": {},
+      "installed": {},
+      "expected": {
+        "changed": [],
+        "new": [],
+        "removed": [
+          "a"
+        ],
+        "unchanged": [],
+        "local_modified": [],
+        "local_deleted": [
+          "a"
+        ],
+        "local_added": [],
+        "conflicts": [],
+        "apply": []
+      }
+    },
+    {
+      "id": "preserve-local-deletion",
+      "base": {
+        "a": "v1"
+      },
+      "target": {
+        "a": "v1"
+      },
+      "installed": {},
+      "expected": {
+        "changed": [],
+        "new": [],
+        "removed": [],
+        "unchanged": [
+          "a"
+        ],
+        "local_modified": [],
+        "local_deleted": [
+          "a"
+        ],
+        "local_added": [],
+        "conflicts": [],
+        "apply": []
+      }
+    },
+    {
+      "id": "new-file-already-target",
+      "base": {},
+      "target": {
+        "a": "v2"
+      },
+      "installed": {
+        "a": "v2"
+      },
+      "expected": {
+        "changed": [],
+        "new": [
+          "a"
+        ],
+        "removed": [],
+        "unchanged": [],
+        "local_modified": [],
+        "local_deleted": [],
+        "local_added": [
+          "a"
+        ],
+        "conflicts": [],
+        "apply": []
       }
     }
   ]

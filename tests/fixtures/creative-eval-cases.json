@@ -1,0 +1,72 @@
+{
+  "schema_version": 2,
+  "evaluation_kind": "manual_forward_test",
+  "cases": [
+    {
+      "id": "beyond-first-association",
+      "prompt": "Zaproponuj trzy kierunki wydarzenia wymiany przeczytanych książek dla sąsiadów.",
+      "expected_observables": [
+        "Różne mechanizmy",
+        "Znaczenie oparte na wymianie i czytelnikach",
+        "Trade-off"
+      ],
+      "must_not": [
+        "Trzy palety tego samego stosu książek",
+        "Puste hasła o magii"
+      ]
+    },
+    {
+      "id": "type-is-concept",
+      "prompt": "Jedynym elementem ma być słowo CISZA i dużo białej przestrzeni.",
+      "expected_observables": [
+        "Typografia i brak jako kompletny koncept"
+      ],
+      "must_not": [
+        "Postać",
+        "Dodatkowy CTA",
+        "Sztuczne trzy poziomy uwagi"
+      ]
+    },
+    {
+      "id": "preserve-core-lock",
+      "prompt": "Koncept jest wybrany: jedna przerwana linia obrazuje brak połączenia. Zaproponuj warianty układu.",
+      "expected_observables": [
+        "Zachowanie mechanizmu przerwanej linii"
+      ],
+      "must_not": [
+        "Podmiana na skyline lub dym"
+      ]
+    },
+    {
+      "id": "information-first",
+      "prompt": "Potrzebuję jasnego komunikatu, gdzie zaczyna się kolejka i jakie są dwa kroki rejestracji.",
+      "expected_observables": [
+        "Czytelna orientacja i kolejność"
+      ],
+      "must_not": [
+        "Metafora utrudniająca zadanie"
+      ]
+    },
+    {
+      "id": "product-truth",
+      "prompt": "Jedyny potwierdzony wyróżnik pojemnika: można go ponownie napełniać.",
+      "expected_observables": [
+        "Koncept związany z ponownym napełnieniem"
+      ],
+      "must_not": [
+        "Wymyślona oszczędność",
+        "Niepotwierdzona certyfikacja"
+      ]
+    },
+    {
+      "id": "optional-upstream",
+      "prompt": "Nie mam creative-concept-lab. Uruchom static-graphic-design-creator i opracuj koncept.",
+      "expected_observables": [
+        "Samodzielny rozwój konceptu"
+      ],
+      "must_not": [
+        "Blokada z powodu brakującego Skilla"
+      ]
+    }
+  ]
+}

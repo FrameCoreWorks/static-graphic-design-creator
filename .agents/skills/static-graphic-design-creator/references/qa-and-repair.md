@@ -1,56 +1,50 @@
 # QA and Repair
 
-Review the rendered result against the brief and prompt pack. Do not accept a graphic merely because it is attractive.
+QA compares actual artifacts with the approved concept, copy and property-level reference contract. A pleasing preview is not sufficient evidence. [Typography feasibility](typography-and-text-feasibility.md) owns reading and production checks; [workflow integration](workflow-integration.md) owns state transitions.
 
-## Pre-render feasibility gate
+## Preflight
 
-Before rendering, resolve `production_intent`, reading mode, and the visible-copy hierarchy (`must_read`, `should_read`, `metadata`, `decoration`), then classify the copy as `compact`, `at_risk`, or `dtp_required`. A `dtp_required` result is correct for `production_master` work or when mandatory dense schedules, legal copy, price lists, exact print typography, or prepress requirements cannot be simplified without changing the communication objective. Stop before generation and recommend an approved non-generative layout workflow. Do not replace this route with a text-free image and a later default overlay.
+Before a final prompt or render, require the selected/locked concept, selected/locked copy or explicit no-copy, resolved required references and feasible production intent. At-risk typography needs a concrete review plan. DTP stops raster finalization. No render is authorized by an ambiguous brief, a state label or the availability of a tool.
 
-Native rendering is allowed only when the user explicitly requested `render` or `render_and_prompt` and the active surface's built-in image generator is available. If either condition is absent, return the prompt only. Record `render_status: unavailable`, `blocked_dtp`, or `generation_failed` when applicable. If a native render is reviewed, record `render_status: qa_pass` or `qa_fail` with its QA route; do not silently create another render.
+Unavailable native generation returns a prompt only after the other finalization gates pass. A failed tool call is `generation_failed`. An image returned by the tool is `generated` until inspected. Follow the active host's display rules; if inspection is unavailable, state that limitation and keep QA `not_run`. Never prefill success in a prompt pack.
 
-## Acceptance checks
+## Inspect the delivered artifact
 
-1. The intended first, second, and third notices occur in order.
-2. The hero is singular and supports the communication objective.
-3. Exact visible copy matches every locked string, including diacritics, capitalization, dates, prices, and contact details.
-4. Typography remains readable at the intended display size and does not collide with the hero or safe margins.
-5. Reference-controlled identity, product construction, logo, and protected properties are preserved.
-6. Supporting elements have a function; there is no arbitrary collage, pseudo-logo, accidental iconography, or unmotivated effect.
-7. The render contains no unapproved text, watermark, alternate date, invented claim, duplicate text, device frame, or mockup.
-8. Real names, logo shapes, partner marks, dates, prices, and claims appear only when approved by the declared brand and identity authority policy.
-9. Any real person's likeness is covered by declared likeness authority, and any supplied style reference is translated into an original treatment rather than directly imitated.
-10. The intended reading mode and `must_read → should_read → metadata` order survive inspection at reduced scales; decoration does not resemble critical copy.
-11. A claimed material effect follows a named process logic (such as separation, register, relief, or halftone structure), rather than generic damage or vintage texture.
-12. For social or political work, every claim, action, representation, and charged symbol is user-approved; there is no fabricated documentary evidence, organisation, statistic, or historical attribution.
-
-## Decision routes
-
-| Decision | Use when | Next action |
+| Check | Observe | Failure consequence |
 | --- | --- | --- |
-| `accept` | All critical checks pass. | Hand off for permitted production or delivery. |
-| `scoped_edit` | One local defect remains and the rest of the composition is approved. | Attach the current render where supported; name one permitted change and restate protected elements. |
-| `full_rerender` | The visual thesis, hierarchy, identity, product truth, or core copy system fails. | Rewrite the full prompt; do not merely append longer exclusions. |
-| `dtp_required` | Exact type, legal copy, print specification, named font, bleed, or licensed vector output is required. | Move to an approved non-generative layout workflow. |
-| `generation_failed` | The permitted native renderer returned an error or no usable image. | Return the error and final prompt; do not substitute an external renderer or retry silently. |
+| Message and concept | Actual visual mechanism, intended audience response and protected concept relation | Missing/replaced core mechanism blocks acceptance; rebuild composition if necessary |
+| Attention and scale | Intended one to three notices, or declared denser scan path; no competing priorities | Broken hierarchy requires layout repair; do not add elements just to reach three notices |
+| Exact visible text | Every selected item, diacritics, case, punctuation, line breaks, dates, prices and contacts; no extras | One wrong required string blocks acceptance; preserve all correct strings |
+| Legibility | Intended viewing size, full resolution, local contrast, spacing, clipping and required metadata | Unreadable required text fails even if it is small or secondary |
+| Identity and source truth | Likeness, product silhouette, construction, garment seams, logo geometry and label topology against the actual references | One protected-property drift blocks acceptance; identify the changed property |
+| Material and light | Declared process logic, coherent palette, plausible overlaps, surfaces and illumination | Remove unmotivated treatment; do not relabel a defect as intentional texture |
+| Generation artifacts | Repeated fragments, doubled edges/limbs/marks, malformed objects, warped type, broken label boundaries, background seams | Report exact location and consequence; source/text defects are critical |
+| Surface finish | Banding in intended smooth gradients, repetitive texture tiles, sharpening halos, accidental rings, muddy transitions or excess microcontrast | Judge at actual use size and full resolution; repair visible defects, not hypothetical ones |
+| Claims and additions | No invented partners, features, evidence, dates, claims, pseudo-logos, duplicate text or unrequested mockup | Unsupported factual/source additions block acceptance |
+| Delivery properties | Actual dimensions, format, crop, background/alpha and requested file behavior where measurable | Unknown properties cannot be advertised as verified; raster cannot establish a production master |
 
-## Composition integrity and anti-slop gate
+Keep meaning, correctness and execution separate from aesthetic preference. A single critical failure fails QA; do not wait for a count of two. An optional treatment preference alone does not imply a full rerender. Check cultural/history-dependent decisions against their supplied authority when relevant, without inventing a general requirement for every ordinary social graphic.
 
-Reject a render as `full_rerender` when its hierarchy or concept fails even if the surface finish is attractive. The render must have one dominant anchor, one readable attention order, and a visible relation between the communication goal and the visual mechanism.
+For a canonical record, include check IDs `concept`, `hierarchy`, `copy`, `legibility`, `references`, `additions` and `delivery`, plus specific artifact/material checks when relevant. Copy/legibility may be not applicable only for deliberate no-copy; reference checks only when no reference governs the output. Delivery checks are scoped to the requested intent, not a prepress claim.
 
-Fail the gate when two or more of these conditions are true:
+Record each check with an ID, `pass`, `fail`, `Unknown` or `not_applicable`, and concise observed evidence. State which image/file was inspected and at what viewing condition. `qa_pass` requires all relevant critical checks to be completed and passed, with evidence; Unknown critical checks block final acceptance. Do not label a check not applicable merely to avoid a missing reference. OCR is supporting evidence, not a replacement for inspecting the source and rendered glyphs.
 
-- the hero could be moved to an unrelated event with no meaningful change;
-- title, date, CTA, image, and decoration compete at equal weight;
-- a generic cityscape, crowd, smoke, particles, neon, glow, pseudo-3D object, texture, or collage fragment has no named job;
-- the style label is visible as an effect pile but not as a disciplined system of composition, typography, colour, and material;
-- copy is protected only by effects rather than contrast, layout, and negative space.
-- a named historical style appears only as stereotype tokens, or a print process appears only as generic damage/noise;
-- required information has been turned into pseudo-text or decoration.
+## Decide the smallest sufficient repair
 
-Do not repair a failed anti-slop gate by appending more exclusions. Rebuild the visual thesis, composition archetype, and style treatment, then rerender only after an explicit user-approved render route.
+| Decision | Use when | Next step |
+| --- | --- | --- |
+| `accept` | Required checks pass and the requested objective is met | Deliver within the requested scope; stop |
+| `scoped_edit` | A local correctable defect remains in an otherwise approved composition | Use the actual current image and supported edit route; name one permitted change and all protected properties |
+| `full_rerender` | The core mechanism/layout fails, or the required repair cannot be isolated | Rebuild from selected concept and source locks; explain why a narrow edit is insufficient |
+| `dtp_required` | Fixed exact-type, master, barcode, dieline or prepress requirements exceed the raster route | Provide the bounded production handoff; no default text-free background or overlay workaround |
+| `generation_failed` | Native call errored or returned no usable image | Report the actual outcome; retain the prompt; no silent retry/external fallback |
 
-## Scoped edit form
+A source-truth defect is critical but does not automatically require destroying a good composition: a narrow supported repair may be enough. Conversely, a pretty surface cannot rescue a missing thesis. Rebuild an incoherent strategy rather than appending longer exclusion lists.
 
-State the one permitted change first. Then explicitly preserve all approved properties: composition, crop, placement, scale, colour system, type role, text positions, product geometry, identity, background, light, and every exact string that does not change.
+## Scoped edit contract and stopping
 
-Never reroll a nearly correct image to repair a single spelling, spacing, or local visual defect unless the selected surface cannot support a scoped edit.
+Use canonical `edit_scope` for a structured edit handoff: account for changed and protected copy IDs, identify the current image with role `edit_source`, and state protected properties. Quote the changed string; protect unchanged source text without forcing a transcription of the entire poster.
+
+Put the permitted change first. Preserve crop, composition, placements, scale, type roles, all unchanged exact text, identity/product/logo properties, background, light and colour/material system. Attach the current source using the host-supported mechanism; do not refer only to “the previous image”. An explicitly requested exact spelling replacement is already authorized; do not reopen concept or copy discovery.
+
+After any repair, inspect both the target defect and the protected properties that could have drifted. Preserve the previous artifact as a rollback point. Do not initiate another generation unless the user's authorization covers that bounded repair. If unavailable, retain the image and offer the appropriate route. Stop when the approved objective is met; a new aesthetic preference or additional output needs a new scope.

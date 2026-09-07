@@ -1,0 +1,1712 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Static graphic design state, version 1",
+  "description": "Optional canonical structured handoff. Valid data is not proof of authorization, execution, source truth or visual quality.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "activation": {
+      "enum": [
+        "explicit",
+        "continuation",
+        "not_requested"
+      ]
+    },
+    "request_kind": {
+      "enum": [
+        "advice",
+        "concepts",
+        "copy",
+        "design",
+        "skill_extension"
+      ]
+    },
+    "action": {
+      "enum": [
+        "answer",
+        "clarify",
+        "offer_concepts",
+        "offer_copy",
+        "return_prompt",
+        "native_render",
+        "route_dtp",
+        "report_unavailable",
+        "report_generation_failed",
+        "review"
+      ]
+    },
+    "input_context": {
+      "enum": [
+        "standalone",
+        "connected"
+      ]
+    },
+    "task_mode": {
+      "enum": [
+        "generate",
+        "layout",
+        "reference-guided",
+        "edit",
+        "variation"
+      ]
+    },
+    "output_mode": {
+      "enum": [
+        "none",
+        "prompt",
+        "render",
+        "render_and_prompt"
+      ]
+    },
+    "production_intent": {
+      "enum": [
+        "concept_raster",
+        "digital_final",
+        "production_master"
+      ]
+    },
+    "strategy": {
+      "type": "object",
+      "properties": {
+        "objective": {
+          "type": "string"
+        },
+        "audience": {
+          "type": "string"
+        },
+        "response": {
+          "type": "string"
+        },
+        "output_format": {
+          "type": "string"
+        },
+        "reading_mode": {
+          "enum": [
+            "glance",
+            "brief_scan",
+            "deliberate_read",
+            "Unknown"
+          ]
+        },
+        "visual_thesis": {
+          "type": "string"
+        },
+        "attention_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "composition": {
+          "type": "string"
+        },
+        "type_image_relationship": {
+          "type": "string"
+        },
+        "style_requests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "primary_language": {
+          "type": "string"
+        },
+        "secondary_treatments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "intentional_hybrid": {
+          "type": "boolean"
+        },
+        "material_treatment": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "objective",
+        "audience",
+        "response",
+        "output_format",
+        "reading_mode",
+        "visual_thesis",
+        "attention_order",
+        "composition",
+        "type_image_relationship",
+        "style_requests",
+        "primary_language",
+        "secondary_treatments",
+        "intentional_hybrid",
+        "material_treatment"
+      ],
+      "additionalProperties": false
+    },
+    "concept": {
+      "$ref": "#/$defs/concept"
+    },
+    "copy": {
+      "$ref": "#/$defs/copy"
+    },
+    "feasibility": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "not_assessed",
+            "compact",
+            "at_risk",
+            "dtp_required"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "review_plan": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "status",
+        "reason",
+        "review_plan"
+      ],
+      "additionalProperties": false
+    },
+    "reference_status": {
+      "enum": [
+        "none",
+        "ready",
+        "conflict",
+        "unavailable"
+      ]
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reference"
+      },
+      "minItems": 0
+    },
+    "host": {
+      "type": "object",
+      "properties": {
+        "surface": {
+          "enum": [
+            "Unknown",
+            "chatgpt_work",
+            "codex",
+            "other"
+          ]
+        },
+        "native_generation_available": {
+          "type": [
+            "boolean",
+            "string"
+          ],
+          "enum": [
+            true,
+            false,
+            "Unknown"
+          ]
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/control"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "surface",
+        "native_generation_available",
+        "model",
+        "controls"
+      ],
+      "additionalProperties": false
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "render_status": {
+      "enum": [
+        "not_requested",
+        "blocked_dtp",
+        "unavailable",
+        "generated",
+        "qa_pass",
+        "qa_fail",
+        "generation_failed"
+      ]
+    },
+    "qa": {
+      "$ref": "#/$defs/qa"
+    },
+    "edit_scope": {
+      "type": "object",
+      "description": "Only for a scoped edit; permissions still require actual user evidence.",
+      "properties": {
+        "source_reference_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "change": {
+          "type": "string",
+          "minLength": 1
+        },
+        "changed_copy_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "protected_copy_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "protected_properties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "source_reference_id",
+        "change",
+        "changed_copy_ids",
+        "protected_copy_ids",
+        "protected_properties"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "activation",
+    "request_kind",
+    "action",
+    "input_context",
+    "task_mode",
+    "output_mode",
+    "production_intent",
+    "strategy",
+    "concept",
+    "copy",
+    "feasibility",
+    "reference_status",
+    "references",
+    "host",
+    "prompt",
+    "render_status",
+    "qa"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "copy_item": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "enum": [
+            "must_read",
+            "should_read",
+            "metadata",
+            "decoration"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "authority": {
+          "enum": [
+            "user_locked",
+            "source_locked",
+            "user_selected",
+            "assistant_draft"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "line_breaks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "allowed_changes": {
+          "enum": [
+            "none",
+            "layout_only",
+            "wording_requested"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "language",
+        "role",
+        "required",
+        "authority",
+        "source",
+        "line_breaks",
+        "allowed_changes"
+      ],
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "verified",
+            "constrained",
+            "Unknown"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "status",
+        "source",
+        "item_ids"
+      ],
+      "additionalProperties": false
+    },
+    "concept_lock": {
+      "type": "object",
+      "properties": {
+        "premise": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mechanism": {
+          "type": "string",
+          "minLength": 1
+        },
+        "distinctive_hook": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allowed_adaptations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "forbidden_substitutions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "source_context": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "premise",
+        "mechanism",
+        "distinctive_hook",
+        "allowed_adaptations",
+        "forbidden_substitutions"
+      ],
+      "additionalProperties": false
+    },
+    "concept": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "needs_selection",
+            "selected",
+            "locked",
+            "not_required"
+          ]
+        },
+        "lock": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/concept_lock"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "lock"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "selected",
+                  "locked"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "lock": {
+                "$ref": "#/$defs/concept_lock"
+              }
+            },
+            "required": [
+              "lock"
+            ]
+          }
+        }
+      ]
+    },
+    "copy": {
+      "type": "object",
+      "properties": {
+        "route": {
+          "enum": [
+            "no_copy",
+            "locked_copy",
+            "copy_discovery",
+            "copy_refinement"
+          ]
+        },
+        "selection_status": {
+          "enum": [
+            "not_required",
+            "draft",
+            "needs_selection",
+            "selected",
+            "locked"
+          ]
+        },
+        "message_thesis": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/copy_item"
+          },
+          "minItems": 0
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "thesis": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "visual_relation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "tradeoff": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "thesis",
+              "text",
+              "visual_relation",
+              "tradeoff"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "route",
+        "selection_status",
+        "message_thesis",
+        "items",
+        "options",
+        "claims"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "route": {
+                "const": "no_copy"
+              }
+            },
+            "required": [
+              "route"
+            ]
+          },
+          "then": {
+            "properties": {
+              "selection_status": {
+                "const": "not_required"
+              },
+              "items": {
+                "const": []
+              },
+              "options": {
+                "const": []
+              },
+              "claims": {
+                "const": []
+              }
+            },
+            "required": [
+              "selection_status",
+              "items",
+              "options",
+              "claims"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "selection_status": {
+                "enum": [
+                  "selected",
+                  "locked"
+                ]
+              }
+            },
+            "required": [
+              "selection_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/copy_item"
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "items"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "route": {
+                "const": "locked_copy"
+              }
+            },
+            "required": [
+              "route"
+            ]
+          },
+          "then": {
+            "properties": {
+              "selection_status": {
+                "const": "locked"
+              }
+            },
+            "required": [
+              "selection_status"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "selection_status": {
+                "const": "not_required"
+              }
+            },
+            "required": [
+              "selection_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "route": {
+                "const": "no_copy"
+              }
+            },
+            "required": [
+              "route"
+            ]
+          }
+        }
+      ]
+    },
+    "reference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "conflict": {
+          "type": "boolean"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "identity",
+              "product",
+              "logo",
+              "geometry",
+              "composition",
+              "pose",
+              "style",
+              "light",
+              "material",
+              "typography",
+              "edit_source"
+            ]
+          },
+          "minItems": 1
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "available",
+        "conflict",
+        "roles",
+        "properties"
+      ],
+      "additionalProperties": false
+    },
+    "control": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string"
+        },
+        "classification": {
+          "enum": [
+            "native-setting",
+            "prompt-semantic",
+            "reference-conditioned",
+            "external-qa",
+            "unsupported",
+            "Unknown"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name",
+        "value",
+        "classification",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "const": "native-setting"
+              }
+            },
+            "required": [
+              "classification"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "not": {
+                  "const": "Unknown"
+                }
+              }
+            },
+            "required": [
+              "evidence"
+            ]
+          }
+        }
+      ]
+    },
+    "qa": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "not_run",
+            "pass",
+            "fail"
+          ]
+        },
+        "critical_failures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "pass",
+                  "fail",
+                  "Unknown",
+                  "not_applicable"
+                ]
+              },
+              "evidence": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "evidence"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "status",
+        "critical_failures",
+        "checks"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "critical_failures": {
+                "const": []
+              },
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "status": {
+                      "enum": [
+                        "pass",
+                        "not_applicable"
+                      ]
+                    },
+                    "evidence": {
+                      "type": "string",
+                      "minLength": 1,
+                      "not": {
+                        "const": "Unknown"
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "status",
+                    "evidence"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "critical_failures",
+              "checks"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "enum": [
+              "return_prompt",
+              "native_render",
+              "report_unavailable",
+              "report_generation_failed",
+              "review"
+            ]
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "activation": {
+            "enum": [
+              "explicit",
+              "continuation"
+            ]
+          },
+          "request_kind": {
+            "const": "design"
+          },
+          "output_mode": {
+            "enum": [
+              "prompt",
+              "render",
+              "render_and_prompt"
+            ]
+          },
+          "concept": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "selected",
+                  "locked"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "copy": {
+            "properties": {
+              "selection_status": {
+                "enum": [
+                  "selected",
+                  "locked",
+                  "not_required"
+                ]
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/copy_item"
+                    },
+                    {
+                      "properties": {
+                        "authority": {
+                          "enum": [
+                            "user_locked",
+                            "source_locked",
+                            "user_selected"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "authority"
+                      ]
+                    }
+                  ]
+                },
+                "minItems": 0
+              },
+              "claims": {
+                "type": "array",
+                "items": {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/claim"
+                    },
+                    {
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "verified",
+                            "constrained"
+                          ]
+                        },
+                        "source": {
+                          "not": {
+                            "const": "Unknown"
+                          }
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "source"
+                      ]
+                    }
+                  ]
+                },
+                "minItems": 0
+              }
+            },
+            "required": [
+              "selection_status",
+              "items",
+              "claims"
+            ]
+          },
+          "feasibility": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "compact",
+                  "at_risk"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "reference_status": {
+            "enum": [
+              "none",
+              "ready"
+            ]
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/reference"
+                },
+                {
+                  "properties": {
+                    "available": {
+                      "const": true
+                    },
+                    "conflict": {
+                      "const": false
+                    }
+                  },
+                  "required": [
+                    "available",
+                    "conflict"
+                  ]
+                }
+              ]
+            },
+            "minItems": 0
+          },
+          "production_intent": {
+            "enum": [
+              "concept_raster",
+              "digital_final"
+            ]
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "activation",
+          "request_kind",
+          "output_mode",
+          "concept",
+          "copy",
+          "feasibility",
+          "reference_status",
+          "references",
+          "production_intent",
+          "prompt"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "native_render"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output_mode": {
+            "enum": [
+              "render",
+              "render_and_prompt"
+            ]
+          },
+          "host": {
+            "properties": {
+              "native_generation_available": {
+                "const": true
+              }
+            },
+            "required": [
+              "native_generation_available"
+            ]
+          },
+          "render_status": {
+            "const": "not_requested"
+          },
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "not_run"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "output_mode",
+          "host",
+          "render_status",
+          "qa"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "return_prompt"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output_mode": {
+            "const": "prompt"
+          },
+          "render_status": {
+            "const": "not_requested"
+          },
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "not_run"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "output_mode",
+          "render_status",
+          "qa"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "report_unavailable"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output_mode": {
+            "enum": [
+              "render",
+              "render_and_prompt"
+            ]
+          },
+          "host": {
+            "properties": {
+              "native_generation_available": {
+                "enum": [
+                  false,
+                  "Unknown"
+                ]
+              }
+            },
+            "required": [
+              "native_generation_available"
+            ]
+          },
+          "render_status": {
+            "const": "unavailable"
+          },
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "not_run"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "output_mode",
+          "host",
+          "render_status",
+          "qa"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "report_generation_failed"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output_mode": {
+            "enum": [
+              "render",
+              "render_and_prompt"
+            ]
+          },
+          "render_status": {
+            "const": "generation_failed"
+          },
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "not_run"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "output_mode",
+          "render_status",
+          "qa"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "review"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output_mode": {
+            "enum": [
+              "render",
+              "render_and_prompt"
+            ]
+          },
+          "render_status": {
+            "enum": [
+              "generated",
+              "qa_pass",
+              "qa_fail"
+            ]
+          }
+        },
+        "required": [
+          "output_mode",
+          "render_status"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "enum": [
+              "answer",
+              "clarify",
+              "offer_concepts",
+              "offer_copy",
+              "route_dtp"
+            ]
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "prompt": {
+            "const": ""
+          },
+          "render_status": {
+            "enum": [
+              "not_requested",
+              "blocked_dtp"
+            ]
+          }
+        },
+        "required": [
+          "prompt",
+          "render_status"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "activation": {
+            "const": "not_requested"
+          }
+        },
+        "required": [
+          "activation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "enum": [
+              "answer",
+              "clarify"
+            ]
+          },
+          "output_mode": {
+            "const": "none"
+          }
+        },
+        "required": [
+          "action",
+          "output_mode"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "request_kind": {
+            "enum": [
+              "advice",
+              "concepts",
+              "copy",
+              "skill_extension"
+            ]
+          }
+        },
+        "required": [
+          "request_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output_mode": {
+            "const": "none"
+          },
+          "action": {
+            "enum": [
+              "answer",
+              "clarify",
+              "offer_concepts",
+              "offer_copy"
+            ]
+          }
+        },
+        "required": [
+          "output_mode",
+          "action"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "route_dtp"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "then": {
+        "properties": {
+          "feasibility": {
+            "properties": {
+              "status": {
+                "const": "dtp_required"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "render_status": {
+            "const": "blocked_dtp"
+          }
+        },
+        "required": [
+          "feasibility",
+          "render_status"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "render_status": {
+            "const": "qa_pass"
+          }
+        },
+        "required": [
+          "render_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "const": "review"
+          },
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "action",
+          "qa"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "qa"
+        ]
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "const": "review"
+          },
+          "render_status": {
+            "const": "qa_pass"
+          }
+        },
+        "required": [
+          "action",
+          "render_status"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "render_status": {
+            "const": "qa_fail"
+          }
+        },
+        "required": [
+          "render_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "const": "review"
+          },
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "fail"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "action",
+          "qa"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "feasibility": {
+            "properties": {
+              "status": {
+                "const": "at_risk"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "feasibility"
+        ]
+      },
+      "then": {
+        "properties": {
+          "feasibility": {
+            "properties": {
+              "review_plan": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "review_plan"
+            ]
+          }
+        },
+        "required": [
+          "feasibility"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reference_status": {
+            "const": "none"
+          }
+        },
+        "required": [
+          "reference_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "references": {
+            "const": []
+          }
+        },
+        "required": [
+          "references"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "qa": {
+            "properties": {
+              "status": {
+                "const": "fail"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "qa"
+        ]
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "const": "review"
+          },
+          "render_status": {
+            "const": "qa_fail"
+          }
+        },
+        "required": [
+          "action",
+          "render_status"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "task_mode": {
+            "const": "edit"
+          },
+          "action": {
+            "enum": [
+              "return_prompt",
+              "native_render",
+              "report_unavailable",
+              "report_generation_failed",
+              "review"
+            ]
+          }
+        },
+        "required": [
+          "task_mode",
+          "action"
+        ]
+      },
+      "then": {
+        "required": [
+          "edit_scope"
+        ]
+      }
+    }
+  ]
+}

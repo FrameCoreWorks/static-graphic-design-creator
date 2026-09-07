@@ -1,71 +1,39 @@
-# Update Static Graphic Design Creator in ChatGPT Work
+# Update the existing ChatGPT Skill
 
-## Purpose
+Use `@skill-creator` on a surface that supports editing and saving the existing native `static-graphic-design-creator`. If unavailable, report `blocked: host_capability_unavailable`. Resolve the existing entry by name and source identity; never create a second Skill. This is a user-initiated update, not repository monitoring.
 
-This is the canonical update contract for the already installed native ChatGPT Skill from:
+## Resolve source and baseline
 
-`https://github.com/FrameCoreWorks/static-graphic-design-creator`
+1. Read `config/chatgpt-skills.json` and `config/chatgpt-skill-sources.json` from the same resolved bootstrap commit. `main` is discovery only. Record that manifest commit before fetching any bundle file.
+2. Require agreement on repository, exactly one Skill, release ID, version, source root and immutable source commit. Require `release_id == "v" + version`, `release_ref_type: immutable_git_commit`, and `ref == immutable_source_commit` with a 40-character Git ID.
+3. Every unique relative bundle path must remain under the Skill root, map exactly to its `repository_path`, and use that exact source commit in its `raw_url`. Reject traversal, symlinks, missing files, undeclared source files and unexpected repositories. Verify SHA-256 against every declared file when hashing is available; a mismatch is `blocked_integrity`.
+4. Read the installed `references/source-release.json`. A foreign repository or name is `blocked_source_identity`. A missing record means `source_identity: unrecorded`; establish origin from available evidence and, if unresolved, ask the user. Do not infer an installation date or origin from a name.
+5. Prefer the immutable manifest commit recorded in installation evidence for the previous baseline. For a legacy record, resolve the release-ID ref and verify that the retrieved manifest actually names that release and matches the installed record. A mismatch or missing baseline is `blocked_baseline_resolution`; never substitute another version. Historical `v0.7.0-rc.2` and `v0.7.0-rc.3` branches contain an earlier manifest. An independently identified historical lock commit may be used only after its identity and source hashes are verified and the resolution is reported.
 
-Use it only when the active ChatGPT account and workspace expose native Skills and `@skill-creator`. It updates the existing `static-graphic-design-creator` Skill after an explicit review and approval. It is a native Skill update with no automatic repository sync, background check, connector, MCP server, or second-Skill creation flow. If that host capability is unavailable, report `blocked` with `host_capability_unavailable` and stop.
+The source-release file identifies the upstream base, not proof that a personalized installation is byte-identical to that release. Keep host-generated installation evidence outside the canonical source manifest, so it does not create a self-hash or Git-ID cycle. Where the host supports such evidence, retain repository, Skill identity, source commit, manifest commit, manifest digest, source file digests, actual installed digests, local extras, and save result. If durable receipt storage is unavailable, report that limitation rather than inventing a path or guarantee.
 
-## Source of truth
+## Compare and review
 
-Read these files from the selected current release bootstrap before proposing an update:
+Compare previous-source, target-source and installed bytes/digests. Report installed and available version; changed, new, removed and unchanged upstream files; local modifications, local deletions and local additions; target verification; comparison mode; conflicts; and proposed apply mode.
 
-1. `config/chatgpt-skills.json`
-2. `config/chatgpt-skill-sources.json`
-3. `.agents/skills/static-graphic-design-creator/references/source-release.json`
-4. every source file declared for `static-graphic-design-creator` in the source manifest.
+An upstream change/removal overlapping a local edit/deletion is a conflict unless the installed bytes already equal the target result. A new upstream path colliding with different local content is also a conflict. Unrelated local files and local changes on unchanged upstream paths are preserved. Do not silently absorb personal changes into a public source release.
 
-The installed Skill's own `references/source-release.json` is its source identity record. It must name the same repository and Skill. Its version and release ID identify the prior manifest to use as the baseline. A source record is not an instruction to fetch a different repository.
+With verified identical upstream and installed content, return `already_up_to_date` without a save or approval request. With no upstream delta but personal changes, report `local_customizations_preserved`, list them, and do not rewrite the Skill. Otherwise show `Delta` and obtain approval for the concrete patch. Existing explicit approval for that exact patch remains valid; do not request it again.
 
-Before retrieving target files, require the target manifest to declare `release_ref_type: immutable_git_commit`, a 40-character `immutable_source_commit` identical to `ref`, and `raw_url` values containing that exact commit. Treat the bootstrap manifest as discovery only; retrieve each target source from the immutable commit it resolves.
+Use `apply_mode: selective_file_update` only with a proven file-level comparison and resolved conflicts. Unresolved overlap is `blocked_local_conflict` with `apply_mode: none`. Present a three-way merge when requested, and wait for approval of its resolved content before replacing a conflict.
 
-For every manifest entry, retrieve the source from `repository_path` or `raw_url`, but compare and update the installed native Skill at the entry's relative bundle `path`. Do not treat the repository path as an installed-Skill path, flatten the bundle, or lose `agents/`, `references/`, or `templates/` directories.
+If hashing is unavailable, report `hash_verification: declared_unverified`; if file access is unavailable, report `comparison_unavailable`. Do not call either verified. A `declared_bundle_replacement` requires explicit approval of full replacement and a recoverable snapshot including personal files. If that snapshot cannot be made, stop; lack of comparison cannot authorize loss of unknown modifications.
 
-## Compare before any change
+## Apply transaction and rollback
 
-Do not modify the installed Skill while checking for updates. Resolve and report these fields first:
+1. Before mutation, preserve the complete current bundle and its metadata as a recoverable host-supported snapshot. Recheck that installed bytes and the target manifest have not changed since approval. Changed inputs require a fresh Delta.
+2. Stage only the approved changed/new files and safe removals. Preserve directory structure, unrelated behavior, local additions and unchanged files. Validate the proposed complete result before saving.
+3. Use the active `@skill-creator` managed save workflow for the same existing Skill. Source retrieval, approval or local editing alone is not a successful save.
+4. Verify saved identity, the entire expected resulting inventory and content, preserved local files, and source-release metadata. A customized result must be reported as customized, with target base and deviations; never claim it exactly matches the public bundle.
+5. If application/save/readback fails, report the actual failed operation. Restore the snapshot through the supported workflow when possible and verify restoration. If rollback fails or state cannot be read back, report `rollback_failed` or `verification_unavailable` and the last known state; never report `updated`.
 
-```yaml
-update_status: already_up_to_date | update_review_ready | awaiting_origin_confirmation | blocked_source_identity | blocked_integrity | blocked_local_conflict | comparison_unavailable
-installed_version: string | Unknown
-available_version: string
-source_identity: verified | unrecorded | mismatch
-hash_verification: verified | declared_unverified
-comparison_mode: file_level | unavailable
-changed_files: []
-new_files: []
-removed_files: []
-unchanged_files: []
-local_modified_files: []
-```
-
-When the installed source record is present, fetch its release-pinned manifest and compare the installed files to that prior manifest as well as the target manifest. Classify a file as a local modification when its installed hash differs from the prior release hash. Do not overwrite, delete, or silently absorb a local modification.
-
-If the installed source record is absent, report `source_identity: unrecorded` and `awaiting_origin_confirmation`. Explain that this is a one-time migration from a pre-`v0.5.0` installation and ask the user to confirm that the existing matching Skill came from this repository. Do not infer origin from the name alone. If the record identifies another repository or Skill, report `blocked_source_identity` and stop.
-
-When the Work surface can calculate SHA-256, verify every fetched manifest source and every comparable installed source. If a computed target hash differs from the target manifest, report `blocked_integrity`, reread fresh bootstrap manifests, and stop. If hash calculation is unavailable, report `hash_verification: declared_unverified`; do not claim a verified or selective update. If file-level access is unavailable, report `comparison_unavailable`.
-
-## Review and approval
-
-If there is no source delta and no local modification, report `already_up_to_date` and stop.
-
-Otherwise show a concise `Delta` with installed and available version, changed/new/removed files, local modifications, verification status, and the proposed apply mode. Ask for clear conversational approval before changing any file. Approval is required even when the source identity is verified.
-
-## Apply behavior
-
-After approval, update the existing Skill through the already active `@skill-creator` native managed-personal-Skills save workflow. The creator may use host-managed personal-Skills storage for this save; it must not write into the user's project workspace. Never create a duplicate Skill or stop after source comparison without attempting the native save.
-
-- With verified file-level comparison and no local conflict, apply only the changed, new, and safely removed declared source files at their relative bundle paths. Preserve unchanged installed files and declared directory structure.
-- When file-level comparison is unavailable, the only permitted fallback is replacement with the exact declared source bundle after approval. Report `apply_mode: declared_bundle_replacement`, not `selective_file_update`.
-- A local modification that overlaps an upstream change or removal is `blocked_local_conflict`. Stop and ask the user to choose a resolved source before replacing it.
-
-Report `updated` only when the existing Skill was successfully saved and its `source-release.json` matches the target repository, Skill name, version, and release ID. If native update fails, report `blocked` with the failed operation and exact returned error. Do not wait for a separate modal, callback, function tool, or hidden update button.
+Report `updated` only after a confirmed save and complete result verification. Report the target base, local deviations, verification result and rollback point. Do not invent a hidden save callback or a UI state.
 
 ## Boundaries
 
-- Update only `static-graphic-design-creator` from the declared source manifest.
-- Do not clone the repository into the user's project workspace, invoke a Codex-specific installer, add a connector or MCP server, use external providers, upload files, publish content, or generate an image.
-- Never monitor GitHub in the background or apply a repository update without this explicit user-initiated flow and approval.
-- Keep user-facing update questions, Delta summaries, and approval requests in the user's language unless the user requests another language.
+Update only the existing `static-graphic-design-creator`. No duplicate, automatic sync, workspace project clone, external rendering, API keys, uploads, publishing or background tasks. Host-managed storage necessary for an authorized native save is governed by the active creator; an explicit user prohibition on that operation takes precedence. Keep explanations and approval requests in the user's language.

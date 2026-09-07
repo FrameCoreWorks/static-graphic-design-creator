@@ -58,6 +58,8 @@ def main() -> None:
         return
 
     failures: list[str] = []
+    unknown: list[str] = []
+    reached = 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         futures = {pool.submit(request, url): url for url in urls}
         for future in concurrent.futures.as_completed(futures):
@@ -66,16 +68,23 @@ def main() -> None:
                 status = future.result()
                 if not 200 <= status < 400:
                     failures.append(f"{url} returned HTTP {status}")
+                else:
+                    reached += 1
             except urllib.error.HTTPError as error:
                 if error.code not in {401, 403, 405, 429}:
                     failures.append(f"{url}: {error}")
+                else:
+                    unknown.append(f"{url}: HTTP {error.code}; content not verified")
             except (urllib.error.URLError, TimeoutError) as error:
                 failures.append(f"{url}: {error}")
 
     if failures:
         print("reference-anchor check failed:", *failures, sep="\n", file=sys.stderr)
         raise SystemExit(1)
-    print(f"reference-anchor reachability passed: {len(urls)} URLs")
+    if unknown:
+        print(f"reference-anchor check incomplete: {reached} reachable, {len(unknown)} Unknown", *unknown, sep="\n")
+        raise SystemExit(2)
+    print(f"reference-anchor reachability passed: {reached} URLs; historical claims not evaluated")
 
 
 if __name__ == "__main__":

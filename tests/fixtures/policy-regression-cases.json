@@ -1,64 +1,47 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "evaluation_kind": "manual_forward_test",
   "cases": [
     {
-      "id": "native-render-and-prompt-routing",
-      "document": ".agents/skills/static-graphic-design-creator/SKILL.md",
-      "required_terms": [
-        "## Output modes",
-        "**`render`:**",
-        "**`prompt`:**",
-        "**`render_and_prompt`:**",
-        "ask one concise question in the user's language",
-        "render_status: unavailable",
-        "active surface's built-in image-generation capability",
-        "$imagegen"
+      "id": "explicit-native-only",
+      "prompt": "Poproś o render po zamknięciu copy i konceptu.",
+      "expected_observables": [
+        "Tylko faktycznie dostępny built-in",
+        "QA po wyniku"
+      ],
+      "must_not": [
+        "Zewnętrzny provider",
+        "Automatyczny drugi render"
       ]
     },
     {
-      "id": "codex-text-bearing-static",
-      "document": ".agents/skills/static-graphic-design-creator/references/workflow-integration.md",
-      "required_terms": [
-        "host_environment: codex",
-        "execution_surface: codex_builtin_imagegen",
-        "generator_provider: openai",
-        "final_asset_has_visible_text: true",
-        "target_generator: gpt-image-2",
-        "negative_handling_mode: integrated_constraints",
-        "do not return a separate `Negative Prompt` or `negative_prompt` field",
-        "The public eight-stage contract remains canonical",
-        "Do not infer a Codex profile from a product name or host environment alone"
+      "id": "unknown-control",
+      "prompt": "Handoff podaje gpt-image-2, ale host nie pokazuje parametrów size ani seed.",
+      "expected_observables": [
+        "Native controls Unknown, deklaracja modelu oddzielna"
+      ],
+      "must_not": [
+        "Wymyślone ustawienia narzędzia"
       ]
     },
     {
-      "id": "portable-brand-and-copy-guardrails",
-      "document": ".agents/skills/static-graphic-design-creator/references/capability-and-reference-contract.md",
-      "required_terms": [
-        "Every prompt must stand alone outside this conversation",
-        "## Brand, likeness, and style authority",
-        "## Production intent and copy-feasibility preflight",
-        "Do not suggest a text-free background or a later manual overlay"
+      "id": "update-conflict",
+      "prompt": "Aktualizowany plik ma lokalne zmiany nachodzące na upstream.",
+      "expected_observables": [
+        "Delta i konflikt przed zapisem"
+      ],
+      "must_not": [
+        "Skasowanie istniejącego katalogu i fresh install"
       ]
     },
     {
-      "id": "pre-render-copy-decision",
-      "document": ".agents/skills/static-graphic-design-creator/references/qa-and-repair.md",
-      "required_terms": [
-        "## Pre-render feasibility gate",
-        "`dtp_required`",
-        "declared brand and identity authority policy"
-      ]
-    },
-    {
-      "id": "evidence-backed-poster-routing",
-      "document": ".agents/skills/static-graphic-design-creator/references/poster-movements-and-production-atlas.md",
-      "required_terms": [
-        "communication problem is resolved before a visual language is selected",
-        "must_read",
-        "Non-automatic human decisions",
-        "Process-fit rules",
-        "Anti-slop diagnostic",
-        "not a request for multi-pass layer assembly"
+      "id": "one-integrated-copy-asset",
+      "prompt": "Poproś o mocniejsze hasło i naturalniejszy ton.",
+      "expected_observables": [
+        "Jedna wewnętrzna praca copy-development-and-human-voice"
+      ],
+      "must_not": [
+        "Tworzenie osobnego humanizera"
       ]
     }
   ]

@@ -10,7 +10,7 @@ The eight stages are construction priority inside one generation. They must neve
 
 Before compiling any of the eight stages, resolve the poster strategy in this order: communication goal; required audience response; reading mode and copy burden; visual thesis; composition archetype and attention order; image/type roles and hierarchy; style family or original attributes; material treatment. Classify visible content as `must_read`, `should_read`, `metadata`, or `decoration`. Do not select a style first and retrofit a goal around it.
 
-For an open poster brief, return a `discovery_brainstorm` before the final prompt. For a directed brief, use `directed_collaboration`: keep the user's chosen direction, make the strategy explicit, and challenge it only when a concrete conflict would damage clarity, accessibility, copy feasibility, or the stated objective.
+For open concepts, use the internal [concept development asset](concept-development-and-originality.md) and paired copy routes where needed. A selected or supplied concept is preserved through composition. Before final compilation, require the canonical selected/locked concept and copy states (or explicit no-copy), resolved references and feasible production intent in [workflow integration](workflow-integration.md). Directed work does not require new alternatives. For a narrow scoped edit, put the permitted change first and preserve the approved composition; the eight stages are not mandatory headings for a repair.
 
 ## Prompt compactness
 
@@ -19,7 +19,7 @@ Resolve all eight stages, but do not force eight headings or eight long paragrap
 ## Stage order
 
 1. **Final-output contract**
-   - State asset type, one finished output, intended format, communication objective, reading mode, primary attention order, and explicit exclusions such as mockups, collages, grids, or alternate versions. Do not use a style name as the communication objective.
+   - State asset type, one finished output, intended format, communication objective, reading mode, primary attention order, and relevant exclusions such as unrequested mockups or grids of alternate versions; a requested coherent collage is allowed. Do not use a style name as the communication objective.
    - Name one design thesis and one layout mechanism. Examples: a route carries information; type contains the image; a physical interruption enacts the message; repetition enacts motion.
 
 2. **Background and spatial foundation**
@@ -28,22 +28,22 @@ Resolve all eight stages, but do not force eight headings or eight long paragrap
 
 3. **Layout architecture and attention flow**
    - Declare the composition archetype, focal axis, relative scales, alignment logic, reading rhythm, and the relationship of large, medium, and functional information.
-   - Make first, second, and third notices visibly testable. Avoid equal-weight modules and arbitrary central placement.
+   - Specify only the required attention levels, usually one to three, and make them testable. Equal modules are valid for deliberate comparison; centering is valid when it serves the selected mechanism.
 
 4. **Hero and protected source assets**
-   - Define the single dominant person, product, object, scene, or supplied source asset. State scale, placement, depth, light, material, and protected properties.
-   - When a reference is supplied, name its role. A style reference cannot silently replace a product-truth, logo, or identity reference.
+   - Define the dominant event: it may be type, a datum, negative space, a relation, or an actual person/product/scene. Do not invent a pictorial hero for a typographic design. State only relevant scale, placement, depth, light, material and protected properties.
+   - When references are supplied, name their current-request aliases and governing properties. Specify useful topology (continuous label boundary, seam relation, count, enclosure, overlap) rather than relying on repeated fidelity adjectives. A style reference cannot silently replace product, logo, or identity truth.
 
 5. **Supporting graphic elements**
    - Add only secondary elements that guide the eye, encode information, establish brand recognition, or reinforce the layout mechanism. State each element's position and job.
    - Remove decorative particles, arbitrary icons, unnecessary frames, meaningless geometric marks, and unrelated image fragments.
 
 6. **Typography and functional information**
-   - Quote every required visible string exactly. State whether it is `must_read`, `should_read`, `metadata`, or `decoration`, then state hierarchy, type role, placement, intentional line breaks, contrast, colour role, and allowed text count.
-   - Describe a type category and visible behaviour instead of asserting that a raster generator has access to a named font file. Keep small functional copy compact and legible. If critical or dense information cannot survive raster QA, stop before generation and route to DTP rather than treating it as decorative pseudo-text.
+   - Quote every required visible string exactly. State its required status separately from `must_read`, `should_read`, `metadata`, or `decoration`, then state hierarchy, type role, placement, intentional line breaks, contrast, colour role, and allowed text count.
+   - Describe a type category and visible behaviour instead of asserting that a raster generator has access to a named font file. Use [typography feasibility](typography-and-text-feasibility.md) for risk, Polish/multilingual handling and intended-size QA. Keep required functional copy legible without silently shortening it. If critical or dense information cannot survive raster QA, stop before generation and route to DTP rather than treating it as decorative pseudo-text.
 
 7. **Colour, light, and material integration**
-   - State how the selected style attributes, colour, light, contrast, surface, and depth bind the composition together. Use a limited compatible palette and motivated light. Treat lithography, screenprint, risograph, letterpress, collage, photomontage, offset, or halftone as visual material simulation unless a real production process is separately confirmed. Tie every process cue to a visible cause such as separation, overprint, register, relief, paper absorption, or dot structure; never use a generic vintage/damage filter.
+   - State how the selected style attributes, colour, light, contrast, surface, and depth bind the composition together. Use the selected compatible palette and motivated light; a deliberate hybrid must retain its assigned jobs. For a limited-ink simulation, name inks separately from substrate and overprint so new accent colours do not contradict the process. Treat lithography, screenprint, risograph, letterpress, collage, photomontage, offset, or halftone as visual material simulation unless a real production process is separately confirmed. Tie every process cue to a visible cause such as separation, overprint, register, relief, paper absorption, or dot structure; never use a generic vintage/damage filter.
    - Protect readable copy through contrast and layout, not by stacking unnecessary panels, glows, or effects behind every string.
 
 8. **Finish, exclusions, and acceptance checks**
@@ -52,14 +52,14 @@ Resolve all eight stages, but do not force eight headings or eight long paragrap
 
 ## Design checks before delivery
 
-- There is one dominant anchor.
+- There is a declared focal/reading structure appropriate to the task, including a single-word or deliberate comparison layout.
 - The visual mechanism supports the message rather than decorating it.
-- Type and image have a defined relationship.
+- Type and image have a defined relationship, or type/space deliberately carries the complete composition.
 - Every major element has a reason to exist.
 - Removing an element was considered.
-- Functional information remains compact and readable.
+- Every required item remains readable; metadata is not permission to omit or disguise it.
 - No generic stock-like staging, collage clutter, arbitrary effects, or unsupported technical claim remains.
-- The composition cannot be swapped onto an unrelated event without changing its visual thesis.
+- The full words/form relationship is specific to the brief; do not remove a typographic title to test an image that was never meant to exist alone.
 - A generic cityscape, decorative smoke, particle field, neon glow, pseudo-3D object, or arbitrary texture appears only when it performs a named communication job.
 - Critical text is not used as filler, pseudo-glyphs, or decorative texture.
-- A political position, factual claim, cultural representation, or charged historical symbol remains user-confirmed rather than inferred from a visual movement.
+- Required factual/source authority is resolved; a visual movement does not establish a political position, cultural affiliation or factual claim.

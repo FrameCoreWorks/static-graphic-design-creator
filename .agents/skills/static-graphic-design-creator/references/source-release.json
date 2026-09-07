@@ -2,11 +2,12 @@
   "schema_version": 2,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
   "skill_name": "static-graphic-design-creator",
-  "version": "0.7.0-rc.3",
-  "release_id": "v0.7.0-rc.3",
+  "version": "0.8.0-rc.1",
+  "release_id": "v0.8.0-rc.1",
   "release_channel": "candidate",
   "source_ref_type": "immutable_git_commit_from_release_manifest",
   "release_manifest_path": "config/chatgpt-skill-sources.json",
   "source_commit_recording": "The release manifest resolves the immutable source commit before this bundle is retrieved. This file intentionally does not claim its own Git object ID.",
-  "integrity_status_when_hashing_is_unavailable": "declared_unverified"
+  "integrity_status_when_hashing_is_unavailable": "declared_unverified",
+  "baseline_evidence": "Record the resolved manifest commit and digest in host-supported installation evidence outside this canonical bundle. This record identifies the upstream base; local differences remain personal modifications."
 }

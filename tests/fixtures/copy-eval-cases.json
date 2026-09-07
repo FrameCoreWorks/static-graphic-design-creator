@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "evaluation_kind": "manual_forward_test",
+  "cases": [
+    {
+      "id": "source-specific-routes",
+      "prompt": "Wymyśl trzy hasła dla wymiany książek: przynoszę przeczytaną książkę i wybieram inną; bez opłat.",
+      "expected_observables": [
+        "Różne mechanizmy komunikacyjne",
+        "Każde hasło powiązane z możliwą relacją tekst-obraz"
+      ],
+      "must_not": [
+        "Interchangeable praise",
+        "Twierdzenie największa w mieście"
+      ]
+    },
+    {
+      "id": "weak-service-copy",
+      "prompt": "Popraw: Profesjonalna jakość, której możesz zaufać. Firma naprawia rowery. Innych danych nie mam.",
+      "expected_observables": [
+        "Jedno użyteczne pytanie lub konkret oparty na naprawie"
+      ],
+      "must_not": [
+        "24h",
+        "Gwarancja skuteczności",
+        "Najlepszy serwis"
+      ]
+    },
+    {
+      "id": "mixed-authority",
+      "prompt": "Nagłówek możesz zaproponować. Dokładnie zachowaj: 29,90 zł; 14 WRZEŚNIA; WSTĘP WOLNY.",
+      "expected_observables": [
+        "Oddzielne blokady danych",
+        "Wybór nagłówka przed finalizacją"
+      ],
+      "must_not": [
+        "Zmiana separatora ceny",
+        "Humanizowanie zablokowanego CTA"
+      ]
+    },
+    {
+      "id": "post-selection-rewrite",
+      "prompt": "Wybrałem: Twój regał zna już zakończenie. Dopasuj layout, nie zmieniaj słów.",
+      "expected_observables": [
+        "Dokładny nagłówek bez redakcji"
+      ],
+      "must_not": [
+        "Cicha zmiana rytmu kosztem słów"
+      ]
+    },
+    {
+      "id": "explicit-word-replacement",
+      "prompt": "Zmień tylko WOLNY na BEZPŁATNY w zatwierdzonym tekście WSTĘP WOLNY.",
+      "expected_observables": [
+        "Dokładna autoryzowana podmiana"
+      ],
+      "must_not": [
+        "Ponowna zgoda na tę samą zmianę",
+        "Nowe warianty"
+      ]
+    },
+    {
+      "id": "unsupported-source-claim",
+      "prompt": "Źródło dostarcza gotowy napis: jedyny skuteczny produkt. Nie podano dowodu.",
+      "expected_observables": [
+        "Odróżnienie zatwierdzonego brzmienia od weryfikacji twierdzenia"
+      ],
+      "must_not": [
+        "Oznaczenie verified bez dowodu",
+        "Cicha podmiana źródła"
+      ]
+    },
+    {
+      "id": "multilingual-selection",
+      "prompt": "Potrzebuję polskiej i angielskiej wersji wybranego hasła, dopasowanych do odbiorców.",
+      "expected_observables": [
+        "Osobne warianty językowe do akceptacji",
+        "Zachowane nazwy i fakty"
+      ],
+      "must_not": [
+        "Automatyczne blokowanie nowego tłumaczenia"
+      ]
+    },
+    {
+      "id": "plain-cta-valid",
+      "prompt": "Czy napis WSTĘP WOLNY musi być bardziej kreatywny?",
+      "expected_observables": [
+        "Uznanie funkcjonalnego CTA, jeśli spełnia cel"
+      ],
+      "must_not": [
+        "Wymuszona metafora"
+      ]
+    }
+  ]
+}

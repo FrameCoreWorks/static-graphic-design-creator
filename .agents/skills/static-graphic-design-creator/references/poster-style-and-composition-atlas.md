@@ -8,36 +8,17 @@ Resolve this sequence before writing the eight-stage prompt:
 
 `communication goal → audience response and copy burden → visual thesis → composition archetype and attention order → style family or original attributes → material treatment`
 
-The style family is evidence for the chosen strategy, not a decorative filter. A named artist, artwork, brand, or protected composition is never a style family; translate it into original transferable attributes under the capability and reference contract.
+The style family supports the chosen strategy, not a decorative filter. A named artist, artwork, brand, or protected composition is never a style family; translate it into original transferable attributes under the capability and reference contract.
 
 For detailed historical context, regional distinctions, function-specific decisions, production-process logic, and source anchors, read [the poster movements and production atlas](poster-movements-and-production-atlas.md). Keep this file as the compact routing reference.
 
-For popular labels that mix historical languages, composition stances, image construction, digital surface treatments, and type treatments, read [the poster style translation catalog](poster-style-translation-catalog.md). Choose one primary poster language plus at most one compatible secondary treatment; do not stack unrelated style labels as effects.
+For popular labels that mix historical languages, composition stances, image construction, digital surface treatments, and type treatments, read [the poster style translation catalog](poster-style-translation-catalog.md). Default to one primary poster language plus a compatible treatment. A requested deliberate hybrid may use more when every component has a distinct job and the reading task survives.
 
 ## Collaboration routes
 
-### `discovery_brainstorm`
+Open conceptual work belongs to [concept development](concept-development-and-originality.md). When wording is also open, develop paired concept/copy candidates using [the integrated copy asset](copy-development-and-human-voice.md), not independent style and slogan menus. A historical `discovery_brainstorm` handoff maps to this route only if its mechanism is unresolved.
 
-Use this route when the user has a broad topic but has not committed to the objective, desired audience response, visual mechanism, composition, or style. Give two to four routes with genuinely different reasoning, not four palette changes.
-
-Use this compact format for each route:
-
-```text
-ROUTE: [short name]
-Goal: [what the poster must cause the viewer to understand, feel, or do]
-Visual thesis: [one original image or mechanism]
-Composition: [archetype and attention order]
-Style treatment: [family plus 3–5 transferable attributes]
-Material treatment: [visual simulation only, if useful]
-Why it fits: [goal-linked reason]
-Trade-off: [what this route sacrifices or requires]
-```
-
-Ask the user to select, combine, or revise a route. Do not render and do not return a generic final prompt until a route is selected. If only the output mode is ambiguous, ask the existing output-mode question first.
-
-### `directed_collaboration`
-
-Use this route when the brief is concrete. Preserve the user's declared subject, objective, references, composition, and style intent. State the strategy in one compact confirmation. Raise one specific concern only when it creates a material conflict with readability, inclusion, exact copy, protected references, copy feasibility, or the stated objective. Then execute the requested prompt or render route without forcing alternatives.
+After a Core Concept Lock exists, `design_direction_exploration` may vary layout, attention, image/type roles or treatment within allowed adaptations. `directed_collaboration` preserves a supplied direction and executes the requested scope; raise only a material conflict, without forcing alternatives. Record the result in canonical `strategy` and `concept`, not a second poster-strategy schema.
 
 ## Goal classes
 
@@ -53,7 +34,7 @@ Use this route when the brief is concrete. Preserve the user's declared subject,
 
 ## Composition archetypes
 
-Select one primary archetype. A hybrid is allowed only when the brief needs two different communication jobs and their hierarchy remains clear.
+Select a governing composition mechanism. A deliberate hybrid may combine mechanisms when their roles and hierarchy remain clear; do not impose an arbitrary two-job requirement.
 
 | Archetype | Mechanism | Best fit | Guardrail |
 | --- | --- | --- | --- |
@@ -67,14 +48,15 @@ Select one primary archetype. A hybrid is allowed only when the brief needs two 
 
 ## Historical and visual style families
 
-Choose at most one primary family. Add one compatible material treatment only when it strengthens the same strategy. Translate the family into the listed attributes, not into a replica of a historic work or named designer.
+Default to one primary family and a compatible material treatment. Preserve a requested deliberate hybrid when its relationships serve the same strategy. Translate the family into the listed attributes, not into a replica of a historic work or named designer.
 
 | Style family | Transferable attributes | Strong fit | Avoid when |
 | --- | --- | --- | --- |
 | `art_nouveau` | sinuous contour, organic framing, decorative rhythm, stylised botanical or human silhouette | beauty, cultural heritage, elegant event | the message needs fast factual scanning |
 | `art_deco` | stepped geometry, symmetry or disciplined axial tension, streamlined scale, restrained luxury | travel, fashion, premium gala, retro cinema | ornate period decoration conflicts with an urgent social message |
 | `constructivist` | diagonal force, large scale shifts, geometric planes, purposeful photomontage logic, compressed headline | action, sport, music, manifesto | ideological visual cues would be inappropriate or confusing |
-| `new_typography_bauhaus` | asymmetric information blocks, flat colour planes, functional letterforms, photography as structure | exhibition, education, modern institution | the brief needs poetic ambiguity rather than clarity |
+| `new_typography` | asymmetric information, functional hierarchy, photography and type as communication structure | exhibition, education, public information | a period label would replace actual reading decisions |
+| `bauhaus` | elementary relationships of form, space, colour and typography; experimental construction within a functional task | design, exhibition, educational culture | primary-colour shapes become a decorative sticker |
 | `swiss_grid` | measured grid, precise sans-serif behaviour, controlled white space, objective hierarchy, limited palette | public information, conference, design-led culture | the intended tone needs roughness, play, or handmade individuality |
 | `polish_poster_school` | concise metaphor, interpretive image, type-image tension, wit, vivid but deliberate colour | theatre, film, literature, civic concept | the result would depend on direct imitation of a named artist or a painterly-surreal stereotype |
 | `psychedelic` | optically active type, saturated colour tension, fluid contour, perceptual rhythm | music, youth culture, era-specific event | dense functional copy or accessibility requires neutral reading |
@@ -107,33 +89,17 @@ Before final delivery, require all of the following:
 
 1. The poster can state its communication goal in one sentence.
 2. One visual thesis carries that goal; the hero is not a merely attractive background.
-3. The first, second, and third notices are intentional and visibly different in scale or placement.
-4. The composition archetype explains where the title, hero, and functional information belong.
+3. The necessary attention levels are intentional; a single-word poster may need only one, while a programme needs a scan path.
+4. The composition explains where the required elements belong, including a type-only design without an image hero.
 5. The selected style changes composition, typography, colour, and material behaviour, not only the effect stack.
 6. Every decorative-looking element has a named job: hierarchy, meaning, navigation, recognition, or material evidence.
-7. Removing the event title would not leave a generic asset interchangeable with an unrelated event.
+7. The complete words/form relation is message-specific. Use a substitution test on that relation; deleting the title is invalid for a typographic concept.
 8. Generic smoke, particles, chrome, neon glow, cityscape, crowds, lens flare, pseudo-3D objects, random grids, and arbitrary paper texture are absent unless their job is explicit.
-9. `must_read`, `should_read`, `metadata`, and `decoration` are separated; decoration never resembles critical text.
+9. Attention roles and required status are distinct; all required metadata remains readable and decoration never impersonates information.
 10. Any print look follows a named process logic rather than a generic vintage or damage filter.
 
-If two or more checks fail, set `anti_slop_gate: fail`, rebuild the strategy from goal and composition, and do not repair it with a longer negative list.
+A single failed core mechanism, required string or protected source property blocks acceptance. Use [QA and repair](qa-and-repair.md) to distinguish a local repair from a strategy rebuild. A style preference alone does not require a full rerender; a longer negative list does not repair a missing concept.
 
 ## Prompt handoff
 
-Record the selected result in `poster_strategy`:
-
-```yaml
-poster_strategy:
-  collaboration_mode: discovery_brainstorm | directed_collaboration
-  communication_goal:
-  required_audience_response:
-  visual_thesis:
-  composition_archetype:
-  attention_order: []
-  style_family:
-  transferable_attributes: []
-  material_treatment:
-  anti_slop_gate: pass | fail | Unknown
-```
-
-Distribute the selected attributes through the eight-stage prompt. Do not append a separate "style paragraph" that contradicts the background, layout, hero, typography, or finish decisions.
+Use the single [workflow contract](workflow-integration.md): put the composition, attention order, visual thesis and treatments in `strategy`; retain the selected `concept.lock`. Distribute the decisions through the one final prompt. Do not append a style paragraph that contradicts earlier instructions or introduce a competing field schema.

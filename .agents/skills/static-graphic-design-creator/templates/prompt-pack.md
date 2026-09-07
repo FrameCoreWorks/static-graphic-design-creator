@@ -1,85 +1,79 @@
 # Static Design Prompt Pack
 
-```yaml
-prompt_method: standard
-input_context: standalone
-output_mode: prompt
-rendering_route:
-  native_generation_requested: false
-  native_generation_available: Unknown
-  render_status: not_requested
-  qa_route: not_applicable
-production_intent: concept_raster
-generator_profile:
-  surface: Unknown
-  execution_surface: Unknown
-  generator_provider: Unknown
-  target_generator: Unknown
-  verified_native_controls: []
-  unknown_capabilities: []
-task_mode:
-rendering_context:
-  host_environment: Unknown
-  final_asset_has_visible_text: Unknown
-generator_prompt_format:
-  negative_handling_mode: unknown
-  source_check_status: not_required
-  separate_negative_prompt_allowed: Unknown
-prompt_delivery_form: unified-multistage-static
-reference_roles: []
-required_request_references: []
-design_intent:
-poster_strategy:
-  collaboration_mode: Unknown
-  communication_goal:
-  required_audience_response:
-  reading_mode: Unknown
-  text_hierarchy:
-    must_read: []
-    should_read: []
-    metadata: []
-    decoration: []
-  composition_archetype:
-  image_type:
-  type_role:
-  style_request_labels: []
-  style_family:
-  primary_poster_language:
-  transferable_attributes: []
-  secondary_treatment: Unknown
-  style_label_translation: Unknown
-  material_treatment:
-  production_process: Unknown
-  intentional_legibility_friction: Unknown
-  human_review_required: []
-  anti_slop_gate: Unknown
-attention_order: []
-layout_mechanism:
-type_image_relationship:
-copy_pack:
-  copy_route:
-  copy_authority:
-  message_thesis:
-  selected_copy:
-    headline:
-    support_line: []
-    cta:
-    metadata: []
-  claim_status: Unknown
-  copy_locks: []
-  copy_fit:
-copy_locks: []
-copy_feasibility:
-brand_identity_policy:
-likeness_authority: Unknown
-style_treatment: original_attributes_only
-native_settings: []
-prompt:
-protected_elements: []
-exclusions: []
-expected_observables: []
-acceptance_criteria: []
-repair_route:
-```
+This fictional, valid prompt-only example demonstrates [the canonical state](../references/design-contract.schema.json). Replace its facts with the supplied brief; never reuse example wording automatically. The native model and controls are Unknown. A real render requires an authorized state transition and observed QA.
 
-The `prompt` field contains one self-contained prompt in this order: final-output contract; background and spatial foundation; layout architecture and attention flow; hero and protected source assets; supporting graphic elements; typography and functional information; colour, light, and material integration; finish, exclusions, and acceptance checks. Resolve `poster_strategy` before authoring this prompt; it is a decision record, not an extra prompt section.
+```yaml
+schema_version: 1
+activation: explicit
+request_kind: design
+action: return_prompt
+input_context: standalone
+task_mode: generate
+output_mode: prompt
+production_intent: concept_raster
+strategy:
+  objective: Announce the supplied title clearly
+  audience: Readers of this announcement
+  response: Read the title
+  output_format: square digital concept
+  reading_mode: glance
+  visual_thesis: The single title is the complete visual event
+  attention_order:
+  - Title
+  composition: typographic_engine
+  type_image_relationship: Type is the image
+  style_requests: []
+  primary_language: reduced typographic composition
+  secondary_treatments: []
+  intentional_hybrid: false
+  material_treatment: flat field
+concept:
+  status: locked
+  lock:
+    premise: Supplied one-word announcement
+    mechanism: One word with protected surrounding space
+    distinctive_hook: The entire composition is the title
+    allowed_adaptations:
+    - Optical spacing
+    forbidden_substitutions:
+    - Additional imagery or copy
+copy:
+  route: locked_copy
+  selection_status: locked
+  message_thesis: The supplied title is the announcement
+  items:
+  - id: title
+    text: CZYTAJ
+    language: pl
+    role: must_read
+    required: true
+    authority: user_locked
+    source: Fictional example brief supplies this final title
+    line_breaks: []
+    allowed_changes: layout_only
+  options: []
+  claims: []
+feasibility:
+  status: compact
+  reason: One word in a high-contrast field
+  review_plan:
+  - Inspect exact spelling and spacing if rendered
+reference_status: none
+references: []
+host:
+  surface: Unknown
+  native_generation_available: Unknown
+  model: Unknown
+  controls: []
+prompt: 'Create one flat square digital concept graphic. The supplied title is the complete visual event. Use a
+  warm off-white field and generous negative space; center one large black typographic anchor with optical spacing
+  and wide margins. The word itself is the hero; add no image or supporting ornament. Render exactly one visible
+  string: “CZYTAJ”, in a substantial upright sans-serif treatment on one line. Use flat colour without material
+  effects. Accept only the exact word, the clear title-first hierarchy and intact surrounding space; no other text,
+  logo, mockup or variants.'
+render_status: not_requested
+qa:
+  status: not_run
+  critical_failures: []
+  checks: []
+```

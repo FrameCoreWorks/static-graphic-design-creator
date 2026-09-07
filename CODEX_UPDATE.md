@@ -1,35 +1,11 @@
-# Update Static Graphic Design Creator in Codex
+# Update the existing personal Codex Skill
 
-## Purpose
+Use the available `$skill-creator` editing workflow for the existing `$static-graphic-design-creator`. `$skill-installer` is the fresh-install route: its current installer aborts when the destination exists and is not an overwrite/update mechanism. Never delete the installed directory to get around that guard.
 
-This is the canonical update contract for the existing personal Codex Skill from:
+Repository: `https://github.com/FrameCoreWorks/static-graphic-design-creator`.
 
-`https://github.com/FrameCoreWorks/static-graphic-design-creator`
+Apply the source resolution, three-way comparison, review, transaction, result verification and rollback algorithm in [CHATGPT_UPDATE.md](CHATGPT_UPDATE.md). Those shared sections describe the source contract, not permission to invoke a ChatGPT-specific save action in Codex. Resolve the installed personal Skill using this host's actual path and creator capabilities. If safe existing-Skill editing is unavailable, report `blocked: host_capability_unavailable`.
 
-Use `$skill-installer` to perform this user-initiated update when that built-in Skill is available. This is a standalone Skill update with no automatic repository sync, background task, connector, MCP server, or project-repository clone.
+Before any write, report installed and available versions, `Delta`, local edits/deletions/additions, source verification, conflicts and apply mode. Wait for explicit approval of the concrete patch unless it was already given. Update the same Skill only; retain its identity, preserved files and source-release base. Use the actual Codex save/verification mechanism and report only observed results.
 
-## Source and identity
-
-Read the selected current `config/chatgpt-skill-sources.json`, the target `references/source-release.json`, and every declared source file. Before retrieval, require `release_ref_type: immutable_git_commit`, a 40-character `immutable_source_commit` identical to `ref`, and `raw_url` values that include that commit. Retrieve each source only from that immutable commit through its `repository_path` or `raw_url`, while treating its relative `path` as the destination inside the installed Skill bundle. Read the installed Skill's `references/source-release.json` before changing it.
-
-The installed record must identify the same repository and `static-graphic-design-creator`. Its version and release ID identify the previous source manifest used for file-level comparison. If it is absent, report `source_identity: unrecorded` and obtain an explicit confirmation that this matching installed Skill originated from this repository before treating it as an update target. If it identifies a different repository or Skill, stop with `blocked_source_identity`.
-
-## Update procedure
-
-1. Resolve the previous and target release-pinned manifests.
-2. Verify each target source file against the target SHA-256 when the current environment can calculate it; otherwise report `hash_verification: declared_unverified` and do not claim verified comparison.
-3. Compare installed files against the previous manifest and then the target manifest. Report changed, new, removed, unchanged, and locally modified files.
-4. If there is no delta, report `already_up_to_date` and stop.
-5. Show `Delta`, installed and available version, verification status, and proposed apply mode. Ask for explicit user approval.
-6. After approval, update the existing personal `$static-graphic-design-creator` Skill without creating a duplicate.
-7. Verify the saved source-release record and report `updated` only after a real installed-Skill result.
-
-Use `apply_mode: selective_file_update` only when the environment can prove the file-level comparison and there are no local conflicts. If individual file comparison is unavailable, report `comparison_unavailable`; after approval, a full replacement with the exact declared source bundle may be used only as `apply_mode: declared_bundle_replacement`.
-
-Do not overwrite or delete a file that differs from its previous release hash when the target also changes or removes it. Report `blocked_local_conflict` and stop for user direction.
-
-## Boundaries
-
-- Install or update only the declared `static-graphic-design-creator` source bundle.
-- Do not clone the repository into a user project, install unrelated files, add apps, connectors, MCP servers, API keys, paid tools, uploads, publishing, or background tasks.
-- Do not update automatically when the repository changes. Codex may detect local file changes after an approved update, but repository checking and replacement remain user initiated.
+No duplicate directories, forced fresh installation, project clone, connectors, paid providers, API keys, image generation, uploads, publishing or background synchronization are authorized by an update request. Personal extension is a separate, approval-gated edit of the existing Skill and must not be described as an upstream release update.

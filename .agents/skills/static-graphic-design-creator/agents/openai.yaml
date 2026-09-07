@@ -1,8 +1,9 @@
 interface:
-  display_name: "Static Graphic Design Creator"
-  short_description: "Brainstorm, design, or render static graphics"
-  brand_color: "#FF4D29"
-  default_prompt: "Use $static-graphic-design-creator to explore poster directions, render a finished static graphic, or return its complete prompt."
-
+  display_name: Static Graphic Design Creator
+  short_description: Develop distinctive static concepts, copy, and graphics
+  brand_color: '#FF4D29'
+  default_prompt: Use $static-graphic-design-creator to develop a static concept and
+    its copy, refine a supplied design, or produce a complete prompt or explicitly
+    requested graphic.
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

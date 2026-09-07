@@ -1,80 +1,58 @@
 # Capability and Reference Contract
 
-## Capability classification
+Read for supplied assets, identity/product/logo fidelity, edits, or any execution-sensitive control. [Workflow integration](workflow-integration.md) owns the canonical host/reference fields; [typography feasibility](typography-and-text-feasibility.md) owns text and production routing.
 
-Resolve the exact model version and execution surface before claiming sensitive controls. A model name alone is insufficient because web UI, mobile app, API, and hosted wrappers may expose different fields.
+## Capabilities need surface evidence
 
-| Status | Use |
+Use the actual exposed tool schema and observed behavior first, then current official documentation for that surface. A model/API capability does not establish its availability in ChatGPT Work or Codex. Keep the model `Unknown` if the host does not expose it. A user's requested target is a declaration, not evidence of support.
+
+| Classification | Use |
 | --- | --- |
-| `native-setting` | Put it in a verified user-interface or API field, outside the executable prompt. |
-| `prompt-semantic` | Express it as visible natural-language direction. |
-| `reference-conditioned` | Use it only when the needed image, layout, mask, or source asset is attached to that request. |
-| `external-qa` | State it as a post-render acceptance check. |
-| `unsupported` | Omit it from the prompt and disclose the limitation. |
-| `Unknown` | Do not infer support from another model or product surface. |
+| `native-setting` | Send only through an actually exposed field; record its evidence outside the prompt |
+| `prompt-semantic` | Natural-language intent such as a vertical composition or restrained spacing; no guarantee of exact control |
+| `reference-conditioned` | Requires the relevant asset attached to the actual request and a supported conditioning/edit route |
+| `external-qa` | Check the actual result, such as spelling or exact geometry; not a generation setting |
+| `unsupported` | Report the limitation when relevant; do not send fabricated syntax |
+| `Unknown` | Unverified, neither false nor supported; do not borrow claims from another surface |
 
-Keep native output size, aspect selection, reference count, seed, masks, weights, negative-prompt syntax, and edit fields outside the prompt unless verified for the selected surface. Never put resolution claims, pixel dimensions, megapixels, `8K`, `4K`, `2K`, `UHD`, or `HD` inside a prompt.
+Native size, aspect fields, reference limits, masks, seeds, weights, transparency, negative fields and edit controls require individual verification. Output dimensions belong in supported settings and final-file inspection, not quality incantations such as “8K”. Never claim an alpha channel, editable layers, exact font or repeatable seed from natural-language instructions alone. A declared reference set exceeding actual input limits requires an explicit priority decision, not silently dropped assets.
 
-## Generator prompt format and portability
+## One native execution route
 
-Record `task_mode`, `execution_surface`, `generator_provider`, `target_generator`, `negative_handling_mode`, and `source_check_status` in the prompt pack. If the target generator or surface is not verified, use `Unknown` or `unknown`; do not imitate a different generator's syntax.
+Native generation requires a user's render request, selected concept/copy, resolved required references and passed feasibility gate. Use the available built-in image capability under its active tool/Skill instructions. A built-in Skill's CLI or paid API fallback is outside this Skill's authorization. Never substitute an external service, upload, or paid provider when native generation is absent.
 
-When the connected Codex text-bearing static profile is explicitly selected through `host_environment: codex`, `execution_surface: codex_builtin_imagegen`, `generator_provider: openai`, `final_asset_has_visible_text: true`, and `target_generator: gpt-image-2`, use `negative_handling_mode: integrated_constraints`. Put brief, concrete exclusions in the main prompt, such as no extra words or no duplicate text. Do not create a separate `Negative Prompt` or `negative_prompt` block. This is a format rule only; it does not execute generation.
+If unavailable, use `report_unavailable` and `render_status: unavailable` with the final prompt only when all other finalization gates are satisfied. An open copy choice stays open. A failed call is `generation_failed`, not a render or QA pass. A returned image starts as `generated`; inspect before claiming acceptance. No silent retry or automatic second render.
 
-Every prompt must stand alone outside this conversation. Do not refer to previous prompts, earlier renders, rejected outputs, chat history, or attachments not listed for the current request. Name each attached reference by its current-request alias and role.
+Use integrated, concrete exclusions unless the active surface verifies a separate negative field. The optional Codex declarations described in [workflow integration](workflow-integration.md) are compatibility context, not executable settings. Each submitted prompt must stand alone with current-request reference aliases and attachments; never rely on an unavailable previous image.
 
-## Native rendering boundary
+## Assign authority by property
 
-Use the active surface's built-in image-generation capability only when the user explicitly asks to generate or render the graphic. Build the same complete prompt required by this Skill before invoking that capability. In Codex, invoke `$imagegen` only when it is available as a built-in Skill. Do not render from an ambiguous brief, and do not use an external provider, API, connector, paid service, or upload as a fallback.
+One image may have several explicit roles. Use canonical `references` entries with stable ID, actual source, availability, roles and a `properties` map. Record which property each source governs and what may change. Do not give every property to whichever reference happens to be listed first.
 
-If native image generation is unavailable, return `render_status: unavailable` with the complete final prompt. If the copy-feasibility preflight returns `dtp_required`, return `render_status: blocked_dtp` and do not render a raster substitute. If the native call fails, return `render_status: generation_failed`, retain the final prompt, and stop.
+| Source role | Typical protected properties | Does not automatically authorize |
+| --- | --- | --- |
+| Identity / likeness | Recognizable identity and user-specified face, body or hair traits | Another person's identity from a style image |
+| Product truth | Silhouette, proportions, construction, closures, count, label boundaries and contents | A redesign to fit a prettier composition |
+| Garment | Cut, seam topology, fasteners, print placement and material when specified | Changing brand, garment type or pattern continuity |
+| Packaging / logo | Mark geometry, spelling, colours, label topology, panel orientation | Invented marks, certifications, a fake logo or reflowed approved lockup |
+| Composition / pose | Placement, scale relations, viewpoint or action within declared scope | Overriding anatomy, product construction or identity |
+| Style / artwork | Transferable palette, rhythm, mark-making, type-image relation | Unrequested copying of source text, people, marks or composition |
+| Location | Required visible architecture/signage and verified identity | A generic substitute presented as that location |
+| Light / material | Lighting or surface appearance allowed by the brief | Altered geometry, added embossing or a new physical material |
+| Edit source | Current approved image and protected state | Starting a new composition or silently replacing the image |
 
-## Reference roles
+Resolve overlap per property: user-approved copy and explicit source locks govern their own property; identity/product/logo truth outranks stylistic convenience. Composition governs arrangement within those locks. Equal-authority disagreement on a required property blocks finalization until resolved. Preserve unresolved references as unavailable/conflicting, rather than treating absence as a creative license. Use the smallest sufficient set while retaining every required authority.
 
-Assign one job to every reference:
+For example, `product_front` may lock `bottle_shape: cylindrical`, `label_boundary: one continuous closed rectangle`, `cap_count: one`; `lighting_ref` governs soft side light only. Do not turn the label into floating strips, repeat caps, change packaging seams, or replace the product to imitate lighting. Relative topology is often more useful than repeated adjectives such as “exact”.
 
-- identity;
-- product truth;
-- composition;
-- pose or action;
-- style;
-- light;
-- material;
-- typography;
-- scoped edit source.
+## Source and brand decisions
 
-State which properties remain protected. A reference for style does not authorize copying an unrelated person's likeness, a protected logo, product geometry, exact written copy, or the original composition.
+Use user-supplied approved assets for their stated task and preserve verified facts. Source approval establishes which asset/wording governs the design; it does not independently prove a factual claim or legal clearance. Record unresolved attribution or required likeness/brand authority as `Unknown` and ask when it affects the requested result. Do not demand a new approval for a source and scope the user already approved.
 
-Use the smallest reference set that resolves the requested control. Declare a precedence order whenever roles overlap: approved exact copy, identity, product truth, and logo authority take priority over composition; composition takes priority over style, light, and material. If two references conflict at the same priority, surface the conflict before generation.
+Never invent an official logo, certification, partner, claim, price, date or product feature. Distinguish faithful use of an approved mark from a brand-inspired visual treatment. If exact mark geometry is mandatory and native conditioning cannot preserve it, route to suitable exact-asset placement with user authorization; do not claim a generated approximation is the official master.
 
-For an edit, name only the permitted change, then list protected state separately. For a variation, name the allowed variation range and preserve every unchanged lock. Repeated prompt wording does not create deterministic continuity across separate generations.
+For a named style or artwork, articulate original transferable decisions. Historical movement references guide design language, not factual position or cultural authority. Preserve meaningful cultural context and verify unfamiliar claims before using them; unresolved facts remain Unknown. A context-sensitive question is warranted for an unconfirmed position or charged symbol, not as a blanket obstacle to ordinary civic graphics.
 
-## Brand, likeness, and style authority
+## Edits and variants
 
-For real brands, venues, institutions, partner marks, logos, or people, record an authority policy before prompt writing. Use only approved attached source assets and verified facts. For a real person, record `likeness_authority` as `user_confirmed`, `approved_source`, or `Unknown`; when the person is required and authority is `Unknown`, ask before generating. If the receiving surface supports a verified official-source check, request it as a preflight. If it does not, or if the check cannot be performed, mark the missing identity detail as `Unknown`; do not invent a logo, official name, partner, claim, certification, price, date, mark, or person.
-
-For an artist, artwork, brand, or product style reference, identify the transferable visual attributes, such as contrast, palette, material, layout rhythm, or historical design movement. Request an original treatment built from those attributes; do not direct imitation of a specific artist, artwork, brand identity, or protected composition.
-
-## Raster typography limits
-
-Quote required strings. Keep them short, declare their count and location, and use external QA for spelling, diacritics, line breaks, spacing, and contrast. Raster generators can approximate visual type behaviour but cannot be assumed to use a specific font file or to provide print-safe kerning, ligatures, font licensing, or flawless small text.
-
-Use a separated production route only when the user explicitly asks for it or when a verified render needs a narrow repair. It must preserve the approved result and introduce only the locked text or one named change. It is not a guarantee of correct spelling.
-
-## Production intent and copy-feasibility preflight
-
-Resolve `production_intent` before classifying copy:
-
-- `concept_raster`: a directional or presentational visual where text still receives QA;
-- `digital_final`: a publishable raster asset after all acceptance checks pass;
-- `production_master`: an editable, print-ready, licensed-font, bleed, or prepress deliverable.
-
-`production_master` is always `dtp_required`. A business card, label, menu, or flyer may still be `concept_raster` when the user asks for a concept rather than a production file.
-
-Classify required visible copy before authoring a raster prompt:
-
-- `compact`: a short headline and limited functional text with enough protected reading space;
-- `at_risk`: multiple strings, important dates or contact details, or small text that must receive explicit QA;
-- `dtp_required`: mandatory dense schedules, menus, legal copy, price lists, long contact data, exact print typography, licensed named fonts, or prepress requirements.
-
-For `dtp_required`, explain the reason and route to an approved non-generative layout workflow. Do not suggest a text-free background or a later manual overlay as the default workaround.
+Put the one permitted change first and list unchanged properties separately. Preserve the actual source image and all selected copy/concept locks. A variation defines allowed differences; a reference alone cannot guarantee deterministic continuity across generations. Changes to identity, product construction or a protected logo require an explicit new scope. If the required image is missing from the current request context, obtain it before editing.

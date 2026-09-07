@@ -1,34 +1,27 @@
 # Deliverable Profiles
 
-Use these as selection rules, not fixed aesthetics. Take the visual thesis and copy hierarchy from the brief; do not turn every output into the same poster language.
+A profile diagnoses communication and production, not a preset aesthetic. Use [concept development](concept-development-and-originality.md) for unresolved ideas, the [composition atlas](poster-style-and-composition-atlas.md) for layout choices, and [typography feasibility](typography-and-text-feasibility.md) for the actual output burden. Historical context belongs to the detailed movements atlas, not this table.
 
-For a poster-like deliverable, choose its composition archetype and style treatment through [the poster style and composition atlas](poster-style-and-composition-atlas.md). A deliverable profile identifies the communication problem; it does not prescribe a visual style.
-
-For a named movement, print-process treatment, film, theatre, social, or political brief, use [the detailed poster movements and production atlas](poster-movements-and-production-atlas.md) to separate historical language from function, production logic, and human-confirmed decisions.
-
-| Deliverable | Dominant job | Layout emphasis | Text risk |
+| Deliverable | Design decision | Protected information / source truth | Acceptance and escalation |
 | --- | --- | --- | --- |
-| Cultural or music poster | Intrigue, recognition, conversion | One hero and a strong reading sequence | Medium |
-| Civic or social poster | Immediate comprehension and action | Message mechanism before decoration | Medium |
-| Theatre or literary poster | Interpretive tension | Title-image relationship and controlled negative space | Low to medium |
-| Commercial key visual | Product or offer recognition | Product truth, CTA, brand hierarchy | Medium |
-| Flyer | Fast conversion | Compact information block and clear CTA | Medium to high |
-| Business card | Recognition and contact retrieval | Precise safe margins and sparse information | High |
-| Menu or price card | Scannable choices | Repetition, contrast, and stable vertical rhythm | High |
-| Label or packaging front | Shelf recognition | Brand, product name, claim, and physical material | High |
-| Book or album cover | Memorability and identification | Title-author relation and singular visual thesis | Low to medium |
-| Text-led social graphic | One-message recall | Hook, one dominant image mechanism, compact CTA | Medium |
+| Cultural, music or event poster | Decide intrigue, recognition or attendance first; rhythm can come from type, image or their tension | Event title, selected participants, date, venue and required access details | Glance recognition plus scan of attendance facts; expressive title must not swallow practical information |
+| Theatre, literary or film poster | Select one interpretive conflict or narrative question; genre cues support it | Title, approved credits and likenesses; no invented awards | Image/title relation must deepen this work, not imitate stock key art; dense billing may need DTP |
+| Civic / social / political | Specify what the viewer should understand or do and who is speaking | Approved position and facts; no invented statistic, organization or documentary evidence | Direct comprehension where required; clarify unconfirmed stance or charged symbols before using them |
+| Commercial ad / key visual | Product recognition, concrete offer or benefit, one appropriate action; choose the order for the actual objective | Exact product construction, packaging and logo roles; only supported claims, prices and terms | Product remains recognizable at use size; no fake feature or invented promotion; CTA may be omitted if the objective does not require it |
+| Flyer / programme | Group who/what/when/where/action into a scan path; dense details use stable columns and spacing | Item-to-time/price relations, dates, contacts and mandatory terms | Check detail retrieval, not just title impact; fixed tiny format with mandatory dense content routes to DTP |
+| Business / membership card | Recognition then retrieval; quiet alignment and deliberate negative space | Name, role, contact, member number, supplied mark | Concept raster is allowed; production trim, editable type, exact logo vectors and print files require appropriate layout/prepress |
+| Menu / price card | Group categories and preserve item-to-price alignment; repetition beats decorative variety | Item names, prices, quantities and required dietary facts | A few entries may fit raster; dense menu, exact tabular alignment or print master needs DTP. Never invent ingredients or dietary claims |
+| Label / packaging graphic | Distinguish flat front label, whole pack graphic and mockup; shelf recognition follows brand/product/variant hierarchy | Panel edges, seams, closure, logo, contents, required text and approved claims | Exact dieline, barcodes, regulatory panel or production separations need DTP; front-label concept cannot certify a full pack |
+| Book / album cover | Title and visual thesis cooperate at thumbnail and reading size | Title, author/artist, approved marks, scope of front/spine/back | Do not add a mockup by default. Full jacket dimensions and editable print delivery require production specifications |
+| Text-led social graphic | One message and a format-aware reading path; distinguish feed, story, carousel card or thumbnail | Selected hook, source facts, handle and brand locks | Recompose hierarchy for the target crop; do not simply crop off required text. Use declared/verified platform safe areas; otherwise record Unknown |
+| Information / education graphic | Order accurate comparisons or instructions; use alignment, labels and numbering | Data, units, sequence and source authority | No invented diagrams or pseudo-data; precise charts/instructions may require a non-generative workflow |
 
-## Selection rules
+## Shared selection rules
 
-- Resolve `production_intent` before applying a deliverable profile. Use `concept_raster` for directional visual exploration, `digital_final` for a QA-passed raster intended for publication, and `production_master` for editable or print-ready production work that must route to DTP.
-- For a business card, menu, label, or dense flyer, reduce copy before making the prompt longer. Treat contact data, legal copy, prices, and small labels as high-risk raster text requiring QA.
-- For a poster, do not use a generic cityscape, equal-weight collage, or unrelated texture as a substitute for a visual thesis.
-- For a civic or social poster, resolve the action or understanding required before selecting a style. Prefer an iconic sign, message mechanism, or information-led grid over decorative atmosphere.
-- For a political poster, obtain the user's explicit position, action, factual basis, and permission for any charged historical or cultural symbol before the visual route is resolved. Do not fabricate documentary imagery or evidence.
-- For a cultural, theatre, literary, or film poster, decide whether the audience needs literal recognition, interpretive tension, or genre signalling; choose a composition archetype before a historical movement or material treatment.
-- For an informational asset or dense flyer, classify text as `must_read`, `should_read`, `metadata`, and `decoration`. If the must-read content is dense, exact, or small, route to DTP instead of using generated pseudo-text.
-- For a key visual, define a reusable relationship or rule before composing the hero execution; verify that the visual thesis can survive a crop or second format.
-- For a commercial asset, preserve declared product and logo truth. Never invent product features, prices, claims, certification marks, or brand names.
-- For a cover, make the visual thesis and title cooperate. Do not use a book mockup unless the user explicitly requests a mockup.
-- For a social asset, place action-driving copy within platform-safe areas declared by the user or verified profile. If no profile exists, mark safe-area behaviour `Unknown`.
+Resolve `production_intent` independently of deliverable name. A card concept and a print-ready card are different contracts; the same is true for menus and labels. Do not shorten or omit locked text automatically to satisfy a format.
+
+A hero can be a word, a relation or a single datum. Minimal work does not require a decorative object, CTA or three hierarchy levels. Dense expressive work still needs a navigable reading path and an explicit division between required information and optional texture.
+
+Commercial work needs specific proof or product truth before superlatives. Ask what differentiates the offer when needed; if no proof exists, work with concrete verified facts and an honest action. Formulate a reusable visual rule for a key visual, but do not promise campaign consistency without inspecting actual variants.
+
+For a second requested format, preserve concept/copy/identity locks, re-evaluate safe areas and text burden, and state any change requiring approval. Unrequested series generation is outside the active task. Deliver only the requested asset type and distinguish a finished digital raster from a mockup or production master.

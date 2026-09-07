@@ -1,25 +1,23 @@
-# Contributing and Release Gate
+# Contributing and release validation
 
-## Scope
+Develop only the standalone `static-graphic-design-creator` and its source contract. Preserve its identity and integrated copy-development-and-human-voice asset. Personal installed copies are separate targets: never overwrite them from a source checkout without the update contract and approved Delta.
 
-Keep changes focused on the standalone `static-graphic-design-creator` Skill and its declared source contract. Do not add external providers, background sync, automatic publishing, or unrelated repository bundles.
+## Working draft
 
-## Before a candidate commit
+Install test dependencies with `python3 -m pip install -r tests/requirements.txt`. Run `python3 -B tests/test_skill.py --working-tree` while source files are being edited. This verifies the previously pinned source and draft structure; it deliberately does not certify the edited bundle as a release. Run the design-contract tests when present and `python3 -B tests/check_source_anchors.py --check-inventory`.
 
-1. Update the Skill source and any directly affected documentation, templates, fixtures, or examples.
-2. Run `python3 tests/test_skill.py` and `python3 tests/check_source_anchors.py --check-inventory`.
-3. Build the immutable Skill source commit first.
-4. In a following release-lock commit, set `immutable_source_commit` to that source commit and ensure every manifest `raw_url` uses it.
-5. Run the local validation suite again. Do not edit declared source files after the immutable source commit; make a new source commit and lock if they change.
+## Candidate lock
 
-## Stable-release gate
+1. Finish the bounded source patch, examples and tests. Choose an unpublished candidate version and update its source-release record. Never rewrite published source commits or move published release refs.
+2. Commit the Skill source first. In a following lock commit, enumerate every source file from that exact Git tree, calculate SHA-256 from its bytes, and set matching source IDs and immutable URLs in both configs. The source-release record does not claim its own Git commit.
+3. Create the candidate host report with the exact release ID and source commit. Unexecuted cases stay `pending`; a changed source invalidates previous host evidence for that candidate. Preserve historical reports.
+4. Run default `python3 -B tests/test_skill.py` to verify both the working bundle and pinned Git source. Run all affected contract/fixture checks. Commit the lock and report metadata together.
+5. `main` is release discovery, never source identity. When publication is separately authorized, publish only the fully validated source-plus-lock history. A version tag/ref must target the lock commit containing its own matching manifest. Do not publish an intermediate source commit alone to the discovery branch. Recheck the remote ref/manifest agreement after publishing.
 
-Do not publish or tag a candidate as stable until all of the following are true:
+Local commit IDs and tests do not prove public URL availability. A locally locked, unpublished candidate must be reported as such. Do not repair historical public refs by moving them without a separate owner decision; current update contracts reject their mismatching manifests.
 
-- local contract validation passes;
-- the scheduled or manual reference-anchor check has a current passing result;
-- all twenty host cases in `EVALUATION.md` have been executed in real ChatGPT Work and Codex sessions;
-- the dated result file under `reports/host-evaluations/` records the version, immutable source commit, host availability, and each observed outcome;
-- OpenAI-specific statements have been rechecked against official documentation and their verification date updated in `README.md`.
+## Stable gate
 
-If a host capability is unavailable, record that as `blocked`, not as a passing result. A release candidate may remain public for review; it is not a stable release until this gate is complete.
+A candidate is not stable until deterministic validation passes, all required host cases in EVALUATION.md have actual dated evidence for ChatGPT Work and Codex, and critical outcomes pass. `blocked`, `pending` and unsupported capabilities never count as passes. Justified `not_applicable` must explain why the requirement does not apply. A fresh reachability check must distinguish blocked/unknown links from reached links, and historical claims still require source review. Recheck OpenAI-surface statements against current official documentation.
+
+The repository-owner controls in SECURITY.md are a separate publication prerequisite. Do not change permissions, publish, push or install a candidate merely because local tests pass.

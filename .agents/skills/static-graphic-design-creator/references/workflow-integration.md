@@ -1,188 +1,73 @@
 # Workflow Integration Contract
 
-This package is self-contained. It can exchange structured information with any existing workflow without requiring that workflow to expose a particular skill name, filesystem layout, connector, or proprietary schema.
+The Skill is self-contained. Accept natural-language briefs or structured inputs from any workflow. An optional concept handoff, including one from creative-concept-lab, does not create a mandatory dependency or authorize another tool call. Preserve the original handoff and its locks; do not overwrite upstream decisions during normalization.
 
-## Standalone mode
+## One canonical state
 
-Accept natural-language input. Derive only what the user supplied or what can be safely treated as a reversible assumption. Mark unresolved generator-sensitive capability as `Unknown`.
+Use [design-contract.schema.json](design-contract.schema.json) for a complex design record or portable handoff. The [intake](../templates/design-intake.md) is a valid unresolved state; the [prompt pack](../templates/prompt-pack.md) is a fictional final prompt example. The schema is optional for ordinary conversation but its distinctions govern behavior. It validates data, not user intent, facts, visual quality or actual tool execution. Treat state labels as claims that need evidence from the conversation or tool result.
 
-## Connected mode
-
-Accept either `workflow_context` or individual fields:
-
-```yaml
-brief_contract:
-  objective:
-  audience:
-  deliverable:
-  constraints: []
-direction_contract:
-  visual_thesis:
-  attention_order: []
-  layout_mechanism:
-  type_image_relationship:
-poster_strategy:
-  collaboration_mode: directed_collaboration
-  communication_goal:
-  required_audience_response:
-  reading_mode: Unknown
-  text_hierarchy:
-    must_read: []
-    should_read: []
-    metadata: []
-    decoration: []
-  composition_archetype:
-  image_type:
-  type_role:
-  style_family:
-  transferable_attributes: []
-  material_treatment:
-  production_process: Unknown
-  intentional_legibility_friction: Unknown
-  human_review_required: []
-copy_pack:
-  copy_route: locked_copy
-  copy_authority: user_locked
-  message_thesis:
-  options: []
-  selected_copy:
-    headline:
-    support_line: []
-    cta:
-    metadata: []
-  claim_status: Unknown
-  copy_locks: []
-  copy_fit: locked
-reference_pack:
-  references: []
-asset_manifest:
-  approved_assets: []
-qa_requirements:
-  acceptance_criteria: []
-target_generator_profile:
-  surface:
-  verified_controls: []
-host_environment: Unknown
-execution_surface: Unknown
-generator_provider: Unknown
-target_generator: Unknown
-final_asset_has_visible_text: Unknown
-input_context: connected
-output_mode: prompt
-native_generation_available: Unknown
-production_intent: concept_raster
-```
-
-Preserve an upstream value when it is more specific than the brief. Do not rewrite approved copy, source authority, brand constraints, or suppression rules. If contracts conflict, surface the conflict before authoring a prompt.
-
-When `poster_strategy` is supplied, preserve its resolved communication goal and composition archetype. A supplied style family remains subordinate to those fields; if it conflicts with copy feasibility or the stated objective, explain the conflict and request a choice rather than silently replacing the style or the strategy.
-
-## Copy development handoff
-
-Treat `copy_pack` as the single source of visible wording. It may contain user-locked or source-locked strings, or a user-selected route developed through the Skill's internal copy-development-and-human-voice asset. Do not replace an approved `selected_copy` with a new slogan during layout work.
-
-When `copy_route` is `copy_discovery` or `copy_refinement` and `copy_fit` is `needs_selection`, return the copy routes and stop before prompt compilation or rendering. Carry the selected `message_thesis`, `claim_status`, and `copy_locks` forward. If copy fit is `dtp_required`, preserve the existing DTP route.
-
-## Optional Codex text-bearing static compatibility profile
-
-This profile is selected only when connected context explicitly declares:
-
-```yaml
-host_environment: codex
-execution_surface: codex_builtin_imagegen
-generator_provider: openai
-final_asset_has_visible_text: true
-target_generator: gpt-image-2
-```
-
-It is a prompt-format handoff, not permission to render, upload, call an API, or select a paid service. When `output_mode` is explicitly `render` or `render_and_prompt`, Codex may invoke `$imagegen` only if that built-in Skill is available. In this profile:
-
-- keep the explicitly declared `execution_surface: codex_builtin_imagegen`, `generator_provider: openai`, and `target_generator: gpt-image-2`;
-- set `task_mode` from the request and `negative_handling_mode: integrated_constraints`;
-- place short, concrete constraints inside the one main prompt; do not return a separate `Negative Prompt` or `negative_prompt` field;
-- place every final visible string in the one prompt and do not reserve a later text overlay;
-- name only references attached to the same request and their declared roles.
-
-The public eight-stage contract remains canonical. A receiving Codex workflow that uses a six-section static contract maps it as follows:
-
-| Public semantic stage | Codex six-section placement |
+| Field | Owner and meaning |
 | --- | --- |
-| 1. Final-output contract | Final-output contract |
-| 2. Background and spatial foundation + 3. Layout architecture and attention flow | Background and spatial foundation |
-| 4. Hero and protected source assets | Hero and source-locked assets |
-| 5. Supporting graphic elements | Supporting graphic elements |
-| 6. Typography and functional information | Typography and functional information |
-| 7. Colour, light, and material integration | Integrate into the relevant background, hero, supporting, and typography sections without adding a second prompt |
-| 8. Finish, exclusions, and acceptance checks | Finish and exclusions |
+| `activation`, `request_kind`, `action` | Entrypoint: why the Skill is active, what is requested, what happens next |
+| `input_context`, `task_mode`, `output_mode` | Independent axes: standalone/connected, static operation, requested deliverable |
+| `strategy` | Objective, audience response, reading mode, format, visual thesis, attention order, composition, type-image relation and visual treatment |
+| `concept.status`, `concept.lock` | Concept asset: selected mechanism and protected adaptations |
+| `copy.route`, `copy.selection_status`, `copy.items`, `copy.options`, `copy.claims` | Integrated copy asset: writing route, selection, exact strings, draft alternatives and evidence |
+| `feasibility` | Typography feasibility asset: risk, reason and intended checks, independent of text selection |
+| `references`, `reference_status` | Property-level reference roles, availability and conflicts |
+| `host` | Observed surface, native availability, declared/known model and individually evidenced controls |
+| `edit_scope` (scoped edits only) | Current image reference, the permitted change, changed/protected copy IDs and protected properties |
+| `prompt` | One exact submitted or paste-ready prompt, empty while unresolved |
+| `render_status`, `qa` | Actual execution/review state, never an optimistic prefilled result |
 
-When a named target surface, its current behavior, or its supported controls are uncertain, set `source_check_status: required_not_done` and keep generator-specific controls `Unknown`. A provider-neutral prompt with no named target may use `source_check_status: not_required`. Do not infer a Codex profile from a product name or host environment alone.
+Known absence is explicit: a deliberately text-free design uses `copy.route: no_copy`; unavailable image generation is false, unobserved availability is `Unknown`. `concept.lock: null` means no concept is recorded yet. Empty draft text fields are unanswered, not verified facts. Unknown does not mean false or unsupported. Only critical unresolved information blocks the relevant action.
 
-## Portable handoff
+## Transition rules
 
-Return this minimum payload when another workflow will render or review the result:
+1. For advice, copy-only, concepts or Skill management, keep `output_mode: none`. Do not enter design production from a quoted mention or casual question.
+2. Final prompt, native render and unavailable-render prompt fallback require a selected/locked concept, selected/locked copy or explicit no-copy, compact/at-risk feasibility with a review plan, and no unresolved or unavailable required reference. The user may already have supplied the approved decisions.
+3. `offer_concepts`, `offer_copy`, `clarify` and DTP routing contain no final generator prompt. Candidate copy is held in `copy.options`, not appended as extra visible text.
+4. `native_render` is the pending permitted action: `render_status` is still `not_requested` before the call. It requires a direct render request and positively observed built-in availability. After a returned image, move to `review` with `generated`. Only actual inspection can produce `qa_pass` or `qa_fail`. A failed review records `qa.status: fail` and `render_status: qa_fail` together. If the tool failed, use `report_generation_failed`; if unavailable/undiscoverable, `report_unavailable` only after other finalization gates pass.
+5. A failed critical QA item blocks acceptance. A proposed repair is not an automatic second tool call; preserve the prior artifact and obtain or reuse authorization for that bounded edit.
+6. An exact user-specified replacement is already approved. Other lexical changes to selected copy invalidate that item's selection. A changed core mechanism returns concept selection to the user unless explicitly included in allowed adaptations.
+7. Required text is independent of role: legal detail may be mandatory metadata. Claim verification is per claim, not inferred from `source_locked` wording.
 
-```yaml
-prompt_pack:
-  prompt_delivery_form: unified-multistage-static
-  input_context: connected
-  output_mode: prompt
-  rendering_route:
-    native_generation_requested: false
-    native_generation_available: Unknown
-    render_status: not_requested
-    qa_route: not_applicable
-  task_mode:
-  production_intent: concept_raster
-  rendering_context:
-    host_environment: Unknown
-    execution_surface: Unknown
-    generator_provider: Unknown
-    target_generator: Unknown
-    final_asset_has_visible_text: Unknown
-  generator_prompt_format:
-    negative_handling_mode: unknown
-    source_check_status: not_required
-    separate_negative_prompt_allowed: Unknown
-  native_settings:
-  prompt:
-  reference_roles: []
-  required_request_references: []
-  poster_strategy:
-    communication_goal:
-    reading_mode: Unknown
-    text_hierarchy:
-      must_read: []
-      should_read: []
-      metadata: []
-      decoration: []
-    composition_archetype:
-    image_type:
-    type_role:
-    style_family:
-    material_treatment:
-    production_process: Unknown
-    intentional_legibility_friction: Unknown
-    human_review_required: []
-  copy_pack:
-    copy_route:
-    copy_authority:
-    message_thesis:
-    selected_copy:
-      headline:
-      support_line: []
-      cta:
-      metadata: []
-    claim_status: Unknown
-    copy_locks: []
-    copy_fit:
-  copy_locks: []
-  copy_feasibility:
-  brand_identity_policy:
-  protected_elements: []
-  expected_observables: []
-  acceptance_criteria: []
-  unknown_capabilities: []
-  repair_route:
-```
+## Scoped-edit state
 
-Do not automatically call a renderer, reviewer, publisher, or external service. A receiving workflow may use its built-in image-generation capability only when the user explicitly requested `render` or `render_and_prompt`; otherwise it returns the prompt handoff only. It never substitutes an external service when native rendering is unavailable, blocked by DTP, or fails.
+Before finalizing `task_mode: edit`, provide `edit_scope.source_reference_id`, `change`, `changed_copy_ids`, `protected_copy_ids` and `protected_properties`. A missing source may remain an unresolved clarification state without a final edit scope. Before execution, the source must be an available current-request reference with role `edit_source`. Changed and protected copy IDs are disjoint and together account for the known copy inventory. Quote every changed string in the edit prompt; unchanged strings may be preserved through the actual image source and explicit protection instead of repeating the whole poster. Do not use this exception for a fresh render or omit a changed string. A declared scope is not evidence of authorization; validate it against the user's actual request.
+
+## Legacy input mapping
+
+| Legacy field | Canonical destination and guard |
+| --- | --- |
+| `workflow_context`, `brief_contract`, `direction_contract`, `poster_strategy` | Normalize supplied objective and design fields into `strategy`; preserve the original source values and report conflicts |
+| `concept_lock` / Core Concept Lock | `concept.lock`; map core premise, creative rule and hook; retain other supplied concept context in `source_context` when present |
+| `copy_pack.locked_strings`, `visible_copy.locked_strings` | Stable `copy.items` only when upstream explicitly identifies final wording; preserve exact strings and actual authority |
+| `copy_pack.selected_copy` | Items for headline, support, CTA and metadata; no optional field may be invented or silently omitted |
+| `copy_fit: selected / locked / needs_selection` | `copy.selection_status`; assess typography feasibility separately |
+| `copy_fit: dtp_required` | `feasibility.status: dtp_required`; it says nothing about whether wording was selected |
+| `copy_locks` | Attach permissions and source authority to the corresponding item IDs; resolve ambiguous matches |
+| `reference_pack`, `asset_manifest` | Available approved references with role/property mappings; missing files remain unavailable |
+| `target_generator_profile`, rendering context | `host`; a declaration is not proof of native controls |
+
+Never merge contradictory exact strings or silently discard unmapped protected fields. Keep the source handoff alongside the normalized record; ask only when an unresolved mapping affects the requested result. Use per-item and per-reference stable IDs; reject duplicate IDs. Preserve source locks across serialization, variants, localization and edits.
+
+## Host compatibility and optional Codex crosswalk
+
+Use actual tool schema and observed host behavior first, then current official surface documentation, then model/API documentation; a user's declared target is intent, not capability evidence. Set unknown controls to `Unknown`. Do not infer a model ID from the ChatGPT/Codex product name. A built-in imagegen Skill can describe a CLI fallback, but this Skill does not authorize that fallback.
+
+A connected handoff explicitly declaring Codex, `codex_builtin_imagegen`, OpenAI, text-bearing output and `gpt-image-2` may retain those declarations as context. It does not enable native settings. Use integrated constraints unless the selected surface actually verifies a separate negative field. Request references must be available in the receiving context; a conversational alias alone is not an attachment.
+
+A receiving workflow's six-section format may map the canonical eight semantic stages without dropping decisions:
+
+| Eight-stage semantics | Six-section destination |
+| --- | --- |
+| Final-output contract | Final-output contract |
+| Background + layout and attention | Background and spatial foundation |
+| Hero/protected assets | Hero and source-locked assets |
+| Supporting elements | Supporting graphic elements |
+| Typography and functional information | Typography and functional information |
+| Colour, light, material | Distribute into the relevant preceding sections |
+| Finish, exclusions, acceptance | Finish and exclusions |
+
+These are prompt sections, not multiple renders, layer exports or a default later text overlay. For narrow edits, lead with the permitted change and protected properties rather than forcing six or eight headings. Respect the active host's output/save rules and distinguish a local artifact from a saved installed Skill or a published deliverable.

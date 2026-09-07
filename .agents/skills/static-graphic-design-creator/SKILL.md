@@ -1,102 +1,98 @@
 ---
 name: static-graphic-design-creator
-description: Brainstorm, design, render, or refine typography-led static graphics and standalone prompts for posters, flyers, covers, advertisements, labels, cards, menus, and text-led social assets. Do not use for DTP or prepress deliverables, external rendering, or publishing.
+description: Develop concepts, write and refine copy, design, prompt, render, or edit static graphics for posters, flyers, covers, advertisements, labels, packaging graphics, cards, menus, and text-led social assets when explicitly invoked. Answer advice and copy-only requests at their requested scope. Do not run a production workflow for casual questions, quoted mentions, Skill audits, or installation work. Production masters require a DTP handoff.
 metadata:
-  short-description: Create static graphics and controlled design prompts
+  short-description: Develop distinctive static concepts, copy, and graphics
 ---
 
 # Static Graphic Design Creator
 
-Create a designed static graphic or a final prompt pack for one. The shared core is a coherent, standalone prompt that controls attention order, layout, image, typography, and finish as one system.
+Work as a graphic designer and creative director: resolve the communication problem, develop the relationship between words and image, then control hierarchy, form, fidelity and delivery. This is one self-contained Skill. The copywriter and human-voice work remain one integrated internal asset.
 
-## Input contexts
+## Activation and task scope
 
-- **Standalone mode:** turn the user's ordinary brief into a prompt pack. Ask one concise question only when a missing choice materially changes the format, exact copy, reference authority, or execution route. When visible copy is absent or the user explicitly asks for stronger wording, resolve the internal copy route before authoring a final prompt or render. For an under-directed poster brief, use the poster-direction brainstorm instead of a generic question. Otherwise state a reversible assumption.
-- **Connected mode:** accept a supplied `workflow_context` or any subset of `brief_contract`, `direction_contract`, `copy_pack`, `reference_pack`, `asset_manifest`, `qa_requirements`, `target_generator`, `target_generator_profile`, and `host_environment`. Preserve supplied locks. Do not require or invoke any named external skill.
+Start a design workflow only after an explicit Skill invocation or an unambiguous instruction to use this Skill. Continue an already activated task when the user's follow-up clearly refers to it. A quoted name, repository URL, example command or discussion of the Skill is not production intent. `uruchom skill` activates it only when the target is clear; otherwise ask which Skill/task the user means. Do not treat availability in context as authorization to design or render.
 
-## Output modes
+Classify the requested scope before choosing an output:
 
-Resolve the requested outcome before authoring or rendering. `input_context` and `output_mode` are separate fields.
+| Request | Action |
+| --- | --- |
+| Advice, capability question, or critique of a headline/layout | Answer the question directly; no full intake or output-mode question. |
+| Concepts or brainstorm only | Develop directions and stop at the requested ideation scope. |
+| Headlines, support copy or CTA only | Use the integrated copy asset; do not ask prompt versus render. |
+| Prompt or prompt revision | Return a complete standalone prompt after the necessary selections and checks. |
+| Explicitly generate/create the graphic | Resolve gates, then use available built-in generation. |
+| Graphic and prompt | Return the graphic and the exact submitted prompt. |
+| Existing image edit | Inspect and use that image; preserve everything outside the approved edit. |
+| Install, source update, audit or personal extension | Use the active skill-creator management workflow and the user's approval boundary; do not start graphic production. |
 
-- **`render`:** use when the user explicitly asks to create, generate, render, or make the static graphic. Build the complete eight-stage prompt internally and run the pre-render feasibility gate. In ChatGPT, use the active surface's built-in image generation when available. In Codex, invoke `$imagegen` only when that built-in Skill is available. Return the generated graphic and a concise QA status; do not include the full prompt unless the user also asks for it.
-- **`prompt`:** use when the user explicitly asks for a prompt, prompt pack, prompt revision, or copyable generator instruction. Return one complete standalone prompt in one fenced code block. Do not render an image.
-- **`render_and_prompt`:** use when the user explicitly asks for both. Return the generated graphic and the exact final prompt in one fenced code block.
+For an actual design request whose output is ambiguous, ask one concise question in the user's language to resolve prompt versus render. For an open brief, offer useful concept/copy routes while clarifying only the missing choice that blocks progress. Do not collect a full form from a simple request. Preserve prior answers and approvals.
 
-If the request does not make the desired outcome clear, ask one concise question in the user's language that distinguishes `render` from `prompt`. Never trigger a render from an ambiguous brief alone. Match the user's language for every user-facing clarification, route summary, and approval request unless the user asks for a different delivery language.
+## Inputs and authority
 
-Native rendering is not permission to use an external provider, API, connector, upload, or paid service. Set `render_status` to `not_requested`, `blocked_dtp`, `unavailable`, `generated`, `qa_pass`, `qa_fail`, or `generation_failed` as applicable. If built-in image generation is unavailable, return `render_status: unavailable` and the complete final prompt instead of substituting another tool. If the pre-render gate returns `dtp_required`, set `render_status: blocked_dtp` and do not render.
+Accept an ordinary brief (`standalone`) or structured handoff (`connected`). Resolve objective, desired audience response, use/format, required wording and supplied references to the degree needed for this task. Mark unknown facts/capabilities as `Unknown`; use a stated reversible design assumption when it does not change facts or protected choices.
 
-## Inputs
+A connected brief may supply a concept from any source, including `creative-concept-lab`. That Skill is optional, never a prerequisite. Preserve the supplied Core Concept Lock. If the mechanism remains open, develop it internally. When only composition or style remains open, explore those decisions while keeping the concept fixed.
 
-Minimum viable input:
+Read [workflow integration](references/workflow-integration.md) for structured inputs, conflicts, state transitions, legacy handoffs or output packaging. Its [design contract](references/design-contract.schema.json) is the canonical structured representation, not a questionnaire or mandatory user-facing dump.
 
-- asset type and communication objective;
-- audience or use context;
-- required visible copy, if any;
-- intended output format or placement.
+User instructions and explicit approvals govern scope. Verified source facts, locked text and protected reference properties constrain design choices. Neither an atlas, a style reference nor an upstream suggestion silently overrides them. Surface a concrete conflict instead of inventing a priority or changing a lock.
 
-Use supplied references only for their declared roles: identity, product truth, composition, style, light, material, typography, or scoped edit source. If a reference role is absent, do not let it silently override identity, logo, exact copy, or product geometry.
+## Creative and copy decisions
 
-## Copy development and human voice
+For open concepts, read [concept development and originality](references/concept-development-and-originality.md). Diagnose the audience response, source-specific tension and visual mechanism before selecting a style. Develop a small set of materially different directions when useful; normally two to four, but honor a different requested count. Directed work needs no forced brainstorm.
 
-Read [the copy development and human voice asset](references/copy-development-and-human-voice.md) whenever required visible copy is missing, a draft needs strengthening, or the user explicitly asks for help with a headline, support line, or CTA. It is an internal layer of this Skill, not a dependency on another named Skill.
+Read [copy development and human voice](references/copy-development-and-human-voice.md) whenever wording is missing, weak, open to revision, or itself the task. Develop the concept and copy together. Prefer paired routes over separate menus whose combinations have no rationale. Keep this one integrated asset; do not invoke separate copy-voice or humanizer Skills.
 
-Resolve `copy_route` as `locked_copy`, `copy_discovery`, or `copy_refinement` after the communication objective is clear. In `copy_discovery` or `copy_refinement`, return two to four materially different copy routes and wait for the user to select, combine, or redirect one. Do not write the final static prompt or render from an unselected assistant-written slogan. In `locked_copy`, preserve every supplied string unless the user explicitly asks for revision.
+Use `no_copy` for a deliberately text-free graphic; absence of copy is not by itself that instruction. Use `locked_copy` for supplied final wording, `copy_discovery` for new wording, and `copy_refinement` for authorized revisions. Keep selection state separate from typography feasibility. Present assistant-written candidates for selection; do not compile a final prompt or render from unselected copy. Refine the human voice before selection. Any later wording change needs renewed approval unless that exact change was already authorized.
 
-Only a selected or locked `copy_pack` may enter the final graphic. Carry its `message_thesis`, exact selected copy, claim status, and `copy_locks` into hierarchy, feasibility, and prompt compilation.
+Preserve the Core Concept Lock: premise, mechanism, distinctive hook, allowed adaptations and forbidden substitutions. A production limitation calls for a bounded alternative or user decision, not a generic substitute. Preserve exact text, dates, prices, names and declared product facts. Assistant-created copy is not a verified fact.
 
-## Poster direction and collaboration
+## Design construction
 
-For a poster, flyer, cultural graphic, civic graphic, event key visual, or text-led social graphic, resolve the communication goal before selecting a style. Read [the poster style and composition atlas](references/poster-style-and-composition-atlas.md) before turning an open creative brief into a final prompt. Read [the poster style translation catalog](references/poster-style-translation-catalog.md) when the brief names or compares broad visual labels such as minimalism, maximalism, futuristic, vector, collage, retro, cyberpunk, pop art, glassmorphism, clay, pixel art, editorial, Y2K, Swiss, surreal, bohemian, Victorian, graffiti, aurora, or handwritten. Also read [the poster movements and production atlas](references/poster-movements-and-production-atlas.md) when the brief asks for a named movement or school, a print-process look, a film, theatre, social, or political poster, or a detailed style recommendation.
+Use the following decision priority without forcing a long process for simple work:
 
-Read [the production walkthroughs](references/production-walkthroughs.md) only when the user asks for an example, when a collaborator needs to see the decision chain, or when selecting a QA repair route. The walkthroughs demonstrate the contract; they never replace the user's facts, required copy, references, or approval.
+communication objective and audience response → concept/copy relationship → reading conditions and text feasibility → visual thesis → composition and attention order → type/image roles → visual attributes and material behavior → one integrated prompt.
 
-Use one of these collaboration routes:
+Read the relevant references only:
 
-- **`discovery_brainstorm`:** use when the user has not settled the poster's purpose, audience response, visual mechanism, composition, or style direction. Return two to four materially different routes, each with: communication goal; one-sentence visual thesis; composition archetype; style family or original attribute set; material treatment; reason it fits; and one trade-off. Ask the user to select, combine, or adjust a route. Do not produce a generic final prompt or render before a direction is selected.
-- **`directed_collaboration`:** use when the user supplies a concrete goal, subject, composition, style, reference, or other strong creative decision. Preserve that decision. State the selected route concisely and raise at most one specific concern when the stated style, composition, copy, or format conflicts with the communication goal. Do not force a brainstorm or invent alternatives merely to appear creative.
+- [Style and composition atlas](references/poster-style-and-composition-atlas.md): hierarchy, attention, negative space, minimal/dense layouts and poster direction.
+- [Style translation catalog](references/poster-style-translation-catalog.md): translating a requested style label into visible decisions.
+- [Movements and production atlas](references/poster-movements-and-production-atlas.md): historical languages, cultural context and process-specific visual materiality.
+- [Deliverable profiles](references/deliverable-profiles.md): product-specific information and composition requirements.
+- [Capability and reference contract](references/capability-and-reference-contract.md): actual host controls, reference roles, identity, product and logo preservation, and property-level authority.
+- [Typography and text feasibility](references/typography-and-text-feasibility.md): exact text, Polish/multilingual reading, format burden, accessible hierarchy and DTP handoff.
+- [Unified static prompt contract](references/unified-static-prompt-contract.md): construction of one final prompt, including its eight semantic stages.
+- [Production walkthroughs](references/production-walkthroughs.md): examples and repair decisions; never a source of facts for the user's project.
+- [QA and repair](references/qa-and-repair.md): reviewing a result, selecting a repair or escalating to DTP.
 
-The non-negotiable decision order is: communication goal → audience response → reading mode and copy burden → visual thesis → composition archetype and attention order → image/type roles and hierarchy → primary poster language or original visual attributes → one compatible material, image-construction, or type treatment → one eight-stage prompt. A style label may inform the final prompt only after the earlier decisions are resolved. Classify each requested label as a historical language, contemporary visual language, composition stance, image construction, material treatment, type treatment, or ambiguous mood label. Classify visible information as `must_read`, `should_read`, `metadata`, or `decoration`; never let decoration impersonate functional copy. Treat vague adjectives such as `premium`, `cinematic`, `modern`, `futuristic`, or `bold` as requests for clarification or translation into visible attributes, not as a complete style decision.
+Choose only the attention levels the message needs, usually one to three. Type, a datum, negative space or a relation can carry the dominant event; do not invent a person/product hero or extra caption for a minimal brief. A style label informs form and cannot replace a communication decision. One primary language and a compatible treatment are a useful default; a requested deliberate hybrid is allowed when every component serves the same thesis and functional copy survives.
 
-## Operating rules
+For new graphics, compile one `unified-multistage-static` prompt. Its eight stages are assembly priority within one output, not separate renders, blank text zones, layer exports or later manual assembly. Compress irrelevant stages. For a narrow edit, lead with the one permitted change and the preserved properties; do not rebuild the entire composition. Separate production is available only when explicitly requested and feasible.
 
-1. Resolve the task as `generate`, `layout`, `reference-guided`, `edit`, or `variation`.
-2. For poster-like assets, resolve `collaboration_mode` as `discovery_brainstorm` or `directed_collaboration`, then follow the objective-first order in the poster atlas. For popular or ambiguous style labels, use the style translation catalog to select at most one primary poster language and one compatible treatment. Never let a style label choose the message, hierarchy, or composition by default.
-3. After the communication objective is clear, resolve the copy route whenever visible wording is not locked. Then identify the communication intent, reading mode (`glance`, `brief_scan`, or `deliberate_read`), text hierarchy, and first, second, and third notices. Select a composition archetype that makes those notices observable. Reject equal-weight collage logic unless the brief explicitly requires it.
-4. If the user did not name an exact generator and surface, keep the prompt provider-neutral. Mark native output size, reference count, font fidelity, editing behavior, seed behavior, and negative-prompt syntax as `Unknown` rather than inventing support. Apply the optional Codex compatibility profile only when connected context explicitly declares `host_environment: codex`, `execution_surface: codex_builtin_imagegen`, `generator_provider: openai`, `final_asset_has_visible_text: true`, and `target_generator: gpt-image-2`.
-5. Classify each requested control as `native-setting`, `prompt-semantic`, `reference-conditioned`, `external-qa`, `unsupported`, or `Unknown`. Put native settings outside the executable prompt only when they are verified for the selected surface. Resolve `task_mode` and `negative_handling_mode`; do not add a separate negative-prompt field unless the selected surface verifies one.
-6. For a poster, flyer, business card, menu, label, cover, key visual, advertising graphic, or text-led social asset, read [the unified static prompt contract](references/unified-static-prompt-contract.md) and compile one complete prompt in its fixed eight-stage order.
-7. Read [capability and reference rules](references/capability-and-reference-contract.md) before handling references, exact copy, or a selected generator. Read [deliverable profiles](references/deliverable-profiles.md) when the asset type needs a tested design grammar. Read [workflow integration](references/workflow-integration.md) only when structured context or a handoff is present. Read [QA and repair](references/qa-and-repair.md) before reviewing a rendered result or recommending another pass. For social or political work, do not choose a position, factual claim, cultural representation, or charged historical symbol without the user's explicit direction and authority.
-8. Use one complete `unified-multistage-static` prompt by default. The eight stages describe assembly priority inside one generation, not mandatory headings or a fixed length. Compress irrelevant stages, avoid mechanical repetition, and repeat only critical locks that must remain fixed. Never ask for intermediate images, separate layer files, or later text insertion.
-9. Use `separated-production` only when the user explicitly requests it or a verified near-final render needs a narrow scoped repair. State the reference handoff, preserved elements, exact permitted change, and limitations.
-10. Quote every required visible string only after `copy_fit` is `selected` or `locked`. Declare its hierarchy, placement, line-break logic, colour role, and allowed text count. Keep copy concise. For a documented single-word spelling failure, use a scoped edit and spell only that word letter by letter.
-11. Resolve `production_intent` as `concept_raster`, `digital_final`, or `production_master`, then run the copy-feasibility preflight. If mandatory small text, long legal copy, prices, schedules, contact data, exact print typography, or print specification cannot be reduced without losing the communication objective, return `dtp_required` instead of promising that raster typography will pass. Treat materiality as a visual simulation unless real printing is separately confirmed; never use a generic `vintage` texture as a production claim.
-12. For real brands, venues, institutions, partner marks, logos, or people, use only approved attached source assets and declared facts or likeness authority. If the receiving surface supports a verified official-source check, require that preflight; otherwise mark unavailable identity details as `Unknown` and do not invent them. Translate a requested artist, artwork, brand, or historical movement into original high-level visual attributes rather than imitating it directly.
-13. Do not promise a named font file, exact kerning, legal licensing status, flawless Polish diacritics, print readiness, or deterministic text rendering from a raster generator. Treat those as external QA or DTP requirements.
-14. Do not use resolution claims or empty quality boosters such as `8K`, `4K`, `HDR`, `ultra sharp`, `hyper detailed`, `crisp`, or `razor sharp`. Describe visible material, light, layout, and legibility instead.
-15. In `render` or `render_and_prompt` mode, generate only through the active surface's built-in image-generation capability after the user explicitly requested rendering and the objective-first poster direction is resolved. Do not call external services, select paid tools, upload files, publish, deploy, or make irreversible changes. If generation fails, report `render_status: generation_failed`, preserve the final prompt, and stop.
+## Finalization and execution gates
 
-## Output
+Before final prompt compilation or rendering, confirm the resolved concept, selected/locked copy or explicit `no_copy`, reference availability/conflicts and production intent. A critical unresolved fact or lock blocks finalization; a missing optional detail does not.
 
-Use [the prompt-pack template](templates/prompt-pack.md) for complex work or a connected handoff. For a simple request that asks only for prompts, lead with the finished standalone prompt and place each complete prompt in its own fenced code block with no title inside the block.
+Resolve `production_intent`: `concept_raster`, `digital_final`, or `production_master`. Exact editable typography, print specifications and production masters require `dtp_required`. Compact visible text can be a raster deliverable after actual QA; dates and prices are not automatic DTP triggers. Never simplify locked information without approval or claim a concept is production-ready.
 
-Return at most four genuinely different variants unless the user requests evaluation rather than alternatives. Every final prompt must be complete, standalone, and ready to paste.
+Modes:
 
-The output must include or make explicit:
+- `prompt`: one complete standalone prompt in a fenced block; do not render.
+- `render`: only after an explicit image request and passed gates, use the active built-in image-generation capability. Return the image and concise QA when inspection is available; omit the full prompt unless requested.
+- `render_and_prompt`: image plus the exact submitted prompt.
+- `none`: advice, concepts, copy-only, clarification or management work.
 
-- input context, prompt method (`standard` unless the user explicitly requests another), and `production_intent`;
-- output mode: `prompt`, `render`, or `render_and_prompt`;
-- render status and QA route: verified values from the declared status set, or `Unknown`;
-- generator profile, native settings, and native availability: verified values or `Unknown`;
-- host environment, generator prompt format, and negative handling mode;
-- task mode and declared reference roles;
-- design intent, collaboration mode, attention order, composition archetype, layout mechanism, style treatment, material treatment, and type-image relationship;
-- requested `style_request_labels`, their translation class, one selected `primary_poster_language`, and at most one compatible `secondary_treatment` when the poster style translation catalog applies;
-- copy route, message thesis, selected or locked visible copy, claim status, exclusions, expected observables, and QA route;
-- a portable `prompt_pack` handoff when connected context is present.
+In Codex, use the available built-in `imagegen` Skill only as the adapter to native generation. The existence of that Skill or a requested model name does not prove the tool is available. Follow actual tool input rules and inspect local edit sources first. Do not let generic prompt augmentation add unapproved slogans, objects or style decisions, and do not let an adapter trigger an unapproved retry.
 
-## Final self-check
+Keep prompt semantics separate from verified native settings. A control needs evidence for this exact host; API support alone is insufficient. Provider-neutral work needs no forced model selection. Do not use empty quality boosters or promise font files, exact kerning, flawless raster text or deterministic identity preservation.
 
-Before returning, verify that the asset has one singular intent; its composition archetype follows that intent; style is a consequence of the chosen strategy rather than a substitute for it; every major element has a visible role; attention order is executable; text and image cooperate; the selected copy has one concrete message thesis, credible human voice, and no unsupported generic claim; required copy is quoted exactly; protected references and likeness rights are not repurposed; no unsupported controls are disguised as syntax; the prompt contains no backreference to a previous chat, render, or unlisted attachment; and the result has a clear pass/fail QA route. Run the anti-slop composition gate in the poster atlas. After a native render, review it against the QA contract and report the result, but do not silently generate another attempt.
+If native generation is unavailable, return `render_status: unavailable` with the final prompt only after the other gates pass. If generation fails, preserve the prompt, report `generation_failed` and stop. DTP blocks generation. No external API/provider, paid service, upload, publishing, deployment or background action follows from a render request. Follow the user's explicit authorization boundaries.
 
-If the user asks to improve an existing render, work from that render. Prefer a scoped edit when only one observable defect remains; recommend a full rerender only when the hierarchy, identity, product construction, or core visual thesis fails.
+## Delivery and stopping
+
+For simple work, deliver the requested answer, candidates, prompt or image. Use [design intake](templates/design-intake.md) and [prompt pack](templates/prompt-pack.md) only for complex work or a handoff. Keep technical state internal unless it explains a meaningful limitation or decision.
+
+Self-check: the concept is specific to the brief; copy and image add meaning together; hierarchy is observable; required strings and protected source properties are preserved; no invented facts, pseudo-text or unsupported controls remain; the output has a clear QA route. Assess originality across the full text-image relationship, including typographic designs.
+
+After rendering, distinguish `generated` from `qa_pass` and `qa_fail`. Do not claim QA without inspecting the actual result. A critical failure blocks acceptance even if it is the only defect. Prefer scoped repair for a local defect; use a full rerender for a failed core thesis/hierarchy. Report the proposed repair and stop unless that bounded edit/render is already explicitly authorized. Stop when the requested objective is met; more variants or more effects are not an improvement by default.

@@ -1,82 +1,90 @@
 # Production Walkthroughs
 
-These compact examples show the decision chain, not reusable event facts. Substitute the user's objective, copy, rights-cleared references, and production constraints. Each example preserves the rule: one complete final prompt describes staged construction priority inside one final generation, not separate image layers or outputs.
+These are fictional decision examples, not user facts, executed renders or passing evaluations. They show how to preserve the selected concept, copy and source properties while compiling one prompt. Eight semantic stages describe construction inside one output; concise cases need no numbered headings.
 
-## 1. Discovery brainstorm: community night market poster
+## 1. Open concept, locked copy: neighbourhood night market
 
-### Brief
+The user requests a vertical social poster prompt and supplies final text: `NOCNY TARG SĄSIEDZKI`, `14 CZERWCA • 18:00–23:00`, `SKWER PRZY RZECE`, `WSTĘP WOLNY`. Their goal is orientation and a welcoming local atmosphere. Copy is `locked_copy`; the visual mechanism remains open.
 
-Create a vertical social poster for an evening neighbourhood market. Required copy: `NOCNY TARG SĄSIEDZKI`, `14 CZERWCA • 18:00–23:00`, `SKWER PRZY RZECE`, and `WSTĘP WOLNY`. The organiser wants local warmth, not a generic festival graphic. No visual direction is supplied.
-
-### Routes
-
-| Route | Visual thesis | Composition and language | Trade-off |
+| Route | Visual thesis / mechanism | Type-image relation | Trade-off |
 | --- | --- | --- | --- |
-| `A — shared table` | One long illuminated table makes participation visible. | Asymmetric editorial layout; photograph-like still life as hero; warm letterpress-like ink texture as a restrained treatment. | Feels intimate, not high-energy. |
-| `B — market constellation` | Stalls become a single route of light that leads to the information. | Diagonal wayfinding composition; original geometric civic-poster language; one screenprint separation treatment. | More abstract, so the food cue must be clear. |
-| `C — hand-made invitation` | The title behaves like a hand-stamped invitation from the neighbourhood. | Centre-weighted broadside composition; vernacular-signage type treatment; one halftone portrait-free ingredient image. | Requires very compact copy to stay legible. |
+| Shared table | One long table makes joining visible | Title introduces the table; attendance facts close the invitation | Intimate, less energetic |
+| Route of gathering | A single path gathers into a market-table sign | The path guides toward the practical information without crossing it | More abstract; the destination must remain recognizable |
+| Stamped invitation | The title itself behaves like a direct invitation | Expressive title and quiet attendance block; no added image hero | Depends on typography rather than a scene |
 
-### Selected route and strategy
+Present these directions before the final prompt. Do not invent new headlines because the source wording is already locked. Suppose the user selects **Route of gathering**. Preserve that mechanism; the available area makes four strings `at_risk`, with inspection of Polish glyphs, date/time, venue and reading size planned. This example is a concept prompt, not a verified digital final.
 
-Select route `B` because the primary audience response is orientation and welcome at a glance. `must_read`: title, date/time, venue. `should_read`: free entry. Visual mechanism: one vermilion route crosses a nocturnal field and terminates at a glowing market-table silhouette. Primary poster language: original geometric civic poster. Secondary treatment: two-colour screenprint simulation with intentional overprint only at the route intersection.
-
-### Final eight-stage prompt
+The selected material rule is **two inks: midnight blue and vermilion; warm off-white paper is the substrate**. An overlap may darken those inks but is not a third ink. Do not add cobalt, apricot or opaque white ink while claiming this two-ink system.
 
 ```text
-Create one finished vertical 4:5 social poster, not a mockup, collage, grid of variants, device frame, or separate-layer plan. Its communication objective is to make a neighbourhood evening market feel easy to find and worth joining. Reading mode: glance. First notice “NOCNY TARG SĄSIEDZKI”, second notice the illuminated route and market-table silhouette, third notice the date, venue, and free-entry line. Use one visual thesis: a single route of light gathers neighbours and carries the eye to the information.
+Create one finished vertical 4:5 social-poster concept. Make a neighbourhood evening market easy to find and welcoming. Use one mechanism: a vermilion route gathers into a simplified communal-table sign and guides the eye toward the event information. Show the title first, the gathering route second, then the grouped date, location and free-entry line. Do not show a mockup, device frame, alternate versions or separate layers.
 
-Build a near-black midnight-blue field with generous negative space, warm uncoated-paper tactility, and a protected upper title zone plus a protected lower information zone. Use warm off-white, midnight blue, vermilion, and one muted apricot accent only.
+Build a midnight-blue field on warm off-white paper. Use only midnight-blue and vermilion ink-like colours, with exposed paper providing the light areas. Leave generous space around the upper title and lower information block. Place the title toward the upper left; let one diagonal route connect the field to a simple table silhouette without crossing any text. The table is a quiet sign of gathering, secondary to the title. Add no city skyline, people, logos, decorative icons or extra scene fragments.
 
-Set an asymmetric diagonal composition: the title anchors the upper left; a vermilion route begins at the left edge, crosses the centre once, and guides toward the lower information block. Keep wide safe margins and a large-to-small reading rhythm. The route must never cross readable copy.
+Render exactly these four Polish strings and no other text: “NOCNY TARG SĄSIEDZKI”, “14 CZERWCA • 18:00–23:00”, “SKWER PRZY RZECE”, “WSTĘP WOLNY”. Use a bold compact geometric title, clear functional sans-serif date/time and venue, and a quieter free-entry line. All four are required; the title, date and venue carry primary information, while the free-entry line is supporting. Use exposed-paper-colour lettering against blue with ample contrast; preserve all spelling, diacritics and punctuation. Keep the lower strings large enough to read in the intended social viewing context.
 
-Use one central, simplified night-market table silhouette with practical lamps as the only hero. It is warm, physical, and recognisably communal without people, logos, city landmarks, or stock-event staging. Keep its scale secondary to the title and directly connected to the route.
-
-Add only functional supports: two small geometric stall-light shapes along the route and one restrained cobalt alignment rule that stabilises the lower information block. Every mark must guide attention or reinforce the route; no particles, smoke, neon UI, arbitrary icons, or decorative collage fragments.
-
-Render only these exact visible Polish strings: “NOCNY TARG SĄSIEDZKI”, “14 CZERWCA • 18:00–23:00”, “SKWER PRZY RZECE”, and “WSTĘP WOLNY”. Set the title as a bold, compact geometric display treatment in warm off-white. Set date/time and venue as precise functional sans-serif text in warm off-white. Set “WSTĘP WOLNY” as a small vermilion CTA. Preserve every diacritic, word order, and punctuation; render no other readable text.
-
-Integrate the palette with two-colour screenprint logic: flat midnight-blue and off-white fields, vermilion route, and a small intentional apricot overprint only where route meets hero light. Simulate paper absorption and controlled registration without generic damage, noise, or vintage filtering. Protect all copy through contrast and space, not glow boxes.
-
-Finish with optical alignment, restrained ink texture, intact safe margins, and an observable hierarchy. Reject the result if the title, route, and practical information do not read in that order, if any copy is misspelled, or if the poster could be reused for an unrelated event without changing the central route-and-gathering idea. If one local text defect remains, use a scoped edit; if the hierarchy or route mechanism fails, fully rerender from this complete prompt.
+Unify the composition with flat spot-colour shapes, restrained paper absorption and a single local overlap where the route meets the table sign. This is a screenprint-inspired raster simulation, not production separations. No extra accent colours, global distress, arbitrary texture, glow boxes or pseudo-text. Finish with optical alignment, intact margins and a clear route-to-information relationship. Acceptance requires exact text, a recognizable gathering mechanism and readable practical details; inspect the actual result before claiming it passes.
 ```
 
-## 2. Directed collaboration and Codex crosswalk: bookshop membership card
+## 2. Open concept and copy: book exchange
 
-### Brief and preserved direction
+The user asks for ideas and headlines only. Known fictional facts: neighbours bring a book and choose another, entry is free. No date/location is known. Keep `output_mode: none`; do not ask prompt versus render.
 
-The user asks for a minimalist horizontal membership card with a supplied monochrome bookshop logo, the exact name `KARTA CZYTELNIKA`, a member number, and a quiet Swiss-grid influence. The goal is efficient recognition, not an expressive poster. Preserve the logo as an identity reference and do not turn a named style into a substitute for the card's information architecture.
+| Route | Candidate copy | Mechanism and fit | Risk to check |
+| --- | --- | --- | --- |
+| Reader relay | `Twoja ostatnia strona. Czyjś pierwszy rozdział.` | One page edge connects a finished book to an opening book; passing a story is the argument | Do not promise a literal continuation of the same story |
+| Shelf circulation | `Niech książki zmienią półkę.` | A gap in one shelf corresponds to a filled place in another; simple motion makes exchange visible | Can become decorative shelving unless the exchange is explicit |
+| Direct invitation | `Przynieś książkę. Wybierz następną.` | Two clear actions in a typographic exchange; minimal form supports easy comprehension | Less interpretive, but the functional wording can be appropriate |
 
-### Six-section compatibility profile
+These routes differ in argument and visual operation, not only adjectives. Do not claim one will convert better without evidence. Check phrasing, truth and rhythm before presenting; do not append a later humanizer pass after selection. Stop for selection or further copy feedback. Unknown date/location stays absent from the candidates rather than becoming invented event information.
 
-| Crosswalk section | Resolved decision |
+## 3. Directed concept and Codex crosswalk: membership card
+
+The user requests a horizontal raster concept prompt with a supplied monochrome bookshop logo, `KARTA CZYTELNIKA`, number `0172` and quiet grid-based direction. The source logo is attached for this hypothetical request and governs exact mark shape. Card production is not requested. Preserve direction without a new brainstorm; number is required metadata, not expendable decoration. Exact logo fidelity remains a reference/QA constraint, not a promised native setting.
+
+| Six-section destination | Resolved decision |
 | --- | --- |
-| Intent | Digital membership-card concept, brief-scan reading mode, professional and calm. |
-| Canvas and layout | Horizontal 3:2 card, generous margin, three-column grid; exact number treated as metadata. |
-| References | Attached logo is identity truth only; Swiss reference translates to grid discipline, not copied artwork. |
-| Visual system | Off-white field, black type, one deep-red registration mark; no fake embossing or glass effects. |
-| Text system | Name is must-read, number is metadata, no extra text. |
-| QA and limits | Raster concept only; exact final card, font licensing, barcode, and print production route to DTP. |
+| Final-output contract | One horizontal 3:2 digital membership-card concept; recognition and brief scan |
+| Background and spatial foundation | Off-white field, black type, generous margin, measured grid; no decorative registration marks |
+| Hero and source-locked assets | Current-request alias `bookshop_logo` governs mark geometry; its position may change within the grid |
+| Supporting graphic elements | None needed; do not add a barcode, emblem or ornament |
+| Typography and functional information | Exact `KARTA CZYTELNIKA` and `0172`; label first, required member number second; preserve spelling and digits |
+| Finish and exclusions | Inspect mark and both strings; no fake embossing or production-master claim |
 
-## 3. QA repair: scoped edit
+Colour/material decisions are distributed across these sections, as defined in [workflow integration](workflow-integration.md). A user-declared Codex/GPT Image target is context; only exposed native controls can be passed as settings. If the later request is a licensed-font, editable print master, reclassify to DTP and retain the copy/mark/layout handoff.
 
-### Observed render
+## 4. Scoped repair of one observed spelling defect
 
-The approved poster has correct hierarchy, route, hero, colours, and all text except `CZERWCA`, rendered without the final `A`.
+Hypothetical inspection: an otherwise approved market poster contains `14 CZERWC • 18:00–23:00` instead of the locked full date line. One critical defect makes QA fail. Its locality makes a supported scoped edit preferable to a full rerender.
 
-### Decision
-
-`scoped_edit`, because exactly one observable spelling defect remains and the rest is approved.
+If the user authorizes this correction and the current image is available to the native edit tool, submit:
 
 ```text
-Change only the visible date string from “14 CZERWC” to “14 CZERWCA”. Preserve the approved poster exactly: its composition, crop, scale, title, route, hero, colour system, light, texture, all other visible text, text positions, safe margins, and hierarchy. Do not add, remove, translate, restyle, or reposition any other element.
+Change only the date line “14 CZERWC • 18:00–23:00” to “14 CZERWCA • 18:00–23:00”. Use the attached current poster as the edit source. Preserve the composition, crop, title, gathering route, table sign, colour system, light, texture, every other exact string, text positions and margins. Do not add, translate, restyle or reposition any other element.
 ```
 
-## 4. QA repair: full rerender
+Inspect the correction and all protected properties afterward. If no supported edit route exists, retain the original and explain the limitation. Do not silently regenerate or claim the corrected word exists before observing the result.
 
-### Observed render
+## 5. Failed core mechanism
 
-The title is readable but the hero is an unrelated neon skyline, date and venue compete with the title, and the route is absent. The central thesis failed, so appending exclusions would not repair it.
+Hypothetical inspection: text is correct, but a neon skyline replaces the selected route and table; all practical data competes with the title. The mechanism and reading order failed. A full rerender may be warranted after rebuilding from the selected concept, not from the defective skyline. Preserve facts, locked copy and the approved two-ink rule. Propose the bounded action and reuse existing authorization only if it covers that rerender. Do not repair a missing concept with an ever-growing negative list.
 
-### Decision
+## 6. Minimal, type-only prompt
 
-`full_rerender`. Rebuild the complete prompt from the selected route. Preserve only verified source facts and locked copy; restate the route-as-wayfinding mechanism, one hero, reading order, and every exact text string. Do not treat the old render as an approved reference.
+The user explicitly requests a prompt containing only the locked word `CISZA`, with the concept “one word held in abundant empty space”, no image and no caption. The concept and copy are already selected, the format is a vertical concept poster, and feasibility is compact. One notice is enough.
+
+```text
+Create one vertical typographic poster containing only the exact Polish word “CISZA”. Let abundant uninterrupted warm-white space enact silence. Place the word slightly below the optical centre in restrained near-black lettering with deliberate spacing, while keeping its letterforms immediately readable. The word and surrounding space are the complete composition. No pictorial subject, caption, logo, border, texture or extra text. Preserve the exact spelling and judge the result by the quiet spatial tension, readable word and uncluttered field.
+```
+
+Do not force three attention levels or reject this because removing the title leaves an empty field. The concept is the word-space relation.
+
+## 7. Dense text and production boundary
+
+The user requires a forty-item menu, exact item-price pairing, mandatory fine terms, a small fixed format and an editable print-ready file. This is `production_master` and `dtp_required`. Do not generate a blank background as a workaround. Hand off all exact items and terms, grouping/alignment rules, supplied logo, known format and unresolved printer/font/profile details. The next workflow must typeset and validate the actual production file.
+
+If the request instead contains three menu items on a roomy digital concept card, inspect feasibility independently; the word “menu” is not an automatic DTP trigger. Preserve every price and do not invent dietary facts.
+
+## 8. Conflicting product references
+
+A supplied front photo governs bottle and label construction; a second image is approved only for side lighting. The front photo shows a single continuous wrap label. Preserve that topology even if the lighting image contains separate label strips. Assign roles/property authority explicitly. If two equally authoritative product photos disagree about the required closure, ask which version to use before final prompting. Do not blend incompatible versions, replace the product, or call a generated approximation a verified product master.

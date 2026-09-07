@@ -2,6 +2,29 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.8.0-rc.1] - Unreleased candidate
+
+### Added
+
+- an internal concept-development asset with communication theses, visual mechanisms, distinct paired routes, originality checks, and protected concept locks;
+- one canonical design-state schema, valid intake/prompt examples, deterministic state/transition checks, and manual copy/creative evaluation prompts;
+- a typography/text-feasibility asset covering required metadata, Polish/multilingual text, intended-size legibility and a bounded DTP handoff.
+
+### Changed
+
+- explicit activation with advice, concepts, copy, production, and Skill maintenance scoped separately;
+- the integrated copy-development-and-human-voice asset now tracks per-item authority, facts, Polish/multilingual handling, selection, and approved replacements;
+- discovery and copy refinement stop before a final prompt or render until choices are settled; layout refinements preserve selected wording;
+- release discovery verifies exact release identity and immutable inventories; updates compare upstream and local changes, protect collisions/deletions, and use the existing-Skill edit flow in Codex;
+- property-level reference protection, one-critical-defect QA, artifact inspection, type-only minimalism, deliberate hybrids and deliverable-specific composition rules;
+- worked examples correct two-ink process logic and the six-section crosswalk, and cover paired copy, minimalism, dense DTP and reference conflicts;
+- validation distinguishes deterministic contract checks, network reachability, source-only exercises and 35 actual host cases. Historical host outcomes are preserved.
+
+### Pending before stable
+
+- live host and visual evaluations in both supported surfaces;
+- publication and installed-Skill updates require their own authorized scope.
+
 ## [0.7.0-rc.3] - 2026-08-31
 
 ### Added

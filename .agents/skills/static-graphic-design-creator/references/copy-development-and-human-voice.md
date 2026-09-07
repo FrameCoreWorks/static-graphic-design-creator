@@ -1,101 +1,74 @@
 # Copy Development and Human Voice
 
-Use this internal asset when a static graphic needs visible wording but the user has not supplied final copy, asks for stronger wording, or says that an existing headline feels generic. It is the single copywriting-and-human-voice layer for this Skill. It develops the exact on-screen wording and makes it specific, credible, and usable in the design; it does not invoke another named Skill.
+This is one integrated internal copywriting asset of static-graphic-design-creator. Develop the message, wording, rhythm and credible human voice together. Do not split or delegate this work to separate copywriter, copy-voice or humanizer Skills. Use it for missing wording, new headlines, support lines, CTAs, overlays, authorized refinement and copy critique. Preserve the scope of a copy-only question.
 
-## Purpose and boundary
+## Establish the thesis and truth
 
-Own the progression from an unresolved message to selected visible copy:
+Resolve the communication objective, audience response, reading context and source-specific tension before writing. Identify the product/event truth, required phrases, prohibited claims, speaker, audience relationship and language. Use one material question when needed; otherwise work from known facts and mark gaps as Unknown. Do not invent benefits, prices, urgency, statistics, testimonials, personal experiences, affiliations, legal claims or historical details.
 
-`communication objective → audience response → message tension → copy routes → selected wording → human-voice review → text lock → graphic hierarchy`
+Separate copy authority from factual verification. A source-approved sentence is locked wording, not automatic evidence that its claim is true. For a disputed or unsupported material claim, preserve the supplied text for review, explain the issue and obtain a verified or approved bounded alternative before treating it as final. Do not silently rewrite it or label user assertions independently verified.
 
-Do not invent product facts, prices, outcomes, testimonials, legal claims, affiliations, history, or a speaker's personal experience. Preserve user-supplied and source-supplied wording when it is locked. Do not imitate a living writer, simulate careless mistakes, or optimise wording to evade AI detection.
+## Choose the route
 
-## Inputs
+| Route | Behavior |
+| --- | --- |
+| `no_copy` | Only when a graphic is deliberately text-free; selection is `not_required` and items are empty. Missing copy in a text-led brief triggers discovery instead. |
+| `locked_copy` | Preserve all supplied final strings, including spelling and punctuation. Offer a correction only when useful; do not apply it silently. |
+| `copy_discovery` | Develop distinct message routes from source truth and the concept. Present candidates and wait for selection before final prompt compilation or rendering. |
+| `copy_refinement` | Preserve facts, required phrases, speaker and intended action. Show materially different revisions or the one narrow requested correction. Preserve the original until a replacement is chosen or explicitly supplied by the user. |
 
-Establish:
+A specific instruction such as replacing one supplied word with another already authorizes that replacement; do not request it again. Broad permission to improve copy authorizes drafting, not selection of an unreviewed assistant-created slogan. Keep selection state (`draft`, `needs_selection`, `selected`, `locked`, `not_required`) separate from `feasibility.status` (`not_assessed`, `compact`, `at_risk`, `dtp_required`).
 
-- the asset type, communication objective, audience, placement, reading mode, and desired audience response;
-- source truth, claims that may be made, required words, prohibited words, and brand or speaker voice;
-- whether the user supplied final copy, a draft to improve, or no usable wording;
-- the available text hierarchy: headline, support line, CTA, metadata, legal or operational text.
+## Develop routes with the visual concept
 
-Ask one concise question only when its answer would materially change the message, claim boundary, speaker, or action. Otherwise mark the missing detail `Unknown` and draft only from known truth.
+Use [concept development](concept-development-and-originality.md) when the mechanism is also open. Prefer two to four paired directions, unless another count is requested, over independent copy/style menus. Each candidate should identify its message thesis, headline, only useful support/CTA, proposed hierarchy, relationship to the image and one reason it fits the audience and format.
 
-## Copy routes
+Change the argument or communicative mechanism between routes: observation, consequence, useful contrast, invitation, demonstration or perspective. Synonyms and changes in enthusiasm do not create different routes. If the image already demonstrates something, the line should add a reason, interpretation or action instead of merely describing the picture. If the headline is the visual event, let form enact its meaning without adding redundant imagery.
 
-### `locked_copy`
+## Anti-generic standard
 
-Use when the user or a verified source supplied final visible wording.
+Prefer a precise observation, concrete object, place, behavior, consequence or contrast grounded in this brief. Avoid empty praise, interchangeable superlatives, generic motivational promises, fake urgency, unsupported outcomes, forced intimacy and fashionable filler. A plain useful CTA can be correct; not every line needs a clever turn.
 
-- Quote it exactly.
-- Classify its hierarchy and feasibility.
-- Do not rewrite, shorten, humanise, correct, or “improve” it unless the user explicitly requests that operation.
+Before recommending a route, check:
 
-### `copy_discovery`
+1. **Substitution:** would the whole line/image combination fit an unrelated offer with only its name changed? Identify the source-specific anchor.
+2. **Contribution:** does each support line add information or meaning? Remove paraphrases of the headline.
+3. **Truth:** which claim does each factual phrase make, and what supports it? Unknown evidence is not a licence to imply a benefit.
+4. **Voice:** could this speaker naturally say this to this audience? Avoid fake slang, bureaucratic padding, slogans written as press releases and artificial emotional closeness.
+5. **Rhythm:** read it aloud mentally; remove unnecessary connectors, stacked abstractions and accidental repetition. Vary cadence only for a reason.
+6. **Visual fit:** does the word count, line-break rhythm and tone work with the selected mechanism and attention order?
+7. **Action:** is the CTA specific and proportionate, with no invented deadline or pressure?
 
-Use when the user has a visual goal but no settled headline, support line, or CTA.
+These are editorial judgments, not a prohibited-word detector or a guarantee of conversion. Do not imitate a living writer's signature voice, insert mistakes to seem human, or optimize for evading AI detectors. Natural voice means accurate intent, credible distance, clear verbs and a rhythm suited to the medium.
 
-1. Resolve the communication objective and one concrete message tension, observation, proof, action, or image relationship. Do not use a vague adjective as the message.
-2. Return two to four materially different copy routes before a final prompt or render.
-3. For each route provide: `message_thesis`, `headline`, optional `support_line`, optional `CTA`, intended text hierarchy, and one short reason it fits the stated objective.
-4. Make routes structurally different. Do not present synonym swaps or a list of interchangeable slogans.
-5. Ask the user to select, combine, or redirect a route. Do not treat an unselected assistant draft as final visible copy.
+## Polish and multilingual copy
 
-### `copy_refinement`
+Write naturally in the requested language; do not translate English slogan structures mechanically. Preserve Polish diacritics, case, inflection, decimal separators, units and user-locked punctuation. For multilingual work, record language per text item and keep translations separate until approved. A shorter translation is a new candidate if it changes meaning. Preserve names and product terms unless localization is explicitly authorized. Expressive lettering never justifies losing functional information.
 
-Use when the user supplies a draft and explicitly asks for stronger, clearer, more natural, or less generic copy.
+## Selection and final lock
 
-- Preserve locked facts, required phrases, the real speaker, and the intended action.
-- Produce a small set of meaningfully different revisions, not cosmetic rewrites.
-- Explain one material trade-off only when it affects clarity, claim safety, or fit with the visual hierarchy.
-- Wait for selection before setting the final text lock.
+Perform the human-voice review before presenting the final candidates for selection. When the user selects or combines wording, show the exact resulting line if the combination requires fresh editing. Apply only explicit changes; a later editorial improvement that changes selected words returns that item to `needs_selection`. Do not quietly humanize an approved line during layout or prompt compilation.
 
-## Anti-generic copy standard
+Store the selected content in the canonical `copy.items` from [workflow integration](workflow-integration.md). Each item has a stable ID, exact text, language, hierarchy role, required flag, authority, source and line-break/change permissions. Record claims separately with their supporting source and affected item IDs. A mix of user-locked date, source-locked legal wording and newly selected headline is normal; never replace it with one global authority label.
 
-Build wording around a concrete communicative mechanism. Prefer an exact verb, object, place, behaviour, contrast, or consequence over abstract praise.
+Draft alternatives belong in `copy.options`; they are not additional visible strings. Only selected/locked items enter a final prompt. Keep requiredness independent of hierarchy: metadata can be mandatory. Do not drop credits, price qualifiers, contacts or legal text to make a design fit. Route feasibility problems to DTP or request a specific approved scope change.
 
-Reject or repair:
+## Calibration: weak, useful and risky
 
-- interchangeable praise such as “exceptional quality”, “discover the future”, “make your dreams real”, or “an experience like no other” when it is not supported by source truth;
-- slogans that could advertise an unrelated product, event, or institution;
-- headline, support line, and CTA that repeat the same claim in different words;
-- decorative wordplay that obscures the action, offer, date, or audience;
-- fake intimacy, invented testimony, empty urgency, or automatic marketing scaffolding.
+Fictional book exchange with no fee:
 
-Human voice means that the wording has a credible speaker, real audience, appropriate distance, rhythm, and channel fit. It does not mean artificial slang, broken grammar, filler, emojis, a forced hook, or a fabricated personal story.
+| Candidate | Assessment | Next action |
+| --- | --- | --- |
+| 'Odkryj świat niezwykłych możliwości' | Abstract and interchangeable; no exchange-specific observation | Reject and return to the thesis |
+| 'Twój regał zna już zakończenie.' | Reader observation; an outgoing book can carry the exchange mechanism | Offer with a plain explanatory support line |
+| 'Przeczytane u Ciebie. Nowe dla kogoś.' | Perspective shift; image can connect two reading contexts | Offer as a distinct route |
+| 'Oddaj jedną historię. Zabierz następną.' | Clear action with parallel rhythm; less indirect | Offer when immediate comprehension matters |
+| 'Największa wymiana książek w mieście' | Unverified comparative claim | Do not use without evidence |
 
-## Human-voice review
+A refinement request for 'Profesjonalna jakość, której możesz zaufać' should uncover what the service actually does differently. If that evidence is absent, ask for one useful fact or write a concrete service/action line from the supplied facts; do not invent 'w 24 godziny'. A headline can be polished and still fail the brief. Explain the mismatch, not just which wording sounds better.
 
-Run this review only on the selected route or on a user-provided draft explicitly marked for refinement.
+For a user-locked 'WSTĘP WOLNY', keep the string. Do not change it to 'Wejdź za darmo' to sound more conversational. For a factual event title plus date and venue, additional slogan-writing may be unnecessary.
 
-1. Preserve source truth and exact locks.
-2. Remove generic phrasing, duplicated explanation, and decorative filler.
-3. Check that the wording sounds intentional for the real speaker, recipient, channel, and visual reading mode.
-4. Keep the smallest form that performs the communication job. Do not add a CTA, hashtag, headline, question, or emotional claim by default.
-5. Return only the selected visible copy and essential copy notes. Do not bury it in a long explanation.
+## Stop conditions
 
-## Copy-fit gate
-
-Before compiling a final static prompt or rendering, resolve:
-
-```yaml
-copy_pack:
-  copy_route: locked_copy | copy_discovery | copy_refinement
-  copy_authority: user_locked | source_locked | user_selected
-  message_thesis:
-  options: []
-  selected_copy:
-    headline:
-    support_line: []
-    cta:
-    metadata: []
-  claim_status: verified | constrained | Unknown
-  copy_locks: []
-  copy_fit: selected | locked | needs_selection | dtp_required
-```
-
-Proceed to the final prompt only when `copy_fit` is `selected` or `locked`. If dense mandatory wording, legal copy, schedules, prices, contact data, or precise typesetting cannot fit the chosen reading mode, set `copy_fit: dtp_required` and follow the existing DTP route.
-
-## Design handoff
-
-Pass only the selected wording into the visual system. Declare its exact text, hierarchy, placement, line-break logic, colour role, and allowed text count. The image, composition, and type treatment must reinforce the chosen message thesis rather than decorate it.
+Stop at critique or candidates when that is the requested deliverable. Stop before final prompting/rendering while assistant-written copy is unselected, a critical claim is unresolved or a locked string is in conflict. After selection, pass only the exact text and evidence to design. Recommend further copy iterations only for a specific remaining gap; do not generate more alternatives to fill an arbitrary quota.

@@ -1,14 +1,14 @@
 {
   "schema_version": 6,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.7.0-rc.3",
+  "version": "0.8.0-rc.1",
   "release": {
-    "id": "v0.7.0-rc.3",
+    "id": "v0.8.0-rc.1",
     "channel": "candidate",
-    "bootstrap_ref": "v0.7.0-rc.3",
-    "bootstrap_ref_type": "version_branch",
+    "bootstrap_ref": "main",
+    "bootstrap_ref_type": "discovery_branch",
     "source_ref_type": "immutable_git_commit",
-    "immutable_source_commit": "1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0",
+    "immutable_source_commit": "9c7cde72c756fa79cd9ab418c4a3ec925dd89558",
     "updates": "manual_user_approved",
     "repository_source_contract": true
   },
@@ -33,7 +33,7 @@
     "explicit_skill_mention_required": true,
     "dollar_command_required": false,
     "tool_discovery_required": false,
-    "capability_preflight_required": false,
+    "capability_preflight_required": true,
     "surface": "chatgpt_work",
     "creation_flow": "create_with_chat"
   },
@@ -99,7 +99,8 @@
     "approval_required_before_apply": true,
     "selective_update_requires_file_level_comparison": true,
     "comparison_unavailable_apply_mode": "declared_bundle_replacement",
-    "local_conflict_blocks_apply": true
+    "local_conflict_blocks_apply": true,
+    "codex_update_executor": "active_skill_creator_existing_skill_edit"
   },
   "source_integrity": {
     "hash_algorithm": "sha256",

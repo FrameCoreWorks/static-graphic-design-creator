@@ -1,82 +1,56 @@
 # Static Design Intake
 
-```yaml
-asset_type:
-task_mode: generate
-input_context: standalone
-output_mode: prompt
-production_intent: concept_raster
-objective:
-audience:
-poster_strategy:
-  collaboration_mode: Unknown
-  direction_status: Unknown
-  required_audience_response:
-  reading_mode: Unknown
-  text_hierarchy:
-    must_read: []
-    should_read: []
-    metadata: []
-    decoration: []
-  composition_archetype:
-  image_type:
-  type_role:
-  style_request_labels: []
-  style_family:
-  primary_poster_language:
-  transferable_attributes: []
-  secondary_treatment: Unknown
-  style_label_translation: Unknown
-  material_treatment:
-  production_process: Unknown
-  intentional_legibility_friction: Unknown
-  human_review_required: []
-output_format:
-generator_surface: Unknown
-host_environment: Unknown
-execution_surface: Unknown
-generator_provider: Unknown
-target_generator: Unknown
-final_asset_has_visible_text: Unknown
-generator_prompt_format:
-  negative_handling_mode: unknown
-  source_check_status: not_required
-copy_pack:
-  copy_route: locked_copy
-  copy_authority: user_locked
-  message_thesis:
-  source_truth: []
-  required_phrases: []
-  prohibited_variants: []
-  selected_copy:
-    headline:
-    support_line: []
-    cta:
-    metadata: []
-  claim_status: Unknown
-  copy_locks: []
-  copy_fit: Unknown
-visible_copy:
-  locked_strings: []
-  feasibility: Unknown
-  external_typesetting_required: Unknown
-attention_order: []
-visual_thesis:
-layout_mechanism:
-type_image_relationship:
-palette_or_brand_constraints: []
-brand_identity_policy:
-  approved_identity_assets: []
-  official_source_check: Unknown
-  likeness_authority: Unknown
-  style_treatment: original_attributes_only
-references:
-  - alias:
-    role:
-    protected_properties: []
-functional_elements: []
-exclusions: []
-acceptance_criteria: []
-```
+Use internally for complex work. This valid starting state records unresolved decisions; it is not a mandatory form. Populate from supplied evidence, preserve prior answers, and select the action appropriate to the request. Empty fields do not approve facts, copy or capabilities. See [workflow integration](../references/workflow-integration.md).
 
-Leave unknown fields empty rather than fabricating technical capability, product claims, or brand details.
+```yaml
+schema_version: 1
+activation: explicit
+request_kind: design
+action: clarify
+input_context: standalone
+task_mode: generate
+output_mode: none
+production_intent: concept_raster
+strategy:
+  objective: ''
+  audience: ''
+  response: ''
+  output_format: ''
+  reading_mode: Unknown
+  visual_thesis: ''
+  attention_order: []
+  composition: ''
+  type_image_relationship: ''
+  style_requests: []
+  primary_language: ''
+  secondary_treatments: []
+  intentional_hybrid: false
+  material_treatment: ''
+concept:
+  status: needs_selection
+  lock: null
+copy:
+  route: copy_discovery
+  selection_status: draft
+  message_thesis: ''
+  items: []
+  options: []
+  claims: []
+feasibility:
+  status: not_assessed
+  reason: ''
+  review_plan: []
+reference_status: none
+references: []
+host:
+  surface: Unknown
+  native_generation_available: Unknown
+  model: Unknown
+  controls: []
+prompt: ''
+render_status: not_requested
+qa:
+  status: not_run
+  critical_failures: []
+  checks: []
+```

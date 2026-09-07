@@ -4,7 +4,7 @@
 
 **Static Graphic Design Creator is a standalone native Skill source for ChatGPT Work and Codex.** It helps turn a brief into either a finished static graphic, when rendering is explicitly requested, or one controlled, generator-ready prompt for posters, flyers, business cards, menus, covers, labels, key visuals, advertisements, and text-led social graphics.
 
-It behaves like a graphic designer, not a style-prompt dispenser: objective and audience response come first; then visual thesis, hierarchy, composition, type/image roles, style language, and material treatment. The final prompt is one integrated, eight-stage construction sequence inside a single generation. It is not a request for separate renders, blank text zones, or manual layer assembly.
+It behaves like a graphic designer, not a style-prompt dispenser: objective and audience response come first; then visual thesis, hierarchy, composition, type/image roles, style language, and material treatment. The final prompt integrates eight semantic construction stages inside a single generation; simple prompts and narrow edits stay concise. It is not a request for separate renders, blank text zones, or manual layer assembly.
 
 ## Install from this repository
 
@@ -54,7 +54,7 @@ First read CHATGPT_UPDATE.md. Compare the installed source-release record with t
 ### Codex update
 
 ```text
-Use $skill-installer to update the existing personal Skill from this public repository:
+Use $skill-creator to update the existing personal Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
 First read CODEX_UPDATE.md. Compare the installed source-release record with the current immutable release manifest. Report Delta before any write and wait for my explicit approval. Update only `$static-graphic-design-creator`; do not overwrite a local conflict, create a duplicate, or clone the repository into my project.
@@ -97,14 +97,21 @@ Before changing anything, return a concise Change Proposal with: evidence or use
 After approval, update only the existing installed `static-graphic-design-creator` Skill in Codex. Preserve unrelated behavior and its source-release identity record, validate the Skill, and report the files changed. Do not create a second Skill directory, silently overwrite a later local conflict, clone the public repository into my project, or claim that personal changes came from the public source release.
 ```
 
+## Activation
+
+Invoke `@static-graphic-design-creator` in ChatGPT Work or `$static-graphic-design-creator` in Codex, or explicitly ask to run the Skill. Codex implicit invocation is disabled. Casual design advice, a quoted Skill name, and a request to maintain its files do not start graphic production. Ideas-only and copy-only requests remain in that scope. A genuine continuation preserves selected concepts and exact copy.
+
 ## What the Skill does
 
 - accepts both a short standalone brief and a structured workflow handoff;
 - supports `prompt`, `render`, and `render_and_prompt` modes without rendering from an ambiguous brief;
-- runs an objective-led `discovery_brainstorm` for open poster direction, or preserves a user-supplied decision in `directed_collaboration`;
+- develops materially different, paired concept/copy routes for open direction and preserves a supplied concept lock for directed work;
 - develops anti-generic poster copy through one internal copy-development-and-human-voice layer when wording is absent or needs refinement, then locks the selected text before visual prompting or rendering;
 - uses a poster-movements atlas, style translation catalog, production walkthroughs, and QA routes without turning them into a preset menu;
-- locks exact visible copy, attention order, layout zones, reference roles, exclusions, and a pass/fail QA route;
+- protects per-item exact copy and reference properties, including product/garment construction, continuous label boundaries and logo geometry;
+- supports type-only minimalism, deliberate hybrids and format-specific commercial, menu, packaging and social decisions;
+- evaluates actual text burden and required metadata separately from wording selection, with Polish/multilingual checks and explicit digital-versus-production limits;
+- fails acceptance on one critical defect and chooses the smallest supported repair, checking texture/gradient and identity drift without automatic rerenders;
 - treats named-font fidelity, dense raster type, print-ready deliverables, and prepress as external QA or DTP requirements rather than promises.
 
 The bundle contains worked examples of a discovery brainstorm, a directed Codex compatibility profile, a scoped edit, and a full rerender decision. They are decision models, not generic artwork recipes.
@@ -118,15 +125,19 @@ When the host cannot calculate SHA-256, installation may continue only with `has
 ## Validation and release gates
 
 ```bash
-python3 tests/test_skill.py
+python3 -m pip install -r tests/requirements.txt
+python3 -B tests/test_skill.py
+python3 -B tests/test_design_contracts.py
 python3 tests/check_source_anchors.py --check-inventory
 ```
 
-The local suite checks the bundle structure, hashes, immutable source URLs, release-lock agreement, language-adaptive clarification policy, update routing, required prompt contract, and style/QA assets. A scheduled GitHub workflow checks reference-anchor reachability separately, so transient network failures do not block ordinary code validation.
+The deterministic suite checks exact source inventory and Git/SHA-256 locks, three-way update decisions, duplicate YAML/JSON keys, links, canonical handoff states and protected transitions. Both actual templates are validated. The offline schema checker supports only the vocabulary used in this repository and rejects unsupported keywords; it is not a general JSON Schema engine. These tests do not prove model behavior, headline quality, or visual fidelity.
 
-Before a candidate becomes a stable release, the twenty cases in [EVALUATION.md](EVALUATION.md) must be run in actual ChatGPT Work and Codex sessions, then recorded under [reports/host-evaluations](reports/host-evaluations). The current candidate record intentionally distinguishes pending host checks from passing results.
+Use `python3 -B tests/test_skill.py --working-tree` during editing to check the previous pinned baseline and draft structure. Only default mode certifies the local source lock. Reference-anchor reachability is checked separately; rate limits and authentication barriers are `Unknown`, never passing evidence of the historical claims themselves.
 
-OpenAI-surface statements were last verified against official documentation on **2026-08-29**. Recheck them before every stable release because product availability, installation behavior, and built-in image-generation capabilities can change.
+Before a stable release, run every applicable case in [EVALUATION.md](EVALUATION.md) in actual ChatGPT Work and Codex sessions and record evidence under [reports/host-evaluations](reports/host-evaluations). Pending cases remain pending. A local source commit and passing structural checks do not establish remote availability, native installation, or visual performance.
+
+OpenAI-surface assumptions were reviewed against official documentation on **2026-09-07**. The active host's exposed tools and settings determine what can actually execute; API documentation alone does not prove a ChatGPT or Codex control is available.
 
 ## Repository layout
 
@@ -157,3 +168,5 @@ This Skill uses only the active surface's native image generation and only after
 ## License
 
 Released under the Apache License 2.0. See [LICENSE](LICENSE).
+
+Release discovery uses `main` only to locate the current manifest. Pin the manifest’s own Git commit before retrieval and record it with the installation evidence. Historical `v0.7.0-rc.2` and `v0.7.0-rc.3` branches contain an earlier manifest; a release-ID mismatch blocks resolution. Never silently use that earlier manifest as the requested baseline.

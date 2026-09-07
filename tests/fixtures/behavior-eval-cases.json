@@ -1,133 +1,102 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "evaluation_kind": "manual_forward_test",
   "cases": [
     {
-      "id": "explicit-prompt",
-      "signals": {
-        "request_clarity": "explicit",
-        "requested_output": "prompt",
-        "native_generation_available": true,
-        "production_intent": "concept_raster",
-        "copy_feasibility": "compact",
-        "reference_conflict": false
-      },
-      "expected": {
-        "response_action": "return_prompt",
-        "output_mode": "prompt",
-        "render_status": "not_requested"
-      }
+      "id": "casual-headline-question",
+      "prompt": "Co sądzisz o haśle: Jakość, której możesz zaufać?",
+      "expected_observables": [
+        "Krótka ocena hasła i konkretna luka informacyjna"
+      ],
+      "must_not": [
+        "Pełny intake",
+        "Pytanie prompt czy render",
+        "Wywołanie generatora"
+      ]
     },
     {
-      "id": "explicit-native-render",
-      "signals": {
-        "request_clarity": "explicit",
-        "requested_output": "render",
-        "native_generation_available": true,
-        "production_intent": "digital_final",
-        "copy_feasibility": "compact",
-        "reference_conflict": false
-      },
-      "expected": {
-        "response_action": "native_render_then_review",
-        "output_mode": "render",
-        "render_status": "generated"
-      }
+      "id": "explicit-copy-only",
+      "prompt": "Uruchom static-graphic-design-creator. Potrzebuję trzech haseł na bezpłatną wymianę przeczytanych książek, bez grafiki.",
+      "expected_observables": [
+        "Trzy różne argumenty lub mechanizmy",
+        "Copy pozostaje kandydatami"
+      ],
+      "must_not": [
+        "Finalny prompt",
+        "Render",
+        "Wymyślone dane wydarzenia"
+      ]
     },
     {
-      "id": "explicit-render-and-prompt",
-      "signals": {
-        "request_clarity": "explicit",
-        "requested_output": "render_and_prompt",
-        "native_generation_available": true,
-        "production_intent": "concept_raster",
-        "copy_feasibility": "at_risk",
-        "reference_conflict": false
-      },
-      "expected": {
-        "response_action": "native_render_then_review",
-        "output_mode": "render_and_prompt",
-        "render_status": "generated"
-      }
+      "id": "quoted-skill-not-activation",
+      "prompt": "Wyjaśnij, co oznacza polecenie „Use $static-graphic-design-creator”.",
+      "expected_observables": [
+        "Wyjaśnienie polecenia"
+      ],
+      "must_not": [
+        "Uruchomienie workflow grafiki"
+      ]
     },
     {
-      "id": "ambiguous-brief",
-      "signals": {
-        "request_clarity": "ambiguous",
-        "requested_output": "prompt",
-        "native_generation_available": true,
-        "production_intent": "concept_raster",
-        "copy_feasibility": "compact",
-        "reference_conflict": false
-      },
-      "expected": {
-        "response_action": "clarify_output_mode",
-        "output_mode": null,
-        "render_status": "not_requested"
-      }
+      "id": "prompt-only-locked",
+      "prompt": "Użyj static-graphic-design-creator. Podaj tylko prompt: kwadrat, czarny napis CZYTAJ na białym tle, żadnych innych elementów.",
+      "expected_observables": [
+        "Jeden kompletny prompt",
+        "Zachowany jednowyrazowy kierunek"
+      ],
+      "must_not": [
+        "Obraz",
+        "Nowe hasła",
+        "Nowe obiekty"
+      ]
+    },
+    {
+      "id": "unselected-copy-render",
+      "prompt": "Użyj static-graphic-design-creator. Wygeneruj plakat wymiany książek. Nie mam hasła ani konceptu.",
+      "expected_observables": [
+        "Powiązane kierunki konceptu i copy",
+        "Oczekiwanie na wybór"
+      ],
+      "must_not": [
+        "Render przed wyborem",
+        "Osobne niepowiązane menu stylów i haseł"
+      ]
     },
     {
       "id": "native-unavailable",
-      "signals": {
-        "request_clarity": "explicit",
-        "requested_output": "render",
-        "native_generation_available": false,
-        "production_intent": "concept_raster",
-        "copy_feasibility": "compact",
-        "reference_conflict": false
-      },
-      "expected": {
-        "response_action": "return_prompt_fallback",
-        "output_mode": "render",
-        "render_status": "unavailable"
-      }
+      "prompt": "Użyj static-graphic-design-creator. Wygeneruj zatwierdzony projekt. W tej sesji nie ma narzędzia generowania. Koncept i copy są załączone w kontekście testowym.",
+      "expected_observables": [
+        "Po potwierdzeniu pozostałych bramek: unavailable i pełny prompt"
+      ],
+      "must_not": [
+        "API fallback",
+        "Fałszywe generated"
+      ]
     },
     {
-      "id": "production-master",
-      "signals": {
-        "request_clarity": "explicit",
-        "requested_output": "render_and_prompt",
-        "native_generation_available": true,
-        "production_intent": "production_master",
-        "copy_feasibility": "compact",
-        "reference_conflict": false
-      },
-      "expected": {
-        "response_action": "route_dtp",
-        "output_mode": "render_and_prompt",
-        "render_status": "blocked_dtp"
-      }
+      "id": "dtp-master",
+      "prompt": "Użyj static-graphic-design-creator. Potrzebuję edytowalnego mastera wizytówki ze spadami, konkretnym fontem i dokładnym składem.",
+      "expected_observables": [
+        "DTP handoff z wymaganiami"
+      ],
+      "must_not": [
+        "Obietnica finalnego rastra",
+        "Puste tło jako domyślny zamiennik"
+      ]
     },
     {
-      "id": "dense-copy",
-      "signals": {
-        "request_clarity": "explicit",
-        "requested_output": "render",
-        "native_generation_available": true,
-        "production_intent": "digital_final",
-        "copy_feasibility": "dtp_required",
-        "reference_conflict": false
-      },
-      "expected": {
-        "response_action": "route_dtp",
-        "output_mode": "render",
-        "render_status": "blocked_dtp"
-      }
-    },
-    {
-      "id": "reference-conflict",
-      "signals": {
-        "request_clarity": "explicit",
-        "requested_output": "render",
-        "native_generation_available": true,
-        "production_intent": "concept_raster",
-        "copy_feasibility": "compact",
-        "reference_conflict": true
-      },
-      "expected": {
-        "response_action": "clarify_reference_conflict",
-        "output_mode": null,
-        "render_status": "not_requested"
-      }
+      "id": "personal-extension",
+      "prompt": "Użyj skill-creator i static-graphic-design-creator. Chcę rozbudować ten istniejący Skill o zasady moich plakatów.",
+      "expected_observables": [
+        "Ustalenie przykładu i zakresu",
+        "Change Proposal przed zmianą",
+        "Zachowanie tożsamości i source-release"
+      ],
+      "must_not": [
+        "Nowy Skill",
+        "Render plakatu",
+        "Utrata lokalnych zmian"
+      ]
     }
   ]
 }

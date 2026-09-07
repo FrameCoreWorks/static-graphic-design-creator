@@ -6,7 +6,7 @@ Read the compact [poster style and composition atlas](poster-style-and-compositi
 
 ## Scope and evidence status
 
-The atlas covers selected European, Polish, Russian/Soviet, United States, Cuban, Indian, and Japanese poster lineages from the late nineteenth century to the present. It is intentionally not a complete global history. Do not infer that an omitted region, movement, or practitioner is less important.
+The atlas documents selected European, Polish, Russian/Soviet and United States examples, plus contemporary operating categories. It does not contain dedicated Cuban, Indian or Japanese lineage cards; requests relying on those histories need specific source research rather than extrapolation. It is intentionally not a complete global history. Do not infer that an omitted region, movement, or practitioner is less important.
 
 Use the labels below precisely:
 
@@ -47,19 +47,11 @@ Use qualitative viewing conditions rather than inventing universal seconds or pr
 
 `perceived_priority` is a design relation, not font size alone: relative scale, weight, contrast, position, negative space, and competing salience all matter. A face, glow, or high-contrast object can defeat a larger title.
 
-**Generator constraint:** dates, prices, addresses, names, legal copy, schedules, credits, tables, labels, and small multi-line copy are normally `at_risk` or `dtp_required`. Do not solve this by default with a text-free background and a later overlay. Route a genuine `dtp_required` brief to the approved non-generative layout workflow before rendering.
+**Generator constraint:** assess dates, prices, addresses, names, legal copy, schedules, credits and tables against the actual space and reading task in [typography feasibility](typography-and-text-feasibility.md). Exactness requires QA; a data category alone does not set the risk level. Required metadata must remain readable. Do not solve this by default with a text-free background and a later overlay. Route a genuine `dtp_required` brief to the approved non-generative layout workflow before rendering.
 
 ### Non-automatic human decisions
 
-Do not decide these on the user's behalf:
-
-- a political position, factual claim, or call to action;
-- cultural representation or use of a historically charged symbol;
-- whether reduced legibility is intentional and acceptable;
-- whether a broken grid is a deliberate design choice or a defect;
-- whether a real production technique, paper, ink count, or print tolerance is actually available.
-
-Ask a concise clarification or mark the decision as unresolved. For political or social work, never fabricate evidence, documentary imagery, organisations, dates, statistics, or attribution.
+Preserve supplied decisions and ask only when a material issue remains unresolved: political position, factual basis, charged symbol or claimed affiliation; intentional friction that threatens required reading; or an actual print process whose availability is unverified. Do not ask permission for routine reversible layout choices such as asymmetry. An approved experimental title can be expressive while required facts remain legible. Never fabricate evidence, documentary imagery, organisations, dates, statistics or attribution.
 
 ## Function-first profiles
 
@@ -80,7 +72,7 @@ Choose the communication function before choosing a movement or process.
 
 ## Composition mechanisms
 
-Select one primary attention mechanism. A hybrid is valid only when the two jobs and their order remain explicit.
+Select one primary attention mechanism. A deliberate hybrid is valid when its component roles and reading order remain explicit.
 
 | Mechanism | What it does | Strong use | Guardrail |
 | --- | --- | --- | --- |
@@ -240,38 +232,13 @@ Classify the failure before repairing it.
 | Editorial | generic glow/chrome/neon/dust, regional stereotype, process-as-filter | remove or replace the element with a named job and process logic |
 | Ethical | copied artist/work, unapproved likeness, loaded symbol, synthetic documentary claim | stop and obtain authority, facts, or a new original direction |
 
-If a result fails two strategy or editorial checks, use `full_rerender` after rebuilding the strategy. A longer negative list is not a repair.
+A single critical failure blocks acceptance. Use the [QA asset](qa-and-repair.md) to distinguish local repair from a failed strategy; never require two defects or use a longer negative list as a repair.
 
 ## Prompt and handoff fields
 
-Record the extended decision set only when the brief warrants it:
+Use the canonical [workflow contract](workflow-integration.md). Put reading mode, thesis, composition, type-image relation, selected historical attributes and material/process decisions in `strategy`. Put each exact string, required flag and attention role in `copy.items`. Put text risk and the intended checks in `feasibility`. Preserve relevant inherited historical context in the original handoff and `concept.lock.source_context` when applicable; do not create another partially specified `poster_strategy` schema.
 
-```yaml
-poster_strategy:
-  communication_goal:
-  required_audience_response:
-  reading_mode: glance | brief_scan | deliberate_read
-  text_hierarchy:
-    must_read: []
-    should_read: []
-    metadata: []
-    decoration: []
-  visual_thesis:
-  composition_archetype:
-  image_type:
-  type_role:
-  historical_language:
-    primary_family:
-    transferable_attributes: []
-    region_or_period_context: Unknown
-  materiality:
-    production_process: visual_simulation | Unknown
-    process_attributes: []
-  intentional_legibility_friction: false
-  human_review_required: []
-```
-
-Keep the final generator prompt in the public eight-stage order. This record is a rationale and QA contract, not an extra prompt section and not a request for multi-pass layer assembly.
+Translate those decisions into the unified prompt's semantic order. The record is an internal rationale and QA contract, not extra visible text, multi-pass assembly or mandatory headings for a narrow edit.
 
 ## Selected source anchors
 
