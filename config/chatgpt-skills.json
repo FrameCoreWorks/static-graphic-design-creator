@@ -8,7 +8,7 @@
     "bootstrap_ref": "main",
     "bootstrap_ref_type": "discovery_branch",
     "source_ref_type": "immutable_git_commit",
-    "immutable_source_commit": "9c7cde72c756fa79cd9ab418c4a3ec925dd89558",
+    "immutable_source_commit": "67a48cb7589d894959f39fdbe37ce647499d657c",
     "updates": "manual_user_approved",
     "repository_source_contract": true
   },
