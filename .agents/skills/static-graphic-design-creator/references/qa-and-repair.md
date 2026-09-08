@@ -10,6 +10,8 @@ Unavailable native generation returns a prompt only after the other finalization
 
 ## Inspect the delivered artifact
 
+For a manually or automatically selected catalog direction, follow [code selection and rebuild](event-poster-code-workflow.md): confirm the actual entry, its fit to the brief, every required source fact and protected asset, and the visible interpretation. Check that automatic or hidden-code use leaks no identifier through prose, prompt, EP ID or metadata dump, and that a clear catalog opt-out is respected. A requested visible code label is instruction metadata, never extra graphic copy. Preserve factual slash-containing text and URLs. A selected style is not evidence of native-command support or permission to change a concept/copy lock. Broad redesign requires the user's scope; internal selection and a `/rebuild` suffix never expand a background-only repair.
+
 | Check | Observe | Failure consequence |
 | --- | --- | --- |
 | Message and concept | Actual visual mechanism, intended audience response and protected concept relation | Missing/replaced core mechanism blocks acceptance; rebuild composition if necessary |

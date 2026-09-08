@@ -24,9 +24,14 @@ Classify the requested scope before choosing an output:
 | Explicitly generate/create the graphic | Resolve gates, then use available built-in generation. |
 | Graphic and prompt | Return the graphic and the exact submitted prompt. |
 | Existing image edit | Inspect and use that image; preserve everything outside the approved edit. |
+| `/kody`, `kody`, `/codes` or `codes` within this activated Skill | Show the complete grouped code catalog with descriptions in the user's language; this is a lookup, not graphic production. |
 | Install, source update, audit or personal extension | Use the active skill-creator management workflow and the user's approval boundary; do not start graphic production. |
 
 For an actual design request whose output is ambiguous, ask one concise question in the user's language to resolve prompt versus render. For an open brief, offer useful concept/copy routes while clarifying only the missing choice that blocks progress. Do not collect a full form from a simple request. Preserve prior answers and approvals.
+
+## First-use orientation
+
+For an explicitly requested introduction or a known first use after installation, read [first-use onboarding](references/first-use-onboarding.md). Explain optional codes, catalog commands, new prompts, uploaded-poster redesign and ordinary brief/brainstorm collaboration once in the user's language, then continue the actual task. Honor a request to skip onboarding or hide codes. Use a post-install introduction only when the active installer can actually display it; otherwise present it at the first explicit Skill invocation. Do not claim an installation hook, durable onboarding flag or automatic activation that the host does not provide.
 
 ## Inputs and authority
 
@@ -49,6 +54,10 @@ Use `no_copy` for a deliberately text-free graphic; absence of copy is not by it
 Preserve the Core Concept Lock: premise, mechanism, distinctive hook, allowed adaptations and forbidden substitutions. A production limitation calls for a bounded alternative or user decision, not a generic substitute. Preserve exact text, dates, prices, names and declared product facts. Assistant-created copy is not a verified fact.
 
 ## Design construction
+
+Treat codes as an optional design aid. Work from an ordinary brief without asking the user to choose, learn or view codes. When visual direction is open, use [code selection and rebuild](references/event-poster-code-workflow.md) to select a fitting direction internally after resolving the communication goal and concept. Compile its useful attributes into the delivered prompt or the internal generation prompt without announcing a code or adding its label by default. Respect an explicit ban on using the catalog; if no entry fits, design directly from the brief. Automatic style selection never changes locks, edit scope or rendering permission.
+
+The [canonical catalog](references/event-poster-design-codes.json) contains all 200 original codes, 20 categories and separately attributed Polish/English interpretations. `/kody`, `kody`, `/codes` and `codes` return all grouped entries and descriptions within this activated Skill or an unambiguous request naming it. A user-selected `/Name` may guide a new prompt; `/Name /rebuild` may guide a requested source-poster redesign. Include a user-selected code as an instruction-only prompt label unless the user wants codes hidden; expand its visible design meaning in every case. An automatically selected code stays internal unless the user asks to see it. Codes are not verified native commands or text to print. Catalog browsing does not activate rendering or other Skills.
 
 Use the following decision priority without forcing a long process for simple work:
 

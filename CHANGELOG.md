@@ -2,6 +2,28 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.9.0-rc.1] - Unreleased candidate
+
+### Added
+
+- a self-contained catalog of 200 original poster code lines in 20 categories, with individual Polish/English interpretations and source attribution; the original PDF is not bundled;
+- `/kody`, `kody`, `/codes` and `codes` for complete grouped browsing, plus exact-name/ID/category lookup and description search through a read-only Python helper;
+- short code directions for new prompts and requested `/rebuild` workflows for supplied posters, preserving exact factual copy, protected assets and narrower edit instructions;
+- first-use onboarding for ChatGPT Work and Codex explaining codes, existing-image improvement and ordinary brief/brainstorm work;
+- eleven catalog regression tests, manual code/onboarding fixtures and eight additional host-evaluation cases.
+
+### Changed
+
+- code use is optional: users may select a direction manually, let the Skill choose internally from the brief, hide identifiers or disable catalog use entirely;
+- automatic direction selection compiles concrete attributes without forcing a catalog, changing concept/copy locks or expanding edit/render permission; exact submitted prompts remain available without later label redaction;
+- both installation guides preserve the expanded declared bundle and explain first-use paths without claiming an unsupported installation hook or durable onboarding flag;
+- repository maintenance prepares and validates source and immutable release-lock commits before separately authorized publication; installed Skills remain separate user-controlled targets.
+
+### Pending before stable
+
+- all applicable live host and visual evaluations for this exact candidate; local catalog and contract tests do not certify rendered fidelity;
+- public publication and installed-Skill updates remain separate operations.
+
 ## [0.8.0-rc.1] - Unreleased candidate
 
 ### Added

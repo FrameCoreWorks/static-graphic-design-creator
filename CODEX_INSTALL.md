@@ -25,8 +25,14 @@ https://github.com/FrameCoreWorks/static-graphic-design-creator/tree/<immutable_
 
 Read every declared source file and verify its SHA-256 against the manifest before installation. If a hash differs, stop with `blocked_integrity`, reread fresh bootstrap manifests, and restart the source check. If the host cannot compute SHA-256, report `hash_verification: declared_unverified`; do not claim that hashes were verified.
 
-Confirm the source directory contains exactly the declared safe relative paths, with no symlinks, traversal, duplicates or undeclared files. Install the relative bundle exactly as declared, preserving `SKILL.md`, `agents/`, `references/`, and `templates/`. Do not install unrelated repository files, create a workspace copy, generate an image, use external services, or make a background update.
+Confirm the source directory contains exactly the declared safe relative paths, with no symlinks, traversal, duplicates or undeclared files. Install the relative bundle exactly as declared, including `SKILL.md`, `agents/`, `references/`, `scripts/`, `templates/` and bundled `tests/`. The code catalog is self-contained; do not download or attach its source PDF. Do not install unrelated repository files, create a workspace copy, generate an image, use external services, or make a background update.
 
 If the Skill already exists, do not overwrite it. Follow `CODEX_UPDATE.md`: compare source identity and delta, show `Delta`, and ask for explicit user approval before any replacement.
 
 Verify the entire saved inventory and bytes after installation, including source identity. Retain the manifest commit and source commit in host-supported installation evidence outside the canonical bundle. Report success only when Codex returns a real installed personal-Skill result. If installation fails, report the failed `$skill-installer` operation and stop.
+
+## First-use introduction
+
+After a verified installation, use `references/first-use-onboarding.md` from that installed bundle to explain explicit invocation, optional catalog commands, new prompts and improvement of an existing poster. An accessible local image path or a supported attachment can supply the actual reference. Explain `/kody`, `kody`, `/codes`, `codes`, the short `/Name` and the listed `/Name /rebuild`, plus ordinary brief/brainstorm work with no code choice, internal direction selection or complete catalog opt-out. Describe factual/reference locks and narrow edits in normal language.
+
+Skip material already explained, honor requests to hide codes or skip onboarding, and continue a supplied brief. Do not force a catalog choice, render an example or ask for acknowledgment. If the installer cannot provide the introduction, use the first known explicit Skill invocation. Do not invent an install event hook or a durable per-user flag.

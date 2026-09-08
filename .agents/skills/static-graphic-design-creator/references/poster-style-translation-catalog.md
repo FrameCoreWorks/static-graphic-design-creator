@@ -4,6 +4,8 @@ Use this reference when a user names a popular style label, asks what visual dir
 
 ## Core rule
 
+For a named slash code, catalog browsing or internal selection for an open visual direction, use [the event-poster code workflow](event-poster-code-workflow.md). Its 200 bilingual descriptions are attributed interpretations, not native generator presets. Codes remain optional: ground a fitting direction in visible choices, retain the user's visibility preference and catalog opt-out, and design directly from the brief when no entry helps. Do not duplicate the code list here.
+
 Treat a requested label as evidence, not as a finished instruction. Resolve this order before using it in a prompt:
 
 `communication goal → audience response → reading mode and copy burden → visual thesis → composition and attention order → primary poster language → compatible rendering or material treatment`

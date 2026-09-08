@@ -14,6 +14,8 @@ For open concepts, use the internal [concept development asset](concept-developm
 
 ## Prompt compactness
 
+Apply the optional-code and visibility rules in [code selection and rebuild](event-poster-code-workflow.md). Ordinary briefs need no code selection from the user. For an internally chosen direction or a request to hide codes, compile its composition, type/image relationship and material choices in ordinary language, without code labels, names or EP IDs in either the delivered prompt or the submitted generation prompt. When the user explicitly selects a code and does not ask to hide it, or requests its inclusion, retain its slash label as instruction-only metadata and expand the same visible choices. Never rely on the identifier alone or print it as design copy. For a requested full rebuild, quote all required source strings and preserve factual/reference locks; for a narrower repair, retain that scope. An internally selected `/rebuild` suffix grants no redesign permission. A new brief needs no imaginary source poster. Respect an explicit opt-out from catalog use.
+
 Resolve all eight stages, but do not force eight headings or eight long paragraphs. For a simple brief, compile the relevant decisions into one concise, readable prompt. For a complex text-led design, use short labelled segments or paragraphs in the same semantic order. Do not duplicate a constraint across stages unless it is a critical lock, such as exact visible copy, protected identity, product truth, or one permitted scoped edit.
 
 ## Stage order

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "evaluation_kind": "manual_forward_test",
+  "cases": [
+    {
+      "id": "catalog-all-aliases",
+      "prompt": "Use static-graphic-design-creator. /codes. Show the full catalog in English.",
+      "expected_observables": [
+        "All 200 canonical entries in 20 groups with descriptions and attribution",
+        "Equivalent /kody, kody and codes variants respect requested language"
+      ],
+      "must_not": [
+        "Rendering",
+        "A code-selection questionnaire",
+        "Four-entry truncation"
+      ]
+    },
+    {
+      "id": "manual-new-prompt",
+      "prompt": "Use static-graphic-design-creator. Return only an English prompt for a new square digital graphic using /Two Ink Collision. Approved concept: the word is the entire image, with generous surrounding space. Exact final text: CZYTAJ. Use navy and orange inks on cream paper.",
+      "expected_observables": [
+        "Standalone prompt, instruction-only identifier and concrete two-ink logic",
+        "Exact final text preserved"
+      ],
+      "must_not": [
+        "Missing-poster question",
+        "A render",
+        "Claim of a native generator command"
+      ]
+    },
+    {
+      "id": "poster-rebuild",
+      "prompt": "Use static-graphic-design-creator. Inspect the attached poster and return a complete redesign prompt using /Two Ink Collision /rebuild. Rework layout and colour, preserve all factual text and protected logos exactly, and keep the existing concept. Ask about unreadable mandatory text before finalizing.",
+      "expected_observables": [
+        "Actual supplied image inspected",
+        "Complete factual inventory and protected assets",
+        "Broad layout change limited to requested scope"
+      ],
+      "must_not": [
+        "Invented source image or words",
+        "Unrequested render",
+        "Acceptance without source inspection"
+      ],
+      "requires_actual_reference": true
+    },
+    {
+      "id": "automatic-brief",
+      "prompt": "Use static-graphic-design-creator. Return only an English prompt for a square graphic. Approved concept: a single word forms the image with wide empty margins. Exact final text: CZYTAJ. I want navy and orange matte inks on cream paper with restrained overprinting. Choose the execution from this brief.",
+      "expected_observables": [
+        "Brief-led visual choices; internal catalog choice only if useful",
+        "Complete prompt in ordinary design language"
+      ],
+      "must_not": [
+        "Forced catalog selection",
+        "Code labels, names or EP IDs in the answer",
+        "Rendering"
+      ]
+    },
+    {
+      "id": "hidden-manual-slash-copy",
+      "prompt": "Use static-graphic-design-creator. Return only an English prompt for a new square graphic using /Two Ink Collision. Do not show codes or their names. Approved concept: one forceful inscription with local two-ink overprint. Navy and orange on cream. Exact final text: RUCH/2026.",
+      "expected_observables": [
+        "Direction translated without identifiers",
+        "RUCH/2026 preserved exactly including the slash"
+      ],
+      "must_not": [
+        "Code name or EP ID leak",
+        "Deleting factual punctuation",
+        "Extra copy"
+      ]
+    },
+    {
+      "id": "catalog-optout",
+      "prompt": "Use static-graphic-design-creator. Do not use the catalog, even internally. Return only an English prompt for a vertical 4:5 digital graphic. Approved concept and final copy: CISZA in slender black letters in the lower third on a uniform white field; the rest is empty. No textures or illustrations.",
+      "expected_observables": [
+        "Direct brief-based prompt",
+        "Preference retained through the task"
+      ],
+      "must_not": [
+        "Catalog lookup or hidden code selection",
+        "Added decorative treatment",
+        "Another concept-selection question"
+      ]
+    },
+    {
+      "id": "narrow-background",
+      "prompt": "Use static-graphic-design-creator. Inspect the attached poster and prepare only an edit prompt. Change only its exposed background to give restrained directional energy. Preserve every existing text glyph, logo, position and layout. Choose a fitting direction internally; do not show codes.",
+      "expected_observables": [
+        "Background-only scope and all protected source properties retained",
+        "No identifier in prompt"
+      ],
+      "must_not": [
+        "Internal /rebuild suffix broadens edit",
+        "New facts, copy or logo geometry",
+        "Full redesign"
+      ],
+      "requires_actual_reference": true
+    },
+    {
+      "id": "new-user-onboarding",
+      "prompt": "I just installed static-graphic-design-creator. Run onboarding. How can I begin in ChatGPT Work and Codex? I also have finished posters to improve later, but no brief yet.",
+      "expected_observables": [
+        "Explain explicit invocation, four catalog aliases, new prompts, supplied-image rebuild and brief/brainstorm options",
+        "Clarify optional code visibility and opt-out",
+        "One ordinary next-task question if needed"
+      ],
+      "must_not": [
+        "Full unsolicited 200-code list",
+        "Compulsory code choice",
+        "Claimed automatic install hook"
+      ]
+    },
+    {
+      "id": "skip-onboarding",
+      "prompt": "Use static-graphic-design-creator. Skip onboarding and do not show code labels. Return only an English prompt for a square graphic. The approved concept is the exact single word CZYTAJ in black on white with wide margins; no other elements.",
+      "expected_observables": [
+        "Direct requested prompt with exact text",
+        "No repeated welcome or catalog pitch"
+      ],
+      "must_not": [
+        "Onboarding question",
+        "Code identifiers",
+        "Rendering"
+      ]
+    },
+    {
+      "id": "exact-submitted-prompt",
+      "prompt": "Use static-graphic-design-creator. Create one square digital graphic and return its exact submitted prompt. Approved concept: the single word CZYTAJ is the image with generous cream space. Use navy and orange matte inks with restrained local overprint. Choose the execution internally and do not show code labels.",
+      "expected_observables": [
+        "Only authorized available native generation after existing gates",
+        "Returned prompt equals the actual submitted text",
+        "No raw identifier later removed; truthful provenance if later requested"
+      ],
+      "must_not": [
+        "Claiming a render when capability is unavailable",
+        "External provider fallback",
+        "Redacted or reconstructed prompt represented as exact"
+      ]
+    }
+  ]
+}

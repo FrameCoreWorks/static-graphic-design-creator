@@ -24,7 +24,7 @@ Before retrieving any Skill source, require all of the following from the source
 4. every `raw_url` contains that exact immutable source commit;
 5. every `repository_path` maps to its declared relative bundle `path` under the declared source root.
 
-Retrieve only the declared files, from their `raw_url` or equivalent repository path at that immutable source commit. Reject duplicate/escaping paths, symlinks and undeclared files in the source directory. Place each file in the one native Skill bundle at its relative `path`; do not flatten, rename, merge, omit, or rewrite files. Preserve `SKILL.md`, `agents/`, `references/`, and `templates/` exactly.
+Retrieve only the declared files, from their `raw_url` or equivalent repository path at that immutable source commit. Reject duplicate/escaping paths, symlinks and undeclared files in the source directory. Place each file in the one native Skill bundle at its relative `path`; do not flatten, rename, merge, omit, or rewrite files. Preserve every declared directory, including `agents/`, `references/`, `scripts/`, `templates/` and bundled `tests/`. Do not retrieve the source PDF; the catalog is self-contained.
 
 When the Work host can compute SHA-256, compare every retrieved file with the declared value and record `hash_verification: verified`. If a calculated hash differs, report `blocked_integrity`, reread fresh bootstrap manifests, and stop. When this host cannot compute SHA-256, record `hash_verification: declared_unverified`, explain that the creation continues without cryptographic file verification, and do not call the source verified. Hash-unavailable status intentionally does not authorize a false verification claim.
 
@@ -35,7 +35,10 @@ When approval for this installation has not already been given, before reading s
 1. **What it gives:** one finished static graphic only when rendering is explicitly requested, or one generator-ready prompt for a poster, flyer, cover, social graphic, menu, label, card, or other designed static asset.
 2. **How it works:** it turns a brief into objective, attention order, layout, hero visual, exact copy, reference roles, style logic, and QA rather than a generic effect prompt.
 3. **When it helps:** an open poster brief receives a few goal-led routes before a direction is selected; a directed brief preserves the user's decision.
-4. **Boundary:** it may use ChatGPT's built-in image generation only after an explicit render request. It does not use external services, invent facts or logos, guarantee raster typography, or replace a DTP workflow for dense legal or print text.
+4. **Optional directions:** once the Skill is active, `/kody`, `kody`, `/codes` or `codes` shows 200 directions in 20 categories with descriptions. `/Name` can guide a new prompt; a complete listed `/Name /rebuild` can guide the requested redesign of an attached poster, including one generated earlier. Preserve factual text, protected assets and any narrower edit scope. Ordinary brief/brainstorm work needs no codes; the user may keep selection internal or disable catalog use entirely.
+5. **Boundary:** it may use ChatGPT's built-in image generation only after an explicit render request. It does not use external services, invent facts or logos, guarantee raster typography, or replace a DTP workflow for dense legal or print text.
+
+Explain these options without displaying the full catalog or forcing a selection. Honor an existing request to skip onboarding or hide code labels. A clear installation approval remains sufficient; do not repeat an approval just to deliver introductory guidance.
 
 The user may approve with a clear equivalent of `yes`, `approve`, or `install`. Approval authorizes the creation attempt; it is not evidence that a Skill was installed.
 
@@ -62,4 +65,4 @@ If a matching Skill already exists, follow `CHATGPT_UPDATE.md`. Compare source i
 
 ## After installation
 
-Explain that the user can invoke `@static-graphic-design-creator`, request a controlled static-design prompt, or explicitly request a native generated graphic. For an update, use the approved comparison flow in `CHATGPT_UPDATE.md`.
+Explain how to invoke `@static-graphic-design-creator`. Use the verified bundle's `references/first-use-onboarding.md` for any introductory details not already covered: catalog commands, a new prompt, an attached-poster redesign, and ordinary brief/brainstorm collaboration. Keep it brief, respect hidden-code preferences and continue a supplied task without an acknowledgment gate. If the active installer cannot display an introduction, leave it to the first known explicit use; do not claim an automatic install hook or persistent onboarding flag. For an update, use the approved comparison flow in `CHATGPT_UPDATE.md`.

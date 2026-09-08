@@ -2,9 +2,13 @@
 
 Develop only the standalone `static-graphic-design-creator` and its source contract. Preserve its identity and integrated copy-development-and-human-voice asset. Personal installed copies are separate targets: never overwrite them from a source checkout without the update contract and approved Delta.
 
+Maintain repository sources first. Prepare and validate the source and release-lock commits, then publish only when authorized. The owner can subsequently update installed Skills through the documented update flow. A repository task never authorizes editing an installed ChatGPT Work or Codex Skill.
+
 ## Working draft
 
 Install test dependencies with `python3 -m pip install -r tests/requirements.txt`. Run `python3 -B tests/test_skill.py --working-tree` while source files are being edited. This verifies the previously pinned source and draft structure; it deliberately does not certify the edited bundle as a release. Run the design-contract tests when present and `python3 -B tests/check_source_anchors.py --check-inventory`.
+
+Run `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s .agents/skills/static-graphic-design-creator/tests -p 'test_event_poster_codes.py'` for the bundled catalog. Preserve all 200 original lines and category mappings, separate authored interpretations from source attribution, and keep future authored additions under distinct provenance. The PDF is a development source, not a runtime dependency or bundled attachment.
 
 ## Candidate lock
 
