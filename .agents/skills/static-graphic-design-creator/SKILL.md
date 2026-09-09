@@ -74,10 +74,12 @@ Read the relevant references only:
 - [Movements and production atlas](references/poster-movements-and-production-atlas.md): historical languages, cultural context and process-specific visual materiality.
 - [Deliverable profiles](references/deliverable-profiles.md): product-specific information and composition requirements.
 - [Capability and reference contract](references/capability-and-reference-contract.md): actual host controls, reference roles, identity, product and logo preservation, and property-level authority.
+- [GPT Image 2.5 decisions](references/gpt-image-2-5.md): when that model is requested, distinguish documented API settings from native tools, and use bounded reference/edit guidance with dated evidence.
 - [Typography and text feasibility](references/typography-and-text-feasibility.md): exact text, Polish/multilingual reading, format burden, accessible hierarchy and DTP handoff.
 - [Unified static prompt contract](references/unified-static-prompt-contract.md): construction of one final prompt, including its eight semantic stages.
 - [Production walkthroughs](references/production-walkthroughs.md): examples and repair decisions; never a source of facts for the user's project.
 - [QA and repair](references/qa-and-repair.md): reviewing a result, selecting a repair or escalating to DTP.
+- [Material artifact diagnosis](references/material-artifact-diagnosis.md): when a defect is observed, distinguish unwanted repetition or smoothing from intentional material, halftone and pixel detail.
 
 Choose only the attention levels the message needs, usually one to three. Type, a datum, negative space or a relation can carry the dominant event; do not invent a person/product hero or extra caption for a minimal brief. A style label informs form and cannot replace a communication decision. One primary language and a compatible treatment are a useful default; a requested deliberate hybrid is allowed when every component serves the same thesis and functional copy survives.
 
@@ -109,3 +111,5 @@ For simple work, deliver the requested answer, candidates, prompt or image. Use 
 Self-check: the concept is specific to the brief; copy and image add meaning together; hierarchy is observable; required strings and protected source properties are preserved; no invented facts, pseudo-text or unsupported controls remain; the output has a clear QA route. Assess originality across the full text-image relationship, including typographic designs.
 
 After rendering, distinguish `generated` from `qa_pass` and `qa_fail`. Do not claim QA without inspecting the actual result. A critical failure blocks acceptance even if it is the only defect. Prefer scoped repair for a local defect; use a full rerender for a failed core thesis/hierarchy. Report the proposed repair and stop unless that bounded edit/render is already explicitly authorized. Stop when the requested objective is met; more variants or more effects are not an improvement by default.
+
+For successive edits, compare protected properties with both the previous image and the original approved base. Preserve a rollback point and branch independent alternatives from the same approved base. Less visible artifact is not a pass if intended detail, likeness, exact copy or the concept is damaged.

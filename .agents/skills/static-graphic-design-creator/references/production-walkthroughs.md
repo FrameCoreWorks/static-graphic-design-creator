@@ -88,3 +88,45 @@ If the request instead contains three menu items on a roomy digital concept card
 ## 8. Conflicting product references
 
 A supplied front photo governs bottle and label construction; a second image is approved only for side lighting. The front photo shows a single continuous wrap label. Preserve that topology even if the lighting image contains separate label strips. Assign roles/property authority explicitly. If two equally authoritative product photos disagree about the required closure, ask which version to use before final prompting. Do not blend incompatible versions, replace the product, or call a generated approximation a verified product master.
+
+## 9. GPT Image 2.5 poster with integrated text
+
+The following four cases adapt operational ideas from the supplied GPT Image 2.5 handbook to this Skill. They are authored prompt examples, not executed model benchmarks. Their hypothetical briefs supply the selected concepts and final text. Apply the [actual surface contract](gpt-image-2-5.md) separately; no API control is hidden in the prompts.
+
+Brief: a fictional vertical digital poster with the approved title `NOC LASU` and subtitle `Światło między drzewami`. The selected mechanism is a single vertical opening of light between two trunks, aligned with the title. Both strings are compact, must remain exact and need post-render review. The user requests only a prompt, in English, with no visible codes.
+
+```text
+Create one complete vertical digital poster for the supplied title “NOC LASU”. A narrow opening of warm light between two dark forest trunks is the central visual mechanism; align the title with that opening so type and image share the same axis. Let the title read first, then the opening, then the subtitle “Światło między drzewami”. Use a deep green background, restrained warm illumination and generous dark margins. Give the trunks irregular bark fissures, the moss soft clustered growth and the distant leaves simpler silhouettes; keep each material distinct. Place the large upright title above the opening and the smaller subtitle below it, with clear contrast and intact Polish diacritics. Include exactly those two visible strings, fully rendered within this finished poster. Keep the light quiet enough to preserve the letters and bark. No additional copy, logos, mockup or alternative panels. Judge the result by the shared title-light axis, exact readable text and distinct materials.
+```
+
+No fabricated native model selection, automatic render or later typography overlay follows. A repeated-cell defect in bark would use the local diagnostic route while preserving the selected forest mechanism.
+
+## 10. Identity and apparent age in an editorial cover
+
+Hypothetical inputs: `portrait_front` is an available approved close portrait of the intended adult; `portrait_wide` is an available wider photo of the same person; `light_reference` governs side lighting only. The user selects a calm, direct portrait with the locked title `OWN YOUR TIME`, one portrait and no supporting copy. Read the actual images before adapting this prompt; the aliases below are not attachments.
+
+```text
+Create one finished square editorial cover with the exact title “OWN YOUR TIME” above a single calm, direct portrait. Use portrait_front for the person's recognizable face, facial geometry and apparent age, and portrait_wide for their hair, body proportions and garment construction. Use light_reference only for soft light from the viewer's left; do not transfer its person, clothing or background. Keep the face slightly below center, looking toward the viewer, with sufficient quiet space above it for the large readable title. Preserve natural age cues and subtle skin variation under the soft light. Use a restrained warm-gray field and dark upright lettering. The face and title are the only attention anchors. Render the title as part of this single cover, with no extra text, marks or panels. Acceptance requires the supplied identity, apparent age, protected garment properties and exact readable title to survive together.
+```
+
+Review age separately from general likeness. Attractive retouching that makes the person younger fails if age is locked. No numerical face weight or deterministic identity guarantee is implied.
+
+## 11. A product color edit with a real preserve set
+
+Hypothetical inspected source `approved_bottle_ad` has correct product geometry, a single wrap label, approved text, dark matte cap and a soft contact shadow. The user authorizes only changing the cap to matte blue. Supply that actual image as the edit source; do not use an unrelated lighting example as the base.
+
+```text
+Edit approved_bottle_ad only to change the cap's surface color to matte blue. Preserve the cap's shape, ribs, closure position, existing highlights and shadow structure; change only their color contribution as needed for the same matte surface. Keep the bottle silhouette, contents, single continuous wrap label, every exact label and poster string, logo geometry, composition, crop, background and lighting unchanged. Do not redesign the packaging, alter the label topology or recolor another object.
+```
+
+Blue is a visual target, not measured brand-color compliance. Compare the cap and every protected property with the approved base after an authorized edit. If the label breaks into strips or text changes, the edit fails despite the correct cap color. Do not spend another render without applicable authorization.
+
+## 12. Preserve deliberate pixel structure
+
+The brief supplies a square pixel-art digital announcement, the locked title `NIGHT SHIFT`, and the selected idea of one lit window interrupting a dark building facade. A visible grid of pixels and clustered dithering are intentional. The user requests a complete prompt, not vector artwork or a series.
+
+```text
+Create one complete square pixel-art announcement with the exact title “NIGHT SHIFT”. A single warm lit window interrupts a dark blue building facade and carries the idea of work continuing after the city sleeps. Place the window below center and the large title above it, using clear block letterforms with enough separation to read immediately. Use deliberate square pixel clusters, crisp stepped silhouettes and sparse clustered dithering only in the facade's shadow transitions. Keep the window light flat and legible rather than adding a smooth photographic glow. Render only the supplied title within the image. No extra windows lit, characters, logos, captions, mockup or alternate panels. Acceptance requires readable exact text, one unmistakable lit window and coherent intentional pixel structure.
+```
+
+Do not apply a global “remove all grid and repeating patterns” correction. Check unwanted repetition where it breaks the selected structure, independently of the deliberate pixel language. A raster pixel style does not establish a particular underlying pixel grid or editable source unless measured or separately supplied.

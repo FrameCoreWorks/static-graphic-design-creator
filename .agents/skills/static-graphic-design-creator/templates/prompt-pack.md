@@ -4,6 +4,8 @@ Follow the selection and visibility policy in [code selection and rebuild](../re
 
 This fictional, valid prompt-only example demonstrates [the canonical state](../references/design-contract.schema.json). Replace its facts with the supplied brief; never reuse example wording automatically. The native model and controls are Unknown. A real render requires an authorized state transition and observed QA.
 
+For model-specific handoffs, keep requested settings, actual supported settings and returned attribution distinct in accompanying evidence. The `prompt` is the exact submitted instruction, not an inferred provider rewrite. Successive edits retain the original approved base and the preceding accepted image for comparison. These details are only needed when the task depends on them; they do not add schema fields or a mandatory user-facing report.
+
 ```yaml
 schema_version: 1
 activation: explicit

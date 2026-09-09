@@ -4,6 +4,8 @@ Collect an ordinary brief without a mandatory code question or catalog step. For
 
 Use internally for complex work. This valid starting state records unresolved decisions; it is not a mandatory form. Populate from supplied evidence, preserve prior answers, and select the action appropriate to the request. Empty fields do not approve facts, copy or capabilities. See [workflow integration](../references/workflow-integration.md).
 
+When a specific model is requested, retain that request separately from observed host attribution; `host.model` stays `Unknown` without surface evidence. For reference work, record property authority, apparent-age or product-construction locks where relevant, and the approved edit base. Do not add a compulsory API/model questionnaire to an ordinary brief.
+
 ```yaml
 schema_version: 1
 activation: explicit

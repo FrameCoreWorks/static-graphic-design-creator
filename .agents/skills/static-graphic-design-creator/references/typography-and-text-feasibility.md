@@ -14,6 +14,8 @@ Resolve intended use, format/orientation, likely display size, reading mode, man
 
 A readable raster is an observed quality, not an editable master. A print-looking image is a material simulation. Exporting a raster to PDF does not establish bleed, colour separations, font licensing, vectors, or a valid dieline.
 
+Effective PPI is pixel count divided by physical length in inches for each axis. A DPI metadata label does not create missing pixels; upscaling does not recover verified source detail. A HEX color in a prompt is appearance intent until measured against the required profile and viewing conditions. A vector-like logo remains raster unless real paths are delivered. Required QR/barcodes need a suitable deterministic production and scan-validation route, not a claim that a generated pattern is functional.
+
 ## Per-string typography contract
 
 Keep exact text in canonical `copy.items` with stable ID, language, role, required flag, authority, source and allowed changes. Role is attention priority, not permission to omit. A required legal footer remains required even as `metadata`; an optional CTA does not become mandatory because it is typical for an ad.

@@ -160,6 +160,12 @@ The standalone JSON catalog preserves code names and categories from *200 Event 
 
 The bundle contains worked examples of a discovery brainstorm, a directed Codex compatibility profile, a scoped edit, and a full rerender decision. They are decision models, not generic artwork recipes.
 
+## GPT Image 2.5 guidance
+
+The Skill includes a [dated GPT Image 2.5 reference](.agents/skills/static-graphic-design-creator/references/gpt-image-2-5.md), [material artifact diagnosis](.agents/skills/static-graphic-design-creator/references/material-artifact-diagnosis.md), and additional complete prompt/edit examples. It distinguishes Flare and Sunburst API capabilities from the controls actually exposed in ChatGPT Work or Codex. Reference roles, apparent age, product construction, intended texture and the original approved image remain explicit checks through edits.
+
+This knowledge was derived from the supplied handbook and checked against current official documentation on **2026-09-09**. The handbook itself is not bundled. Its benchmark outcomes remain reported evidence because the companion originals and logs were not supplied; the added examples are unrendered. The [integration record](reports/gpt-image-2-5-integration.md) documents coverage, corrections and verification limits. Model knowledge does not automatically enable a model selector, paid API route or extra generation. Complete graphics with integrated selected text remain the default.
+
 ## Integrity model
 
 The release manifest is a **bootstrap document**. It resolves every declared Skill source through one immutable Git commit and lists its SHA-256 value. A matching hash verifies the retrieved bytes against that manifest and catches transfer corruption or manifest/file drift.

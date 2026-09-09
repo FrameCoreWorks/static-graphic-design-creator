@@ -15,7 +15,7 @@ Use [design-contract.schema.json](design-contract.schema.json) for a complex des
 | `copy.route`, `copy.selection_status`, `copy.items`, `copy.options`, `copy.claims` | Integrated copy asset: writing route, selection, exact strings, draft alternatives and evidence |
 | `feasibility` | Typography feasibility asset: risk, reason and intended checks, independent of text selection |
 | `references`, `reference_status` | Property-level reference roles, availability and conflicts |
-| `host` | Observed surface, native availability, declared/known model and individually evidenced controls |
+| `host` | Observed surface, native availability, observed model or `Unknown`, and individually evidenced controls |
 | `edit_scope` (scoped edits only) | Current image reference, the permitted change, changed/protected copy IDs and protected properties |
 | `prompt` | One exact submitted or paste-ready prompt, empty while unresolved |
 | `render_status`, `qa` | Actual execution/review state, never an optimistic prefilled result |
@@ -57,6 +57,8 @@ Never merge contradictory exact strings or silently discard unmapped protected f
 ## Host compatibility and optional Codex crosswalk
 
 Use actual tool schema and observed host behavior first, then current official surface documentation, then model/API documentation; a user's declared target is intent, not capability evidence. Set unknown controls to `Unknown`. Do not infer a model ID from the ChatGPT/Codex product name. A built-in imagegen Skill can describe a CLI fallback, but this Skill does not authorize that fallback.
+
+When normalizing a legacy handoff that puts a requested model in `host.model`, retain that value separately as a request declaration and use `Unknown` for the actual renderer unless the surface establishes it. Preserve both requested and observed values when they differ; do not silently relabel a request as returned attribution. This clarification adds no schema field or mandatory user-facing report.
 
 A connected handoff explicitly declaring Codex, `codex_builtin_imagegen`, OpenAI, text-bearing output and `gpt-image-2` may retain those declarations as context. It does not enable native settings. Use integrated constraints unless the selected surface actually verifies a separate negative field. Request references must be available in the receiving context; a conversational alias alone is not an attachment.
 

@@ -17,6 +17,8 @@ Use the actual exposed tool schema and observed behavior first, then current off
 
 Native size, aspect fields, reference limits, masks, seeds, weights, transparency, negative fields and edit controls require individual verification. Output dimensions belong in supported settings and final-file inspection, not quality incantations such as “8K”. Never claim an alpha channel, editable layers, exact font or repeatable seed from natural-language instructions alone. A declared reference set exceeding actual input limits requires an explicit priority decision, not silently dropped assets.
 
+For GPT Image 2.5, read the [dated model and surface reference](gpt-image-2-5.md). Keep the requested model, observed native renderer and conversation model distinct. Do not fill an absent returned attribution with the request value or assume that a quality/mask field in an API guide exists in Work or Codex.
+
 ## One native execution route
 
 Native generation requires a user's render request, selected concept/copy, resolved required references and passed feasibility gate. Use the available built-in image capability under its active tool/Skill instructions. A built-in Skill's CLI or paid API fallback is outside this Skill's authorization. Never substitute an external service, upload, or paid provider when native generation is absent.
@@ -43,6 +45,8 @@ One image may have several explicit roles. Use canonical `references` entries wi
 
 Resolve overlap per property: user-approved copy and explicit source locks govern their own property; identity/product/logo truth outranks stylistic convenience. Composition governs arrangement within those locks. Equal-authority disagreement on a required property blocks finalization until resolved. Preserve unresolved references as unavailable/conflicting, rather than treating absence as a creative license. Use the smallest sufficient set while retaining every required authority.
 
+Check apparent age and facial geometry separately from recognizable likeness. A face crop and a wider body/garment view may serve different roles; preserve originals if preparing useful crops. Do not invent unseen product construction. Look for accidental transfer of a style reference's face, garment, text, setting or material into properties that another reference protects.
+
 For example, `product_front` may lock `bottle_shape: cylindrical`, `label_boundary: one continuous closed rectangle`, `cap_count: one`; `lighting_ref` governs soft side light only. Do not turn the label into floating strips, repeat caps, change packaging seams, or replace the product to imitate lighting. Relative topology is often more useful than repeated adjectives such as “exact”.
 
 ## Source and brand decisions
@@ -56,3 +60,5 @@ For a named style or artwork, articulate original transferable decisions. Histor
 ## Edits and variants
 
 Put the one permitted change first and list unchanged properties separately. Preserve the actual source image and all selected copy/concept locks. A variation defines allowed differences; a reference alone cannot guarantee deterministic continuity across generations. Changes to identity, product construction or a protected logo require an explicit new scope. If the required image is missing from the current request context, obtain it before editing.
+
+Account for necessary physical relationships: moving an object can require its contact shadow, reflection or occlusion to change. Resolve a concrete conflict with the preserve set before proceeding. Masks and selections guide scope but do not prove pixel isolation. Retain the original approved base and preceding accepted image; compare both after a serial edit and start independent alternatives from the same base.

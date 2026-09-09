@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_FILES = (
     ROOT / ".agents" / "skills" / "static-graphic-design-creator" / "references" / "poster-movements-and-production-atlas.md",
     ROOT / ".agents" / "skills" / "static-graphic-design-creator" / "references" / "poster-style-translation-catalog.md",
+    ROOT / ".agents" / "skills" / "static-graphic-design-creator" / "references" / "gpt-image-2-5.md",
 )
 URL_PATTERN = re.compile(r"https?://[^\s)<]+")
 

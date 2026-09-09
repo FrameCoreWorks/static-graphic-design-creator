@@ -2,7 +2,28 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
-## [0.9.0-rc.2] - Unreleased candidate
+## [0.10.0-rc.1] - Unreleased candidate
+
+### Added
+
+- dated GPT Image 2.5 guidance for Flare/Sunburst, API-versus-native controls, reference roles, model attribution and evidence limits;
+- material artifact diagnosis that distinguishes unwanted repetition, drift and smoothing from intentional texture, halftone, patterned cloth and pixel art;
+- four authored complete prompt/edit walkthroughs and six manual forward-test cases for model controls, artifact intent, protected edits, delivery, evidence and integrated copy;
+- a handbook integration record with source digest, chapter coverage, official-source corrections and explicit benchmark limitations.
+
+### Changed
+
+- serial edits compare with both the preceding accepted image and original approved base; independent alternatives branch from the same base;
+- identity checks include apparent age; product and material checks guard against reference leakage and attractive but incorrect repairs;
+- delivery guidance distinguishes actual alpha, measured color, effective resolution and raster appearance from production properties;
+- preserved the reported ChatGPT Work save/update and poster-code smoke-test results for v0.9.0-rc.2, without promoting detailed pending host cases or claiming every code was tested.
+
+### Validation scope
+
+- source and release integrity, deterministic regressions and bounded source-only behavior checks; actual candidate host saves and image-generation outcomes remain pending;
+- no bundled handbook, benchmark assets, automatic API calls, paid tests or changes to installed Skills.
+
+## [0.9.0-rc.2] - Published candidate
 
 ### Changed
 

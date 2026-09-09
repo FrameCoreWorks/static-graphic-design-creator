@@ -47,6 +47,7 @@ Resolve all eight stages, but do not force eight headings or eight long paragrap
 7. **Colour, light, and material integration**
    - State how the selected style attributes, colour, light, contrast, surface, and depth bind the composition together. Use the selected compatible palette and motivated light; a deliberate hybrid must retain its assigned jobs. For a limited-ink simulation, name inks separately from substrate and overprint so new accent colours do not contradict the process. Treat lithography, screenprint, risograph, letterpress, collage, photomontage, offset, or halftone as visual material simulation unless a real production process is separately confirmed. Tie every process cue to a visible cause such as separation, overprint, register, relief, paper absorption, or dot structure; never use a generic vintage/damage filter.
    - Protect readable copy through contrast and layout, not by stacking unnecessary panels, glows, or effects behind every string.
+   - Assign textures to their actual surfaces and useful scale. Preserve intentional halftone, cloth pattern, grain or pixel clusters; do not paste universal anti-texture exclusions into every prompt. A reported artifact needs a location-specific correction, not a claim about the renderer's hidden mechanism.
 
 8. **Finish, exclusions, and acceptance checks**
    - Finish with optical alignment, calibrated spacing, restrained material evidence, safe margins, and high-priority legibility.

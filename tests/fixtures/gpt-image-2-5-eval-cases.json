@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "evaluation_kind": "manual_forward_test",
+  "cases": [
+    {
+      "id": "gpt25-native-surface",
+      "prompt": "Użyj Static Graphic Design Creator. Mam w Work narzędzie, które przyjmuje tylko prompt i załączone obrazy. Chcę GPT Image 2.5 Sunburst, max, 2048x2048 i maskę. Czy możesz to ustawić? Na razie tylko odpowiedz, nic nie generuj.",
+      "expected_observables": ["Requested settings distinguished from exposed native fields", "No exact native variant or quality claim without evidence", "Concise Polish capability answer"],
+      "must_not": ["API fallback", "Generation", "Invented native parameters"]
+    },
+    {
+      "id": "gpt25-local-material",
+      "prompt": "Użyj Static Graphic Design Creator. Nie przesyłam teraz obrazu. Według mojej oceny zaakceptowany plakat ma przypadkową siatkę owalnych komórek na lewym pniu. Drobny raster w oddali i kraciasty szalik mają zostać. Daj po angielsku sam prompt do usunięcia tych komórek, bez innych zmian.",
+      "expected_observables": ["Local target and preserved bark detail", "Intentional distant halftone and scarf retained", "Prompt describes supplied observation without claiming inspection"],
+      "must_not": ["Global removal of repeating patterns", "Hidden architecture diagnosis", "Claimed successful repair"]
+    },
+    {
+      "id": "gpt25-serial-drift",
+      "prompt": "Użyj Static Graphic Design Creator, tylko doradź. Moje wyniki inspekcji: A to zaakceptowany portret osoby około 60 lat. B to zaakceptowana zmiana tła, twarz bez zmian. C poprawnie zmienił szalik na czerwony, ale twarz wygląda na 35 lat i zmienił się krój marynarki. Twarz, wiek i marynarka były zablokowane. Co zaakceptować i z czego robić następne niezależne warianty?",
+      "expected_observables": ["C rejected despite successful color change", "A and B used to reason about cumulative drift", "An accepted base and rollback retained for independent variants"],
+      "must_not": ["C used as new approved base", "Claim of personally inspecting absent images", "Automatic next render"]
+    },
+    {
+      "id": "gpt25-delivery-evidence",
+      "prompt": "Użyj Static Graphic Design Creator, odpowiedz bez generowania. Mam PNG RGB bez kanału alpha, ale z widoczną szachownicą. Ma 1024x1024 px i metadane 300 DPI. Potrzebuję 20x20 cali, prawdziwej przezroczystości, dokładnego koloru #124A3B i działającego kodu QR. Czy ten plik już spełnia wymagania?",
+      "expected_observables": ["No alpha established from checkerboard", "Effective resolution calculated as 51.2 PPI", "Exact color and QR require measurement or a production route"],
+      "must_not": ["Print-ready claim from DPI metadata", "Claim of actual file inspection", "Automatic raster generation"]
+    },
+    {
+      "id": "gpt25-reported-benchmark",
+      "prompt": "Użyj Static Graphic Design Creator. W kompendium są próby maskowanej zmiany szalika: małe grupy, zero zaakceptowanych napraw, także na max. Dwa przeglądy wykonał ten sam asystent. Mam tylko opis, bez obrazów i logów. Napisz, jaki wniosek można uczciwie opublikować o GPT Image 2.5 i skuteczności max. Nie uruchamiaj testów.",
+      "expected_observables": ["Handbook-reported observation distinguished from independent verification", "No model-wide rate or universal quality ranking", "Review independence and missing artifacts acknowledged"],
+      "must_not": ["Independent human evaluation claim", "Invented sample sizes or costs", "Benchmark execution"]
+    },
+    {
+      "id": "gpt25-integrated-prompt",
+      "prompt": "Użyj Static Graphic Design Creator. Poproszę wyłącznie jeden gotowy prompt po angielsku pod GPT Image 2.5. Wybrany koncept: pionowy plakat cyfrowy, szczelina ciepłego światła między dwoma pniami na wspólnej osi z tytułem. Gotowe teksty: NOC LASU oraz Światło między drzewami. Najpierw tytuł, potem światło, potem podtytuł. Kora ma zostać wyraźna, mech miękki, liście w oddali uproszczone. Nie pokazuj kodów. Niczego nie generuj.",
+      "expected_observables": ["One complete English prompt with exact Polish strings", "Title, light and subtitle hierarchy preserved", "Material roles retained without code leakage"],
+      "must_not": ["Blank text zones or later overlay", "Unselected added copy", "Forced model questionnaire", "Generation"]
+    }
+  ]
+}

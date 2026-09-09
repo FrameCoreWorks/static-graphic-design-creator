@@ -1,0 +1,48 @@
+{
+  "baseline_release": "v0.9.0-rc.2",
+  "candidate_release": "v0.10.0-rc.1",
+  "new": [
+    "references/gpt-image-2-5.md",
+    "references/material-artifact-diagnosis.md"
+  ],
+  "removed": [],
+  "changed": [
+    "SKILL.md",
+    "references/capability-and-reference-contract.md",
+    "references/production-walkthroughs.md",
+    "references/qa-and-repair.md",
+    "references/source-release.json",
+    "references/typography-and-text-feasibility.md",
+    "references/unified-static-prompt-contract.md",
+    "references/workflow-integration.md",
+    "templates/design-intake.md",
+    "templates/prompt-pack.md"
+  ],
+  "unchanged": [
+    "agents/openai.yaml",
+    "references/concept-development-and-originality.md",
+    "references/copy-development-and-human-voice.md",
+    "references/deliverable-profiles.md",
+    "references/design-contract.schema.json",
+    "references/evaluation-scenarios.md",
+    "references/event-poster-code-workflow.md",
+    "references/event-poster-design-codes.json",
+    "references/first-use-onboarding.md",
+    "references/poster-movements-and-production-atlas.md",
+    "references/poster-style-and-composition-atlas.md",
+    "references/poster-style-translation-catalog.md",
+    "references/skill-maintenance.md",
+    "scripts/event_poster_codes.py",
+    "scripts/skill_lifecycle.py",
+    "tests/test_event_poster_codes.py"
+  ],
+  "base_file_count": 26,
+  "target_file_count": 28,
+  "clean_update": "ready_for_review",
+  "clean_repeat": "already_up_to_date",
+  "personal_update": "ready_for_review",
+  "personal_repeat": "local_customizations_preserved",
+  "installed_skill_accessed": false,
+  "comparison_kind": "in_memory_actual_source_files",
+  "candidate_content_sha256": "768e69a616903d2f8fb1ddbe058a984ba7d28e4c4f7dc65c1fce9aa0fa9cd7d9"
+}
