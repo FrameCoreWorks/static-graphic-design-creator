@@ -10,6 +10,7 @@ import hashlib
 import json
 import re
 import subprocess
+import sys
 from pathlib import Path, PurePosixPath
 import yaml
 
@@ -18,6 +19,10 @@ SOURCE_ROOT = '.agents/skills/static-graphic-design-creator'
 SKILL = ROOT / SOURCE_ROOT
 NAME = 'static-graphic-design-creator'
 REPOSITORY = 'https://github.com/FrameCoreWorks/' + NAME
+sys.path.insert(0, str(SKILL / 'scripts'))
+from skill_lifecycle import validate_manifest, validate_bootstrap, classify_delta
+sys.path.insert(0, str(ROOT / 'scripts'))
+from release import validate_history
 
 class UniqueLoader(yaml.SafeLoader):
     pass
@@ -51,47 +56,6 @@ def sha(data):
 
 def git_bytes(commit, path):
     return subprocess.check_output(['git', 'show', f'{commit}:{path}'], cwd=ROOT)
-
-def validate_manifest(m, expected_release=None):
-    require(m['repository'] == REPOSITORY, 'Wrong repository')
-    require(m['release_id'] == 'v' + m['version'], 'Release/version mismatch')
-    if expected_release is not None:
-        require(m['release_id'] == expected_release, 'Bootstrap resolved a different release')
-    commit = m['immutable_source_commit']
-    require(re.fullmatch(r'[0-9a-f]{40}', commit), 'Immutable commit required')
-    require(m['ref'] == commit and m['release_ref_type'] == 'immutable_git_commit', 'Source ref mismatch')
-    require(len(m['skills']) == 1, 'Exactly one Skill required')
-    skill = m['skills'][0]
-    require(skill['name'] == NAME and skill['source_root'] == SOURCE_ROOT, 'Wrong source identity')
-    paths = set()
-    for e in skill['files']:
-        p = PurePosixPath(e['path'])
-        require(str(p) == e['path'] and not p.is_absolute() and '..' not in p.parts
-                and str(p) not in {'', '.'} and '\\' not in str(p), 'Unsafe bundle path')
-        require(str(p) not in paths, 'Duplicate manifest path')
-        paths.add(str(p))
-        require(e['repository_path'] == f'{SOURCE_ROOT}/{p}', 'Wrong repository mapping')
-        require(e['raw_url'] == f'https://raw.githubusercontent.com/FrameCoreWorks/{NAME}/{commit}/{SOURCE_ROOT}/{p}', 'Wrong immutable URL')
-        require(re.fullmatch(r'[0-9a-f]{64}', e['sha256']), 'Invalid SHA-256')
-    require({'SKILL.md', 'references/source-release.json'} <= paths, 'Missing identity files')
-    return paths
-
-def classify_delta(base, target, installed):
-    """Pure three-way digest planner. Does not authorize or apply an update."""
-    b, t, i = set(base), set(target), set(installed)
-    changed = {p for p in b & t if base[p] != target[p]}
-    added, removed = t - b, b - t
-    modified = {p for p in b & i if base[p] != installed[p]}
-    deleted, local_added = b - i, i - b
-    conflicts = {p for p in (modified | deleted) & (changed | removed)
-                 if installed.get(p) != target.get(p)}
-    conflicts |= {p for p in added & local_added if installed[p] != target[p]}
-    return {k: sorted(v) for k, v in {
-        'changed': changed, 'new': added, 'removed': removed, 'unchanged': (b & t) - changed,
-        'local_modified': modified, 'local_deleted': deleted, 'local_added': local_added,
-        'conflicts': conflicts,
-        'apply': {p for p in changed | added | removed if installed.get(p) != target.get(p)} - conflicts,
-    }.items()}
 
 def validate_host_report(text, release_id, commit, expected_cases=None, stable=False):
     fields = dict(re.findall(r'^\| ([^|]+?) \| `([^`]+)` \|$', text, re.M))
@@ -161,7 +125,7 @@ def check_negative_cases(manifest):
             raise AssertionError('Malformed manifest accepted')
     try:
         validate_manifest(manifest, 'v999.0.0')
-    except AssertionError:
+    except (AssertionError, ValueError):
         pass
     else:
         raise AssertionError('Wrong baseline release accepted')
@@ -181,10 +145,10 @@ def main():
     config = read_json(ROOT / 'config/chatgpt-skills.json')
     paths = validate_manifest(m)
     commit = m['immutable_source_commit']
-    require(config['version'] == m['version'] and config['release']['id'] == m['release_id'], 'Bootstrap version mismatch')
-    require(config['release']['immutable_source_commit'] == commit, 'Bootstrap source mismatch')
-    require(config['release']['bootstrap_ref'] == m['release_bootstrap_ref'] and config['release']['bootstrap_ref_type'] == m['release_bootstrap_ref_type'], 'Bootstrap discovery mismatch')
-    require(len(config['skills']) == 1 and config['skills'][0]['name'] == NAME, 'Duplicate Skill configuration')
+    validate_bootstrap(config, m)
+    validate_history(read_json(ROOT / 'config/release-history.json'))
+    ancestor = subprocess.run(['git', 'merge-base', '--is-ancestor', commit, 'HEAD'], cwd=ROOT)
+    require(ancestor.returncode == 0, 'Pinned source is not an ancestor of this checkout')
     tree = subprocess.check_output(['git', 'ls-tree', '-r', commit, SOURCE_ROOT], cwd=ROOT).decode()
     pinned_paths = set()
     for line in tree.splitlines():

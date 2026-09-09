@@ -2,7 +2,34 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
-## [0.9.0-rc.1] - Unreleased candidate
+## [0.9.0-rc.2] - Unreleased candidate
+
+### Changed
+
+- English is the single maintained language for documentation and all 200 catalog interpretations; public usage descriptions lead with `/codes` rather than separate language editions;
+- onboarding, brief questions and catalog explanations follow the user's explicit language preference or conversational language in both ChatGPT Work and Codex, using an exposed host locale only as a fallback;
+- Polish onboarding explains `/kody`; clear local catalog requests can be understood conversationally in other languages without translating canonical style names or claiming global command registration;
+- the read-only catalog helper now returns English source text for every accepted alias, for localization by the Skill; the old `--language pl` output is retired and `--language en` remains accepted;
+- requested prompt language, conversation language and exact artwork text remain separate, including after a language switch;
+- the intended English GitHub About description is recorded in contributor guidance; the live field requires a separate metadata operation.
+
+### Validation scope
+
+- catalog regressions cover the English source, complete alias-equivalent output, exact 200-code fidelity and read-only lookup;
+- manual multilingual fixtures and three additional host cases cover language signals, local aliases and protected output languages; unexecuted cases remain pending.
+
+### Lifecycle corrections
+
+- read-only update comparison now prepares conflict diffs and a resolved proposal without an extra approval to analyze; one approval still governs the complete installed-file update;
+- source, manifest/lock and host-save commit IDs are distinguished, and files already equal to the target are separated from outstanding differences;
+- a bundled read-only lifecycle helper shares manifest/identity checks and digest planning with repository tests; unresolved conflicts block the whole proposal and the upstream record advances with all approved source changes;
+- optional personal instructions use the reserved `local/SKILL_EXTENSIONS.md` entry by default; necessary core overrides and host metadata remain explicit preserved differences;
+- install/update guides and all README maintenance prompts require complete saved-content verification and a repeat comparison, with truthful partial-save/rollback handling;
+- a local release helper derives configs, source hashes and pending host inventory from one exact source commit and separately verifies public refs, all source bytes, ancestry and exact-commit CI;
+- verified immutable historical manifest locators resolve the known legacy release-branch mismatches without moving published refs or substituting another baseline;
+- lifecycle regressions cover install/update/no-op, extensions across releases, the historical add/add collision pattern, stale records, deletions, changed inputs and readback failures; three additional live host cases remain pending.
+
+## [0.9.0-rc.1] - Published candidate
 
 ### Added
 
@@ -24,7 +51,7 @@ This file records user-visible changes to the standalone Skill. Stable, versione
 - all applicable live host and visual evaluations for this exact candidate; local catalog and contract tests do not certify rendered fidelity;
 - public publication and installed-Skill updates remain separate operations.
 
-## [0.8.0-rc.1] - Unreleased candidate
+## [0.8.0-rc.1] - Published candidate
 
 ### Added
 

@@ -100,14 +100,15 @@
       "id": "new-user-onboarding",
       "prompt": "I just installed static-graphic-design-creator. Run onboarding. How can I begin in ChatGPT Work and Codex? I also have finished posters to improve later, but no brief yet.",
       "expected_observables": [
-        "Explain explicit invocation, four catalog aliases, new prompts, supplied-image rebuild and brief/brainstorm options",
+        "English introduction with explicit invocation and /codes, new prompts, supplied-image rebuild and brief/brainstorm options",
         "Clarify optional code visibility and opt-out",
         "One ordinary next-task question if needed"
       ],
       "must_not": [
         "Full unsolicited 200-code list",
         "Compulsory code choice",
-        "Claimed automatic install hook"
+        "Claimed automatic install hook",
+        "Unrequested Polish aliases or separate language-edition pitch"
       ]
     },
     {
@@ -135,6 +136,97 @@
         "Claiming a render when capability is unavailable",
         "External provider fallback",
         "Redacted or reconstructed prompt represented as exact"
+      ]
+    },
+    {
+      "id": "onboarding-polish-context",
+      "prompt": "Użyj static-graphic-design-creator. Właśnie zainstalowałem skilla, pokaż mi jak zacząć. Mam też gotowe plakaty do poprawienia.",
+      "host_context": "The interface locale is en-US; no explicit conversation-language override.",
+      "expected_observables": [
+        "Polish onboarding explains /codes and /kody for the same catalog",
+        "Existing-poster and ordinary brief routes remain optional"
+      ],
+      "must_not": [
+        "English onboarding because the interface is English",
+        "Full unsolicited catalog or a render"
+      ]
+    },
+    {
+      "id": "onboarding-spanish",
+      "prompt": "Usa static-graphic-design-creator. Acabo de instalar la habilidad. Explícame cómo empezar y cómo puedo mejorar un cartel que ya tengo.",
+      "expected_observables": [
+        "Spanish onboarding from the English source",
+        "/codes explained; English individual code strings retained"
+      ],
+      "must_not": [
+        "Polish command detour",
+        "Claim that only English and Polish are supported"
+      ]
+    },
+    {
+      "id": "onboarding-japanese",
+      "prompt": "static-graphic-design-creatorを使ってください。初めて使います。始め方と、手元にあるポスターを改善する方法を教えてください。",
+      "expected_observables": [
+        "Japanese onboarding explains optional /codes and ordinary brief routes",
+        "Image availability and actual host capability limits respected"
+      ],
+      "must_not": [
+        "Forced English response",
+        "Invented translated style codes"
+      ]
+    },
+    {
+      "id": "catalog-local-alias",
+      "prompt": "Usa static-graphic-design-creator. /códigos: muestra solo la categoría 02 y explica cada estilo en español. No generes ninguna imagen.",
+      "expected_observables": [
+        "Unambiguous localized catalog intent normalized before lookup",
+        "Ten original category 02 codes with Spanish descriptions and stable English strings"
+      ],
+      "must_not": [
+        "Invented code names or missing entries",
+        "A render or full 200-entry list despite the category filter"
+      ]
+    },
+    {
+      "id": "alias-language-override",
+      "prompt": "Use static-graphic-design-creator. Reply in English. /kody: category 02 only.",
+      "host_context": "The interface locale is pl-PL.",
+      "expected_observables": [
+        "English explanations for ten exact category 02 entries",
+        "Explicit response preference wins over both alias and locale"
+      ],
+      "must_not": [
+        "Polish explanations because of /kody",
+        "Onboarding restart"
+      ]
+    },
+    {
+      "id": "separate-conversation-prompt-copy",
+      "prompt": "Użyj static-graphic-design-creator. Od teraz rozmawiaj ze mną po polsku. Krótko wyjaśnij podejście, a potem daj kompletny prompt po angielsku. Zatwierdzony koncept: dwa wiersze czarnego tekstu na białym tle, dużo pustego miejsca, bez ilustracji. Dokładny tekst to „CZYTAJ” oraz „本を読もう”. Format kwadratowy, plik cyfrowy. Nie generuj obrazu.",
+      "host_context": "Onboarding was already completed in English.",
+      "expected_observables": [
+        "Polish explanation followed by an English prompt",
+        "Both locked text strings preserved exactly",
+        "No repeated onboarding after the language switch"
+      ],
+      "must_not": [
+        "Translation of artwork strings",
+        "Catalog labels or an unsolicited render"
+      ]
+    },
+    {
+      "id": "locale-fallback",
+      "prompt": "Use static-graphic-design-creator. /codes",
+      "host_context": "No conversational prose beyond the command and invocation; no prior preference. Run separately with a reliably exposed fr-FR locale and with no exposed locale.",
+      "expected_observables": [
+        "French catalog explanations when the locale is actually exposed",
+        "English fallback when no usable language signal exists",
+        "All 200 canonical code strings preserved in both cases"
+      ],
+      "must_not": [
+        "Claim of reading hidden settings",
+        "Mandatory language questionnaire",
+        "Inferring nationality from user or host names"
       ]
     }
   ]

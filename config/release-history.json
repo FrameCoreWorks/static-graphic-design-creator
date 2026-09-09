@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
+  "purpose": "Verified historical baseline locators. These do not replace current release discovery or authorize an installed update. Verify the referenced immutable manifest and source bytes before use.",
+  "releases": [
+    {
+      "release_id": "v0.7.0-rc.1",
+      "manifest_commit": "b236ab1081bfa440eb45a97f1408cf612bbfb653",
+      "manifest_sha256": "626e5011adca27a619ac5693ef361b223060529dc9aa866565f46de9528a631f",
+      "immutable_source_commit": "5536e89c7d881219d25160ae0170830bd8001c97"
+    },
+    {
+      "release_id": "v0.7.0-rc.2",
+      "manifest_commit": "0b88588edb2cb11c860a9f42b5f4cb432771b54e",
+      "manifest_sha256": "73e1c8b05aba94fb78137eb67f63e4fa6986b7ce15025b93f378542a57a846d3",
+      "immutable_source_commit": "e5e6b08107f2a561ffff8b9e186476c4a90ddc12"
+    },
+    {
+      "release_id": "v0.7.0-rc.3",
+      "manifest_commit": "2159c3210ce4d38c53f29c62001d7c481e48e6bb",
+      "manifest_sha256": "1a1f0e351f13d873abee724be79f0f3233709352e538bc6250892ab32a2acab3",
+      "immutable_source_commit": "1f4ffaadd0ea9fb0f843c71c34b950d147f3e9e0"
+    },
+    {
+      "release_id": "v0.8.0-rc.1",
+      "manifest_commit": "04604f8a4b73163d22005bd01e4602098166c67e",
+      "manifest_sha256": "cae2a3caa8d211392e3dd26156878cb040d4727a7fa15c3c32e2a56c2b6231f4",
+      "immutable_source_commit": "67a48cb7589d894959f39fdbe37ce647499d657c"
+    },
+    {
+      "release_id": "v0.9.0-rc.1",
+      "manifest_commit": "ab984adab7958a4fbcbec0a8115e4d9292c497eb",
+      "manifest_sha256": "eb00c239ca07ccbfa4f1d5cab469ddf3483c338a71b203e60f41f7774cd4f9f4",
+      "immutable_source_commit": "aed4bb2566e9b408e2e34d78b35b30a4c07d2348"
+    }
+  ]
+}

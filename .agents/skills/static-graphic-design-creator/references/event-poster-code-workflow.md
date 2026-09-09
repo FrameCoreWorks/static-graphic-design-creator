@@ -22,18 +22,21 @@ The PDF supplies names and grouping, not 200 detailed recipes, rendered examples
 
 The category translation map below is **FrameCore Works implementation guidance**, not additional statements by the PDF's author. Attribute proposed visible attributes to this interpretation when explaining a code. A name such as `Cabaret`, `Theatre`, `Festival`, `Crowd`, `Microphone` or `News` does not authorize adding those event facts, objects, people or text. Inspect the actual brief first. Newsletter, tool and social promotions on page 1 are not part of the design workflow.
 
-Every entry also includes `shorthand` (the exact slash name without the trailing `/rebuild`) and an individual `interpretation.description_pl` / `description_en`. These 200 bilingual descriptions explain a proposed visible mechanism and its use. They are FrameCore Works interpretations, not missing definitions recovered from the PDF. Adapt their choices to the actual brief; a label and a description are not proof of deterministic generator behavior.
+Every entry also includes `shorthand` (the exact slash name without the trailing `/rebuild`) and an individual English `interpretation.description_en`. These 200 descriptions explain a proposed visible mechanism and its use. They are FrameCore Works interpretations, not missing definitions recovered from the PDF. English is the single maintained source; translate explanatory prose at response time according to [language and localization](first-use-onboarding.md#language-and-localization). Adapt design choices to the actual brief; a label and a description are not proof of deterministic generator behavior.
 
 ## Catalog commands and two usage modes
 
-Within this explicitly activated Skill, or a request unambiguously addressed to it, recognize these whole requests case-insensitively:
+Use `/codes` as the universal documented command. Within this explicitly activated Skill, or a request unambiguously addressed to it, recognize these whole requests case-insensitively:
 
 | Command | Response |
 | --- | --- |
-| `/kody` or `kody` | Complete grouped catalog with style/use descriptions in the user's language. |
-| `/codes` or `codes` | The same complete catalog; use English if requested, otherwise retain the conversation language. |
+| `/codes` or `codes` | Complete grouped catalog with style/use descriptions in the resolved user language. |
+| `/kody` or `kody` | Polish conversational aliases for the same catalog; explain them during Polish onboarding or when asked. They do not force Polish output. |
+| An unambiguous local request or an alias established in the active conversation | Resolve the catalog intent and pass `/codes` to the helper. Do not interpret an unknown individual style as a catalog request. |
 
 Return all 200 canonical lines in all 20 categories, each with its individual description. Use a brief attribution followed by readable grouped tables. Do not replace the list with examples, an intake, an offer to continue, or four selected variants. The four-variant creative default does not limit a requested reference catalog. If the user explicitly narrows the request to a category or search term, return only that requested subset. Do not globally intercept the word "codes" in unrelated conversations. A browse request does not set a design's style or authorize a render.
+
+The helper returns English source content for every accepted alias. The Skill localizes descriptions and explanatory headings for the user, including languages beyond English and Polish. Keep all code strings, IDs, category numbers and `/rebuild` exact; a translated heading may retain the original category name for lookup. Resolve a localized category/filter to the original category or English search terms before retrieval, and check that the candidates fit the user's request. Do not pass a translated style name as an exact catalog key or silently select a fuzzy match. Localized responses do not create translated catalog files.
 
 - **Existing poster:** `/Name /rebuild` selects a style for a requested redesign of the attached poster, preserving source facts and protected properties. It does not upload or generate by itself. Retain the user's clear image-generation or prompt-only instruction.
 - **New text-to-image prompt:** `/Name` selects the same direction without requiring an existing poster. The complete legacy line is also accepted in an explicitly new-poster brief; the user's new-design intent governs, so do not invent a missing source image or block on one.
@@ -131,8 +134,7 @@ python scripts/event_poster_codes.py --code '/Two Ink Collision /rebuild'
 python scripts/event_poster_codes.py --category 20
 python scripts/event_poster_codes.py --query 'Bauhaus'
 python scripts/event_poster_codes.py --list-categories
-python scripts/event_poster_codes.py --command /kody --language pl
-python scripts/event_poster_codes.py --command codes --language en
+python scripts/event_poster_codes.py --command /codes
 ```
 
 A matching example is category 02, local ID `EP011`, `/Two Ink Collision /rebuild`. A possible interpretation is two declared simulated ink colours on a separate paper substrate, with a controlled overlap that guides attention. That recipe is an implementation choice, not an exact prescription in the PDF. Choose the actual colours from the user's locks or brief. Broadly rebuild an attached poster only when requested; retain every factual string and protected asset.
@@ -149,8 +151,8 @@ Run the [catalog tests](../tests/test_event_poster_codes.py) with `PYTHONDONTWRI
 
 | Item | Responsibility | Inputs / outputs | Ownership and dependency |
 | --- | --- | --- | --- |
-| `static-graphic-design-creator`, source candidate v0.9.0-rc.1 | Interpret optional poster codes with manual selection, internal brief-based selection or catalog opt-out | Explicit task, ordinary brief or optional code/source -> scoped answer, prompt or authorized graphic | Same existing Skill; no additional Skill dependency |
-| `event-poster-design-codes.json` | Sole canonical list, bilingual per-code descriptions and source evidence | Supplied six-page PDF -> 20 categories / 200 exact lines; separate authored interpretations | Source names: John Savage AI; descriptions: FrameCore Works; no duplicated list in other references |
+| `static-graphic-design-creator` | Interpret optional poster codes with manual selection, internal brief-based selection or catalog opt-out | Explicit task, ordinary brief or optional code/source -> scoped answer, prompt or authorized graphic | Same existing Skill; no additional Skill dependency |
+| `event-poster-design-codes.json` | Sole canonical list, English per-code descriptions and source evidence | Supplied six-page PDF -> 20 categories / 200 exact lines; separate authored interpretations localized by the Skill | Source names: John Savage AI; descriptions: FrameCore Works; no duplicated list in other references |
 | This workflow reference | Rebuild semantics, category interpretation and state mapping | Resolved entry and protected source -> design decisions | Existing atlases own historical/style guidance; current QA owns acceptance |
 | Lookup helper and catalog tests | Reliable retrieval and collection integrity | Canonical JSON -> exact matches / test results | Local, read-only, standard library; no rendering or network dependency |
 

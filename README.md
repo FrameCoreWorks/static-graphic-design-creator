@@ -20,7 +20,7 @@ https://github.com/FrameCoreWorks/static-graphic-design-creator
 
 First read and follow CHATGPT_INSTALL.md from this repository. Use its release manifest as bootstrap discovery only: resolve the declared immutable source commit, fetch every declared Skill file only from that commit, and verify every declared SHA-256 when this host supports it.
 
-Create only `static-graphic-design-creator`. Keep the required short onboarding and request my conversational approval before reading source files. After approval and source resolution, immediately use the active native Skill save flow. Report `installed` only after a real created-and-saved result or visible library entry. If hashing is unavailable, report `declared_unverified`; never call it verified. Do not create a duplicate Skill.
+Create only `static-graphic-design-creator`. Keep the short onboarding and obtain any installation approval not already given. After approval and source resolution, immediately use the active native Skill save flow. Verify the complete saved inventory and source record, record any required host adaptations, and check that comparison against the same release requires no further source update. Report `installed` only after a real save and result verification; a visible entry alone is insufficient. If hashing is unavailable, report `declared_unverified`; never call it verified. Do not create a duplicate Skill.
 ```
 
 The only external address in the setup is this repository. The contract preserves each declared bundle path, asks for approval before creation, and treats source resolution as preparation rather than installation. It reports a concrete host failure if the native save action cannot run.
@@ -48,7 +48,7 @@ Updates are manual, compare-only first, and require approval before replacement.
 Use @skill-creator to update the existing native ChatGPT Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-First read CHATGPT_UPDATE.md. Compare the installed source-release record with the current immutable release manifest. Report installed and available version, changed/new/removed/unchanged files, local modifications, verification status, and proposed apply mode. If there is no change, return `already_up_to_date`. If there is a change, show Delta and ask for my approval before updating the existing Skill only. Never create a duplicate.
+First read CHATGPT_UPDATE.md. Compare the verified previous source, current immutable release and actual installed files. Report installed and available version, changed/new/removed/unchanged files, already-target files, local modifications, verification status, and proposed apply mode. If exact and unchanged, return `already_up_to_date`; preserve personal-only differences as `local_customizations_preserved`. Prepare exact conflict diffs and a complete proposed merge during the read-only comparison without asking permission to analyze. Show the resolved Delta and obtain my approval before any installed-file write. Apply the approved source changes, safe removals and source record together, preserve unrelated local files, verify the actual saved result and repeat comparison to confirm no further update is needed. Update the existing Skill only. Never create a duplicate.
 ```
 
 ### Codex update
@@ -57,12 +57,14 @@ First read CHATGPT_UPDATE.md. Compare the installed source-release record with t
 Use $skill-creator to update the existing personal Skill from this public repository:
 https://github.com/FrameCoreWorks/static-graphic-design-creator
 
-First read CODEX_UPDATE.md. Compare the installed source-release record with the current immutable release manifest. Report Delta before any write and wait for my explicit approval. Update only `$static-graphic-design-creator`; do not overwrite a local conflict, create a duplicate, or clone the repository into my project.
+First read CODEX_UPDATE.md. Compare the verified previous source, current immutable release and actual installed files. Prepare exact conflict diffs and a complete proposed merge read-only, without asking permission to analyze. Report the resolved Delta, already-target files, retained personal changes and verification before any write, then obtain my approval. Apply source changes, safe removals and the source record together; verify the saved result and repeat comparison. Update only the existing `$static-graphic-design-creator`; do not overwrite an unresolved conflict, create a duplicate, use a forced fresh install, or clone the repository into my project.
 ```
 
 ## Extend your own installed copy
 
 Use this route when you have ideas for adapting the installed Skill to your own workflow. It is a guided **personal extension**, not a fresh installation or a source-release update. It changes only the existing personal Skill after approval; it never creates a duplicate or changes this public repository. A later source update will still identify any locally changed files and ask for a conflict-safe decision.
+
+Prefer the optional `local/SKILL_EXTENSIONS.md` entry and related `local/` resources for personal behavior; this namespace is reserved and never published in the source bundle. The Skill reads that entry when present after explicit activation. Existing embedded extensions require a reviewed migration; if a canonical file must change, keep it as a recorded personal override rather than pretending it is upstream. The upstream release record stays unchanged during personal extension. See [maintenance and customization](.agents/skills/static-graphic-design-creator/references/skill-maintenance.md).
 
 ### ChatGPT Work personal extension
 
@@ -77,7 +79,7 @@ First inspect the existing Skill and its directly relevant files. Then begin a s
 
 Before changing anything, return a concise Change Proposal with: evidence or use case; objective; exact files and scope; expected benefit; risks or conflicts; acceptance test; rollback; and a clear stop condition. Wait for my explicit approval.
 
-After approval, update only the existing `static-graphic-design-creator` Skill, preserve unrelated behavior and the source-release identity record, validate the Skill, and save the update through the active native Skill workflow. Do not create a second Skill, silently overwrite a later local conflict, or claim that personal changes came from the public source release.
+Prefer `local/SKILL_EXTENSIONS.md` and supporting local resources if this installed version supports that entry. If it does not, include the minimal explicit loading instruction in the proposed patch rather than silently assuming it is supported. Explain and record any unavoidable canonical-file override. After approval, update only the existing `static-graphic-design-creator`, preserve unrelated behavior and the upstream source-release record, validate and save through the active native Skill workflow, and verify every intended saved change and preserved file. Do not create a second Skill or claim that personal changes came from a public release.
 ```
 
 
@@ -94,7 +96,7 @@ First inspect the existing installed Skill and its directly relevant files. Then
 
 Before changing anything, return a concise Change Proposal with: evidence or use case; objective; exact files and scope; expected benefit; risks or conflicts; acceptance test; rollback; and a clear stop condition. Wait for my explicit approval.
 
-After approval, update only the existing installed `static-graphic-design-creator` Skill in Codex. Preserve unrelated behavior and its source-release identity record, validate the Skill, and report the files changed. Do not create a second Skill directory, silently overwrite a later local conflict, clone the public repository into my project, or claim that personal changes came from the public source release.
+Prefer `local/SKILL_EXTENSIONS.md` and supporting local resources if this installed version supports that entry. If it does not, include the minimal explicit loading instruction in the proposed patch rather than silently assuming it is supported. Explain and record any unavoidable canonical-file override. After approval, update only the existing installed Skill in Codex, preserve unrelated behavior and its upstream source-release record, validate and use the actual save workflow, then verify every intended saved change and preserved file. Do not create a second Skill directory, clone the public repository into my project, or claim that personal changes came from a public release.
 ```
 
 ## Activation
@@ -103,7 +105,9 @@ Invoke `@static-graphic-design-creator` in ChatGPT Work or `$static-graphic-desi
 
 ## Optional design codes and first use
 
-The Skill includes **200 poster directions in 20 categories**, with individual Polish and English descriptions. `/kody`, `kody`, `/codes` and `codes` show the complete grouped catalog after the Skill is explicitly invoked. Ask for a category or describe a need to narrow the results. These are conversational shortcuts interpreted by this Skill, not global application commands or native generator settings.
+The Skill includes **200 poster directions in 20 categories**. After invoking it, use **`/codes`** to see the complete grouped catalog with descriptions. Ask for a category or describe a need to narrow the results. This is a conversational shortcut interpreted by this Skill, not a global application command or native generator setting.
+
+Documentation and catalog descriptions are maintained in English. The Skill uses your conversation language for onboarding, brief questions and catalog explanations, and introduces relevant local aliases during onboarding. It follows an explicit language preference first, then conversation context, using a reliable host locale only when available. The requested prompt language and exact artwork text remain separate. English code names stay unchanged across languages.
 
 For a new user, the installer or a known first-use invocation explains catalog discovery, new prompts, uploaded-poster improvement and ordinary brief/brainstorm collaboration. The introduction can be skipped and does not require a code choice or acknowledgment. An installation does not necessarily execute the Skill, and an unknown first-use status does not justify a recurring welcome. See the [first-use workflow](.agents/skills/static-graphic-design-creator/references/first-use-onboarding.md).
 
@@ -149,7 +153,7 @@ The standalone JSON catalog preserves code names and categories from *200 Event 
 - uses a poster-movements atlas, style translation catalog, production walkthroughs, and QA routes without turning them into a preset menu;
 - protects per-item exact copy and reference properties, including product/garment construction, continuous label boundaries and logo geometry;
 - supports type-only minimalism, deliberate hybrids and format-specific commercial, menu, packaging and social decisions;
-- offers optional manual or internal poster-code selection, complete bilingual catalog browsing and first-use guidance for existing-image redesign;
+- offers optional manual or internal poster-code selection, complete catalog browsing localized to the user and first-use guidance for existing-image redesign;
 - evaluates actual text burden and required metadata separately from wording selection, with Polish/multilingual checks and explicit digital-versus-production limits;
 - fails acceptance on one critical defect and chooses the smallest supported repair, checking texture/gradient and identity drift without automatic rerenders;
 - treats named-font fidelity, dense raster type, print-ready deliverables, and prepress as external QA or DTP requirements rather than promises.
@@ -168,11 +172,14 @@ When the host cannot calculate SHA-256, installation may continue only with `has
 python3 -m pip install -r tests/requirements.txt
 python3 -B tests/test_skill.py
 python3 -B tests/test_design_contracts.py
+python3 -B -m unittest discover -s tests -p 'test_lifecycle.py'
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s .agents/skills/static-graphic-design-creator/tests -p 'test_event_poster_codes.py'
 python3 tests/check_source_anchors.py --check-inventory
 ```
 
-The deterministic suite checks exact source inventory and Git/SHA-256 locks, three-way update decisions, duplicate YAML/JSON keys, links, canonical handoff states and protected transitions. Catalog tests verify all 200 exact code lines, category/page mappings, bilingual descriptions and read-only lookup behavior without the PDF. Both actual templates are validated. The offline schema checker supports only the vocabulary used in this repository and rejects unsupported keywords; it is not a general JSON Schema engine. These tests do not prove model behavior, headline quality, or visual fidelity.
+The deterministic suite checks exact source inventory and Git/SHA-256 locks, three-way update decisions, duplicate YAML/JSON keys, links, canonical handoff states and protected transitions. Catalog tests verify all 200 exact code lines, category/page mappings, English source descriptions and read-only lookup behavior without the PDF. Both actual templates are validated. The offline schema checker supports only the vocabulary used in this repository and rejects unsupported keywords; it is not a general JSON Schema engine. These tests do not prove model behavior, translation quality, headline quality, or visual fidelity.
+
+Lifecycle tests also exercise an install/update/no-op cycle, personal-extension retention across versions, legacy add/add collisions, reviewed merges, safe deletions, stale records, changed inputs and failed-readback detection on disposable files or in-memory proposals. Release tests verify generated locks and reject mismatched public refs, file bytes, inventories and CI responses using controlled fixtures. Live host saves and live publication checks remain separate evidence. Maintainers use [the release procedure](CONTRIBUTING.md#candidate-lock) to derive manifests from the actual source commit and verify the published result.
 
 Use `python3 -B tests/test_skill.py --working-tree` during editing to check the previous pinned baseline and draft structure. Only default mode certifies the local source lock. Reference-anchor reachability is checked separately; rate limits and authentication barriers are `Unknown`, never passing evidence of the historical claims themselves.
 
@@ -188,12 +195,15 @@ OpenAI-surface assumptions were reviewed against official documentation on **202
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   ├── references/
-│   ├── scripts/event_poster_codes.py
+│   ├── scripts/
+│   │   ├── event_poster_codes.py
+│   │   └── skill_lifecycle.py
 │   ├── templates/
 │   └── tests/test_event_poster_codes.py
 ├── assets/
 ├── config/
 ├── reports/host-evaluations/
+├── scripts/release.py
 ├── tests/
 ├── CHATGPT_INSTALL.md
 ├── CHATGPT_UPDATE.md
@@ -210,6 +220,6 @@ This Skill uses only the active surface's native image generation and only after
 
 ## License
 
-Repository code and authored documentation are released under the Apache License 2.0. See [LICENSE](LICENSE). The imported catalog retains attribution to John Savage AI for its source names and grouping; the source PDF is not redistributed. The bilingual interpretations are FrameCore Works' additions.
+Repository code and authored documentation are released under the Apache License 2.0. See [LICENSE](LICENSE). The imported catalog retains attribution to John Savage AI for its source names and grouping; the source PDF is not redistributed. The English source interpretations are FrameCore Works' additions and are localized for users during conversation.
 
-Release discovery uses `main` only to locate the current manifest. Pin the manifest’s own Git commit before retrieval and record it with the installation evidence. Historical `v0.7.0-rc.2` and `v0.7.0-rc.3` branches contain an earlier manifest; a release-ID mismatch blocks resolution. Never silently use that earlier manifest as the requested baseline.
+Release discovery uses `main` only to locate the current manifest. Pin the manifest's own Git commit before retrieval and record it with the installation evidence. [Release history](config/release-history.json) supplies verified immutable baseline locators when an old installation has no receipt. Historical `v0.7.0-rc.2` and `v0.7.0-rc.3` branches contain an earlier manifest; use their matching immutable lock from the index after verifying its digest, identity and source files. The historical branches are not moved. An unresolvable release mismatch still blocks comparison rather than silently using another baseline.

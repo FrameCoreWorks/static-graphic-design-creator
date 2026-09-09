@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 CATALOG = Path(__file__).resolve().parents[1] / "references/event-poster-design-codes.json"
-CATALOG_COMMANDS = {"/kody", "kody", "/codes", "codes"}
+CATALOG_COMMANDS = {"/codes", "codes", "/kody", "kody"}
 
 
 def normalize(value):
@@ -50,24 +50,21 @@ def search(value, catalog):
     return [entry for entry in entries(catalog)
             if any(key in normalize(text) for text in
                    [entry["code"], entry["category_name"],
-                    entry["interpretation"]["description_pl"], entry["interpretation"]["description_en"]])]
+                    entry["interpretation"]["description_en"]])]
 
 
-def catalog_markdown(catalog, language="pl"):
-    """Full grouped collection, including every code and its interpreted benefit."""
-    if language not in {"pl", "en"}:
-        raise ValueError("language must be pl or en")
-    intro = ("200 kodów w 20 kategoriach. Nazwy: John Savage AI; opisy i zastosowania: interpretacje FrameCore Works. "
-             "Dla nowego promptu można użyć skrótu /Nazwa; /Nazwa /rebuild oznacza kierunek przebudowy istniejącego plakatu."
-             if language == "pl" else
-             "200 codes in 20 categories. Names: John Savage AI; descriptions and uses: FrameCore Works interpretations. "
+def catalog_markdown(catalog, language="en"):
+    """Full English source catalog; the calling Skill localizes user-facing prose."""
+    if language != "en":
+        raise ValueError("The helper returns English source text; localize it through the Skill.")
+    intro = ("200 codes in 20 categories. Names: John Savage AI; descriptions and uses: FrameCore Works interpretations. "
              "Use /Name for a new prompt, or /Name /rebuild as the direction for rebuilding an existing poster.")
     lines = [intro, ""]
-    heading = "| Kod | Styl i zastosowanie |" if language == "pl" else "| Code | Style and use |"
+    heading = "| Code | Style and use |"
     for category in catalog["categories"]:
         lines.extend([f'### {category["number"]:02d} {category["name"]}', "", heading, "| --- | --- |"])
         for entry in category["codes"]:
-            description = entry["interpretation"]["description_" + language].replace("|", "\\|")
+            description = entry["interpretation"]["description_en"].replace("|", "\\|")
             lines.append(f'| `{entry["code"]}` | {description} |')
         lines.append("")
     return "\n".join(lines)
@@ -80,8 +77,8 @@ def main(argv=None):
     group.add_argument("--category", help="Category number or exact category name")
     group.add_argument("--query", help="Substring search; returns candidates without selecting one")
     group.add_argument("--list-categories", action="store_true")
-    group.add_argument("--command", help="/kody, kody, /codes or codes: full grouped catalog with descriptions")
-    parser.add_argument("--language", choices=["pl", "en"], default="pl", help="Catalog response language")
+    group.add_argument("--command", help="/codes: full English source catalog; conversational aliases are also accepted")
+    parser.add_argument("--language", choices=["en"], default="en", help="Source language only; the Skill localizes the response")
     args = parser.parse_args(argv)
     try:
         catalog = load_catalog()

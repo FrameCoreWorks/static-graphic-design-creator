@@ -13,7 +13,7 @@ These cases exercise the bundled poster-code workflow. Collection integrity and 
 
 | Input case | Acceptance evidence |
 | --- | --- |
-| Active Skill receives `/kody`, `kody`, `/codes` or `codes` | Full 200-entry catalog in 20 categories, with descriptions and attribution; response follows user's language and does not render or start an intake. The four-variant design default does not truncate a requested catalog. |
+| Active Skill receives `/codes`, its bare form or an understood local catalog alias | Full 200-entry catalog in 20 categories, with localized descriptions and attribution; response follows user's language and does not render or start an intake. English code strings remain exact. The four-variant design default does not truncate a requested catalog. |
 | User asks for category 02 or a search for Bauhaus | Category has exactly ten entries; search returns the two real matching candidates without inventing or silently selecting a code. |
 | New prompt, selected `/Two Ink Collision`, supplied final text | Complete prompt includes the instruction-only code and concrete two-ink/substrate/overprint interpretation; no source poster is demanded for an explicitly new design. |
 | Existing-poster rebuild, selected `/Two Ink Collision /rebuild` | Actual source inspected; all mandatory strings and protected assets preserved; composition may change within authorized scope; factual inventory remains complete. |
@@ -39,7 +39,13 @@ Use [first-use onboarding](first-use-onboarding.md) for the introduction and tim
 
 | Input case | Acceptance evidence |
 | --- | --- |
-| Known newly installed user asks how to start in ChatGPT Work or Codex | Explain explicit invocation, all four catalog aliases, optional code use, new prompts, uploaded/local poster redesign, factual/scope locks and ordinary brief/brainstorm work. No full catalog or compulsory mode choice. |
+| Known newly installed user asks how to start in ChatGPT Work or Codex | Explain explicit invocation, `/codes` and relevant local aliases, optional code use, new prompts, uploaded/local poster redesign, factual/scope locks and ordinary brief/brainstorm work in the user's language. No full catalog or compulsory mode choice. |
 | A first-use introduction already happened, or user says "skip; only the prompt" | Continue the requested task without another welcome, catalog pitch or onboarding question. |
 | First-use status is unknown | Do not infer a new installation from a new conversation or claim a saved global onboarding flag. |
 | User wants codes hidden during onboarding | Explain brief-based design and image refinement without code labels; command details only when requested. |
+| Polish first-use request, even with an English interface or pasted English installer prompt | Polish introduction includes `/codes` and `/kody`; user prose/preference governs over interface or quoted text. |
+| Spanish or Japanese first-use request | Localized introduction from the English source with `/codes`, preserved English code strings and no Polish detour or forced English fallback. |
+| No conversational signal; reliable host locale is exposed, or no locale is available | Use the exposed locale in the first case and English in the second; no fabricated account-setting inspection or compulsory language question. |
+| Explicit language preference conflicts with an alias or an interface locale | Honor the preference; aliases only select the catalog, not response language. |
+| Localized catalog request or category search | Resolve English source entries and translate descriptions; preserve membership, canonical strings and numbers. The helper itself returns English, and translated individual style names are not new exact keys. |
+| Conversation-language switch with an English prompt and locked multilingual artwork copy | Adapt surrounding prose without restarting onboarding; keep prompt language and every locked string unchanged. |

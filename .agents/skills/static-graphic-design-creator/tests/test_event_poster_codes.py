@@ -67,36 +67,42 @@ class CatalogTests(unittest.TestCase):
             for value in [entry["code"], entry["id"], entry["shorthand"], entry["code"][1:-len(" /rebuild")]]:
                 self.assertEqual(lookup.resolve_code(value, self.catalog), entry)
 
-    def test_bilingual_descriptions_and_derived_shortcuts(self):
-        for language in ["pl", "en"]:
-            descriptions = [e["interpretation"]["description_" + language] for e in self.entries]
-            self.assertEqual(len(set(descriptions)), 200)
-            self.assertTrue(all(len(text.split()) >= 9 for text in descriptions))
+    def test_english_source_descriptions_and_derived_shortcuts(self):
+        descriptions = [e["interpretation"]["description_en"] for e in self.entries]
+        self.assertEqual(len(set(descriptions)), 200)
+        self.assertTrue(all(len(text.split()) >= 9 for text in descriptions))
+        self.assertEqual(self.catalog["interpretation_provenance"]["languages"], ["en"])
         for entry in self.entries:
+            self.assertEqual(set(entry["interpretation"]), {"description_en"})
             self.assertEqual(entry["shorthand"] + " /rebuild", entry["code"])
         self.assertEqual(self.catalog["interpretation_provenance"]["author"], "FrameCore Works")
 
     def test_full_catalog_contains_every_code_and_description(self):
-        for language in ["pl", "en"]:
-            result = lookup.catalog_markdown(self.catalog, language)
-            self.assertEqual(sum(line.startswith("### ") for line in result.splitlines()), 20)
-            for entry in self.entries:
-                self.assertEqual(result.count("`" + entry["code"] + "`"), 1)
-                self.assertIn(entry["interpretation"]["description_" + language], result)
-        with self.assertRaises(ValueError):
-            lookup.catalog_markdown(self.catalog, "unsupported")
+        result = lookup.catalog_markdown(self.catalog)
+        self.assertEqual(result, lookup.catalog_markdown(self.catalog, "en"))
+        self.assertEqual(sum(line.startswith("### ") for line in result.splitlines()), 20)
+        for entry in self.entries:
+            self.assertEqual(result.count("`" + entry["code"] + "`"), 1)
+            self.assertIn(entry["interpretation"]["description_en"], result)
+        for language in ["pl", "es", "unsupported"]:
+            with self.assertRaises(ValueError):
+                lookup.catalog_markdown(self.catalog, language)
 
     def test_catalog_command_aliases(self):
         self.assertEqual(set(self.catalog["catalog_commands"]), lookup.CATALOG_COMMANDS)
+        expected = lookup.catalog_markdown(self.catalog) + "\n"
         for command in ["/kody", "kody", "/codes", "codes", "  /CODES  "]:
             result = subprocess.run([sys.executable, str(SCRIPT), "--command", command], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(result.stdout.count(" /rebuild`"), 200)
-            self.assertIn("Styl i zastosowanie", result.stdout)
+            self.assertEqual(result.stdout, expected)
         result = subprocess.run([sys.executable, str(SCRIPT), "--command", "codes", "--language", "en"], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stdout.count(" /rebuild`"), 200)
         self.assertIn("Style and use", result.stdout)
+        localized = subprocess.run([sys.executable, str(SCRIPT), "--command", "/codes", "--language", "pl"], capture_output=True, text=True)
+        self.assertEqual(localized.returncode, 2)
+        self.assertEqual(localized.stdout, "")
         invalid = subprocess.run([sys.executable, str(SCRIPT), "--command", "/render"], capture_output=True, text=True)
         self.assertEqual(invalid.returncode, 1)
         self.assertEqual(json.loads(invalid.stdout)["status"], "unknown_command")
@@ -136,9 +142,11 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(output["status"], status)
             if status == "candidates":
                 self.assertIsNone(output["selected"])
+                self.assertEqual(len(output["matches"]), 2)
             if status == "listed":
                 self.assertEqual(sum(c["count"] for c in output["categories"]), 200)
         self.assertEqual(hashlib.sha256(lookup.CATALOG.read_bytes()).hexdigest(), before)
+        self.assertIn("EP004", [e["id"] for e in lookup.search("Break one alignment", self.catalog)])
 
 
 if __name__ == "__main__":

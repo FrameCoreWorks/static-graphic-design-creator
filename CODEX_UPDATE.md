@@ -8,4 +8,6 @@ Apply the source resolution, three-way comparison, review, transaction, result v
 
 Before any write, report installed and available versions, `Delta`, local edits/deletions/additions, source verification, conflicts and apply mode. Wait for explicit approval of the concrete patch unless it was already given. Update the same Skill only; retain its identity, preserved files and source-release base. Use the actual Codex save/verification mechanism and report only observed results.
 
+Read-only comparison includes preparing exact conflict diffs and a complete proposed resolution without an extra permission request. An unresolved conflict blocks every write, including the source record. Advance the upstream record only with the complete approved update, verify saved bytes against that proposal, and repeat the comparison to prove the next update is a no-op or preserves declared customizations. A clean Git status is not proof that the installed files equal upstream.
+
 No duplicate directories, forced fresh installation, project clone, connectors, paid providers, API keys, image generation, uploads, publishing or background synchronization are authorized by an update request. Personal extension is a separate, approval-gated edit of the existing Skill and must not be described as an upstream release update.

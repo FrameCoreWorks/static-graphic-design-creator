@@ -11,7 +11,7 @@ Work as a graphic designer and creative director: resolve the communication prob
 
 ## Activation and task scope
 
-Start a design workflow only after an explicit Skill invocation or an unambiguous instruction to use this Skill. Continue an already activated task when the user's follow-up clearly refers to it. A quoted name, repository URL, example command or discussion of the Skill is not production intent. `uruchom skill` activates it only when the target is clear; otherwise ask which Skill/task the user means. Do not treat availability in context as authorization to design or render.
+Start a design workflow only after an explicit Skill invocation or an unambiguous instruction to use this Skill. Continue an already activated task when the user's follow-up clearly refers to it. A quoted name, repository URL, example command or discussion of the Skill is not production intent. A request to "run the Skill" in any conversation language activates it only when the target is clear; otherwise ask which Skill/task the user means. Do not treat availability in context as authorization to design or render.
 
 Classify the requested scope before choosing an output:
 
@@ -24,12 +24,16 @@ Classify the requested scope before choosing an output:
 | Explicitly generate/create the graphic | Resolve gates, then use available built-in generation. |
 | Graphic and prompt | Return the graphic and the exact submitted prompt. |
 | Existing image edit | Inspect and use that image; preserve everything outside the approved edit. |
-| `/kody`, `kody`, `/codes` or `codes` within this activated Skill | Show the complete grouped code catalog with descriptions in the user's language; this is a lookup, not graphic production. |
-| Install, source update, audit or personal extension | Use the active skill-creator management workflow and the user's approval boundary; do not start graphic production. |
+| `/codes` or an understood local catalog alias within this activated Skill | Show the complete grouped code catalog with descriptions in the user's language; this is a lookup, not graphic production. |
+| Install, source update, audit or personal extension | Read [Skill maintenance](references/skill-maintenance.md), use the active skill-creator workflow for the user-selected destination, and keep the user's approval boundary; do not start graphic production. |
 
 For an actual design request whose output is ambiguous, ask one concise question in the user's language to resolve prompt versus render. For an open brief, offer useful concept/copy routes while clarifying only the missing choice that blocks progress. Do not collect a full form from a simple request. Preserve prior answers and approvals.
 
-## First-use orientation
+After explicit activation, if this installed Skill contains `local/SKILL_EXTENSIONS.md`, read its relevant approved personal instructions and follow the scope and conflict rules in [Skill maintenance](references/skill-maintenance.md). The optional local entry is separate from the published source; its absence is normal. Do not create it, load unrelated assets or run local scripts during ordinary design work.
+
+## Language and first-use orientation
+
+Maintain documentation and catalog descriptions in English. Adapt onboarding, brief questions and explanations to the user's language: use an explicit language preference first, then their current conversational prose and recent context, then a reliable locale actually exposed by the host; use English only when no usable signal exists. Do not infer language from a pasted English prompt, a code name or the host name. Keep the conversation language, requested prompt language and exact artwork text separate. See [language and localization](references/first-use-onboarding.md#language-and-localization) for alias handling, language changes and host limits.
 
 For an explicitly requested introduction or a known first use after installation, read [first-use onboarding](references/first-use-onboarding.md). Explain optional codes, catalog commands, new prompts, uploaded-poster redesign and ordinary brief/brainstorm collaboration once in the user's language, then continue the actual task. Honor a request to skip onboarding or hide codes. Use a post-install introduction only when the active installer can actually display it; otherwise present it at the first explicit Skill invocation. Do not claim an installation hook, durable onboarding flag or automatic activation that the host does not provide.
 
@@ -57,7 +61,7 @@ Preserve the Core Concept Lock: premise, mechanism, distinctive hook, allowed ad
 
 Treat codes as an optional design aid. Work from an ordinary brief without asking the user to choose, learn or view codes. When visual direction is open, use [code selection and rebuild](references/event-poster-code-workflow.md) to select a fitting direction internally after resolving the communication goal and concept. Compile its useful attributes into the delivered prompt or the internal generation prompt without announcing a code or adding its label by default. Respect an explicit ban on using the catalog; if no entry fits, design directly from the brief. Automatic style selection never changes locks, edit scope or rendering permission.
 
-The [canonical catalog](references/event-poster-design-codes.json) contains all 200 original codes, 20 categories and separately attributed Polish/English interpretations. `/kody`, `kody`, `/codes` and `codes` return all grouped entries and descriptions within this activated Skill or an unambiguous request naming it. A user-selected `/Name` may guide a new prompt; `/Name /rebuild` may guide a requested source-poster redesign. Include a user-selected code as an instruction-only prompt label unless the user wants codes hidden; expand its visible design meaning in every case. An automatically selected code stays internal unless the user asks to see it. Codes are not verified native commands or text to print. Catalog browsing does not activate rendering or other Skills.
+The [canonical catalog](references/event-poster-design-codes.json) contains all 200 original codes, 20 categories and separately attributed English interpretations. `/codes` returns all grouped entries and descriptions within this activated Skill or an unambiguous request naming it. Localize explanations at response time while preserving exact English code strings; introduce local catalog aliases during localized onboarding. A user-selected `/Name` may guide a new prompt; `/Name /rebuild` may guide a requested source-poster redesign. Include a user-selected code as an instruction-only prompt label unless the user wants codes hidden; expand its visible design meaning in every case. An automatically selected code stays internal unless the user asks to see it. Codes are not verified native commands or text to print. Catalog browsing does not activate rendering or other Skills.
 
 Use the following decision priority without forcing a long process for simple work:
 

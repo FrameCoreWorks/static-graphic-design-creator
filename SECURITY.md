@@ -41,6 +41,8 @@ Do not include secrets, credentials, private prompts, or personal data in a publ
 
 Record the immutable manifest commit and digest as host-supported installation evidence, separate from the canonical bundle and its self-referential source identity. Resolve legacy baselines only after matching the requested release ID. A mutable version branch carrying another release is not a valid baseline.
 
+The release-history index supplies immutable locators, not an independent trust root or an exemption from verification. Check the retrieved manifest digest, release/source identity and every source hash before using it. The reserved `local/` extension namespace must not be included in a public source release. Host metadata and personal assets remain recorded local differences; never ignore whole files to make verification pass.
+
 Before an approved update, preserve a recoverable snapshot, recheck installed/target bytes, and stage the expected complete result. Verify saved bytes, safe deletions, local additions and metadata. Failed or unverifiable saves must not be reported as updated. Restore and verify the snapshot when supported; report a failed rollback explicitly.
 
 A source record identifies an upstream base; local differences are personal changes, not proof of source corruption or an authentic new release. Never use unavailable comparison as a reason to delete unknown personal files.

@@ -1,14 +1,14 @@
 {
   "schema_version": 6,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.9.0-rc.1",
+  "version": "0.9.0-rc.2",
   "release": {
-    "id": "v0.9.0-rc.1",
+    "id": "v0.9.0-rc.2",
     "channel": "candidate",
     "bootstrap_ref": "main",
     "bootstrap_ref_type": "discovery_branch",
     "source_ref_type": "immutable_git_commit",
-    "immutable_source_commit": "aed4bb2566e9b408e2e34d78b35b30a4c07d2348",
+    "immutable_source_commit": "b9fc50c50d4b68d275d24dd66771181751f98841",
     "updates": "manual_user_approved",
     "repository_source_contract": true
   },
@@ -61,8 +61,7 @@
     "assistant_ui_introspection_required": false,
     "approval_alone_marks_installed": false,
     "successful_install_evidence": [
-      "active_skill_creator_reports_created_and_saved",
-      "skill_visible_in_chatgpt_skills_library"
+      "active_skill_creator_save_with_complete_result_verification"
     ]
   },
   "installation_states": [
