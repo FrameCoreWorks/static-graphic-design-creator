@@ -32,6 +32,12 @@
       "manifest_commit": "ab984adab7958a4fbcbec0a8115e4d9292c497eb",
       "manifest_sha256": "eb00c239ca07ccbfa4f1d5cab469ddf3483c338a71b203e60f41f7774cd4f9f4",
       "immutable_source_commit": "aed4bb2566e9b408e2e34d78b35b30a4c07d2348"
+    },
+    {
+      "release_id": "v0.9.0-rc.2",
+      "manifest_commit": "edd761deba7f7f119f998d043b85244e9a0abe63",
+      "manifest_sha256": "6c468b9041e4df316f7de20049512561e511f7c9c9f60cb73758b47ea17691d1",
+      "immutable_source_commit": "fc834961ca4f78244a44924a10bbe50a16016c54"
     }
   ]
 }

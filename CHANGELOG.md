@@ -2,7 +2,7 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
-## [0.10.0-rc.1] - Unreleased candidate
+## [0.10.0-rc.1] - Published candidate
 
 ### Added
 

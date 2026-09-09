@@ -1,6 +1,6 @@
 # GPT Image 2.5 handbook integration
 
-Integration date: **2026-09-09**. Candidate: **v0.10.0-rc.1**, not yet published. Destination: the existing repository Skill source only. Installed ChatGPT Work and Codex copies are separate user-controlled targets.
+Integration date: **2026-09-09**. Candidate: **v0.10.0-rc.1**. The owner authorized its publication after reviewing the local Delta and checks. Destination: the existing repository Skill source only. Installed ChatGPT Work and Codex copies are separate user-controlled targets.
 
 ## Input and evidence boundary
 
@@ -49,4 +49,27 @@ The native image tool available during development exposes prompt and image-refe
 
 ## Verification record
 
-Source checks and the independent source-only exercise are recorded after execution below. New host cases 50–55 cover the added behavior. All actual host cases for the new candidate remain pending until executed in the respective host; historical v0.9.0-rc.2 user-reported save/update and code smoke tests remain in their original report.
+The public source commit is `c778236b9f10e28276b2048fc78b689ac5739376`. Its complete Git tree `0e48fbd56fb2e02b8d7dfea01a7e547fe0d5514a` was verified equal to the tested local source commit `69f67bc705e94f4de039a5d1ed39c35dc66f71e3`. The release helper regenerated both configs against the actual public source, added the verified v0.9.0-rc.2 baseline to the history index and created a pending 55-case host report. Default package validation confirms **28/28** pinned source files and matching working bytes locally. Public refs, raw bytes and CI must additionally pass the post-publication check.
+
+| Check | Observed result | Scope |
+| --- | --- | --- |
+| Package and release lock | Passed; 28 source files, 13 delta cases, 55 host cases recorded | Exact local source/manifest inventory and hashes; host cases not executed |
+| Design contracts | 70 cases and both templates passed | Structured state and transition validation |
+| Lifecycle regressions | 13 tests passed | Disposable install/update/proposal and release failure cases |
+| Catalog regressions | 11 tests passed | All 200 exact source codes, grouping and helper behavior preserved |
+| Creator validation | Passed | Skill structure |
+| Source-anchor inventory | Passed; 31 URLs | Offline inventory only; the OpenAI review above is separate from historical link reachability |
+| Diff whitespace | Passed | Edited repository text |
+| Actual-source update cycle | Passed; no conflicts for clean baseline or tested personal changes | In-memory v0.9.0-rc.2 to candidate proposals and repeat comparison |
+
+The [actual-source cycle record](gpt-image-2-5-source-cycle.json) contains the complete file Delta: **10 changed, 2 new, 0 removed, 16 unchanged**. A clean proposed update equals the complete target and repeats as `already_up_to_date`. A second simulation preserves the personal extension entry, icon and host metadata, and repeats as `local_customizations_preserved`. These simulations never read or write the user's installed Skill and cannot guarantee that an arbitrary personal override will be conflict-free.
+
+New host cases 50–55 cover the added behavior. All actual host cases for the new candidate remain pending until executed in the respective host; historical v0.9.0-rc.2 user-reported save/update and code smoke tests remain in their original report. The independent text-only exercise is recorded separately; it cannot pass the host columns.
+
+The [source-only forward-test record](gpt-image-2-5-forward-test.json) preserves all six raw prompts, actual responses and reported actions. A separate assistant received the candidate Skill sources and raw tasks without conversation history, expected-observable fixtures or these reports. Parent review found all six responses consistent with their text-level observables: native-control boundaries, local material preservation, rejected serial drift, 51.2-PPI calculation and delivery limits, qualified benchmark language, and an integrated English prompt retaining exact Polish text. No image was supplied or generated. The tests exercise instruction use; they do not establish renderer quality or generalize from six responses to all user tasks.
+
+## Publication and remaining metadata
+
+Publication starts from the verified v0.9.0-rc.2 lock `edd761deba7f7f119f998d043b85244e9a0abe63`; the candidate version was absent from fetched remote branches and tags before lock preparation. The owner explicitly approved commit and push. Publish the source-plus-lock history through the existing procedure, then verify public refs, source bytes and exact-commit CI. Preparing this record does not itself establish those post-publication results. Historical release refs remain unchanged.
+
+GitHub's repository metadata was read on 2026-09-09: the About description remains unset. Its intended English text is already in CONTRIBUTING.md. The available GitHub connection has no repository-metadata write operation, so this pending request was not represented as completed by a README change.
