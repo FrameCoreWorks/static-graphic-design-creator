@@ -51,6 +51,32 @@ def write_files(root, files):
 
 
 class LifecycleTests(unittest.TestCase):
+    def test_layered_draft_update_preserves_personal_files_and_repeats_cleanly(self):
+        # Keep the pre-layered release fixed so locking the candidate does not
+        # turn this regression into an identical-source comparison.
+        baseline = release.source_files('c778236b9f10e28276b2048fc78b689ac5739376')
+        target = life.read_tree(ROOT / life.SOURCE_ROOT)
+        local = {'local/SKILL_EXTENSIONS.md': b'Personal preferred editor: Illustrator. Honor current user scope.',
+                 'local/templates/my-brief.md': b'Personal brief', 'assets/icon.svg': b'<svg/>'}
+        installed = {**baseline, **local}
+        life.verify_bundle(target, manifest(target))
+        result = life.build_proposal(baseline, target, installed)
+        life.verify_result({**target, **local}, result)
+        self.assertEqual(life.compare(target, target, result)['status'], 'local_customizations_preserved')
+        self.assertEqual(life.compare(target, target, dict(target))['status'], 'already_up_to_date')
+
+    def test_layered_upstream_addition_does_not_overwrite_personal_collision(self):
+        baseline = sample()
+        target = sample('2.0', **{'references/layered-assets-workflow.md': 'Sequential upstream behavior'})
+        installed = {**baseline, 'references/layered-assets-workflow.md': b'Personal layer behavior'}
+        original = dict(installed)
+        plan = life.compare(baseline, target, installed)
+        self.assertEqual(plan['apply_mode'], 'none')
+        self.assertIn('references/layered-assets-workflow.md', plan['delta']['conflicts'])
+        with self.assertRaises(ValueError):
+            life.build_proposal(baseline, target, installed)
+        self.assertEqual(installed, original)
+
     def test_fresh_install_update_and_second_update_are_exact(self):
         first = sample(a='old', obsolete='remove')
         second = sample('2.0', a='new', added='new file')

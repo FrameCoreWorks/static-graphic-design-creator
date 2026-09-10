@@ -38,6 +38,8 @@ When approval for this installation has not already been given, before reading s
 4. **Optional directions:** once the Skill is active, `/codes` shows 200 directions in 20 categories with descriptions localized for the user. In Polish onboarding, also explain the equivalent `/kody` alias; other users need no Polish-language detour. `/Name` can guide a new prompt; a complete listed `/Name /rebuild` can guide the requested redesign of an attached poster, including one generated earlier. Keep English code strings unchanged. Preserve factual text, protected assets and any narrower edit scope. Ordinary brief/brainstorm work needs no codes; the user may keep selection internal or disable catalog use entirely.
 5. **Boundary:** it may use ChatGPT's built-in image generation only after an explicit render request. It does not use external services, invent facts or logos, guarantee raster typography, or replace a DTP workflow for dense legal or print text.
 
+Also briefly explain the optional separate-assets route: plan a composition, create and discuss one element at a time, approve its exact version, then receive the selected files individually or as a ZIP when supported. Editable text can remain a manual layout specification. The ordinary finished graphic remains the default; installation does not generate examples.
+
 Explain these options without displaying the full catalog or forcing a selection. Honor an existing request to skip onboarding or hide code labels. A clear installation approval remains sufficient; do not repeat an approval just to deliver introductory guidance.
 
 The user may approve with a clear equivalent of `yes`, `approve`, or `install`. Approval authorizes the creation attempt; it is not evidence that a Skill was installed.

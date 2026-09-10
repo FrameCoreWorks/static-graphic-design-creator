@@ -27,6 +27,8 @@ If unavailable, use `report_unavailable` and `render_status: unavailable` with t
 
 Use integrated, concrete exclusions unless the active surface verifies a separate negative field. The optional Codex declarations described in [workflow integration](workflow-integration.md) are compatibility context, not executable settings. Each submitted prompt must stand alone with current-request reference aliases and attachments; never rely on an unavailable previous image.
 
+For [separate assets](layered-assets-workflow.md), run the same availability and reference checks per requested element. The composition plan does not guarantee exact alignment across generations. Asset-file inspection, archive creation and editor import are separate capabilities; only the first two belong to an explicitly requested file-delivery task. A requested ZIP never authorizes external upload or regeneration.
+
 ## Assign authority by property
 
 One image may have several explicit roles. Use canonical `references` entries with stable ID, actual source, availability, roles and a `properties` map. Record which property each source governs and what may change. Do not give every property to whichever reference happens to be listed first.

@@ -1,10 +1,10 @@
 # Unified Static Prompt Contract
 
-Use this contract for posters, flyers, business cards, menus, labels, covers, key visuals, advertisements, and text-led social graphics. It produces one final raster-design instruction, not an assembly plan.
+Use this contract for posters, flyers, business cards, menus, labels, covers, key visuals, advertisements, and text-led social graphics. It produces one final integrated raster-design instruction. Explicit separate-assets requests use [layered assets](layered-assets-workflow.md), including a shared plan and one asset at a time; they do not use this integrated-output restriction as a reason to refuse the requested separation.
 
 ## Non-negotiable construction rule
 
-The eight stages are construction priority inside one generation. They must never request eight outputs, intermediate images, blank typography zones for later copy, separate layer files, or a manual compositing pass.
+For the integrated-output mode, the eight stages are construction priority inside one generation. They must never request eight outputs, intermediate images, blank typography zones for later copy, separate layer files, or a manual compositing pass.
 
 ## Objective-first preflight
 

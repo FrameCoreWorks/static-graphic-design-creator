@@ -1,5 +1,7 @@
 # Static Design Prompt Pack
 
+For explicit separate-assets work, use the [layer plan](layer-plan.json) and [layered workflow](../references/layered-assets-workflow.md). This single-asset state describes the current raster operation; retain the complete project copy, sequence and approved file versions in the separate plan. Ordinary integrated graphics use this template unchanged.
+
 Follow the selection and visibility policy in [code selection and rebuild](../references/event-poster-code-workflow.md). Store only user-selected codes in `strategy.style_requests`; retain automatic selections as internal lookup context with their visible interpretation in strategy fields. For automatic or hidden-code use, `prompt` contains the complete interpreted design instructions without a code label; use the same text for generation and any later exact-prompt delivery. Include a label for manual selection unless hidden, or when explicitly requested. Do not expose internal catalog metadata in an ordinary prompt-only answer. A source-poster rebuild retains every required factual string and protected asset. No additional schema fields are required.
 
 This fictional, valid prompt-only example demonstrates [the canonical state](../references/design-contract.schema.json). Replace its facts with the supplied brief; never reuse example wording automatically. The native model and controls are Unknown. A real render requires an authorized state transition and observed QA.

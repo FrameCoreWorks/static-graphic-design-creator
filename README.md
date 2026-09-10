@@ -4,7 +4,7 @@
 
 **Static Graphic Design Creator is a standalone native Skill source for ChatGPT Work and Codex.** It helps turn a brief into either a finished static graphic, when rendering is explicitly requested, or one controlled, generator-ready prompt for posters, flyers, business cards, menus, covers, labels, key visuals, advertisements, and text-led social graphics.
 
-It behaves like a graphic designer, not a style-prompt dispenser: objective and audience response come first; then visual thesis, hierarchy, composition, type/image roles, style language, and material treatment. The final prompt integrates eight semantic construction stages inside a single generation; simple prompts and narrow edits stay concise. It is not a request for separate renders, blank text zones, or manual layer assembly.
+It behaves like a graphic designer, not a style-prompt dispenser: objective and audience response come first; then visual thesis, hierarchy, composition, type/image roles, style language, and material treatment. The final prompt integrates eight semantic construction stages inside a single generation; simple prompts and narrow edits stay concise. This integrated graphic remains the default. An explicit separate-assets request enables the optional workflow below.
 
 ## Install from this repository
 
@@ -99,6 +99,14 @@ Before changing anything, return a concise Change Proposal with: evidence or use
 Prefer `local/SKILL_EXTENSIONS.md` and supporting local resources if this installed version supports that entry. If it does not, include the minimal explicit loading instruction in the proposed patch rather than silently assuming it is supported. Explain and record any unavoidable canonical-file override. After approval, update only the existing installed Skill in Codex, preserve unrelated behavior and its upstream source-release record, validate and use the actual save workflow, then verify every intended saved change and preserved file. Do not create a second Skill directory, clone the public repository into my project, or claim that personal changes came from a public release.
 ```
 
+## Optional separate assets for manual assembly
+
+Ask in ordinary language to build a poster or other static design as separate reusable elements. Start from a shared composition, then create a background, subject, effect, ornament or text specification **one at a time**. Review each result, request a correction when needed, and explicitly approve its exact version before the next asset. The Skill keeps a project registry of selected files and preserves approved assets while another element changes. No new slash command or editor connection is required.
+
+When the agreed set is accepted, choose individual files or a downloadable ZIP, if the host supports packaging. Delivery includes only selected versions, an asset index, a portable layer plan and assembly instructions. PNG lettering is raster; editable text remains a manual typesetting step. Generative reference reuse may reinterpret pixels; it is not exact editor compositing. Files and registry must be accessible to resume in another chat.
+
+Creating assets from scratch is the main workflow. An existing flattened poster can also be assessed for extraction, reconstruction or regeneration, with truthful provenance and no claim to recover its original layers. Code directions stay optional in either mode. See [layered assets](.agents/skills/static-graphic-design-creator/references/layered-assets-workflow.md) and the [fictional plan template](.agents/skills/static-graphic-design-creator/templates/layer-plan.json).
+
 ## Activation
 
 Invoke `@static-graphic-design-creator` in ChatGPT Work or `$static-graphic-design-creator` in Codex, or explicitly ask to run the Skill. Codex implicit invocation is disabled. Casual design advice, a quoted Skill name, and a request to maintain its files do not start graphic production. Ideas-only and copy-only requests remain in that scope. A genuine continuation preserves selected concepts and exact copy.
@@ -178,10 +186,13 @@ When the host cannot calculate SHA-256, installation may continue only with `has
 python3 -m pip install -r tests/requirements.txt
 python3 -B tests/test_skill.py
 python3 -B tests/test_design_contracts.py
+PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s .agents/skills/static-graphic-design-creator/tests -p 'test_layer_assets.py'
 python3 -B -m unittest discover -s tests -p 'test_lifecycle.py'
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s .agents/skills/static-graphic-design-creator/tests -p 'test_event_poster_codes.py'
 python3 tests/check_source_anchors.py --check-inventory
 ```
+
+Layer tests use synthetic disposable files to check sequential review, selected-version delivery, alpha, coordinates, dependency graphs and ZIP/individual-file integrity. They do not certify generated cutouts, blending, actual editor import or native persistence.
 
 The deterministic suite checks exact source inventory and Git/SHA-256 locks, three-way update decisions, duplicate YAML/JSON keys, links, canonical handoff states and protected transitions. Catalog tests verify all 200 exact code lines, category/page mappings, English source descriptions and read-only lookup behavior without the PDF. Both actual templates are validated. The offline schema checker supports only the vocabulary used in this repository and rejects unsupported keywords; it is not a general JSON Schema engine. These tests do not prove model behavior, translation quality, headline quality, or visual fidelity.
 

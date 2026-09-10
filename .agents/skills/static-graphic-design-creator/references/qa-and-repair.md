@@ -4,7 +4,7 @@ QA compares actual artifacts with the approved concept, copy and property-level 
 
 ## Preflight
 
-Before a final prompt or render, require the selected/locked concept, selected/locked copy or explicit no-copy, resolved required references and feasible production intent. At-risk typography needs a concrete review plan. DTP stops raster finalization. No render is authorized by an ambiguous brief, a state label or the availability of a tool.
+Before a final prompt or render, require the selected/locked concept, selected/locked copy or explicit no-copy, resolved required references and feasible production intent. At-risk typography needs a concrete review plan. DTP stops raster finalization of the affected deliverable. Explicit [separate-assets work](layered-assets-workflow.md) assesses raster elements and manual text specifications separately while preserving project locks. No render is authorized by an ambiguous brief, a state label or the availability of a tool.
 
 Unavailable native generation returns a prompt only after the other finalization gates pass. A failed tool call is `generation_failed`. An image returned by the tool is `generated` until inspected. Follow the active host's display rules; if inspection is unavailable, state that limitation and keep QA `not_run`. Never prefill success in a prompt pack.
 
@@ -34,6 +34,12 @@ When transparency is required, inspect the actual alpha channel and edges on lig
 For a canonical record, include check IDs `concept`, `hierarchy`, `copy`, `legibility`, `references`, `additions` and `delivery`, plus specific artifact/material checks when relevant. Copy/legibility may be not applicable only for deliberate no-copy; reference checks only when no reference governs the output. Delivery checks are scoped to the requested intent, not a prepress claim.
 
 Record each check with an ID, `pass`, `fail`, `Unknown` or `not_applicable`, and concise observed evidence. State which image/file was inspected and at what viewing condition. `qa_pass` requires all relevant critical checks to be completed and passed, with evidence; Unknown critical checks block final acceptance. Do not label a check not applicable merely to avoid a missing reference. OCR is supporting evidence, not a replacement for inspecting the source and rendered glyphs.
+
+## Separate-asset acceptance and delivery
+
+In [layered work](layered-assets-workflow.md), inspect each current element against its role and shared composition, then obtain the user's acceptance of that exact version before advancing. Do not conflate inspection, user approval and assembled-poster QA. Compare dependencies after a replacement; untouched approved files retain their actual digests. A registry cannot prove pixels, approvals or blend quality by itself.
+
+At delivery, recheck actual approved files against the selected-version inventory. Resolve pending corrections before packaging, keep rejected drafts out, and verify exact ZIP entries and decompressed file hashes or the equivalent individual-file inventory. Check assembly instructions against the actual geometry, order, required copy, editor assumptions and remaining manual work. The read-only [helper](../scripts/layer_assets.py) checks technical properties and package bytes; visual edges, likeness, legibility and user consent still need actual evidence. Missing files or failed QA cannot become a verified final package.
 
 ## Decide the smallest sufficient repair
 

@@ -159,3 +159,7 @@ Run the [catalog tests](../tests/test_event_poster_codes.py) with `PYTHONDONTWRI
 This catalog and workflow are included in the repository source bundle. The source-release record identifies its published upstream base after release locking and publication. Repository maintenance follows the source-first release process; updating an installed copy remains a separate, explicitly authorized operation. Ordinary catalog use never edits files, installs updates or publishes a release. The original PDF is not bundled or required at runtime.
 
 Future expansion may add explicitly authorized authored directions with separate provenance and stable identifiers, while preserving the 200 original lines and their category mapping. Extend an actual design capability or meaning rather than adding synonyms to inflate the count. No new directions outside the PDF are claimed in this revision.
+
+## Explicit separate assets
+
+For [layered assets](layered-assets-workflow.md), preserve the same optional selection, visibility and opt-out policy. Translate the chosen direction into shared composition decisions and then the current element's relevant attributes. Do not add the whole poster's lettering to a text-free layer or treat a code as permission to render the next element. Keep the sequential user-approval gate and protected versions.

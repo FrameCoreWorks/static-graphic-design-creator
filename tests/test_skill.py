@@ -169,6 +169,8 @@ def main():
     if not args.working_tree:
         require({str(p.relative_to(SKILL)) for p in SKILL.rglob('*') if p.is_file()} == paths, 'Working bundle inventory mismatch')
     check_documents()
+    from layer_assets import validate_plan
+    validate_plan(read_json(SKILL / "templates/layer-plan.json"))
     check_negative_cases(m)
     report = (ROOT / 'reports/host-evaluations' / (m['release_id'] + '.md')).read_text()
     expected_cases = re.findall(r'^(\d+)\. [^:\n]+:', (ROOT / 'EVALUATION.md').read_text(), re.M)

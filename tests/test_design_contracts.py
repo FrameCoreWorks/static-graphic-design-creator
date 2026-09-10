@@ -207,6 +207,33 @@ def main():
             round_trip=json.loads(json.dumps(state,ensure_ascii=False))
             require(state==round_trip,'Round-trip lost data')
             validate_state(round_trip)
+    # The multi-asset project and a single raster operation remain independent
+    # records: a later editable title is not silently dropped or painted on a background.
+    from layer_assets import validate_plan
+    plan = read_json(SKILL/'templates/layer-plan.json')
+    preserved_plan = copy.deepcopy(plan)
+    source = (SKILL/'templates/prompt-pack.md').read_text()
+    state = yaml.load(re.search(r'```yaml\n(.*?)```', source, re.S).group(1), Loader=UniqueLoader)
+    state['strategy'].update(objective='Create the background element', visual_thesis='Cool empty square supports a later warm figure',
+                             attention_order=['Open ground plane'], composition='environment', type_image_relationship='Title belongs to a separate editor element')
+    state['concept']['lock'].update(premise='Night poster environment', mechanism='Cool space for later warm figure',
+                                  distinctive_hook='Human absence in the background asset', forbidden_substitutions=['Text or figures on this asset'])
+    state['copy'].update(route='no_copy', selection_status='not_required', items=[], options=[], claims=[])
+    state['prompt']='Create only the cool empty night-square background. Keep upper title space calm. No lettering, person or fog.'
+    validate_state(state)
+    validate_plan(plan)
+    require(plan == preserved_plan, 'Asset-level no-copy changed project inventory')
+    title_state = yaml.load(re.search(r'```yaml\n(.*?)```', source, re.S).group(1), Loader=UniqueLoader)
+    title_state['copy']['items'][0]['text'] = plan['composition']['copy'][0]['text']
+    title_state['prompt']='Create one raster artistic title asset reading exactly AFTER HOURS. No other lettering.'
+    validate_state(title_state)
+    title_state['prompt']='Create a title asset without any lettering.'
+    try:
+        validate_state(title_state)
+    except Invalid:
+        pass
+    else:
+        raise AssertionError('Asset routing bypassed its own exact-copy gate')
     # A new unsupported keyword fails visibly rather than weakening validation.
     try:
         check_vocabulary({'unevaluatedProperties':False})
@@ -214,7 +241,7 @@ def main():
         pass
     else:
         raise AssertionError('Unsupported keyword silently ignored')
-    print(f'{len(fixtures["cases"])} design-state/transition cases and both actual templates passed. No model or image evaluation claimed.')
+    print(f'{len(fixtures["cases"])} design-state/transition cases, both actual templates and 3 layered handoff checks passed. No model or image evaluation claimed.')
 
 if __name__=='__main__':
     main()

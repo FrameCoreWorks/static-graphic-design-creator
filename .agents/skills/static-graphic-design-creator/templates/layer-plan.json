@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "project_id": "fictional-night-poster",
+  "revision": 1,
+  "mode": "from_scratch",
+  "canvas": {
+    "width": 1024,
+    "height": 1536
+  },
+  "composition": {
+    "objective": "Invite attention to a fictional night event",
+    "concept_lock": "A warm human presence interrupts a cool empty night",
+    "palette": [
+      "deep blue",
+      "warm amber"
+    ],
+    "lighting": "Soft cool environment; warm key from upper left",
+    "perspective": "Eye level; coherent ground plane",
+    "reserved_zones": [
+      "Upper quarter for title; keep high contrast and low detail"
+    ],
+    "copy": [
+      {
+        "id": "title",
+        "text": "AFTER HOURS",
+        "status": "locked",
+        "source": "Fictional example wording, not a user project fact"
+      }
+    ]
+  },
+  "sequence": [
+    "background",
+    "person",
+    "fog",
+    "title"
+  ],
+  "assets": [
+    {
+      "id": "background",
+      "role": "Night environment with reserved upper title area",
+      "treatment": "Cool night palette with one warm accent",
+      "route": "raster",
+      "z_index": 0,
+      "geometry": {
+        "canvas_mode": "full_canvas",
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 1536,
+        "rotation": 0
+      },
+      "opacity": 1,
+      "blend_mode": "normal",
+      "blend_support": "Unknown",
+      "transparency": "opaque",
+      "copy_ids": [],
+      "depends_on": [],
+      "dependency_note": "Independent foundation",
+      "coupled_elements": [],
+      "selected_version": null,
+      "versions": []
+    },
+    {
+      "id": "person",
+      "role": "One fictional adult, with contact shadow",
+      "treatment": "Cool night palette with one warm accent",
+      "route": "raster",
+      "z_index": 1,
+      "geometry": {
+        "canvas_mode": "full_canvas",
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 1536,
+        "rotation": 0
+      },
+      "opacity": 1,
+      "blend_mode": "normal",
+      "blend_support": "Unknown",
+      "transparency": "alpha",
+      "copy_ids": [],
+      "depends_on": [
+        "background"
+      ],
+      "dependency_note": "Check overlap and lighting against the environment",
+      "coupled_elements": [
+        "contact shadow"
+      ],
+      "selected_version": null,
+      "versions": []
+    },
+    {
+      "id": "fog",
+      "role": "Low foreground fog overlay",
+      "treatment": "Cool night palette with one warm accent",
+      "route": "raster",
+      "z_index": 2,
+      "geometry": {
+        "canvas_mode": "full_canvas",
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 1536,
+        "rotation": 0
+      },
+      "opacity": 1,
+      "blend_mode": "normal",
+      "blend_support": "Unknown",
+      "transparency": "alpha",
+      "copy_ids": [],
+      "depends_on": [
+        "background",
+        "person"
+      ],
+      "dependency_note": "Check overlap and lighting against the environment",
+      "coupled_elements": [],
+      "selected_version": null,
+      "versions": []
+    },
+    {
+      "id": "title",
+      "role": "Editable title specification",
+      "treatment": "Cool night palette with one warm accent",
+      "route": "editable_text",
+      "z_index": 3,
+      "geometry": {
+        "canvas_mode": "full_canvas",
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 1536,
+        "rotation": 0
+      },
+      "opacity": 1,
+      "blend_mode": "normal",
+      "blend_support": "Unknown",
+      "transparency": "not_applicable",
+      "copy_ids": [
+        "title"
+      ],
+      "depends_on": [],
+      "dependency_note": "Independent foundation",
+      "coupled_elements": [],
+      "selected_version": null,
+      "versions": []
+    }
+  ],
+  "delivery": {
+    "choice": "undecided",
+    "asset_ids": []
+  }
+}

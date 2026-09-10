@@ -2,6 +2,26 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.11.0-rc.1] - Unreleased candidate
+
+### Added
+
+- opt-in separate assets, primarily from scratch, with one composition and sequential creation/review/user approval;
+- a portable layer plan and exact approved-version registry, individual or ZIP handoff, and truthful extraction/reconstruction provenance;
+- a read-only helper for plan validation, actual dimensions/alpha/digests, change comparison and exact delivered-package verification;
+- synthetic regression tests and manual scenarios for asset scope, approvals, copy, effects, packaging and continuation.
+
+### Changed
+
+- integrated-image defaults remain intact; explicit separated work assesses copy, references and DTP at asset scope without dropping project locks;
+- onboarding explains manual editor assembly and delivery choice in the user's language, with optional codes;
+- repository validation and lifecycle coverage include the new source resources and preservation of personal extensions.
+
+### Verification limits
+
+- source and manifest/lock preparation follow the approved immutable release procedure; live host evidence remains pending;
+- actual generation, user approval of real artwork, editor import and candidate host installations remain untested; no installed Skill is modified.
+
 ## [0.10.0-rc.1] - Published candidate
 
 ### Added

@@ -1,5 +1,7 @@
 # Static Design Intake
 
+For explicit separate-assets work, use the [layer plan](layer-plan.json) and [layered workflow](../references/layered-assets-workflow.md). This single-asset state describes the current raster operation; retain the complete project copy, sequence and approved file versions in the separate plan. Ordinary integrated graphics use this template unchanged.
+
 Collect an ordinary brief without a mandatory code question or catalog step. For a user-selected code, put its canonical line in `strategy.style_requests`. For automatic selection, keep the entry and visibility preference in internal lookup context and populate only its interpreted strategy attributes; do not invent a user style request. Follow [code selection and rebuild](../references/event-poster-code-workflow.md), including hidden-code preference and full catalog opt-out. `/codes` browsing, including localized aliases, does not require this intake.
 
 Use internally for complex work. This valid starting state records unresolved decisions; it is not a mandatory form. Populate from supplied evidence, preserve prior answers, and select the action appropriate to the request. Empty fields do not approve facts, copy or capabilities. See [workflow integration](../references/workflow-integration.md).

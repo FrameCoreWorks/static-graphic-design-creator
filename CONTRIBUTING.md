@@ -20,6 +20,12 @@ Use this English text for GitHub's repository About / Description field, which a
 
 This is repository metadata, separate from the Skill's frontmatter. A commit to this file does not update the live About field. Set it through an authorized GitHub metadata operation and verify the saved field; report it as pending if the available connection cannot edit repository metadata.
 
+## Layered-asset validation
+
+Run `PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s .agents/skills/static-graphic-design-creator/tests -p 'test_layer_assets.py'`. Pillow is a test dependency and an optional runtime dependency for actual image inspection; the Skill never installs it automatically. The helper is read-only and does not render, approve, package or upload. Keep project registries and image outputs outside the Skill bundle.
+
+Verify both ordinary integrated and explicitly separated behavior. A full set still proceeds one asset at a time, with user acceptance between outputs. Approval evidence, visual QA and delivery verification are distinct. A ZIP must contain exactly selected versions and the documented sidecars, with actual decompressed-byte checks. Never use a passing synthetic test to certify live generation, editor import or a host save.
+
 ## Candidate lock
 
 1. Finish the bounded source patch, examples and tests. Choose an unpublished candidate version and update its source-release record. Never rewrite published source commits or move published release refs.

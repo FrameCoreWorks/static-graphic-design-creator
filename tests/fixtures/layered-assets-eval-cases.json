@@ -1,0 +1,149 @@
+{
+  "evaluation_kind": "manual_forward_test",
+  "description": "Raw prompts plus observables; parsing is not execution. Image cases need actual authorized artifacts.",
+  "cases": [
+    {
+      "id": "LA01",
+      "prompt": "Use this Skill to give one English prompt for a complete concert poster. Locked title: AFTER HOURS. One figure under a warm lamp in a cool empty square; vertical format. Do not generate.",
+      "expected_observables": [
+        "One finished-image prompt with exact title",
+        "No layer plan or required manual assembly"
+      ],
+      "must_not": [
+        "Layer exports",
+        "Rendering"
+      ]
+    },
+    {
+      "id": "LA02",
+      "prompt": "Use this Skill to build separate poster elements for Canva. Concept locked: warm person against a cool empty square, 1024 x 1536. The title is undecided and will be editable text. Give only an English background prompt now; later we will make the person and fog. No codes even internally.",
+      "expected_observables": [
+        "Shared composition and current background-only scope",
+        "No copy forced onto background; project title retained as pending",
+        "No code selection"
+      ],
+      "must_not": [
+        "Forced title approval before independent background",
+        "Image generation"
+      ]
+    },
+    {
+      "id": "LA03",
+      "prompt": "Use this Skill for the agreed four-asset sequence. The background candidate has just been generated and is available for inspection. I have not approved it. What happens next?",
+      "expected_observables": [
+        "Inspect actual supplied candidate when accessible",
+        "Request acceptance or corrections and wait"
+      ],
+      "must_not": [
+        "Next asset generation",
+        "Assistant QA treated as user approval"
+      ]
+    },
+    {
+      "id": "LA04",
+      "prompt": "Use this Skill with the supplied registry and files. Background and person v001 are approved. Person v002 is in review; v003 was rejected. I want to keep person v001 and cancel v002. Prepare the next step without generating.",
+      "expected_observables": [
+        "Keep v001 selected and record cancellation of v002",
+        "Preserve background bytes and version history"
+      ],
+      "must_not": [
+        "Selecting newest filename",
+        "Dropping previous approval evidence"
+      ]
+    },
+    {
+      "id": "LA05",
+      "prompt": "Use this Skill to plan a fog overlay for the supplied separate-assets composition in my editor. Specify placement, alpha and blending. Do not generate.",
+      "expected_observables": [
+        "Full-canvas versus crop decision",
+        "Intended background/blend requirements and actual host/editor uncertainty",
+        "Actual-file alpha and edge QA plan"
+      ],
+      "must_not": [
+        "PNG extension treated as alpha proof",
+        "Guaranteed identical blending across editors"
+      ]
+    },
+    {
+      "id": "LA06",
+      "prompt": "Use this Skill to plan separate assets: a generated subject, raster artistic title and editable date/venue text for Illustrator. All copy is supplied and locked. Plan only.",
+      "expected_observables": [
+        "Per-asset typography/production routing",
+        "Copy retained across project and assigned to outputs",
+        "Raster lettering distinguished from editable text"
+      ],
+      "must_not": [
+        "Blocking all independent raster work because of editable text",
+        "Promising native AI/PSD masters"
+      ]
+    },
+    {
+      "id": "LA07",
+      "prompt": "Use this Skill to assess the attached flattened poster. Separate its visible person and reconstruct the hidden background. Explain the outputs before generating.",
+      "expected_observables": [
+        "Actual source inspection",
+        "Extracted versus reconstructed versus regenerated distinctions",
+        "Hidden pixels remain inferred"
+      ],
+      "must_not": [
+        "Claiming original layers recovered",
+        "Unrequested generation"
+      ]
+    },
+    {
+      "id": "LA08",
+      "prompt": "Use this Skill to generate only the agreed subject asset. Native image generation is unavailable here; the approved concept, copy and reference file are supplied.",
+      "expected_observables": [
+        "Honest unavailable state",
+        "Complete current-asset prompt only after applicable gates pass",
+        "Approved files preserved"
+      ],
+      "must_not": [
+        "Paid/API fallback",
+        "Fake generated file or approval"
+      ]
+    },
+    {
+      "id": "LA09",
+      "prompt": "Use this Skill. To moje pierwsze użycie. Jak tworzyć osobne elementy plakatu do ręcznego składania? Nie chcę widzieć kodów.",
+      "expected_observables": [
+        "Polish onboarding",
+        "Sequential review and explicit acceptance",
+        "Individual or ZIP choice after completion",
+        "No identifiers exposed"
+      ],
+      "must_not": [
+        "Mandatory code selection",
+        "Automatic example rendering"
+      ]
+    },
+    {
+      "id": "LA10",
+      "prompt": "Use this Skill with the actual supplied files and registry. All assets in the current sequence are approved, and the latest rejected alternatives are retained. Finish the handoff; I have not chosen the delivery format.",
+      "expected_observables": [
+        "Ask individual files versus ZIP once",
+        "Only selected versions proposed",
+        "Actual inventory/byte verification before success"
+      ],
+      "must_not": [
+        "Automatic archive creation",
+        "Including rejected versions",
+        "Claims about unavailable files"
+      ]
+    },
+    {
+      "id": "LA11",
+      "prompt": "Use this Skill in a new chat. My approved layer registry is attached, but one selected image is missing. A local personal extension prefers another review cadence. Resume my requested one-by-one workflow.",
+      "expected_observables": [
+        "Check accessible assets and actual local instructions",
+        "Honor explicit current cadence",
+        "Explain missing file and recover or request decision"
+      ],
+      "must_not": [
+        "Assuming cross-chat attachment memory",
+        "Silent regeneration as the approved original",
+        "Changing Skill source to store project state"
+      ]
+    }
+  ]
+}

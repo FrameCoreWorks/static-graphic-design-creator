@@ -36,6 +36,10 @@ Explain these points in the user's language, using ordinary vocabulary:
 
 The source PDF is not attached to the Skill and is not required from the user. Use the installed structured catalog. In ChatGPT Work and Codex, actual image reading/generation availability and existing execution gates still apply; never promise that an image has been edited merely because the code was accepted.
 
+## Optional separate assets
+
+Briefly explain that the user can also request individual elements created from scratch for manual assembly in Canva, Illustrator or another editor. Plan the composition together, create one asset, discuss corrections and wait for its acceptance before the next. Keep a record of the approved versions; after the agreed set is complete, offer individual files or a downloadable ZIP when supported. Editable text can be supplied as copy/layout specifications; raster lettering is not live text. Existing flattened posters can also be assessed for extraction or reconstruction, without promising recovery of original layers. This route is optional and does not replace the default finished graphic. Use [layered assets](layered-assets-workflow.md) only when requested.
+
 ## Compact source introduction
 
 Use this English source as an adaptable example, not a mandatory script. Localize it before delivery, include the relevant alias and keep its capabilities accurate for the active host:
@@ -48,13 +52,15 @@ Use this English source as an adaptable example, not a mandatory script. Localiz
 >
 > You can also supply an existing poster, including one generated earlier, choose a complete code such as `/Two Ink Collision /rebuild`, and describe what may change. We can revise the layout, hierarchy or style while preserving factual text and protected elements. A request to "change only the background" limits the edit to the background.
 >
+> You can also ask to build separate elements from scratch for manual assembly: we create, review and approve them one at a time, then deliver the approved files individually or as a ZIP when supported.
+>
 > We can also develop the brief, brainstorm and refine the design without codes. I can choose a direction internally and deliver a prompt without identifiers. If you want no catalog use even internally, say so.
 
 After the introduction, continue the supplied task. Ask what the user wants to create or improve only when no task has been provided. Do not display the entire catalog until requested.
 
 ## Verification cases
 
-- A new user requests onboarding with no brief: explain all five routes and ask one ordinary task question, with no render or compulsory code choice.
+- A new user requests onboarding with no brief: explain the core routes and the optional separate-assets route and ask one ordinary task question, with no render or compulsory code choice.
 - A known first-use message already includes a resolved brief: introduce briefly, then complete the requested scope without repeating supplied questions.
 - A returning user, unknown first-use status, or skipped onboarding: no repeated introduction.
 - A hidden-code user asks to improve a poster: explain ordinary brief/reference handling without exposing identifiers; keep factual and edit locks.

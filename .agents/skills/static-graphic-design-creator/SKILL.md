@@ -24,6 +24,7 @@ Classify the requested scope before choosing an output:
 | Explicitly generate/create the graphic | Resolve gates, then use available built-in generation. |
 | Graphic and prompt | Return the graphic and the exact submitted prompt. |
 | Existing image edit | Inspect and use that image; preserve everything outside the approved edit. |
+| Explicit separate-assets or layer-by-layer request | Read [layered assets](references/layered-assets-workflow.md), agree on the composition and requested sequence, then create and review one element at a time. |
 | `/codes` or an understood local catalog alias within this activated Skill | Show the complete grouped code catalog with descriptions in the user's language; this is a lookup, not graphic production. |
 | Install, source update, audit or personal extension | Read [Skill maintenance](references/skill-maintenance.md), use the active skill-creator workflow for the user-selected destination, and keep the user's approval boundary; do not start graphic production. |
 
@@ -35,7 +36,7 @@ After explicit activation, if this installed Skill contains `local/SKILL_EXTENSI
 
 Maintain documentation and catalog descriptions in English. Adapt onboarding, brief questions and explanations to the user's language: use an explicit language preference first, then their current conversational prose and recent context, then a reliable locale actually exposed by the host; use English only when no usable signal exists. Do not infer language from a pasted English prompt, a code name or the host name. Keep the conversation language, requested prompt language and exact artwork text separate. See [language and localization](references/first-use-onboarding.md#language-and-localization) for alias handling, language changes and host limits.
 
-For an explicitly requested introduction or a known first use after installation, read [first-use onboarding](references/first-use-onboarding.md). Explain optional codes, catalog commands, new prompts, uploaded-poster redesign and ordinary brief/brainstorm collaboration once in the user's language, then continue the actual task. Honor a request to skip onboarding or hide codes. Use a post-install introduction only when the active installer can actually display it; otherwise present it at the first explicit Skill invocation. Do not claim an installation hook, durable onboarding flag or automatic activation that the host does not provide.
+For an explicitly requested introduction or a known first use after installation, read [first-use onboarding](references/first-use-onboarding.md). Explain optional codes, catalog commands, new prompts, uploaded-poster redesign, optional separate assets for manual assembly and ordinary brief/brainstorm collaboration once in the user's language, then continue the actual task. Honor a request to skip onboarding or hide codes. Use a post-install introduction only when the active installer can actually display it; otherwise present it at the first explicit Skill invocation. Do not claim an installation hook, durable onboarding flag or automatic activation that the host does not provide.
 
 ## Inputs and authority
 
@@ -65,7 +66,7 @@ The [canonical catalog](references/event-poster-design-codes.json) contains all 
 
 Use the following decision priority without forcing a long process for simple work:
 
-communication objective and audience response → concept/copy relationship → reading conditions and text feasibility → visual thesis → composition and attention order → type/image roles → visual attributes and material behavior → one integrated prompt.
+communication objective and audience response → concept/copy relationship → reading conditions and text feasibility → visual thesis → composition and attention order → type/image roles → visual attributes and material behavior → the requested output, one integrated prompt by default.
 
 Read the relevant references only:
 
@@ -83,17 +84,17 @@ Read the relevant references only:
 
 Choose only the attention levels the message needs, usually one to three. Type, a datum, negative space or a relation can carry the dominant event; do not invent a person/product hero or extra caption for a minimal brief. A style label informs form and cannot replace a communication decision. One primary language and a compatible treatment are a useful default; a requested deliberate hybrid is allowed when every component serves the same thesis and functional copy survives.
 
-For new graphics, compile one `unified-multistage-static` prompt. Its eight stages are assembly priority within one output, not separate renders, blank text zones, layer exports or later manual assembly. Compress irrelevant stages. For a narrow edit, lead with the one permitted change and the preserved properties; do not rebuild the entire composition. Separate production is available only when explicitly requested and feasible.
+For ordinary integrated graphics, compile one `unified-multistage-static` prompt. Its eight stages are assembly priority within one output, not separate renders, blank text zones, layer exports or later manual assembly. Compress irrelevant stages. For a narrow edit, lead with the one permitted change and the preserved properties; do not rebuild the entire composition. Separate production is available only when explicitly requested and feasible. Use [layered assets](references/layered-assets-workflow.md) and its [plan template](templates/layer-plan.json) for this mode. Preserve one shared composition; generate only the current asset, discuss corrections, and wait for explicit acceptance before advancing. Record exact approved file versions in the project, never in the Skill. After all scoped elements are accepted, offer individual files or ZIP once, honoring an existing choice. A ZIP contains only the selected versions and assembly records, verified against actual files.
 
 ## Finalization and execution gates
 
-Before final prompt compilation or rendering, confirm the resolved concept, selected/locked copy or explicit `no_copy`, reference availability/conflicts and production intent. A critical unresolved fact or lock blocks finalization; a missing optional detail does not.
+Before final prompt compilation or rendering, confirm the resolved concept, selected/locked copy or explicit `no_copy`, reference availability/conflicts and production intent. In explicit separated work, apply these gates to the current asset while retaining project-wide locks and pending work in the shared plan. A critical unresolved fact or lock blocks finalization; a missing optional detail does not.
 
-Resolve `production_intent`: `concept_raster`, `digital_final`, or `production_master`. Exact editable typography, print specifications and production masters require `dtp_required`. Compact visible text can be a raster deliverable after actual QA; dates and prices are not automatic DTP triggers. Never simplify locked information without approval or claim a concept is production-ready.
+Resolve `production_intent`: `concept_raster`, `digital_final`, or `production_master`. Exact editable typography, print specifications and production masters require `dtp_required`. In an explicitly separated workflow, assess that requirement per asset: manual text specifications may accompany separately authorized feasible raster elements, while the complete editable/print master remains a DTP handoff. Compact visible text can be a raster deliverable after actual QA; dates and prices are not automatic DTP triggers. Never simplify locked information without approval or claim a concept is production-ready.
 
 Modes:
 
-- `prompt`: one complete standalone prompt in a fenced block; do not render.
+- `prompt`: one complete standalone prompt in a fenced block; do not render. In sequential asset work this is the current asset prompt; an explicitly requested set of prompts uses one standalone block per asset without generating images.
 - `render`: only after an explicit image request and passed gates, use the active built-in image-generation capability. Return the image and concise QA when inspection is available; omit the full prompt unless requested.
 - `render_and_prompt`: image plus the exact submitted prompt.
 - `none`: advice, concepts, copy-only, clarification or management work.
@@ -102,7 +103,7 @@ In Codex, use the available built-in `imagegen` Skill only as the adapter to nat
 
 Keep prompt semantics separate from verified native settings. A control needs evidence for this exact host; API support alone is insufficient. Provider-neutral work needs no forced model selection. Do not use empty quality boosters or promise font files, exact kerning, flawless raster text or deterministic identity preservation.
 
-If native generation is unavailable, return `render_status: unavailable` with the final prompt only after the other gates pass. If generation fails, preserve the prompt, report `generation_failed` and stop. DTP blocks generation. No external API/provider, paid service, upload, publishing, deployment or background action follows from a render request. Follow the user's explicit authorization boundaries.
+If native generation is unavailable, return `render_status: unavailable` with the final prompt only after the other gates pass. If generation fails, preserve the prompt, report `generation_failed` and stop. DTP blocks generation of the affected deliverable; the [layered workflow](references/layered-assets-workflow.md) defines separately requested raster scope. No external API/provider, paid service, upload, publishing, deployment or background action follows from a render request. Follow the user's explicit authorization boundaries.
 
 ## Delivery and stopping
 
