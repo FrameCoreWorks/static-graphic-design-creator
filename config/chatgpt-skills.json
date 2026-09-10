@@ -1,14 +1,14 @@
 {
   "schema_version": 6,
   "repository": "https://github.com/FrameCoreWorks/static-graphic-design-creator",
-  "version": "0.11.0-rc.1",
+  "version": "0.11.0-rc.2",
   "release": {
-    "id": "v0.11.0-rc.1",
+    "id": "v0.11.0-rc.2",
     "channel": "candidate",
     "bootstrap_ref": "main",
     "bootstrap_ref_type": "discovery_branch",
     "source_ref_type": "immutable_git_commit",
-    "immutable_source_commit": "19a559b207c804f265fa9180c6cecb5165d67fe3",
+    "immutable_source_commit": "610e908ba19ea9d926a454f5bd8452f39be714f6",
     "updates": "manual_user_approved",
     "repository_source_contract": true
   },
