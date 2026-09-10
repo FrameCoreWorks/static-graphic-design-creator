@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "evaluation_kind": "synthetic_save_observation",
+  "scope": "Complete synthetic file snapshots and transport observations. No real host save, approval, private incident files or durable storage evidence.",
+  "before": {
+    "SKILL.md": "Synthetic existing Skill. Read the optional personal entry when relevant.\n",
+    "references/source-release.json": "{\"repository\":\"https://github.com/FrameCoreWorks/static-graphic-design-creator\",\"skill_name\":\"static-graphic-design-creator\",\"version\":\"1.0\",\"release_id\":\"v1.0\",\"release_channel\":\"candidate\"}\n",
+    "local/editor-preference.md": "Keep my existing manual layout preference.\n",
+    "assets/icon.svg": "<svg/>\n"
+  },
+  "approved_changes": {
+    "local/SKILL_EXTENSIONS.md": "Approved personal scope: read layout-preference.md for my requested format.\n",
+    "local/layout-preference.md": "Prefer wide margins when the current brief permits them.\n",
+    "local/layout-template.md": "Record exact copy, dimensions and placement.\n"
+  },
+  "cases": [
+    {
+      "id": "acknowledged-and-complete",
+      "events": [{"attempts": 1, "save_outcome": "acknowledged", "observed": {"base": "intended"}, "expected_status": "saved_verified", "expected_action": "complete_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "http-500-baseline-two-attempts",
+      "transport_note": "HTTP 500, disconnected, exit 1, followed by Everything up-to-date",
+      "events": [
+        {"attempts": 1, "save_outcome": "transient_error", "observed": {"base": "before"}, "expected_status": "save_failed", "expected_action": "review_one_retry", "retry_candidate": true},
+        {"attempts": 2, "save_outcome": "transient_error", "observed": {"base": "before"}, "expected_status": "save_failed", "expected_action": "stop_preserve_prepared", "retry_candidate": false}
+      ]
+    },
+    {
+      "id": "lost-response-complete-content",
+      "events": [{"attempts": 1, "save_outcome": "transient_error", "observed": {"base": "intended"}, "expected_status": "saved_verified", "expected_action": "complete_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "partial-added-files",
+      "events": [{"attempts": 1, "save_outcome": "transient_error", "observed": {"base": "intended", "remove": ["local/layout-template.md"]}, "expected_status": "save_mismatch", "expected_action": "review_changed_state_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "preserved-personal-file-changed",
+      "events": [{"attempts": 1, "save_outcome": "acknowledged", "observed": {"base": "intended", "put": {"local/editor-preference.md": "Newer user preference.\n"}}, "expected_status": "save_mismatch", "expected_action": "review_changed_state_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "unexpected-added-file",
+      "events": [{"attempts": 1, "save_outcome": "transient_error", "observed": {"base": "intended", "put": {"local/later-note.md": "Do not erase this later note.\n"}}, "expected_status": "save_mismatch", "expected_action": "review_changed_state_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "source-record-lost",
+      "events": [{"attempts": 1, "save_outcome": "acknowledged", "observed": {"base": "intended", "remove": ["references/source-release.json"]}, "expected_status": "save_mismatch", "expected_action": "review_changed_state_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "unavailable-readback",
+      "events": [{"attempts": 1, "save_outcome": "transient_error", "observed": null, "expected_status": "verification_unavailable", "expected_action": "obtain_readback_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "success-message-with-unchanged-host",
+      "events": [{"attempts": 1, "save_outcome": "acknowledged", "observed": {"base": "before"}, "expected_status": "save_failed", "expected_action": "stop_preserve_prepared", "retry_candidate": false}]
+    },
+    {
+      "id": "permission-rejection-no-generic-retry",
+      "events": [{"attempts": 1, "save_outcome": "rejected", "observed": {"base": "before"}, "expected_status": "save_failed", "expected_action": "stop_preserve_prepared", "retry_candidate": false}]
+    },
+    {
+      "id": "non-fast-forward-is-distinct",
+      "events": [{"attempts": 1, "save_outcome": "non_fast_forward", "observed": {"base": "before"}, "expected_status": "save_failed", "expected_action": "review_non_fast_forward", "retry_candidate": false}]
+    },
+    {
+      "id": "already-present-without-new-attempt",
+      "events": [{"attempts": 0, "save_outcome": "not_attempted", "observed": {"base": "intended"}, "expected_status": "already_present_verified", "expected_action": "complete_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "drift-before-first-save",
+      "events": [{"attempts": 0, "save_outcome": "not_attempted", "observed": {"base": "before", "put": {"assets/icon.svg": "<svg>newer icon</svg>\n"}}, "expected_status": "inputs_changed", "expected_action": "review_changed_state_without_writing", "retry_candidate": false}]
+    },
+    {
+      "id": "observed-empty-skill",
+      "events": [{"attempts": 1, "save_outcome": "transient_error", "observed": {"base": "empty"}, "expected_status": "save_mismatch", "expected_action": "review_changed_state_without_writing", "retry_candidate": false}]
+    }
+  ]
+}

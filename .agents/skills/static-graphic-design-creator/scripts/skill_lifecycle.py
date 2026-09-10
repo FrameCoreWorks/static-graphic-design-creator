@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify source bundles and plan an existing-Skill update. Never writes or saves."""
+"""Verify source bundles, update proposals and saved-state evidence. Never writes or saves."""
 from __future__ import annotations
 
 import argparse
@@ -8,6 +8,7 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 import re
+import sys
 
 NAME = 'static-graphic-design-creator'
 REPOSITORY = 'https://github.com/FrameCoreWorks/' + NAME
@@ -197,15 +198,110 @@ def build_proposal(base, target, installed, resolutions=None):
     return result
 
 
-def verify_result(expected, actual):
-    """Use before save for input-drift detection, and after save for exact readback."""
+def snapshot_delta(expected, actual):
     missing, extra = set(expected) - set(actual), set(actual) - set(expected)
     changed = {p for p in set(expected) & set(actual) if expected[p] != actual[p]}
-    require(not (missing or extra or changed), 'Snapshot/readback mismatch: ' + json.dumps(
-        {'missing': sorted(missing), 'extra': sorted(extra), 'changed': sorted(changed)}))
+    return {'missing': sorted(missing), 'extra': sorted(extra), 'changed': sorted(changed)}
+
+
+def verify_result(expected, actual):
+    """Use before save for input-drift detection, and after save for exact readback."""
+    delta = snapshot_delta(expected, actual)
+    require(not any(delta.values()), 'Snapshot/readback mismatch: ' + json.dumps(delta))
+
+
+def inspect_save(before, intended, observed, *, approved_paths, operation='personal_extension',
+                 attempts=0, save_outcome='not_attempted'):
+    """Classify supplied complete snapshots, not a transport message or user consent.
+
+    The caller must obtain an actual saved-state readback after host reconciliation;
+    a working copy or fabricated evidence cannot establish host persistence.
+    Recommendations never execute or authorize writes, retries or rollback.
+    """
+    require(operation in {'personal_extension', 'source_update'}, 'Unknown save operation')
+    require(type(attempts) is int and attempts >= 0, 'Invalid save attempt count')
+    require(save_outcome in {'not_attempted', 'acknowledged', 'transient_error', 'rejected', 'non_fast_forward'},
+            'Unknown save outcome')
+    require((attempts == 0) == (save_outcome == 'not_attempted'), 'Attempt/outcome mismatch')
+    require(isinstance(approved_paths, (list, tuple)) and len(approved_paths) == len(set(approved_paths)),
+            'Approved paths must be a unique list')
+    for files in (before, intended, observed):
+        if files is None:
+            continue
+        require(isinstance(files, dict), 'Snapshot must be a complete file mapping')
+        for path, data in files.items():
+            safe_path(path)
+            require(isinstance(data, bytes), 'Snapshot content must be bytes')
+    for files in (before, intended):
+        require(isinstance(files, dict) and {'SKILL.md', RECORD} <= set(files), 'Existing Skill snapshot required')
+        record = parse_json(files[RECORD])
+        require(record['repository'] == REPOSITORY and record['skill_name'] == NAME
+                and record['release_id'] == 'v' + record['version'], 'Snapshot source identity mismatch')
+    for path in approved_paths:
+        safe_path(path)
+    approved = set(approved_paths)
+    proposed_delta = snapshot_delta(before, intended)
+    changed = set().union(*map(set, proposed_delta.values()))
+    require(changed == approved, 'Intended changes must match the exact approved path scope')
+    if operation == 'personal_extension':
+        require(before[RECORD] == intended[RECORD], 'Personal extension must preserve source record bytes')
+    result = {
+        'operation': operation, 'attempts': attempts, 'save_outcome': save_outcome,
+        'writes_performed': False, 'retry_candidate': False,
+        'before_sha256': digests(before), 'intended_sha256': digests(intended),
+        'observed_sha256': digests(observed) if observed is not None else None,
+        'approved_paths': sorted(approved),
+        'evidence_scope': 'supplied_snapshots_only; caller must verify host origin and approval',
+    }
+    if observed is None:
+        return {**result, 'status': 'verification_unavailable', 'state_relation': 'unavailable',
+                'next_action': 'obtain_readback_without_writing'}
+    result['delta_from_intended'] = snapshot_delta(intended, observed)
+    result['delta_from_before'] = snapshot_delta(before, observed)
+    if observed == intended:
+        status = 'saved_verified' if attempts and changed else 'already_present_verified'
+        return {**result, 'status': status, 'state_relation': 'intended', 'next_action': 'complete_without_writing'}
+    if observed == before:
+        retry = save_outcome == 'transient_error' and attempts == 1
+        action = ('revalidate_approved_change' if attempts == 0 else
+                  'review_one_retry' if retry else
+                  'review_non_fast_forward' if save_outcome == 'non_fast_forward' else 'stop_preserve_prepared')
+        return {**result, 'status': 'baseline_verified' if attempts == 0 else 'save_failed',
+                'state_relation': 'baseline', 'retry_candidate': retry, 'next_action': action}
+    observed_changes = set().union(*map(set, result['delta_from_before'].values()))
+    return {**result, 'status': 'save_mismatch' if attempts else 'inputs_changed', 'state_relation': 'diverged',
+            'outside_approved_paths': sorted(observed_changes - approved),
+            'next_action': 'review_changed_state_without_writing'}
+
+
+def inspect_save_cli(argv):
+    parser = argparse.ArgumentParser(description='Read-only save evidence inspection; no host calls or approval.')
+    parser.add_argument('--before', required=True, type=Path, help='Complete pre-change installed Skill snapshot')
+    parser.add_argument('--intended', required=True, type=Path, help='Complete approved resulting Skill snapshot')
+    parser.add_argument('--observed', type=Path, help='Complete actual saved-state readback; omit when unavailable')
+    parser.add_argument('--approved-path', action='append', default=[], help='Repeat for every approved changed/new/deleted path')
+    parser.add_argument('--operation', choices=['personal_extension', 'source_update'], default='personal_extension')
+    parser.add_argument('--attempts', type=int, default=0)
+    parser.add_argument('--save-outcome', choices=['not_attempted', 'acknowledged', 'transient_error', 'rejected', 'non_fast_forward'],
+                        default='not_attempted')
+    args = parser.parse_args(argv)
+    try:
+        before, intended = read_tree(args.before), read_tree(args.intended)
+        # An inaccessible/incomplete snapshot is never silently treated as an empty Skill.
+        observed = read_tree(args.observed) if args.observed is not None else None
+        result = inspect_save(before, intended, observed, approved_paths=args.approved_path,
+                              operation=args.operation, attempts=args.attempts, save_outcome=args.save_outcome)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0 if result['state_relation'] == 'intended' else 1
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        print(json.dumps({'status': 'blocked_verification', 'error': str(exc)}))
+        return 2
 
 
 def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    if argv and argv[0] == 'inspect-save':
+        return inspect_save_cli(argv[1:])
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline', required=True, type=Path, help='Verified prior source directory')
     parser.add_argument('--target', required=True, type=Path, help='Verified target source directory')

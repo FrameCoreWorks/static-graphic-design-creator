@@ -2,6 +2,27 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.11.0-rc.2] - Release candidate
+
+### Changed
+
+- personal-extension prompts for ChatGPT Work and Codex now distinguish local preparation, actual saved content and recovery availability, including on older installed versions without the new helper;
+- maintenance and update recovery compare complete before/intended/readback contents after every save attempt; a lost response does not trigger another save when the approved result is already present;
+- unchanged persisted baselines require no rollback; transient-error retry is bounded, changed contents require reviewed recovery, and unavailable readback never authorizes a blind retry or restore;
+- resumption verifies accessible approved content, preserves later edits and attempt history, and distinguishes temporary work from a verified durable recovery checkpoint.
+
+### Added
+
+- a read-only `inspect-save` mode in the existing lifecycle helper, without host calls, save operations or approval authority;
+- synthetic save-outcome regression cases and seven manual host scenarios covering full/failed/partial saves, response loss, resumption and host-specific behavior.
+
+### Verification limits
+
+- publication follows the authorized source-then-lock procedure, complete manifest verification and a separate post-publication public-file/CI check;
+- local lifecycle validation passed 21 tests, including 14 synthetic recovery scenarios; two independent source-only exercises confirmed the complete-readback/lost-response decision and the updated standalone prompt with older maintenance instructions after two failed attempts;
+- the reported HTTP 500 is not reproduced or diagnosed here; synthetic evidence does not certify a live native save, service recovery or durable backup;
+- graphic-production instructions and installed personal Skills are outside this patch.
+
 ## [0.11.0-rc.1] - Release candidate
 
 ### Added

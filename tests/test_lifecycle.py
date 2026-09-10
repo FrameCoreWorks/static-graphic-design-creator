@@ -211,6 +211,121 @@ class LifecycleTests(unittest.TestCase):
                 life.read_tree(root / 'installed')
 
 
+class SaveRecoveryTests(unittest.TestCase):
+    def setUp(self):
+        self.fixture = life.parse_json((ROOT / 'tests/fixtures/skill-save-recovery-cases.json').read_bytes())
+        self.before = {p: text.encode() for p, text in self.fixture['before'].items()}
+        self.changes = {p: text.encode() for p, text in self.fixture['approved_changes'].items()}
+        self.intended = {**self.before, **self.changes}
+
+    def inspect(self, observed, **kwargs):
+        return life.inspect_save(self.before, self.intended, observed, approved_paths=list(self.changes), **kwargs)
+
+    def test_save_observation_fixture_and_bounded_retry_decisions(self):
+        for case in self.fixture['cases']:
+            for event in case['events']:
+                with self.subTest(case=case['id'], attempt=event['attempts']):
+                    spec = event['observed']
+                    observed = None
+                    if spec is not None:
+                        observed = dict({'before': self.before, 'intended': self.intended, 'empty': {}}[spec['base']])
+                        observed.update({p: text.encode() for p, text in spec.get('put', {}).items()})
+                        for p in spec.get('remove', []):
+                            observed.pop(p)
+                    original = copy.deepcopy((self.before, self.intended, observed))
+                    result = self.inspect(observed, attempts=event['attempts'], save_outcome=event['save_outcome'])
+                    self.assertEqual(result['status'], event['expected_status'])
+                    self.assertEqual(result['next_action'], event['expected_action'])
+                    self.assertEqual(result['retry_candidate'], event['retry_candidate'])
+                    self.assertFalse(result['writes_performed'])
+                    self.assertEqual((self.before, self.intended, observed), original)
+                    self.assertEqual(result['before_sha256'][life.RECORD], result['intended_sha256'][life.RECORD])
+                    self.assertEqual(result['before_sha256']['local/editor-preference.md'],
+                                     result['intended_sha256']['local/editor-preference.md'])
+                    self.assertNotIn('write_authorized', result)
+
+    def test_retry_window_does_not_expand_with_attempt_count(self):
+        for n in (2, 3, 10):
+            result = self.inspect(self.before, attempts=n, save_outcome='transient_error')
+            self.assertFalse(result['retry_candidate'])
+            self.assertEqual(result['next_action'], 'stop_preserve_prepared')
+        for attempts, outcome in ((-1, 'transient_error'), (True, 'transient_error'),
+                                  (0, 'acknowledged'), (1, 'not_attempted')):
+            with self.assertRaises(ValueError):
+                self.inspect(self.before, attempts=attempts, save_outcome=outcome)
+
+    def test_scope_record_and_identity_guard(self):
+        for intended, paths in (
+            ({**self.intended, life.RECORD: record('2.0')}, [*self.changes, life.RECORD]),
+            ({**self.intended, 'assets/icon.svg': b'unapproved change'}, list(self.changes)),
+            (self.intended, list(self.changes)[:-1]),
+            (self.intended, [*self.changes, next(iter(self.changes))]),
+            ({**self.intended, '../escape': b'x'}, [*self.changes, '../escape']),
+        ):
+            with self.assertRaises(ValueError):
+                life.inspect_save(self.before, intended, None, approved_paths=paths)
+        foreign = {**self.before, life.RECORD: record('1.0').replace(b'FrameCoreWorks', b'OtherOwner')}
+        with self.assertRaises(ValueError):
+            life.inspect_save(foreign, {**foreign, **self.changes}, None, approved_paths=list(self.changes))
+
+    def test_source_update_readback_and_explicit_personal_override(self):
+        intended = {**self.intended, life.RECORD: record('2.0')}
+        result = life.inspect_save(self.before, intended, intended, operation='source_update',
+                                   approved_paths=[*self.changes, life.RECORD], attempts=1, save_outcome='acknowledged')
+        self.assertEqual(result['status'], 'saved_verified')
+        with self.assertRaises(ValueError):
+            life.inspect_save(self.before, intended, intended, approved_paths=[*self.changes, life.RECORD])
+        override = {**self.intended, 'SKILL.md': b'Explicitly reviewed personal loading change'}
+        result = life.inspect_save(self.before, override, override, approved_paths=[*self.changes, 'SKILL.md'],
+                                   attempts=1, save_outcome='acknowledged')
+        self.assertEqual(result['status'], 'saved_verified')
+        self.assertEqual(result['before_sha256'][life.RECORD], result['intended_sha256'][life.RECORD])
+
+    def test_replacements_deletions_and_unrelated_changes_are_compared(self):
+        before = {**self.before, 'local/retired.md': b'remove after approval'}
+        intended = {**self.intended, 'local/editor-preference.md': b'approved replacement'}
+        paths = [*self.changes, 'local/retired.md', 'local/editor-preference.md']
+        result = life.inspect_save(before, intended, intended, approved_paths=paths, attempts=1, save_outcome='acknowledged')
+        self.assertEqual(result['status'], 'saved_verified')
+        leftover = life.inspect_save(before, intended, {**intended, 'local/retired.md': b'remove after approval'},
+                                     approved_paths=paths, attempts=1, save_outcome='acknowledged')
+        self.assertEqual(leftover['delta_from_intended']['extra'], ['local/retired.md'])
+        self.assertEqual(leftover['status'], 'save_mismatch')
+        changed = self.inspect({**self.intended, 'assets/icon.svg': b'new icon'}, attempts=1, save_outcome='transient_error')
+        self.assertEqual(changed['outside_approved_paths'], ['assets/icon.svg'])
+        self.assertFalse(changed['retry_candidate'])
+
+    def test_read_only_save_cli_and_missing_recovery_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name, files in [('before', self.before), ('intended', self.intended), ('observed', self.intended)]:
+                write_files(root / name, files)
+            command = [sys.executable, '-B', str(Path(life.__file__)), 'inspect-save',
+                       '--before', str(root / 'before'), '--intended', str(root / 'intended'),
+                       '--attempts', '1', '--save-outcome', 'transient_error']
+            for p in self.changes:
+                command.extend(['--approved-path', p])
+            snapshot = life.read_tree(root)
+            completed = subprocess.run(command + ['--observed', str(root / 'observed')], capture_output=True, text=True)
+            self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+            self.assertEqual(json.loads(completed.stdout)['status'], 'saved_verified')
+            unavailable = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual(unavailable.returncode, 1)
+            self.assertEqual(json.loads(unavailable.stdout)['status'], 'verification_unavailable')
+            missing = subprocess.run(command + ['--observed', str(root / 'missing')], capture_output=True, text=True)
+            self.assertEqual(missing.returncode, 2)
+            self.assertEqual(json.loads(missing.stdout)['status'], 'blocked_verification')
+            self.assertEqual(life.read_tree(root), snapshot)
+            (root / 'intended/local/layout-template.md').unlink()
+            missing_recovery = subprocess.run(command + ['--observed', str(root / 'observed')], capture_output=True, text=True)
+            self.assertEqual(missing_recovery.returncode, 2)
+            self.assertEqual(life.read_tree(root / 'observed'), self.intended)
+            (root / 'intended/local/layout-template.md').symlink_to(root / 'before/SKILL.md')
+            unsafe = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual(unsafe.returncode, 2)
+            self.assertEqual(life.read_tree(root / 'observed'), self.intended)
+
+
 class ReleaseTests(unittest.TestCase):
     def test_historical_baselines_and_mismatched_locator(self):
         history = life.parse_json((ROOT / release.HISTORY).read_bytes())
