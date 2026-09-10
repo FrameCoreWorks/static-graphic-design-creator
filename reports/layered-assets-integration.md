@@ -8,8 +8,10 @@ Date: 2026-09-10. Scope: the public repository source only. No installed Skill w
 - Published source commit: `c778236b9f10e28276b2048fc78b689ac5739376`.
 - Published manifest/main commit: `c1c3e7888220283d793bd80c4a5ee8235f27343d`.
 - Manifest SHA-256: `8e234cc5051ae282092fc7e6c02db145cad378d0f556ff61b5527ebc91b235fd`.
-- The remote main and manifest were read and compared with the clean checkout before this extension. The current draft source identifies the proposed `v0.11.0-rc.1`; it is not an available release.
-- The discovery configs, release history, published reports and release helper remain unchanged until an authorized real source commit allows a new immutable lock. Do not install the edited working tree as if it were the currently pinned release.
+- The remote main and manifest were read and compared with the clean checkout before this extension. Public refs were fetched again before committing; main still matched the baseline and `v0.11.0-rc.1` was unpublished.
+- Candidate source commit: `19a559b207c804f265fa9180c6cecb5165d67fe3`.
+- Candidate manifest SHA-256: `47c40008a3a51e8be62f06fd451c3be6e5471e88a4a7360fcbcbbf0776c75b0a`.
+- Both discovery configs, release history and the candidate's pending host report were derived from that exact committed source using `scripts/release.py lock`. The release helper and historical reports remain unchanged. The GitHub connection assigned the actual source commit above; its complete tree matched the locally validated source (`08c85541d164718884f497171a457776301c869c`). The lock was regenerated against that actual source before updating public discovery. This record captures lock preparation; public availability requires the separate post-push verification below.
 
 The Skill bundle contains 32 files: 4 new, 12 changed, 16 unchanged, none removed, relative to the 28-file baseline. Core concept/copy resources, design-state schema, 200-entry catalog, model references, UI metadata and lifecycle helper remain byte-identical to that baseline.
 
@@ -27,9 +29,9 @@ The Skill bundle contains 32 files: 4 new, 12 changed, 16 unchanged, none remove
 | Check | Observed result | Scope |
 | --- | --- | --- |
 | Skill creator quick validation | pass | Frontmatter/name/structure only |
-| `tests/test_skill.py --working-tree` | pass | 28 pinned baseline files, 13 three-way digest cases, draft document links and new plan validation; not a new release lock |
+| `tests/test_skill.py` | pass | 32 pinned candidate files and working-source agreement, 13 three-way digest cases, 66 host cases recorded but not executed; immutable release lock verified locally |
 | `tests/test_design_contracts.py` | pass | Existing 70 cases and two actual templates, plus 3 layered handoff checks |
-| `tests/test_lifecycle.py` | 15 pass | Includes actual draft source update/no-op with preserved personal files and a colliding layered reference that blocks mutation |
+| `tests/test_lifecycle.py` | 15 pass | Includes update from the fixed pre-layered source to the candidate, repeated no-op with preserved personal files, and a colliding layered reference that blocks mutation |
 | Bundled `test_layer_assets.py` | 31 pass | Synthetic temporary files: sequential review, version selection, structured concept/copy preservation, alpha, geometry, dependencies, safe paths and delivery integrity |
 | Bundled catalog tests | 11 pass | Existing 200-code behavior preserved |
 | Source-anchor inventory | pass, 33 URLs | Inventory only, not a new reachability review of all historical anchors |
@@ -48,14 +50,14 @@ These were source-only development exercises, not blind human evaluation or cert
 
 ## Manual evaluation and remaining Unknowns
 
-Added 11 raw-task scenarios in `tests/fixtures/layered-assets-eval-cases.json`, with corresponding host cases 56-66 in `EVALUATION.md`. The existing published candidate report retains its original 55-case inventory; it is historical evidence, not a stale file to rewrite. The release helper will generate the new candidate's 66-case pending report after the source commit is approved and exists.
+Added 11 raw-task scenarios in `tests/fixtures/layered-assets-eval-cases.json`, with corresponding host cases 56-66 in `EVALUATION.md`. The prior published candidate report retains its original 55-case inventory; it is historical evidence, not a stale file to rewrite. The release helper generated the new candidate's 66-case report, with every ChatGPT Work and Codex result still pending.
 
-Still untested for this candidate: actual native generation and correction of a complete asset sequence; cutout/overlay visual quality; actual Canva/Illustrator import and blending; real archive creation/delivery through each host; new candidate installation, native save/update and continued work across chats in ChatGPT Work and Codex. Actual candidate source commit, manifest commit, CI and public availability are `Unknown` until separately authorized and observed. Synthetic tests or prior user tests of other releases cannot pass these cases.
+Still untested for this candidate: actual native generation and correction of a complete asset sequence; cutout/overlay visual quality; actual Canva/Illustrator import and blending; real archive creation/delivery through each host; new candidate installation, native save/update and continued work across chats in ChatGPT Work and Codex. CI and public availability require observation after publishing the lock commit; they are not certified by this pre-publication record. Synthetic tests or prior user tests of other releases cannot pass these cases.
 
 Current official capability references were reviewed on 2026-09-10 and are linked with scoped claims in the layered workflow. No model identifier, editor blend feature or API-only setting is promoted into a guaranteed native control.
 
 ## Commit and release handoff
 
-Commit/push approval was received on 2026-09-10 after the implementation report. Before committing, recheck the owner-selected version and public refs, preserve any concurrent changes, and verify this complete patch. Commit the source first, derive both configs/history and the pending host report using `scripts/release.py lock --source <actual-source-commit>`, run default release validation plus affected suites, and commit the lock. Publish only the complete source-plus-lock history if authorized. If a connector assigns a different source commit ID, verify its complete tree and regenerate against that actual public source before changing discovery.
+Commit/push approval was received on 2026-09-10 after the implementation report. The public-ref check, source commit, derived lock and default release validation plus all affected suites have completed successfully. Commit the lock metadata next and publish only the complete source-plus-lock history. If a connector assigns a different source commit ID, verify its complete tree and regenerate against that actual public source before changing discovery.
 
 After publication, use `scripts/release.py verify-public` or equivalent authorized read-only GitHub checks: exact public refs, source ancestry, both configs, complete source inventory/hashes and successful latest CI for the published main commit. Do not move an existing published version ref, copy project registries or personal files into the release, or edit an installed Skill as a side effect. Before publication, rollback is limited to reverting this draft patch relative to the baseline while preserving unrelated changes; later correction requires a new release.
