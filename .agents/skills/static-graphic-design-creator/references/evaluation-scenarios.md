@@ -6,6 +6,10 @@
 - A style label such as cinematic, premium, bold, surreal, or luxury does not count as a concept.
 - A production limitation produces a bounded conflict or loopback rather than a generic replacement concept.
 - Exact copy, identity, product, logo, source authority, and reference locks remain protected.
+- Ordinary briefs do not trigger an automatic archive lookup; when the user requests historical research or a relevant open brief materially benefits from it, the Skill may choose a source from the graphic-design archive directory using actual host browsing tools, cite specific object or project records, separate documented facts from visual inference, and translate observations into an original direction.
+- When an archive or individual page is unavailable, restricted, or not documented online, the Skill reports that limit, avoids invented archive findings or image-rights claims, and continues from available references or asks for user-supplied material only when necessary.
+- Poster House is a poster-specific first choice; Europeana supports cross-institutional discovery; Rijksmuseum supports collection and historical-object research; Pentagram supports contemporary studio case studies. The Skill verifies the actual item and source institution instead of treating an archive landing page or search result as evidence about an unseen object.
+- Free browsing is not reuse permission. Rights and download options are checked at the individual object level; a citation does not grant reproduction rights, and archive images are not bundled into the Skill.
 
 ## Event-poster code behavior cases
 

@@ -2,6 +2,20 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.12.0-rc.1] - Release candidate
+
+### Added
+
+- optional Design Reviewed archive research for historically grounded graphic-design references, with host-capability checks, item-level citations, explicit fact-versus-interpretation handling, and copyright/access boundaries;
+- a curated directory linking Poster House, Europeana Posters, the Rijksmuseum collection, and Pentagram Archive as optional free-to-browse inspiration sources, with source selection, item-level rights, and host-access caveats;
+- source-anchor reachability coverage and manual evaluation scenarios for optional archive use and unavailable or restricted pages.
+
+### Verification limits
+
+- the Design Reviewed archive index, poster-format page, and a sample artefact record were readable in the research session on 2026-09-24; this does not establish that every image, record, article, ChatGPT Work session, or Codex session is accessible;
+- the three collection pages and Pentagram archive listing were available in the research session on 2026-09-24; Pentagram's interactive archive did not render in the text-search view. Letterform Archive's online catalogue showed temporary maintenance and remains outside the active directory until access is rechecked;
+- current host evaluations remain pending for this candidate; no image reproduction, native Skill update, stable release, or merge to main is claimed.
+
 ## [0.11.0-rc.2] - Release candidate
 
 ### Changed

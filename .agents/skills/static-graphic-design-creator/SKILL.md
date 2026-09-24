@@ -73,6 +73,8 @@ Read the relevant references only:
 - [Style and composition atlas](references/poster-style-and-composition-atlas.md): hierarchy, attention, negative space, minimal/dense layouts and poster direction.
 - [Style translation catalog](references/poster-style-translation-catalog.md): translating a requested style label into visible decisions.
 - [Movements and production atlas](references/poster-movements-and-production-atlas.md): historical languages, cultural context and process-specific visual materiality.
+- [Design Reviewed archive](references/design-reviewed-archive.md): optional live research through its public graphic-design archive; use only when requested or materially useful, and check actual host browsing capability.
+- [Graphic-design archive directory](references/design-archive-directory.md): optional free-to-browse poster, studio, and museum collections, source selection, access caveats, and item-level rights checks.
 - [Deliverable profiles](references/deliverable-profiles.md): product-specific information and composition requirements.
 - [Capability and reference contract](references/capability-and-reference-contract.md): actual host controls, reference roles, identity, product and logo preservation, and property-level authority.
 - [GPT Image 2.5 decisions](references/gpt-image-2-5.md): when that model is requested, distinguish documented API settings from native tools, and use bounded reference/edit guidance with dated evidence.
