@@ -50,6 +50,12 @@
       "manifest_commit": "33747c64d4796c76c925e3eacbf9a766f4408bcc",
       "manifest_sha256": "47c40008a3a51e8be62f06fd451c3be6e5471e88a4a7360fcbcbbf0776c75b0a",
       "immutable_source_commit": "19a559b207c804f265fa9180c6cecb5165d67fe3"
+    },
+    {
+      "release_id": "v0.11.0-rc.2",
+      "manifest_commit": "c3cbdf766411ca7e1131bc034bfa74ebad2efe71",
+      "manifest_sha256": "8eef985687ba5acf3db2e749c3b76d713bc066bf95d49a57524167608f5f22e3",
+      "immutable_source_commit": "610e908ba19ea9d926a454f5bd8452f39be714f6"
     }
   ]
 }
