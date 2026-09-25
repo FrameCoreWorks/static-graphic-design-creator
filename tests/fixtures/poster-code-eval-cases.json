@@ -101,6 +101,7 @@
       "prompt": "I just installed static-graphic-design-creator. Run onboarding. How can I begin in ChatGPT Work and Codex? I also have finished posters to improve later, but no brief yet.",
       "expected_observables": [
         "English introduction with explicit invocation and /codes, new prompts, supplied-image rebuild and brief/brainstorm options",
+        "Names Pentagram, Poster House, Europeana and Rijksmuseum as visual-reference directory examples; offers project-relevant sources or the complete list without suggesting automatic archive browsing",
         "Clarify optional code visibility and opt-out",
         "One ordinary next-task question if needed"
       ],
@@ -144,6 +145,7 @@
       "host_context": "The interface locale is en-US; no explicit conversation-language override.",
       "expected_observables": [
         "Polish onboarding explains /codes and /kody for the same catalog",
+        "Names the visual-reference directory's example sources and offers project-relevant references or the full list without suggesting automatic browsing",
         "Existing-poster and ordinary brief routes remain optional"
       ],
       "must_not": [

@@ -2,6 +2,16 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.12.0-rc.3] - Release candidate
+
+### Added
+
+- first-use onboarding now introduces the optional visual-reference directory, names Pentagram, Poster House, Europeana and the Rijksmuseum, and offers project-relevant sources or the complete list without suggesting automatic browsing.
+
+### Verification limits
+
+- ChatGPT Work and Codex host evaluations remain pending; this candidate is not a stable release or an installed Skill update.
+
 ## [0.12.0-rc.2] - Release candidate
 
 ### Changed

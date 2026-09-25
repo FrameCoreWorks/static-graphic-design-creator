@@ -43,11 +43,11 @@ Use [first-use onboarding](first-use-onboarding.md) for the introduction and tim
 
 | Input case | Acceptance evidence |
 | --- | --- |
-| Known newly installed user asks how to start in ChatGPT Work or Codex | Explain explicit invocation, `/codes` and relevant local aliases, optional code use, new prompts, uploaded/local poster redesign, factual/scope locks and ordinary brief/brainstorm work in the user's language. No full catalog or compulsory mode choice. |
+| Known newly installed user asks how to start in ChatGPT Work or Codex | Explain explicit invocation, `/codes` and relevant local aliases, optional code use, new prompts, uploaded/local poster redesign, factual/scope locks and ordinary brief/brainstorm work in the user's language. Name the visual-reference directory's example sources (Pentagram, Poster House, Europeana and Rijksmuseum) and offer useful sources for the project or the full list. Do not imply automatic archive browsing. No full catalog or compulsory mode choice. |
 | A first-use introduction already happened, or user says "skip; only the prompt" | Continue the requested task without another welcome, catalog pitch or onboarding question. |
 | First-use status is unknown | Do not infer a new installation from a new conversation or claim a saved global onboarding flag. |
 | User wants codes hidden during onboarding | Explain brief-based design and image refinement without code labels; command details only when requested. |
-| Polish first-use request, even with an English interface or pasted English installer prompt | Polish introduction includes `/codes` and `/kody`; user prose/preference governs over interface or quoted text. |
+| Polish first-use request, even with an English interface or pasted English installer prompt | Polish introduction includes `/codes` and `/kody`, names the visual-reference directory and its example sources, and offers project-relevant references or the full list; user prose/preference governs over interface or quoted text. |
 | Spanish or Japanese first-use request | Localized introduction from the English source with `/codes`, preserved English code strings and no Polish detour or forced English fallback. |
 | No conversational signal; reliable host locale is exposed, or no locale is available | Use the exposed locale in the first case and English in the second; no fabricated account-setting inspection or compulsory language question. |
 | Explicit language preference conflicts with an alias or an interface locale | Honor the preference; aliases only select the catalog, not response language. |

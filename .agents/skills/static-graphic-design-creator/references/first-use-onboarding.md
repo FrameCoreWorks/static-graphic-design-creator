@@ -33,6 +33,7 @@ Explain these points in the user's language, using ordinary vocabulary:
 3. **New design or prompt.** Copy an actual listed short code such as `/Two Ink Collision` into a brief and specify whether the desired result is a prompt or a graphic. The Skill translates the direction into layout, hierarchy, typography, colour and material choices. A new design requires no existing poster.
 4. **Improve an existing poster.** Attach an available poster in the current host, including one generated earlier, then select a complete catalog line such as `/Two Ink Collision /rebuild` and state the permitted change. In Codex, an accessible local image path may supply the reference. Inspect the actual image before editing. A broad requested redesign may change layout, composition and style while preserving exact factual text and protected assets. "Change only the background" or another narrow instruction limits the edit. A slash label alone neither uploads an image nor authorizes generation.
 5. **Work without codes.** The user may describe the objective, audience, content, format and desired changes in ordinary language. Develop the concept together through brief clarification or brainstorming when useful, then produce the requested complete prompt or authorized image. Do not force brainstorm variants onto a resolved concept or replace approved copy. Explain that automatic internal catalog selection is optional and can be disabled explicitly.
+6. **Visual references.** Explain that the Skill includes a directory of visual-reference sources, including Pentagram, Poster House, Europeana and the Rijksmuseum. Offer to identify sources useful for the project or provide the full list. Archive browsing remains optional: do not imply that sources are searched automatically, and consult the directory only when requested or materially useful, using the active host's actual browsing capability.
 
 The source PDF is not attached to the Skill and is not required from the user. Use the installed structured catalog. In ChatGPT Work and Codex, actual image reading/generation availability and existing execution gates still apply; never promise that an image has been edited merely because the code was accepted.
 
@@ -45,6 +46,8 @@ Briefly explain that the user can also request individual elements created from 
 Use this English source as an adaptable example, not a mandatory script. Localize it before delivery, include the relevant alias and keep its capabilities accurate for the active host:
 
 > You can work with me through a normal brief and conversation. Style codes are optional.
+>
+> The Skill also includes a directory of visual-reference sources, including Pentagram, Poster House, Europeana and the Rijksmuseum. I can point you to sources useful for your project or share the full list.
 >
 > After invoking this Skill, enter `/codes` to explore 200 directions in 20 categories with descriptions. You can also ask for a category or directions that fit your task.
 >
@@ -64,6 +67,7 @@ After the introduction, continue the supplied task. Ask what the user wants to c
 - A known first-use message already includes a resolved brief: introduce briefly, then complete the requested scope without repeating supplied questions.
 - A returning user, unknown first-use status, or skipped onboarding: no repeated introduction.
 - A hidden-code user asks to improve a poster: explain ordinary brief/reference handling without exposing identifiers; keep factual and edit locks.
+- A first-use introduction names Pentagram, Poster House, Europeana and the Rijksmuseum as examples, offers project-relevant sources or the full list, and does not suggest automatic archive browsing.
 - A Codex user supplies an actual local image: use the available image-reading path and observed tools; do not invent an upload widget or a native slash-command API.
 - Polish onboarding explains `/codes` and `/kody`; English onboarding leads with `/codes` without a Polish-language detour. A Spanish or Japanese request receives onboarding in that language from the same English source.
 - A language preference overrides the UI locale or a pasted setup prompt. With no conversation evidence, use an actually available locale, or English when none is exposed; never invent a detected setting.

@@ -125,7 +125,7 @@ The Skill includes **200 poster directions in 20 categories**. After invoking it
 
 Documentation and catalog descriptions are maintained in English. The Skill uses your conversation language for onboarding, brief questions and catalog explanations, and introduces relevant local aliases during onboarding. It follows an explicit language preference first, then conversation context, using a reliable host locale only when available. The requested prompt language and exact artwork text remain separate. English code names stay unchanged across languages.
 
-For a new user, the installer or a known first-use invocation explains catalog discovery, new prompts, uploaded-poster improvement and ordinary brief/brainstorm collaboration. The introduction can be skipped and does not require a code choice or acknowledgment. An installation does not necessarily execute the Skill, and an unknown first-use status does not justify a recurring welcome. See the [first-use workflow](.agents/skills/static-graphic-design-creator/references/first-use-onboarding.md).
+For a new user, the installer or a known first-use invocation explains catalog discovery, the optional visual-reference directory, new prompts, uploaded-poster improvement and ordinary brief/brainstorm collaboration. It can name example sources and offer project-relevant references or the full list without implying automatic archive browsing. The introduction can be skipped and does not require a code choice or acknowledgment. An installation does not necessarily execute the Skill, and an unknown first-use status does not justify a recurring welcome. See the [first-use workflow](.agents/skills/static-graphic-design-creator/references/first-use-onboarding.md).
 
 ### Browse directions
 
@@ -169,7 +169,7 @@ The standalone JSON catalog preserves code names and categories from *200 Event 
 - uses a poster-movements atlas, style translation catalog, production walkthroughs, and QA routes without turning them into a preset menu;
 - protects per-item exact copy and reference properties, including product/garment construction, continuous label boundaries and logo geometry;
 - supports type-only minimalism, deliberate hybrids and format-specific commercial, menu, packaging and social decisions;
-- offers optional manual or internal poster-code selection, complete catalog browsing localized to the user and first-use guidance for existing-image redesign;
+- offers optional manual or internal poster-code selection, complete catalog browsing localized to the user, first-use guidance for existing-image redesign, and an optional visual-reference directory;
 - evaluates actual text burden and required metadata separately from wording selection, with Polish/multilingual checks and explicit digital-versus-production limits;
 - fails acceptance on one critical defect and chooses the smallest supported repair, checking texture/gradient and identity drift without automatic rerenders;
 - treats named-font fidelity, dense raster type, print-ready deliverables, and prepress as external QA or DTP requirements rather than promises.
