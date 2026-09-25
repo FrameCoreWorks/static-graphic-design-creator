@@ -2,6 +2,16 @@
 
 This file records user-visible changes to the standalone Skill. Stable, versioned release refs remain the source of truth for published versions.
 
+## [0.12.0-rc.2] - Release candidate
+
+### Changed
+
+- reissued the archive candidate with a fresh immutable source lock aligned to the committed source tree; archive scope and behavior are unchanged.
+
+### Verification limits
+
+- ChatGPT Work and Codex host evaluations remain pending; this candidate is not a stable release or an installed Skill update.
+
 ## [0.12.0-rc.1] - Release candidate
 
 ### Added
@@ -14,7 +24,7 @@ This file records user-visible changes to the standalone Skill. Stable, versione
 
 - the Design Reviewed archive index, poster-format page, and a sample artefact record were readable in the research session on 2026-09-24; this does not establish that every image, record, article, ChatGPT Work session, or Codex session is accessible;
 - the three collection pages and Pentagram archive listing were available in the research session on 2026-09-24; Pentagram's interactive archive did not render in the text-search view. Letterform Archive's online catalogue showed temporary maintenance and remains outside the active directory until access is rechecked;
-- current host evaluations remain pending for this candidate; no image reproduction, native Skill update, stable release, or merge to main is claimed.
+- host evaluations remain pending for this candidate; no image reproduction, native Skill update, or stable release is claimed. The original `rc.1` lock later failed the repository ancestry check after rebase.
 
 ## [0.11.0-rc.2] - Release candidate
 
